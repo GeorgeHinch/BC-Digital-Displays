@@ -1,0 +1,47 @@
+﻿{
+  "main": [
+
+    {
+      "Text": "Home",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/",
+      "IsActive": true
+    },
+    {
+      "Text": "Fitness",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/fitness/",
+      "IsActive": false
+    },
+    {
+      "Text": "Recreation",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/recreation/",
+      "IsActive": false
+    },
+    {
+      "Text": "Tennis",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/tennis/",
+      "IsActive": false
+    },
+    {
+      "Text": "Wellness",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/wellness/",
+      "IsActive": false
+    },
+    {
+      "Text": "Schedule",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/",
+      "IsActive": false
+    },
+    {
+      "Text": "This Week",
+      "Icon": "&#57615;",
+      "Link": "http://www.bellevueclub.com/thisweek/",
+      "IsActive": false
+    }
+  ]
+}
