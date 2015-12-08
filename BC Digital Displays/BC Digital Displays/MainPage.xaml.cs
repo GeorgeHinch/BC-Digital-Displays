@@ -103,6 +103,11 @@ namespace BC_Digital_Displays
                     }
                 }
             }
+
+            /*if (response = )
+            {
+                WebView.Source = new Uri("http://www.bellevueclub.com/");
+            }*/
         }
 
         public class MenuItems

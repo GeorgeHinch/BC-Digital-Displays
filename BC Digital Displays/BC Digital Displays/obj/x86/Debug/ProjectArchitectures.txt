@@ -1,1 +1,1 @@
-C:\Users\georgeh\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\BC Digital Displays.csproj;x86
+C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\BC Digital Displays.csproj;x86

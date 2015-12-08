@@ -81,11 +81,11 @@
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Background" />
       <RootProperty Name="Foreground" />
+      <RootProperty Name="FontSize" />
       <RootProperty Name="Padding" />
       <RootProperty Name="HorizontalContentAlignment" />
       <RootProperty Name="VerticalContentAlignment" />
       <RootProperty Name="Template" />
-      <RootProperty Name="FontSize" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
