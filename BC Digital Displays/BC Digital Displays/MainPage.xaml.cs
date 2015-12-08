@@ -21,6 +21,8 @@ using System.Text;
 using System.Net.Http;
 using System.Xml.Serialization;
 using System.Xml;
+using Windows.Networking.Connectivity;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -70,44 +72,52 @@ namespace BC_Digital_Displays
 
         public void LoadMainMenu()
         {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
             HttpRequestMessage request = new HttpRequestMessage(
                     HttpMethod.Get,
                     $"http://www.bellevueclub.com/digital-signage/BC-Display-Menu.txt");
             HttpClient client = new HttpClient();
-            var response = client.SendAsync(request).Result;
-            if (response.StatusCode == HttpStatusCode.OK)
+            Debug.WriteLine(client);
+            if (internet == false)
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                var bytes = Encoding.Unicode.GetBytes(result);
-                using (MemoryStream stream = new MemoryStream(bytes))
+                NoInternetAlert();
+                //WebView.Source = new Uri("http://www.bellevueclub.com/");
+                Debug.WriteLine("No internet");
+            } else
+            {
+                var response = client.SendAsync(request).Result;
+                Debug.WriteLine(response);
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var serializer = new DataContractJsonSerializer(typeof(Menu));
-                    Menu nav = (Menu)serializer.ReadObject(stream);
-                    
-                    RadioButton[] radioButtons = new RadioButton[nav.main.Length];
-
-                    for (int i = 0; i < nav.main.Length; ++i)
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    var bytes = Encoding.Unicode.GetBytes(result);
+                    using (MemoryStream stream = new MemoryStream(bytes))
                     {
-                        MenuItems current = nav.main[i];
-                        Debug.WriteLine($"Text: {current.Text}, Icon: {current.Icon}, Link: {current.Link}, IsActive: {current.IsActive}.");
+                        var serializer = new DataContractJsonSerializer(typeof(Menu));
+                        Menu nav = (Menu)serializer.ReadObject(stream);
 
-                        radioButtons[i] = new RadioButton();
-                        radioButtons[i].Content = current.Text;
-                        radioButtons[i].Tag = current;
-                        radioButtons[i].GroupName = WebUtility.HtmlDecode(current.Icon);
-                        radioButtons[i].IsChecked = current.IsActive;
-                        radioButtons[i].Style = this.Resources["SplitViewNavButtonStyle"] as Style;
-                        radioButtons[i].Checked += new RoutedEventHandler(radioButton_Checked);
-                       
-                        this.NavStack.Children.Add(radioButtons[i]);
+                        RadioButton[] radioButtons = new RadioButton[nav.main.Length];
+
+                        for (int i = 0; i < nav.main.Length; ++i)
+                        {
+                            MenuItems current = nav.main[i];
+                            Debug.WriteLine($"Text: {current.Text}, Icon: {current.Icon}, Link: {current.Link}, IsActive: {current.IsActive}.");
+
+                            radioButtons[i] = new RadioButton();
+                            radioButtons[i].Content = current.Text;
+                            radioButtons[i].Tag = current;
+                            radioButtons[i].GroupName = WebUtility.HtmlDecode(current.Icon);
+                            radioButtons[i].IsChecked = current.IsActive;
+                            radioButtons[i].Style = this.Resources["SplitViewNavButtonStyle"] as Style;
+                            radioButtons[i].Checked += new RoutedEventHandler(radioButton_Checked);
+
+                            this.NavStack.Children.Add(radioButtons[i]);
+                        }
                     }
                 }
             }
-
-            /*if (response = )
-            {
-                WebView.Source = new Uri("http://www.bellevueclub.com/");
-            }*/
         }
 
         public class MenuItems
@@ -132,12 +142,42 @@ namespace BC_Digital_Displays
             WebView.Source = new Uri(item.Link);
         }
 
-        private void refreshPage(object sender, RoutedEventArgs e)
+        private void refreshPageButton(object sender, RoutedEventArgs e)
+        {
+            refreshPage();
+        }
+
+        public void refreshPage()
         {
             this.NavStack.Children.Clear();
             LoadBackgroundImage();
             LoadMainMenu();
             LoadBCLogo();
         }
+
+        private async void NoInternetAlert()
+        {
+
+            // Create a MessageDialog
+            var messageDialog = new MessageDialog("This device is not connected to the internet. Check the network status and then retry.");
+            // Or create a separate callback for different commands
+
+            messageDialog.Commands.Add(new UICommand(
+                "Retry", new UICommandInvokedHandler(this.CommandInvokedHandler)));
+
+            // Set CommandIndex. 0 means default.
+            messageDialog.DefaultCommandIndex = 0;
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show MessageDialog
+            await messageDialog.ShowAsync();
+
+        }
+
+        private void CommandInvokedHandler(IUICommand command)
+        {
+            refreshPage();
+        }
+
     }
 }

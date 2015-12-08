@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-12-08T05:30:08.067</Modified>
+      <Modified>2015-12-08T23:36:53.051</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\BC Digital Displays.exe">
       <PackagePath>entrypoint\BC Digital Displays.exe</PackagePath>
-      <Modified>2015-12-08T05:30:07.256</Modified>
+      <Modified>2015-12-08T23:36:52.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\.nuget\packages\Microsoft.ApplicationInsights\1.0.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll">
       <PackagePath>Microsoft.ApplicationInsights.dll</PackagePath>
@@ -502,7 +502,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\BC Digital Displays.xr.xml">
       <PackagePath>BC Digital Displays.xr.xml</PackagePath>
-      <Modified>2015-12-08T05:04:07.974</Modified>
+      <Modified>2015-12-08T23:36:04.009</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -510,11 +510,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-12-08T05:30:07.818</Modified>
+      <Modified>2015-12-08T23:36:52.923</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\Core\BC Digital Displays.exe">
       <PackagePath>BC Digital Displays.exe</PackagePath>
-      <Modified>2015-12-08T05:30:08.065</Modified>
+      <Modified>2015-12-08T23:36:53.047</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

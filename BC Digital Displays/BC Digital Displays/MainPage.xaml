@@ -50,7 +50,7 @@
                 </TextBlock.Foreground>
             </TextBlock>
 
-            <Button Grid.Column="2" Grid.Row="2" DoubleTapped="refreshPage" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0" />
+            <Button Grid.Column="2" Grid.Row="2" DoubleTapped="refreshPageButton" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0" />
         </Grid>
     </Grid>
 </Page>
