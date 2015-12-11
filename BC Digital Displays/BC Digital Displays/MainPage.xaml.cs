@@ -157,9 +157,8 @@ namespace BC_Digital_Displays
 
         private async void NoInternetAlert()
         {
-
             // Create a MessageDialog
-            var messageDialog = new MessageDialog("This device is not connected to the internet. Check the network status and then retry.");
+            var messageDialog = new MessageDialog("This device is not connected to the internet. Until an active internet connection is established, the application can not continue. Check the network status and then retry.", "No Internet Connection");
             // Or create a separate callback for different commands
 
             messageDialog.Commands.Add(new UICommand(
@@ -167,7 +166,6 @@ namespace BC_Digital_Displays
 
             // Set CommandIndex. 0 means default.
             messageDialog.DefaultCommandIndex = 0;
-            messageDialog.CancelCommandIndex = 1;
 
             // Show MessageDialog
             await messageDialog.ShowAsync();
