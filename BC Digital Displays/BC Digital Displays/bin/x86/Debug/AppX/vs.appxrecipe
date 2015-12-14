@@ -22,13 +22,13 @@
     <AppXManifest Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-12-14T04:03:40.581</Modified>
+      <Modified>2015-12-14T04:14:54.316</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\BC Digital Displays.exe">
       <PackagePath>entrypoint\BC Digital Displays.exe</PackagePath>
-      <Modified>2015-12-14T04:03:39.834</Modified>
+      <Modified>2015-12-14T04:14:53.529</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\.nuget\packages\Microsoft.ApplicationInsights\1.0.0\lib\portable-win81+wpa81\Microsoft.ApplicationInsights.dll">
       <PackagePath>Microsoft.ApplicationInsights.dll</PackagePath>
@@ -510,11 +510,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-12-14T04:03:40.387</Modified>
+      <Modified>2015-12-14T04:14:54.075</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\GeorgeH\Documents\GitHub\bc-digital-displays\BC Digital Displays\BC Digital Displays\bin\x86\Debug\Core\BC Digital Displays.exe">
       <PackagePath>BC Digital Displays.exe</PackagePath>
-      <Modified>2015-12-14T04:03:40.576</Modified>
+      <Modified>2015-12-14T04:14:54.310</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
