@@ -41,7 +41,10 @@ namespace BC_Digital_Displays
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += new EventHandler<object>(dispatchTimer_Tick);
             timer.Start();
-            
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("main");
+
             LoadBackgroundImage();
             LoadMainMenu();
             LoadBCLogo();
@@ -140,10 +143,16 @@ namespace BC_Digital_Displays
             RadioButton radioButton = ((RadioButton)sender);
             MenuItems item = (MenuItems)radioButton.Tag;
             WebView.Source = new Uri(item.Link);
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", selectedContent, 0);
         }
 
         private void refreshPageButton(object sender, RoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "refresh_click", "Refresh", 0);
+
             refreshPage();
         }
 
