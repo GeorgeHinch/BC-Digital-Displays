@@ -17,7 +17,8 @@
     <Style TargetType="TextBlock" x:Key="SplitViewTextBlockStyle">
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <!--<Setter Property="FontFamily" Value="Segoe MDL2 Assets" />-->
+        <Setter Property="FontFamily" Value="{StaticResource Segoe MDL2 BC}" />
         <Setter Property="FontSize" Value="{ThemeResource SplitViewNormalNavFontSize}" />
     </Style>
 
