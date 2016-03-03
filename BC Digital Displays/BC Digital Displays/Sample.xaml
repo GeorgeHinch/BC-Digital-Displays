@@ -1,0 +1,188 @@
+﻿<Page xmlns:RichTextBoxAdv="using:Syncfusion.UI.Xaml.RichTextBoxAdv" 
+    x:Class="BC_Digital_Displays.Sample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Syncfusion.UI.Xaml.Schedule"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="CheckStates">
+                <VisualState x:Name="MouseDown">
+                    <Storyboard x:Name="down">
+                        <DragItemThemeAnimation TargetName="StartGrid" Duration="00:00:0.5"  FillBehavior="Stop" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name ="MouseUp">
+                    <Storyboard x:Name="up">
+                        <PointerUpThemeAnimation Duration="00:00:0.1"  TargetName="StartStackPanel" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="StartOnClick">
+                    <Storyboard x:Name="Storyboard1">
+                        <PopInThemeAnimation Duration="00:00:1"   FromVerticalOffset="-20" FromHorizontalOffset="0"  TargetName="StartStackPanel" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="EndOnClick">
+                    <Storyboard x:Name="Storyboard2">
+                        <PopInThemeAnimation Duration="00:00:1"   FromVerticalOffset="-20" FromHorizontalOffset="0"  TargetName="EndStackPanel" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="RecurrenceOn">
+                    <Storyboard x:Name="Storyboard4">
+                        <PopInThemeAnimation Duration="00:00:1"   FromVerticalOffset="-20" FromHorizontalOffset="0"  TargetName="RecursiveStackPanel" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="MouseLeft">
+                    <Storyboard x:Name="Storyboard3">
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7.5*"/>
+            <ColumnDefinition Width="345"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="EmptySpace">
+            <Rectangle Grid.Column="0" Fill="Transparent" Opacity="0.3" />
+        </Grid>
+        <Grid Grid.Column="1" >
+            <Grid Background="SlateGray">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="16*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"   Margin="40,25,40,0">
+                    <TextBlock Text="{Binding EditedAppointment.Subject, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="30" 
+                                                   Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  
+                                                   FontFamily="Segoe UI" FontWeight="Light" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ScrollViewer x:Name="ScrollView" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" Margin="0,5,0,0" >
+                        <StackPanel>
+                            <StackPanel    Margin="40,5,40,0">
+                                <StackPanel Visibility="{Binding IsWarningMsgVisible, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <TextBlock Text="Appointment's EndTime is less than StartTime. Please check With the Start Time and End Time." 
+                                                   TextWrapping="Wrap" Width="auto" Height="auto" FontSize="13" Foreground="Red" 
+                                                   />
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel   Margin="0,0,0,30" >
+                                <TextBlock x:Name="SubjectHeader" Text="Subject" Foreground="White" />
+                                <syncfusion:SfTextBoxExt x:Name="Subject" IsReadOnly="{Binding EditedAppointment.ReadOnly}"
+                                                                     Watermark="{Binding [Subject], RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                     Height="30" Margin="40,20,60,0" Background="White" BorderBrush="#FFB2B2B2"  
+                                                                     TextWrapping="NoWrap" Foreground="#FF454545" FontSize="15" FontFamily="Segoe UI" 
+                                                                     FontWeight="Normal"  
+                                                                     Text="{Binding EditedAppointment.Subject, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
+                                                                     HorizontalAlignment="Stretch"/>
+                                <syncfusion:SfTextBoxExt x:Name="Notes" IsReadOnly="{Binding EditedAppointment.ReadOnly}"
+                                                                     Watermark="{Binding [Notes], RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                     Height="90" Margin="40,20,60,0" Background="White" BorderBrush="#FFB2B2B2"  
+                                                                     TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                                                     Foreground="#FF454545" FontSize="15" FontFamily="Segoe UI" FontWeight="Normal"  
+                                                                     Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                                     HorizontalAlignment="Stretch"/>
+                                <Border x:Name="StartBorder" BorderThickness="0"   Background="{Binding StartAccordionBackground, RelativeSource={RelativeSource TemplatedParent}}" Height="30" Width="auto"  Margin="0,10,0,0">
+                                    <Grid x:Name="StartGrid" Margin="5,5,0,0" >
+                                        <Border x:Name="StartBorder1" Background="{Binding StartAccordionBackground, RelativeSource={RelativeSource TemplatedParent}}" >
+                                            <TextBlock  Height="30" Width="auto" Margin="35,0,60,0" FontSize="15" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  FontFamily="Segoe UI" FontWeight="Normal">
+                                                        <Run Text="{Binding [Start],RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                        <Run Text=" - "/>
+                                                        <Run Text="{Binding start, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <StackPanel x:Name="StartStackPanel" Background="Black"  Visibility="{Binding Path=StartStackPanelVisibility, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <syncfusion:SfDatePicker AccentBrush ="{Binding AppointmentEditorBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                         Value="{Binding start, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Width="244"
+                                                                         FontFamily="Segoe UI" FontWeight="Normal" FormatString="MMMM - d - dddd - yyyy" Background ="#FFB2B2B2"  
+                                                                         BorderBrush="#FFB2B2B2" x:Name="Startdate" Height="30" BorderThickness="2" 
+                                                                         HorizontalAlignment="Stretch" Margin="0,20,0,0"/>
+                                    <Grid Margin="0,20,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <syncfusion:SfTimePicker AccentBrush ="{Binding AppointmentEditorBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                        Value="{Binding start, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                                                         FontFamily="Segoe UI" FontWeight="Normal" FormatString="hh : mm   tt" Background ="#FFB2B2B2" 
+                                                                         IsEnabled="{Binding EndDateEnable, RelativeSource={RelativeSource TemplatedParent}}" SelectorFormatString="h:m:t"
+                                                                         x:Name="Starttime" Height="30"  Margin="50,0,20,0" 
+                                                                         HorizontalAlignment="Stretch" BorderThickness="0"/>
+                                        <CheckBox x:Name="AllDay"  Height="30" Width="auto" Grid.Column="1" FontSize="15"  FontFamily="Segoe UI"
+                                                              Content="{Binding [All_Day], RelativeSource={RelativeSource TemplatedParent}}"  FontWeight="Normal"
+                                                              Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"   
+                                                              IsChecked="{Binding AllDay, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                                    </Grid>
+
+                                    <ComboBox   ItemsSource="{Binding TimeZoneCollection, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                            DisplayMemberPath="TimeZoneValue" SelectedItem="{Binding StartTimeZone,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"  
+                                                            x:Name="starttimezone"  Height="30" Margin="50,20,50,20" Background ="#FFB2B2B2" BorderThickness="0"
+                                                            HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+
+                                <Border x:Name="EndBorder" BorderThickness="0"     Background="{Binding EndAccordionBackground, RelativeSource={RelativeSource TemplatedParent}}"  Height="30" Width="auto"  Margin="0,10,0,0">
+                                    <Grid x:Name="EndGrid" Margin="5,5,0,0" >
+                                        <Border Background="{Binding EndAccordionBackground, RelativeSource={RelativeSource TemplatedParent}}" >
+                                            <TextBlock Height="30" Width="auto" Margin="35,0,60,0" FontSize="15" FontFamily="Segoe UI" FontWeight="Normal" 
+                                                               Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  >
+                                                        <Run Text="{Binding [End],RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                        <Run Text=" - "/>
+                                                        <Run Text="{Binding end, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                                            </TextBlock>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <StackPanel x:Name="EndStackPanel" Background="Black"  Visibility="{Binding Path=EndStackPanelVisibility, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <syncfusion:SfDatePicker AccentBrush ="{Binding AppointmentEditorBackground, RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                         Value="{Binding end, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" 
+                                                                         FontFamily="Segoe UI" FontWeight="Normal" FormatString="MMMM - d - dddd - yyyy" 
+                                                                         Background ="#FFB2B2B2" BorderBrush="#FFB2B2B2" x:Name="Enddate" Height="30" Width="244"
+                                                                         HorizontalAlignment="Stretch" Margin="0,20,0,0"  BorderThickness="2"/>
+                                </StackPanel>
+                                <Grid Margin="40,10,60,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="&#xE81D;" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.Location,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" Margin="0,0,0,5" TextTrimming="CharacterEllipsis"/>
+                                </Grid>
+                                <syncfusion:SfTextBoxExt Text="{Binding end, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"  />
+                                <syncfusion:SfTextBoxExt x:Name="Location" Margin="40,10,60,10" FontWeight="Normal" HorizontalAlignment="Stretch"
+                                                                     Watermark="{Binding [Location],RelativeSource={RelativeSource TemplatedParent}}" 
+                                                                     Height="30" Background="White" BorderThickness="0"  FontSize="15" FontFamily="Segoe UI"
+                                                                     Foreground="#FF454545" IsReadOnly="{Binding EditedAppointment.ReadOnly}"
+                                                                     Text="{Binding EditedAppointment.Location,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
+                                                                     />
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Row="2"   Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".1*"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0" Height="1" HorizontalAlignment="Stretch" Margin="15,0,15,0" Stroke="Gray" />
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15,0" FlowDirection="RightToLeft">
+                        <Button x:Name="Close" HorizontalAlignment="Stretch" 
+                                                Width="100" Background="#FF4F4F4F"
+                                                Height="50" BorderThickness="2" BorderBrush="#FF2F2F2F"
+                                                Content="Close" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}">
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

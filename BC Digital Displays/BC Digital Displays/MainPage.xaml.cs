@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Syncfusion.UI.Xaml.Controls.Input;
+using Syncfusion.UI.Xaml.Schedule;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -14,6 +17,7 @@ using System.Xml.Serialization;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -33,6 +37,7 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -47,6 +52,7 @@ namespace BC_Digital_Displays
 
             LoadBackgroundImage();
             LoadMainMenu();
+            LoadCalendarEvents();
             LoadBCLogo();
         }
 
@@ -71,6 +77,61 @@ namespace BC_Digital_Displays
                 Stretch = Stretch.Fill
             };
             MainGrid.Background = background;
+        }
+
+        public void LoadCalendarEvents()
+        {
+            DateTime date = DateTime.Now;
+            int year = date.Year;
+            int month = date.Month;
+            int day = date.Day;
+
+            SfCalendarView.AppointmentStatusCollection.Add(new ScheduleAppointmentStatus()
+            {
+                Status = "Recreation",
+                Brush = new SolidColorBrush(Colors.Pink)
+            });
+            SfCalendarView.AppointmentStatusCollection.Add(new ScheduleAppointmentStatus()
+            {
+                Status = "Fitness",
+                Brush = new SolidColorBrush(Colors.Red)
+            });
+
+            ScheduleAppointment app = new ScheduleAppointment()
+            {
+                StartTime = new DateTime(year, month, day, 5, 0, 0),
+                EndTime = new DateTime(year, month, day, 6, 30, 0),
+                Subject = "Mobile UX Workshop",
+                Location = "Kids' Camp Room",
+                Notes = "Kids learn what it takes to make user-friendly websites and mobile applications. This workshop will start off with students learning about the stages of product development and using the Activity Scenario Method.",
+                AllDay = false,
+                ReadOnly = true         
+            };
+            ScheduleAppointment app1 = new ScheduleAppointment()
+            {
+                StartTime = new DateTime(year, month, day, 7, 0, 0),
+                EndTime = new DateTime(year, month, day, 9, 30, 0),
+                Subject = "Bellevue Club Mixer",
+                Location = "Atrium",
+                Notes = "Come network with fellow members and Bellevue Club staff at our mixer. Enjoy complimentary food, drink and mu-sic. Bring a guest for an introductory tour of the Club.",
+                AllDay = false,
+                ReadOnly = true
+            };
+            ScheduleAppointment app2 = new ScheduleAppointment()
+            {
+                StartTime = new DateTime(year, month, day, 7, 0, 0),
+                EndTime = new DateTime(year, month, day, 9, 30, 0),
+                Subject = "Feldenkrais Workshop: Releasing Neck and Shoulders",
+                Location = "Yoga Studio",
+                Notes = "Do stiff or painful neck and shoulders affect your experience of life? Learn innovative and relaxing exercises to improve comfort in your neck, shoulders and upper back. Experience less pain and more freedom in your movement. Prolong the benefits with simple exercises to practice anytime for on- the-spot results. $45/member",
+                AllDay = false,
+                ReadOnly = true,
+            };
+            
+            SfCalendarView.AllowEditing = false;
+            SfCalendarView.Appointments.Add(app);
+            SfCalendarView.Appointments.Add(app1);
+            SfCalendarView.Appointments.Add(app2);
         }
 
         public void LoadMainMenu()
@@ -148,6 +209,12 @@ namespace BC_Digital_Displays
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", selectedContent, 0);
         }
 
+        private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            e.Cancel = true;
+            ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
+        }
+
         private void refreshPageButton(object sender, RoutedEventArgs e)
         {
             // track a custom event
@@ -185,4 +252,18 @@ namespace BC_Digital_Displays
             refreshPage();
         }
     }
+
+    #region Appointment Class
+
+    public class Appointment : ScheduleAppointment
+    {
+        #region Public Properties       
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        #endregion
+    }
+    #endregion
 }
