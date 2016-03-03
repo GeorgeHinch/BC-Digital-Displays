@@ -69,17 +69,14 @@
                                     <ScrollViewer x:Name="ScrollView" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" Margin="0,5,0,0" >
                                         <StackPanel>
                                             <StackPanel Margin="0,0,0,30" >
-
-                                                <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" TextWrapping="Wrap"/>
-
                                                 <Grid x:Name="Date" Margin="40,10,60,10">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="30"/>
                                                         <ColumnDefinition Width="10"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="&#xE787;" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                    <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.Location,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
+                                                    <TextBlock Grid.Column="0" Text="&#xE787;" Margin="0,0,0,3" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.DaySpan,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
                                                 </Grid>
 
 
@@ -89,11 +86,11 @@
                                                         <ColumnDefinition Width="10"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="&#xE121;" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <TextBlock Grid.Column="0" Text="&#xE121;" Margin="0,0,0,3" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                     <TextBlock x:Name="HoursTextBlock" Grid.Column="2" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextWrapping="Wrap" TextTrimming="CharacterEllipsis">
-                                                        <Run Text="{Binding start, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                                                        <Run Text="{Binding EditedAppointment.TimeStart,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                                                         <Run Text=" - "/>
-                                                        <Run Text="{Binding end, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                                                        <Run Text="{Binding EditedAppointment.TimeEnd,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                                                     </TextBlock>
                                                 </Grid>
 
@@ -103,9 +100,11 @@
                                                         <ColumnDefinition Width="10"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0" Text="&#xE81D;" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    <TextBlock Grid.Column="0" Text="&#xE81D;" Margin="0,0,0,3" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                     <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.Location,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
                                                 </Grid>
+
+                                                <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" TextWrapping="Wrap"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </ScrollViewer>

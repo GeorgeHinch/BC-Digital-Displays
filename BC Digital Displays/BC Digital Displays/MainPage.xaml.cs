@@ -81,21 +81,74 @@ namespace BC_Digital_Displays
 
         public void LoadCalendarEvents()
         {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
+            HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Get,
+                    $"http://www.bellevueclub.com/digital-signage/BC-Schedule.txt");
+            HttpClient client = new HttpClient();
+            Debug.WriteLine(client);
+            if (internet == false)
+            {
+                NoInternetAlert();
+            }
+            else
+            {
+                var response = client.SendAsync(request).Result;
+                Debug.WriteLine(response);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    var bytes = Encoding.Unicode.GetBytes(result);
+                    using (MemoryStream stream = new MemoryStream(bytes))
+                    {
+                        var serializer = new DataContractJsonSerializer(typeof(Sched));
+                        Debug.WriteLine("Stream: " + stream.ToString());
+                        Sched events = (Sched)serializer.ReadObject(stream);
+
+                        for (int i = 0; i < events.main.Length; ++i)
+                        {
+                            Event current = events.main[i];
+                            //Debug.WriteLine($"Subject: {current.Subject_E}, Location: {current.Location_E}, Notes: {current.Notes_E}, Instructor: {current.Instructor_E}, Department: {current.Department_E}, StartTime: {current.StartTime_E}, EndTime: {current.EndTime_E}, AllDay: {current.AllDay_E}.");
+
+                            Appointment newappointment = new Appointment();
+                            DateTime start = DateTime.ParseExact(current.StartTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
+                            DateTime end = DateTime.ParseExact(current.EndTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
+                            Debug.WriteLine("Start Time: " + start);
+                            newappointment.StartTime = start;
+                            newappointment.EndTime = end;
+                            newappointment.Subject = current.Subject;
+                            newappointment.Location = current.Location;
+                            newappointment.Notes = current.Notes;
+                            newappointment.TimeStart = String.Format("{0:t}", newappointment.StartTime);
+                            newappointment.TimeEnd = String.Format("{0:t}", newappointment.EndTime);
+                            newappointment.DayStart = String.Format("{0:m}", newappointment.StartTime);
+                            newappointment.DayEnd = String.Format("{0:m}", newappointment.EndTime);
+                            newappointment.DaySpan = newappointment.DayStart;
+                            if (newappointment.DayStart != newappointment.DayEnd)
+                            {
+                                newappointment.DaySpan = newappointment.DayStart + "-" + newappointment.EndTime.Day.ToString();
+                            }
+                            newappointment.Instructor = current.Instructor;
+                            newappointment.Department = current.Department;
+                            newappointment.Price = current.Price;
+                            newappointment.FlierJPG = current.FlierJPG;
+                            newappointment.AllDay = current.AllDay;
+                            newappointment.ReadOnly = true;
+                            SfCalendarView.Appointments.Add(newappointment);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void LoadSampleCalendarEvents()
+        {
             DateTime date = DateTime.Now;
             int year = date.Year;
             int month = date.Month;
             int day = date.Day;
-
-            SfCalendarView.AppointmentStatusCollection.Add(new ScheduleAppointmentStatus()
-            {
-                Status = "Recreation",
-                Brush = new SolidColorBrush(Colors.Pink)
-            });
-            SfCalendarView.AppointmentStatusCollection.Add(new ScheduleAppointmentStatus()
-            {
-                Status = "Fitness",
-                Brush = new SolidColorBrush(Colors.Red)
-            });
 
             ScheduleAppointment app = new ScheduleAppointment()
             {
@@ -147,7 +200,6 @@ namespace BC_Digital_Displays
             if (internet == false)
             {
                 NoInternetAlert();
-                //WebView.Source = new Uri("http://www.bellevueclub.com/");
                 Debug.WriteLine("No internet");
             } else
             {
@@ -259,11 +311,54 @@ namespace BC_Digital_Displays
     {
         #region Public Properties       
 
-        public string FirstName { get; set; }
+        public string TimeStart { get; set; }
 
-        public string LastName { get; set; }
+        public string TimeEnd { get; set; }
+
+        public string DaySpan { get; set; }
+
+        public string DayStart { get; set; }
+
+        public string DayEnd { get; set; }
+
+        public string Instructor { get; set; }
+
+        public string Department { get; set; }
+
+        public string Price { get; set; }
+
+        public string FlierJPG { get; set; }
+
 
         #endregion
     }
     #endregion
+
+    public class Event
+    {
+        public string Subject { get; set; }
+
+        public string Location { get; set; }
+
+        public string Notes { get; set; }
+
+        public string StartTime { get; set; }
+
+        public string EndTime { get; set; }
+
+        public string Instructor { get; set; }
+
+        public string Department { get; set; }
+
+        public string Price { get; set; }
+
+        public string FlierJPG { get; set; }
+
+        public bool AllDay { get; set; }
+    }
+
+    public class Sched
+    {
+        public Event[] main { get; set; }
+    }
 }
