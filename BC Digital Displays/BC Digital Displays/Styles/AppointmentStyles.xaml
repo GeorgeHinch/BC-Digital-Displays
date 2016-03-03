@@ -56,19 +56,19 @@
                         <Grid Grid.Column="1" >
                             <Grid Background="{Binding AppointmentEditorBackground, RelativeSource={RelativeSource TemplatedParent}}">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="70"/>
                                     <RowDefinition Height="16*"/>
-                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="2*"/>
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0"   Margin="40,25,40,0">
-                                    <TextBlock Text="{Binding EditedAppointment.Subject, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="30" 
-                                                   Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  
-                                                   FontFamily="Segoe UI" FontWeight="Light" TextWrapping="Wrap"/>
-                                </Grid>
-                                <Grid Grid.Row="1">
+                                <Grid Grid.Row="0">
                                     <ScrollViewer x:Name="ScrollView" VerticalScrollBarVisibility="Auto" ZoomMode="Disabled" Margin="0,5,0,0" >
                                         <StackPanel>
-                                            <StackPanel Margin="0,0,0,30" >
+                                            <StackPanel Margin="0,40,0,30" >
+                                                <Image Source="{Binding EditedAppointment.Flier, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Stretch="Uniform" Margin="80,25,100,25" />
+                                                
+                                                <TextBlock Text="{Binding EditedAppointment.Subject, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="30" 
+                                                   Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  
+                                                   FontFamily="Segoe UI" FontWeight="Light" TextWrapping="Wrap" Margin="40,10,60,10"/>
+                                                
                                                 <Grid x:Name="Date" Margin="40,10,60,10">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="30"/>
@@ -104,24 +104,26 @@
                                                     <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.Location,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
                                                 </Grid>
 
-                                                <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" TextWrapping="Wrap"/>
+                                                <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="18.667" TextWrapping="Wrap"/>
+
+                                                <TextBlock Margin="40,10,60,10" TextWrapping="Wrap">
+                                                    <Run Text="{Binding EditedAppointment.Department,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                                    <Run Text=" | "/>
+                                                    <Run Text="{Binding EditedAppointment.Instructor,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                                    <Run Text=" | "/>
+                                                    <Run Text="{Binding EditedAppointment.Price,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
+                                                </TextBlock>
                                             </StackPanel>
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
-                                <Grid Grid.Row="2"   Margin="0,5,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height=".1*"/>
-                                        <RowDefinition Height="5*"/>
-                                    </Grid.RowDefinitions>
-                                    <Rectangle Grid.Row="0" Height="1" HorizontalAlignment="Stretch" Margin="15,0,15,0" Stroke="Gray" />
+                                <Grid Grid.Row="1" Margin="0,5,0,0">
+                                    <StackPanel Orientation="Vertical" Margin="15,0">
+                                        <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0" Margin="0,10,0,15"/>
 
-                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15,0" FlowDirection="RightToLeft">
                                         <Button x:Name="Close" HorizontalAlignment="Stretch" 
                                                 Width="100" Background="#FF4F4F4F"
-                                                Height="50" BorderThickness="2" BorderBrush="#FF2F2F2F"
-                                                Content="Close" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}">
-                                        </Button>
+                                                Height="40" Content="Close" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>

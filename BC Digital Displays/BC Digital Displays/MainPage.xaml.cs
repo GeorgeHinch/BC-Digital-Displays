@@ -134,6 +134,14 @@ namespace BC_Digital_Displays
                             newappointment.Department = current.Department;
                             newappointment.Price = current.Price;
                             newappointment.FlierJPG = current.FlierJPG;
+                            if (current.FlierJPG == null || current.FlierJPG == "")
+                            {
+                                newappointment.Flier = new BitmapImage();
+                            }
+                            else
+                            {
+                                newappointment.Flier = new BitmapImage(new Uri(current.FlierJPG, UriKind.Absolute));
+                            }
                             newappointment.AllDay = current.AllDay;
                             newappointment.ReadOnly = true;
                             SfCalendarView.Appointments.Add(newappointment);
@@ -328,6 +336,8 @@ namespace BC_Digital_Displays
         public string Price { get; set; }
 
         public string FlierJPG { get; set; }
+
+        public BitmapImage Flier { get; set; }
 
 
         #endregion
