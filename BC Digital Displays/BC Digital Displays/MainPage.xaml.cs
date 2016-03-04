@@ -131,6 +131,30 @@ namespace BC_Digital_Displays
                                 newappointment.DaySpan = newappointment.DayStart + "-" + newappointment.EndTime.Day.ToString();
                             }
                             newappointment.Instructor = current.Instructor;
+                            if(current.Department == "Aquatics")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 52, 152, 219));
+                            }
+                            if (current.Department == "Fitness")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 155, 89, 182));
+                            }
+                            if (current.Department == "Food & Beverage")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 230, 126, 34));
+                            }
+                            if (current.Department == "Member Events")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 234, 76, 136));
+                            }
+                            if (current.Department == "Recreation")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 197, 57, 43));
+                            }
+                            if (current.Department == "Tennis")
+                            {
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 39, 174, 96));
+                            }
                             newappointment.Department = current.Department;
                             newappointment.Price = current.Price;
                             newappointment.FlierJPG = current.FlierJPG;
@@ -143,7 +167,15 @@ namespace BC_Digital_Displays
                                 newappointment.Flier = new BitmapImage(new Uri(current.FlierJPG, UriKind.Absolute));
                             }
                             newappointment.AllDay = current.AllDay;
-                            newappointment.ReadOnly = true;
+                            if(current.Instructor == null)
+                            {
+                                newappointment.Info = current.Department + " | " + current.Price;
+                            }
+                            else
+                            {
+                                newappointment.Info = current.Department + " | " + current.Instructor + " | " + current.Price;
+                            }
+                            //newappointment.ReadOnly = true;
                             SfCalendarView.Appointments.Add(newappointment);
                         }
                     }
@@ -334,6 +366,8 @@ namespace BC_Digital_Displays
         public string Department { get; set; }
 
         public string Price { get; set; }
+
+        public string Info { get; set; }
 
         public string FlierJPG { get; set; }
 

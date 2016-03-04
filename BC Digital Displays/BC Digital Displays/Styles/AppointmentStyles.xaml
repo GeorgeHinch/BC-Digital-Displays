@@ -68,7 +68,7 @@
                                                 <TextBlock Text="{Binding EditedAppointment.Subject, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="30" 
                                                    Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}"  
                                                    FontFamily="Segoe UI" FontWeight="Light" TextWrapping="Wrap" Margin="40,10,60,10"/>
-                                                
+
                                                 <Grid x:Name="Date" Margin="40,10,60,10">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="30"/>
@@ -79,7 +79,6 @@
                                                     <TextBlock Grid.Column="2" Text="{Binding EditedAppointment.DaySpan,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextTrimming="CharacterEllipsis"/>
                                                 </Grid>
 
-
                                                 <Grid x:Name="Hours" Margin="40,0,60,10">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="30"/>
@@ -89,7 +88,7 @@
                                                     <TextBlock Grid.Column="0" Text="&#xE121;" Margin="0,0,0,3" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontFamily="Segoe MDL2 Assets" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                     <TextBlock x:Name="HoursTextBlock" Grid.Column="2" Foreground="{Binding AppointmentEditorForeground, RelativeSource={RelativeSource TemplatedParent}}" FontSize="18.667" FontWeight="Light" TextWrapping="Wrap" TextTrimming="CharacterEllipsis">
                                                         <Run Text="{Binding EditedAppointment.TimeStart,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                                                        <Run Text=" - "/>
+                                                        <Run Text="-"/>
                                                         <Run Text="{Binding EditedAppointment.TimeEnd,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
                                                     </TextBlock>
                                                 </Grid>
@@ -106,17 +105,12 @@
 
                                                 <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Notes, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" FontSize="18.667" TextWrapping="Wrap"/>
 
-                                                <TextBlock Margin="40,10,60,10" TextWrapping="Wrap">
-                                                    <Run Text="{Binding EditedAppointment.Department,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                                                    <Run Text=" | "/>
-                                                    <Run Text="{Binding EditedAppointment.Instructor,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                                                    <Run Text=" | "/>
-                                                    <Run Text="{Binding EditedAppointment.Price,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" />
-                                                </TextBlock>
+                                                <TextBlock Margin="40,10,60,10" Text="{Binding EditedAppointment.Info,  RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" TextWrapping="Wrap" />
                                             </StackPanel>
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Grid>
+                                
                                 <Grid Grid.Row="1" Margin="0,5,0,0">
                                     <StackPanel Orientation="Vertical" Margin="15,0">
                                         <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0" Margin="0,10,0,15"/>
