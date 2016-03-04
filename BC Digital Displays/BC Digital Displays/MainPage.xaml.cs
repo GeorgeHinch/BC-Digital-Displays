@@ -50,6 +50,8 @@ namespace BC_Digital_Displays
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("main");
 
+            SfCalendarView.Visibility = Visibility.Collapsed;
+
             LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
@@ -110,7 +112,6 @@ namespace BC_Digital_Displays
                         for (int i = 0; i < events.main.Length; ++i)
                         {
                             Event current = events.main[i];
-                            //Debug.WriteLine($"Subject: {current.Subject_E}, Location: {current.Location_E}, Notes: {current.Notes_E}, Instructor: {current.Instructor_E}, Department: {current.Department_E}, StartTime: {current.StartTime_E}, EndTime: {current.EndTime_E}, AllDay: {current.AllDay_E}.");
 
                             Appointment newappointment = new Appointment();
                             DateTime start = DateTime.ParseExact(current.StartTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
@@ -120,7 +121,7 @@ namespace BC_Digital_Displays
                             newappointment.EndTime = end;
                             newappointment.Subject = current.Subject;
                             newappointment.Location = current.Location;
-                            newappointment.Notes = current.Notes;
+                            newappointment.Notes = current.Description;
                             newappointment.TimeStart = String.Format("{0:t}", newappointment.StartTime);
                             newappointment.TimeEnd = String.Format("{0:t}", newappointment.EndTime);
                             newappointment.DayStart = String.Format("{0:m}", newappointment.StartTime);
@@ -141,7 +142,7 @@ namespace BC_Digital_Displays
                             }
                             if (current.Department == "Food & Beverage")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 230, 126, 34));
+                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 243, 156, 18));
                             }
                             if (current.Department == "Member Events")
                             {
@@ -183,50 +184,6 @@ namespace BC_Digital_Displays
             }
         }
 
-        public void LoadSampleCalendarEvents()
-        {
-            DateTime date = DateTime.Now;
-            int year = date.Year;
-            int month = date.Month;
-            int day = date.Day;
-
-            ScheduleAppointment app = new ScheduleAppointment()
-            {
-                StartTime = new DateTime(year, month, day, 5, 0, 0),
-                EndTime = new DateTime(year, month, day, 6, 30, 0),
-                Subject = "Mobile UX Workshop",
-                Location = "Kids' Camp Room",
-                Notes = "Kids learn what it takes to make user-friendly websites and mobile applications. This workshop will start off with students learning about the stages of product development and using the Activity Scenario Method.",
-                AllDay = false,
-                ReadOnly = true         
-            };
-            ScheduleAppointment app1 = new ScheduleAppointment()
-            {
-                StartTime = new DateTime(year, month, day, 7, 0, 0),
-                EndTime = new DateTime(year, month, day, 9, 30, 0),
-                Subject = "Bellevue Club Mixer",
-                Location = "Atrium",
-                Notes = "Come network with fellow members and Bellevue Club staff at our mixer. Enjoy complimentary food, drink and mu-sic. Bring a guest for an introductory tour of the Club.",
-                AllDay = false,
-                ReadOnly = true
-            };
-            ScheduleAppointment app2 = new ScheduleAppointment()
-            {
-                StartTime = new DateTime(year, month, day, 7, 0, 0),
-                EndTime = new DateTime(year, month, day, 9, 30, 0),
-                Subject = "Feldenkrais Workshop: Releasing Neck and Shoulders",
-                Location = "Yoga Studio",
-                Notes = "Do stiff or painful neck and shoulders affect your experience of life? Learn innovative and relaxing exercises to improve comfort in your neck, shoulders and upper back. Experience less pain and more freedom in your movement. Prolong the benefits with simple exercises to practice anytime for on- the-spot results. $45/member",
-                AllDay = false,
-                ReadOnly = true,
-            };
-            
-            SfCalendarView.AllowEditing = false;
-            SfCalendarView.Appointments.Add(app);
-            SfCalendarView.Appointments.Add(app1);
-            SfCalendarView.Appointments.Add(app2);
-        }
-
         public void LoadMainMenu()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
@@ -259,7 +216,6 @@ namespace BC_Digital_Displays
                         for (int i = 0; i < nav.main.Length; ++i)
                         {
                             MenuItems current = nav.main[i];
-                            Debug.WriteLine($"Text: {current.Text}, Icon: {current.Icon}, Link: {current.Link}, IsActive: {current.IsActive}.");
 
                             radioButtons[i] = new RadioButton();
                             radioButtons[i].Content = current.Text;
@@ -268,9 +224,20 @@ namespace BC_Digital_Displays
                             radioButtons[i].IsChecked = current.IsActive;
                             radioButtons[i].Style = this.Resources["SplitViewNavButtonStyle"] as Style;
                             radioButtons[i].Checked += new RoutedEventHandler(radioButton_Checked);
+                            //radioButtons[i].Tapped += new TappedEventHandler(radioButton_Checked);
 
                             this.NavStack.Children.Add(radioButtons[i]);
                         }
+
+                        RadioButton schedule = new RadioButton();
+                        schedule.Name = "Schedule_RB";
+                        schedule.Content = "Schedule";
+                        schedule.GroupName = WebUtility.HtmlDecode("&#xE787;");
+                        schedule.Style = this.Resources["SplitViewNavButtonStyle"] as Style;
+                        schedule.Checked += new RoutedEventHandler(radioButtonCal_Checked);
+                        //schedule.Tapped += new TappedEventHandler(radioButtonCal_Checked);
+
+                        this.NavStack.Children.Add(schedule);
                     }
                 }
             }
@@ -292,13 +259,44 @@ namespace BC_Digital_Displays
         private void radioButton_Checked(object sender, RoutedEventArgs routedEventArgs)
         {
             string selectedContent = (string)((RadioButton)sender).Content;
-            Debug.WriteLine(selectedContent);
             RadioButton radioButton = ((RadioButton)sender);
             MenuItems item = (MenuItems)radioButton.Tag;
+            foreach (RadioButton rb in NavStack.Children)
+            {
+                if (radioButton.Content != rb.Content)
+                {
+                    rb.IsChecked = false;
+                    Debug.WriteLine("No Match");
+                }
+            }
+            radioButton.IsChecked = true;
+
+            SfCalendarView.Visibility = Visibility.Collapsed;
             WebView.Source = new Uri(item.Link);
+            WebView.Visibility = Visibility.Visible;
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", selectedContent, 0);
+        }
+
+        private void radioButtonCal_Checked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            RadioButton radioButton = ((RadioButton)sender);
+            foreach (RadioButton rb in NavStack.Children)
+            {
+                Debug.WriteLine("RB.Content: " + radioButton.Content);
+                if(rb.Content != radioButton.Content)
+                {
+                    rb.IsChecked = false;
+                }
+            }
+            radioButton.IsChecked = true;
+
+            WebView.Visibility = Visibility.Collapsed;
+            SfCalendarView.Visibility = Visibility.Visible;
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Schedule", 0);
         }
 
         private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
@@ -318,8 +316,10 @@ namespace BC_Digital_Displays
         public void refreshPage()
         {
             this.NavStack.Children.Clear();
+            SfCalendarView.Appointments.Clear();
             LoadBackgroundImage();
             LoadMainMenu();
+            LoadCalendarEvents();
             LoadBCLogo();
         }
 
@@ -384,7 +384,7 @@ namespace BC_Digital_Displays
 
         public string Location { get; set; }
 
-        public string Notes { get; set; }
+        public string Description { get; set; }
 
         public string StartTime { get; set; }
 

@@ -48,7 +48,21 @@
             </StackPanel>
 
             <WebView x:Name="WebView" Grid.Column="1" Grid.Row="1" Source="http://www.bellevueclub.com" />
-            <Schedule:SfSchedule x:Name="SfCalendarView" Grid.Column="1" Grid.Row="1" ContextMenuOpening="SfCalendarView_ContextMenuOpening" Background="White" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" AllowEditing="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay"/>
+            <Schedule:SfSchedule x:Name="SfCalendarView" Grid.Column="1" Grid.Row="1" ContextMenuOpening="SfCalendarView_ContextMenuOpening" Background="White" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" AllowEditing="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
+                <Schedule:SfSchedule.AppointmentTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Rectangle VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="{Binding AppointmentBackground}"/>
+                            <StackPanel Orientation="Vertical" Margin="10,5,10,5">
+                                <TextBlock Text="{Binding Subject}" FontSize="13.333" Foreground="White" FontWeight="Medium" FontFamily="Segoe UI" MaxLines="2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="{Binding Instructor}" FontSize="13.333" Foreground="White" FontWeight="Light" FontFamily="Segoe UI" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+                            </StackPanel>
+                            <Grid >
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </Schedule:SfSchedule.AppointmentTemplate>
+            </Schedule:SfSchedule>
 
             <TextBlock x:Name="TimeBlock" Text="8:03 PM" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32" FontWeight="Light" >
                 <TextBlock.Foreground>
