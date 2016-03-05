@@ -37,10 +37,11 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
+        public static MainPage mainPage;
         public MainPage()
         {
             this.InitializeComponent();
+            mainPage = this;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -50,7 +51,8 @@ namespace BC_Digital_Displays
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("main");
 
-            SfCalendarView.Visibility = Visibility.Collapsed;
+           ScheduleGrid.Visibility = Visibility.Collapsed;
+            //AppointmentPreview_Frame.Navigate(typeof(AppointmentPreview));
 
             LoadBackgroundImage();
             LoadMainMenu();
@@ -271,7 +273,7 @@ namespace BC_Digital_Displays
             }
             radioButton.IsChecked = true;
 
-            SfCalendarView.Visibility = Visibility.Collapsed;
+            ScheduleGrid.Visibility = Visibility.Collapsed;
             WebView.Source = new Uri(item.Link);
             WebView.Visibility = Visibility.Visible;
 
@@ -293,15 +295,10 @@ namespace BC_Digital_Displays
             radioButton.IsChecked = true;
 
             WebView.Visibility = Visibility.Collapsed;
-            SfCalendarView.Visibility = Visibility.Visible;
+            ScheduleGrid.Visibility = Visibility.Visible;
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Schedule", 0);
-        }
-
-        private void edit_Click(object sender, RoutedEventArgs e)
-        {
-            ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
         }
 
         private void refreshPageButton(object sender, RoutedEventArgs e)
@@ -346,7 +343,22 @@ namespace BC_Digital_Displays
         private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
         {
             e.Cancel = true;
-            ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
+            //ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
+            if (e.Appointment != null)
+            {
+                Appointment App = (Appointment)e.Appointment;
+            
+                AppointmentPreview_Frame.Navigate(typeof(AppointmentPreview), App);
+            }
+            else
+            {
+                AppointmentPreview_Frame.Navigate(typeof(Page));
+            }
+        }
+
+        public void Close_Btn_Tapped(object sender, RoutedEventArgs e)
+        {
+            AppointmentPreview_Frame.Navigate(typeof(Page));
         }
     }
 
