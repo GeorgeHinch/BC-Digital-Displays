@@ -299,9 +299,8 @@ namespace BC_Digital_Displays
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Schedule", 0);
         }
 
-        private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        private void edit_Click(object sender, RoutedEventArgs e)
         {
-            e.Cancel = true;
             ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
         }
 
@@ -342,6 +341,12 @@ namespace BC_Digital_Displays
         private void CommandInvokedHandler(IUICommand command)
         {
             refreshPage();
+        }
+
+        private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
+        {
+            e.Cancel = true;
+            ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
         }
     }
 

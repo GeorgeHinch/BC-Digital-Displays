@@ -119,7 +119,7 @@
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition Width="80" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="20" />
                             </Grid.ColumnDefinitions>
@@ -147,7 +147,7 @@
                             <Rectangle x:Name="FocusVisualBlack" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashOffset="0.5" Style="{StaticResource FocusVisual}" />
 
                             <!-- glyph -->
-                            <TextBlock x:Name="Glyph"  Text="{TemplateBinding GroupName}" Style="{StaticResource SplitViewTextBlockStyle}" FontSize="{StaticResource SplitViewLargeNavFontSize}" />
+                            <TextBlock x:Name="Glyph" Margin="0,0,25,0" Text="{TemplateBinding GroupName}" Style="{StaticResource SplitViewTextBlockStyle}" FontSize="{StaticResource SplitViewLargeNavFontSize}" HorizontalAlignment="Right" />
 
                             <!-- text -->
                             <ContentPresenter x:Name="ContentPresenter"

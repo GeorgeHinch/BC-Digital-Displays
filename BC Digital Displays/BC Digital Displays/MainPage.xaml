@@ -48,7 +48,7 @@
             </StackPanel>
 
             <WebView x:Name="WebView" Grid.Column="1" Grid.Row="1" Source="http://www.bellevueclub.com" />
-            <Schedule:SfSchedule x:Name="SfCalendarView" Grid.Column="1" Grid.Row="1" ContextMenuOpening="SfCalendarView_ContextMenuOpening" Background="White" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" AllowEditing="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
+            <Schedule:SfSchedule x:Name="SfCalendarView" Grid.Column="1" Grid.Row="1" Background="White" ContextMenuOpening="SfCalendarView_ContextMenuOpening" AllowEditing="False" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
                 <Schedule:SfSchedule.AppointmentTemplate>
                     <DataTemplate>
                         <Grid>
