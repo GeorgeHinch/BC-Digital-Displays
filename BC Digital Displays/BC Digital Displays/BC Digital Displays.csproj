@@ -95,6 +95,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="BC-Display-Menu.json" />
+    <Content Include="Assets\Precor_Logo.png" />
     <Content Include="Fonts\segmdl2-BC.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="AppointmentPreview.xaml.cs">
       <DependentUpon>AppointmentPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentPreview.xaml.cs">
+      <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -134,6 +138,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AppointmentPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EquipmentPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

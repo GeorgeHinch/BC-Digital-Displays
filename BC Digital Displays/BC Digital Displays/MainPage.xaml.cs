@@ -51,8 +51,9 @@ namespace BC_Digital_Displays
             // track a page view
             GoogleAnalytics.EasyTracker.GetTracker().SendView("main");
 
-           ScheduleGrid.Visibility = Visibility.Collapsed;
-            //AppointmentPreview_Frame.Navigate(typeof(AppointmentPreview));
+            ScheduleGrid.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
 
             LoadBackgroundImage();
             LoadMainMenu();
@@ -237,8 +238,15 @@ namespace BC_Digital_Displays
                         schedule.GroupName = WebUtility.HtmlDecode("&#xE787;");
                         schedule.Style = this.Resources["SplitViewNavButtonStyle"] as Style;
                         schedule.Checked += new RoutedEventHandler(radioButtonCal_Checked);
-                        //schedule.Tapped += new TappedEventHandler(radioButtonCal_Checked);
 
+                        RadioButton equipment = new RadioButton();
+                        equipment.Name = "Equipment_RB";
+                        equipment.Content = "Equipment";
+                        equipment.GroupName = WebUtility.HtmlDecode("&#xE1C4;");
+                        equipment.Style = this.Resources["SplitViewNavButtonStyle"] as Style;
+                        equipment.Checked += new RoutedEventHandler(radioButtonEquip_Checked);
+
+                        this.NavStack.Children.Add(equipment);
                         this.NavStack.Children.Add(schedule);
                     }
                 }
@@ -274,6 +282,7 @@ namespace BC_Digital_Displays
             radioButton.IsChecked = true;
 
             ScheduleGrid.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             WebView.Source = new Uri(item.Link);
             WebView.Visibility = Visibility.Visible;
 
@@ -295,10 +304,32 @@ namespace BC_Digital_Displays
             radioButton.IsChecked = true;
 
             WebView.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             ScheduleGrid.Visibility = Visibility.Visible;
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Schedule", 0);
+        }
+
+        private void radioButtonEquip_Checked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            RadioButton radioButton = ((RadioButton)sender);
+            foreach (RadioButton rb in NavStack.Children)
+            {
+                Debug.WriteLine("RB.Content: " + radioButton.Content);
+                if (rb.Content != radioButton.Content)
+                {
+                    rb.IsChecked = false;
+                }
+            }
+            radioButton.IsChecked = true;
+
+            WebView.Visibility = Visibility.Collapsed;
+            ScheduleGrid.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Visibility = Visibility.Visible;
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Equipment", 0);
         }
 
         private void refreshPageButton(object sender, RoutedEventArgs e)

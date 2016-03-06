@@ -67,6 +67,7 @@
 
                 <Frame x:Name="AppointmentPreview_Frame" x:FieldModifier="Public" Width="345" HorizontalAlignment="Right" LostFocus="Close_Btn_Tapped" PointerExited="Close_Btn_Tapped" />
             </Grid>
+            <Frame x:Name="EquipmentPreview_Frame" Grid.Column="1" Grid.Row="1" />
 
             <TextBlock x:Name="TimeBlock" Text="8:03 PM" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32" FontWeight="Light" >
                 <TextBlock.Foreground>
