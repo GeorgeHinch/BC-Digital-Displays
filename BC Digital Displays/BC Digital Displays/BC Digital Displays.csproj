@@ -108,6 +108,7 @@
     <Compile Include="AppointmentPreview.xaml.cs">
       <DependentUpon>AppointmentPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
