@@ -109,7 +109,6 @@ namespace BC_Digital_Displays
                     using (MemoryStream stream = new MemoryStream(bytes))
                     {
                         var serializer = new DataContractJsonSerializer(typeof(Sched));
-                        Debug.WriteLine("Stream: " + stream.ToString());
                         Sched events = (Sched)serializer.ReadObject(stream);
 
                         for (int i = 0; i < events.main.Length; ++i)
@@ -119,7 +118,6 @@ namespace BC_Digital_Displays
                             Appointment newappointment = new Appointment();
                             DateTime start = DateTime.ParseExact(current.StartTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
                             DateTime end = DateTime.ParseExact(current.EndTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
-                            Debug.WriteLine("Start Time: " + start);
                             newappointment.StartTime = start;
                             newappointment.EndTime = end;
                             newappointment.Subject = current.Subject;
@@ -276,7 +274,6 @@ namespace BC_Digital_Displays
                 if (radioButton.Content != rb.Content)
                 {
                     rb.IsChecked = false;
-                    Debug.WriteLine("No Match");
                 }
             }
             radioButton.IsChecked = true;
@@ -295,7 +292,6 @@ namespace BC_Digital_Displays
             RadioButton radioButton = ((RadioButton)sender);
             foreach (RadioButton rb in NavStack.Children)
             {
-                Debug.WriteLine("RB.Content: " + radioButton.Content);
                 if(rb.Content != radioButton.Content)
                 {
                     rb.IsChecked = false;
@@ -316,7 +312,6 @@ namespace BC_Digital_Displays
             RadioButton radioButton = ((RadioButton)sender);
             foreach (RadioButton rb in NavStack.Children)
             {
-                Debug.WriteLine("RB.Content: " + radioButton.Content);
                 if (rb.Content != radioButton.Content)
                 {
                     rb.IsChecked = false;
@@ -344,6 +339,8 @@ namespace BC_Digital_Displays
         {
             this.NavStack.Children.Clear();
             SfCalendarView.Appointments.Clear();
+            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
             LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
