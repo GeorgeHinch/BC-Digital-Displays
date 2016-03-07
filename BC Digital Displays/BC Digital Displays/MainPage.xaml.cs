@@ -93,7 +93,7 @@ namespace BC_Digital_Displays
                     HttpMethod.Get,
                     $"http://www.bellevueclub.com/digital-signage/BC-Schedule.txt");
             HttpClient client = new HttpClient();
-            Debug.WriteLine(client);
+            //Debug.WriteLine(client);
             if (internet == false)
             {
                 NoInternetAlert();
@@ -194,7 +194,7 @@ namespace BC_Digital_Displays
                     HttpMethod.Get,
                     $"http://www.bellevueclub.com/digital-signage/BC-Display-Menu.txt");
             HttpClient client = new HttpClient();
-            Debug.WriteLine(client);
+            //Debug.WriteLine(client);
             if (internet == false)
             {
                 NoInternetAlert();
@@ -341,6 +341,7 @@ namespace BC_Digital_Displays
             SfCalendarView.Appointments.Clear();
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
+            ScheduleGrid.Visibility = Visibility.Collapsed;
             LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
