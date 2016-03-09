@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BC_Digital_Displays.Classes;
+using Newtonsoft.Json;
 using Syncfusion.UI.Xaml.Controls.Input;
 using Syncfusion.UI.Xaml.Schedule;
 using System;
@@ -137,23 +138,23 @@ namespace BC_Digital_Displays
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 52, 152, 219));
                             }
-                            if (current.Department == "Fitness")
+                            else if (current.Department == "Fitness")
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 155, 89, 182));
                             }
-                            if (current.Department == "Food & Beverage")
+                            else if (current.Department == "Food & Beverage")
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 243, 156, 18));
                             }
-                            if (current.Department == "Member Events")
+                            else if (current.Department == "Member Events")
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 234, 76, 136));
                             }
-                            if (current.Department == "Recreation")
+                            else if (current.Department == "Recreation")
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 197, 57, 43));
                             }
-                            if (current.Department == "Tennis")
+                            else if (current.Department == "Tennis")
                             {
                                 newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 39, 174, 96));
                             }
@@ -177,7 +178,6 @@ namespace BC_Digital_Displays
                             {
                                 newappointment.Info = current.Department + " | " + current.Instructor + " | " + current.Price;
                             }
-                            //newappointment.ReadOnly = true;
                             SfCalendarView.Appointments.Add(newappointment);
                         }
                     }
@@ -224,8 +224,23 @@ namespace BC_Digital_Displays
                             radioButtons[i].GroupName = WebUtility.HtmlDecode(current.Icon);
                             radioButtons[i].IsChecked = current.IsActive;
                             radioButtons[i].Style = this.Resources["SplitViewNavButtonStyle"] as Style;
-                            radioButtons[i].Checked += new RoutedEventHandler(radioButton_Checked);
-                            //radioButtons[i].Tapped += new TappedEventHandler(radioButton_Checked);
+
+                            if (current.Link == "*cal")
+                            {
+                                radioButtons[i].Checked += new RoutedEventHandler(radioButtonCal_Checked);
+                            }
+                            else if (current.Link == "*equip")
+                            {
+                                radioButtons[i].Checked += new RoutedEventHandler(radioButtonEquip_Checked);
+                            }
+                            else if (current.Link == "*trainer")
+                            {
+                                //radioButtons[i].Checked += new RoutedEventHandler(radioButtonTrainer_Checked);
+                            }
+                            else
+                            {
+                                radioButtons[i].Checked += new RoutedEventHandler(radioButton_Checked);
+                            }
 
                             this.NavStack.Children.Add(radioButtons[i]);
                         }
@@ -372,7 +387,6 @@ namespace BC_Digital_Displays
         private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
         {
             e.Cancel = true;
-            //ScheduleCommands.EditCommand.Execute(this.SfCalendarView);
             if (e.Appointment != null)
             {
                 Appointment App = (Appointment)e.Appointment;
@@ -392,7 +406,6 @@ namespace BC_Digital_Displays
     }
 
     #region Appointment Class
-
     public class Appointment : ScheduleAppointment
     {
         #region Public Properties       
@@ -424,6 +437,7 @@ namespace BC_Digital_Displays
     }
     #endregion
 
+    #region Class for Deserializing Appointments
     public class Event
     {
         public string Subject { get; set; }
@@ -446,9 +460,12 @@ namespace BC_Digital_Displays
 
         public bool AllDay { get; set; }
     }
+    #endregion
 
+    #region Class for Deserializing Main JSON
     public class Sched
     {
         public Event[] main { get; set; }
     }
+    #endregion
 }
