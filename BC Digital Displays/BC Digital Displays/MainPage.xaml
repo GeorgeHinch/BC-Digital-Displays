@@ -68,6 +68,10 @@
                 <Frame x:Name="AppointmentPreview_Frame" x:FieldModifier="Public" Width="345" HorizontalAlignment="Right" LostFocus="Close_Btn_Tapped" PointerExited="Close_Btn_Tapped" />
             </Grid>
             <Frame x:Name="EquipmentPreview_Frame" Grid.Column="1" Grid.Row="1" />
+            <Grid x:Name="Trainer_Grid" x:FieldModifier="Public" Grid.Column="1" Grid.Row="1">
+                <Frame x:Name="TrainerCard_Frame" x:FieldModifier="Public" />
+                <Frame x:Name="IndTrainerInfo_Frame" x:FieldModifier="Public" />
+            </Grid>
 
             <TextBlock x:Name="TimeBlock" Text="8:03 PM" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="32" FontWeight="Light" >
                 <TextBlock.Foreground>
@@ -77,7 +81,7 @@
 
             <Button Grid.Column="2" Grid.Row="2" DoubleTapped="refreshPageButton" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0" />
 
-            
+            <Frame x:FieldModifier="Public" x:Name="Options_Frame" Grid.ColumnSpan="3" Grid.RowSpan="3" />
         </Grid>
     </Grid>
 </Page>

@@ -53,9 +53,12 @@ namespace BC_Digital_Displays
             GoogleAnalytics.EasyTracker.GetTracker().SendView("main");
 
             ScheduleGrid.Visibility = Visibility.Collapsed;
+            Trainer_Grid.Visibility = Visibility.Collapsed;
+            TrainerCard_Frame.Navigate(typeof(TrainerFlipview));
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
 
+            LoadSettings();
             LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
@@ -68,18 +71,78 @@ namespace BC_Digital_Displays
             DateBlock.Text = DateTime.Now.ToString("dddd, " + "MMMM dd" + ", " + "yyyy");
         }
 
+        public void LoadSettings()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
+            HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Get,
+                    $"http://www.bellevueclub.com/digital-signage/BC-Settings.txt");
+            HttpClient client = new HttpClient();
+            Debug.WriteLine(client);
+            if (internet != false)
+            {
+                var response = client.SendAsync(request).Result;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    var bytes = Encoding.Unicode.GetBytes(result);
+                    using (MemoryStream stream = new MemoryStream(bytes))
+                    {
+                        var serializer = new DataContractJsonSerializer(typeof(Settings));
+                        Settings status = (Settings)serializer.ReadObject(stream);
+
+                        var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+                        /* Store Profile Image */
+                        roamingSettings.Values["ProfileImage"] = status.logo;
+
+                        /* Store Background Image */
+                        roamingSettings.Values["BackgroundImage"] = status.background;
+                    }
+                }
+            }
+        }
+
         public void LoadBCLogo()
         {
+            // Loads profile image from Windows Roaming Settings
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            string logo;
+            if (roamingSettings.Values["ProfileImage"] != null)
+            {
+                logo = roamingSettings.Values["ProfileImage"].ToString();
+            }
+            else
+            {
+                logo = "https://pbs.twimg.com/profile_images/1080017859/New_BC_Box_Only.jpg";
+            }
+
+            // sets image url as BitmapImage
             BClogo.Source = new BitmapImage(
-                        new Uri("https://pbs.twimg.com/profile_images/1080017859/New_BC_Box_Only.jpg", UriKind.Absolute));
+                        new Uri(logo, UriKind.Absolute));
         }
 
         public void LoadBackgroundImage()
         {
+            // Loads background image from Windows Roaming Settings
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            string backgroundImg;
+            if (roamingSettings.Values["BackgroundImage"] != null)
+            {
+                backgroundImg = roamingSettings.Values["BackgroundImage"].ToString();
+            }
+            else
+            {
+                backgroundImg = "http://www.bellevueclub.com/digital-signage/bc-background.jpg";
+            }
+
+            // Sets image url as background brush
             ImageBrush background = new ImageBrush
             {
                 ImageSource = new BitmapImage(
-                        new Uri("http://www.bellevueclub.com/digital-signage/bc-background.jpg", UriKind.Absolute)),
+                        new Uri(backgroundImg, UriKind.Absolute)),
                 Stretch = Stretch.Fill
             };
             MainGrid.Background = background;
@@ -102,7 +165,6 @@ namespace BC_Digital_Displays
             else
             {
                 var response = client.SendAsync(request).Result;
-                Debug.WriteLine(response);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var result = response.Content.ReadAsStringAsync().Result;
@@ -198,11 +260,9 @@ namespace BC_Digital_Displays
             if (internet == false)
             {
                 NoInternetAlert();
-                Debug.WriteLine("No internet");
             } else
             {
                 var response = client.SendAsync(request).Result;
-                Debug.WriteLine(response);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var result = response.Content.ReadAsStringAsync().Result;
@@ -235,7 +295,7 @@ namespace BC_Digital_Displays
                             }
                             else if (current.Link == "*trainer")
                             {
-                                //radioButtons[i].Checked += new RoutedEventHandler(radioButtonTrainer_Checked);
+                                radioButtons[i].Checked += new RoutedEventHandler(radioButtonTrainer_Checked);
                             }
                             else
                             {
@@ -316,6 +376,7 @@ namespace BC_Digital_Displays
 
             WebView.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
+            Trainer_Grid.Visibility = Visibility.Collapsed;
             ScheduleGrid.Visibility = Visibility.Visible;
 
             // track a custom event
@@ -336,7 +397,29 @@ namespace BC_Digital_Displays
 
             WebView.Visibility = Visibility.Collapsed;
             ScheduleGrid.Visibility = Visibility.Collapsed;
+            Trainer_Grid.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Visible;
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Equipment", 0);
+        }
+
+        private void radioButtonTrainer_Checked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            RadioButton radioButton = ((RadioButton)sender);
+            foreach (RadioButton rb in NavStack.Children)
+            {
+                if (rb.Content != radioButton.Content)
+                {
+                    rb.IsChecked = false;
+                }
+            }
+            radioButton.IsChecked = true;
+
+            WebView.Visibility = Visibility.Collapsed;
+            ScheduleGrid.Visibility = Visibility.Collapsed;
+            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
+            Trainer_Grid.Visibility = Visibility.Visible;
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Equipment", 0);
@@ -345,18 +428,24 @@ namespace BC_Digital_Displays
         private void refreshPageButton(object sender, RoutedEventArgs e)
         {
             // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "refresh_click", "Refresh", 0);
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "options_click", "Options", 0);
 
-            refreshPage();
+            Options_Frame.Navigate(typeof(Lock));
         }
 
         public void refreshPage()
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "refresh_click", "Refresh", 0);
+
             this.NavStack.Children.Clear();
             SfCalendarView.Appointments.Clear();
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
             ScheduleGrid.Visibility = Visibility.Collapsed;
+            Trainer_Grid.Visibility = Visibility.Collapsed;
+            WebView.Visibility = Visibility.Visible;
+            LoadSettings();
             LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
@@ -389,6 +478,9 @@ namespace BC_Digital_Displays
             e.Cancel = true;
             if (e.Appointment != null)
             {
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "appointment_click", "Appointment Open", 0);
+
                 Appointment App = (Appointment)e.Appointment;
             
                 AppointmentPreview_Frame.Navigate(typeof(AppointmentPreview), App);

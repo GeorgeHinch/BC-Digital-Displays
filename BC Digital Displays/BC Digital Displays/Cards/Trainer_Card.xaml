@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="BC_Digital_Displays.Cards.Trainer_Card"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Digital_Displays.Cards"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="800"
+    d:DesignWidth="450">
+
+    <Grid>
+        <Grid CornerRadius="10" Background="#FFF6F6F6" Grid.Column="1" Grid.Row="1">
+
+            <StackPanel x:Name="TrainerCard">
+
+                <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Height="490">
+                    <Border.Background >
+                        <ImageBrush Stretch="UniformToFill">
+                            <ImageBrush.ImageSource>
+                                <BitmapImage UriSource="{Binding Path=TrainerPhotoURL}" />
+                            </ImageBrush.ImageSource>
+                        </ImageBrush>
+                    </Border.Background>
+                </Border>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock x:Name="TrainerName_TextBlock" Text="{Binding Path=TrainerName}" FontWeight="Medium" FontSize="29.333" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,25,25,10" />
+                    <TextBlock x:Name="YearsExp_TextBlock" FontSize="21.333" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,0,25,10" FontWeight="Light" >
+                        <Run Text="Years Experience: " FontWeight="Normal"/>
+                        <Run Text="{Binding Path=YearsExp}"/>
+                    </TextBlock>
+                    <TextBlock x:Name="YearsBC_TextBlock" FontSize="21.333" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,0,25,10" FontWeight="Light" >
+                        <Run Text="Years at the Club: " FontWeight="Normal"/>
+                        <Run Text="{Binding Path=YearsBC}"/>
+                    </TextBlock>
+                    <TextBlock x:Name="Exp_TextBlock" FontSize="21.333" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,0,25,25" FontWeight="Light" >
+                        <Run Text="Expertise: " FontWeight="Normal"/>
+                        <Run Text="{Binding Path=Exp}"/>
+                    </TextBlock>
+
+                    <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=TrainerCard, Mode=TwoWay}" Y2="0" />
+
+                    <StackPanel Orientation="Horizontal" BorderThickness="25,10,25,15">
+                        <TextBlock Text="Learn More" FontSize="21.333" Foreground="#FF009688" Tapped="LearnMore_Tapped" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

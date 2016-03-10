@@ -108,14 +108,31 @@
     <Compile Include="AppointmentPreview.xaml.cs">
       <DependentUpon>AppointmentPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cards\Trainer_Card.xaml.cs">
+      <DependentUpon>Trainer_Card.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\PrecorStatus.cs" />
+    <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Classes\Trainer.cs" />
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Lock.xaml.cs">
+      <DependentUpon>Lock.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuSelect.xaml.cs">
+      <DependentUpon>MenuSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OptionsMenu.xaml.cs">
+      <DependentUpon>OptionsMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrainerFlipview.xaml.cs">
+      <DependentUpon>TrainerFlipview.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -142,13 +159,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Cards\Trainer_Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EquipmentPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OptionsMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\AppointmentStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -161,6 +194,10 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TrainerFlipview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
