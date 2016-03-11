@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <FlipView x:Name="Trainer_Flipview" Background="{x:Null}" Margin="50,0,0,0"/>
+        <FlipView x:Name="Trainer_Flipview" Background="{x:Null}"/>
     </Grid>
 </Page>

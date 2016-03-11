@@ -39,6 +39,19 @@ namespace BC_Digital_Displays.Cards
             set { SetValue(TrainerNameProperty, value); }
         }
 
+        public static readonly DependencyProperty DegreeProperty = DependencyProperty.Register(
+            "Degree",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(Trainer_Card),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string Degree
+        {
+            get { return (string)GetValue(DegreeProperty); }
+            set { SetValue(DegreeProperty, value); }
+        }
+
         public static readonly DependencyProperty YearsExpProperty = DependencyProperty.Register(
             "YearsExp",                   // The name of the DependencyProperty
             typeof(string),               // The type of the DependencyProperty
@@ -94,9 +107,9 @@ namespace BC_Digital_Displays.Cards
         private void LearnMore_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // track a custom event
-            //GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + ID + ") Open: from recipe ID #" + ID, 0);
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + this.TrainerName + ") Open: " + this.TrainerName, 0);
 
-            //SplitView.splitviewPage.MainContentFrame.Navigate(typeof(Recipe_HeaderImage), ID);
+            MainPage.mainPage.IndTrainerInfo_Frame.Navigate(typeof(TrainerPreview), this.Tag);
         }
     }
 }

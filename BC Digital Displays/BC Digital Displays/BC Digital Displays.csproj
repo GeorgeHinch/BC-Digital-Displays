@@ -133,6 +133,9 @@
     <Compile Include="TrainerFlipview.xaml.cs">
       <DependentUpon>TrainerFlipview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrainerPreview.xaml.cs">
+      <DependentUpon>TrainerPreview.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -196,6 +199,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TrainerFlipview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrainerPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

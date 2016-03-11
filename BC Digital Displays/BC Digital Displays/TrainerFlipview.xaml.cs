@@ -59,33 +59,50 @@ namespace BC_Digital_Displays
                         Trainers status = (Trainers)serializer.ReadObject(stream);
 
                         int indCardNum = 0;
-                        int indGridNum = 1;
-                        //double trainerGrid = (status.main.Length / 3);
-                        //int numOfGrid = (int)Math.Ceiling(trainerGrid);
+                        int indSpNum = 1;
+                        double trainerGrid = (status.main.Length / 3);
+                        int numOfGrid = (int)Math.Ceiling(trainerGrid);
                         
-                        //StackPanel[] sp = new StackPanel[numOfGrid];
                         StackPanel indSP = new StackPanel();
+                        indSP.Orientation = Orientation.Horizontal;
+                        indSP.VerticalAlignment = VerticalAlignment.Center;
 
                         foreach (Trainer t in status.main)
                         {
-                            Debug.WriteLine("Made it here.");
                             Trainer_Card card = new Trainer_Card();
                             card.TrainerName = t.name;
+                            card.Degree = t.degree;
                             card.YearsExp = t.years;
                             card.YearsBC = t.years_bc;
                             card.Exp = t.expertise;
                             card.TrainerPhotoURL = t.photo;
                             card.Tag = t;
+                            card.Width = 450;
+                            card.Height = 800;
+                            card.Margin = new Thickness(31, 0, 31, 0);
 
                             indSP.Children.Add(card);
-                            indSP.Name = "SP_" + indGridNum;
 
-                            if (indCardNum % 3 == 0)
+                            #region scraps
+                            //Trainer_Flipview.Items.Add(card);
+
+                            //if (indCardNum % 3 == 0)
+                            //{
+                            //    //indSP.Name = "SP_" + indSpNum;
+
+                            //    Trainer_Flipview.Items.Add(card);
+                            //    indSpNum++;
+                            //    indSP.Children.Clear();
+                            //}
+                            #endregion
+
+                            if (indSP.Children.Count == 3)
                             {
-                                Debug.WriteLine("Every third.");
+                                indSP.Name = "SP_" + indSpNum;
+
                                 Trainer_Flipview.Items.Add(indSP);
-                                indGridNum++;
-                                indSP.Children.Clear();
+                                indSpNum++;
+                                //indSP.Children.Clear();
                             }
 
                             indCardNum++;

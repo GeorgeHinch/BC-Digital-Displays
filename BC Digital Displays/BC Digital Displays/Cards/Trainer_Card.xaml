@@ -14,7 +14,7 @@
 
             <StackPanel x:Name="TrainerCard">
 
-                <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Height="490">
+                <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Height="510">
                     <Border.Background >
                         <ImageBrush Stretch="UniformToFill">
                             <ImageBrush.ImageSource>
@@ -25,7 +25,11 @@
                 </Border>
 
                 <StackPanel Grid.Row="1">
-                    <TextBlock x:Name="TrainerName_TextBlock" Text="{Binding Path=TrainerName}" FontWeight="Medium" FontSize="29.333" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,25,25,10" />
+                    <TextBlock x:Name="TrainerName_TextBlock" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,25,25,10">
+                        <Run Text="{Binding Path=TrainerName}" FontWeight="Medium" FontSize="29.333"/>
+                        <Run Text=" " FontWeight="Medium" FontSize="29.333"/>
+                        <Run Text="{Binding Path=Degree}" FontWeight="ExtraLight" FontSize="21.333"/>
+                    </TextBlock>
                     <TextBlock x:Name="YearsExp_TextBlock" FontSize="21.333" TextTrimming="CharacterEllipsis" Foreground="#FF8E8E8E" Margin="25,0,25,10" FontWeight="Light" >
                         <Run Text="Years Experience: " FontWeight="Normal"/>
                         <Run Text="{Binding Path=YearsExp}"/>
@@ -41,7 +45,7 @@
 
                     <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=TrainerCard, Mode=TwoWay}" Y2="0" />
 
-                    <StackPanel Orientation="Horizontal" BorderThickness="25,10,25,15">
+                    <StackPanel Orientation="Horizontal" BorderThickness="25,20,25,15">
                         <TextBlock Text="Learn More" FontSize="21.333" Foreground="#FF009688" Tapped="LearnMore_Tapped" />
                     </StackPanel>
                 </StackPanel>
