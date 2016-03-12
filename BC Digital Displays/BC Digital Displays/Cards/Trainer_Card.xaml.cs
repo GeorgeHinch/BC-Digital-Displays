@@ -110,6 +110,8 @@ namespace BC_Digital_Displays.Cards
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + this.TrainerName + ") Open: " + this.TrainerName, 0);
 
             MainPage.mainPage.IndTrainerInfo_Frame.Navigate(typeof(TrainerPreview), this.Tag);
+            MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Visible;
+            MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Collapsed;
         }
     }
 }

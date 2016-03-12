@@ -421,6 +421,8 @@ namespace BC_Digital_Displays
             ScheduleGrid.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Visible;
+            IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
+            TrainerCard_Frame.Visibility = Visibility.Visible;
 
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Equipment", 0);

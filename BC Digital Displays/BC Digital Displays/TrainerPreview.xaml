@@ -5,20 +5,74 @@
     xmlns:local="using:BC_Digital_Displays"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Width="1536" Height="864">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" CornerRadius="10" Width="1490" Height="810">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
 
-        <Border Name="brdRounded" BorderThickness="0" CornerRadius="10,10,0,0" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Tapped="previewReturn_Clicked">
+                <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,10,0" Foreground="#FFE9E9E9" />
+                <TextBlock Text="return to preview" VerticalAlignment="Center" Foreground="#FFC6C6C6" />
+            </StackPanel>
+
+            <ScrollViewer Grid.Row="1">
+                <StackPanel Margin="25">
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,25" Foreground="#FF444444">
+                        <Run x:Name="Trainer_Name" FontSize="48" FontWeight="Medium" />
+                        <Run Text="  " FontSize="18.667" FontWeight="Light" />
+                        <Run x:Name="Trainer_Degree" FontSize="32" FontWeight="Light" />
+                    </TextBlock>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,20,0">
+                            <TextBlock TextTrimming="CharacterEllipsis" Foreground="Gray" FontSize="26.667">
+                                <Run Text="Years Experience: " FontWeight="Normal" />
+                                <Run x:Name="Trainer_Years" FontWeight="Thin" />
+                            </TextBlock>
+                            <TextBlock TextTrimming="CharacterEllipsis" Foreground="Gray" FontSize="26.667" Margin="0,10,0,0">
+                                <Run Text="Years at Club: " FontWeight="Normal" />
+                                <Run x:Name="Trainer_YearsBC" FontWeight="Thin" />
+                            </TextBlock>
+                            <TextBlock TextWrapping="Wrap" Foreground="Gray" FontSize="26.667" Margin="0,10,0,0">
+                                <Run Text="Expertise: " FontWeight="Normal" />
+                                <Run x:Name="Trainer_Expertise" FontWeight="Thin" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="25,0,15,0">
+                            <TextBlock Text="What to Expect Out of a Training Session" FontWeight="Medium" Margin="0,0,0,10" FontSize="26.667" Foreground="#FF747474" />
+                            <TextBlock x:Name="Trainer_Session" TextWrapping="Wrap" FontWeight="Thin" Foreground="Gray" FontSize="21.333"/>
+
+                            <TextBlock Text="Greatest Fitness-Related Accomplishment" FontWeight="Medium" Margin="0,50,0,10" FontSize="26.667" Foreground="#FF747474" />
+                            <TextBlock x:Name="Trainer_Accomplishment" TextWrapping="Wrap" FontWeight="Thin" Foreground="Gray" FontSize="21.3337"/>
+
+                            <TextBlock Text="Most Rewarding Part About Being a Trainer" FontWeight="Medium" Margin="0,50,0,10" FontSize="26.667" Foreground="#FF747474" />
+                            <TextBlock x:Name="Trainer_Reward" TextWrapping="Wrap" FontWeight="Thin" Foreground="Gray" FontSize="21.333"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <Border Name="brdRounded" BorderThickness="0" CornerRadius="0,10,10,0" Grid.Column="1">
             <Border.Background >
                 <ImageBrush Stretch="UniformToFill">
                     <ImageBrush.ImageSource>
-                        <BitmapImage x:Name="TrainerImg" UriSource="Styles/AppointmentStyles.xaml" />
+                        <BitmapImage x:Name="Trainer_Img" />
                     </ImageBrush.ImageSource>
                 </ImageBrush>
             </Border.Background>

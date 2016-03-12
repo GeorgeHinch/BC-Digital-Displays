@@ -25,17 +25,28 @@ namespace BC_Digital_Displays
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Trainers trainer_info = (Trainers)e.Parameter;
-            loadContent(trainer_info);
+            Trainer trainer_info = (Trainer)e.Parameter;
+
+            Trainer_Img.UriSource = new Uri(trainer_info.photo, UriKind.Absolute);
+            Trainer_Name.Text = trainer_info.name;
+            Trainer_Degree.Text = trainer_info.degree;
+            Trainer_Years.Text = trainer_info.years;
+            Trainer_YearsBC.Text = trainer_info.years_bc;
+            Trainer_Session.Text = trainer_info.session;
+            Trainer_Reward.Text = trainer_info.reward;
+            Trainer_Expertise.Text = trainer_info.expertise;
+            Trainer_Accomplishment.Text = trainer_info.accomplishment;
         }
+
         public TrainerPreview()
         {
             this.InitializeComponent();
         }
 
-        public void loadContent(Trainers e)
+        public void previewReturn_Clicked (object sender, RoutedEventArgs e)
         {
-
+            MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Visible;
+            MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
         }
     }
 }
