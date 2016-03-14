@@ -59,13 +59,17 @@ namespace BC_Digital_Displays
                         Trainers status = (Trainers)serializer.ReadObject(stream);
 
                         int indCardNum = 0;
-                        int indSpNum = 1;
+                        int indSpNum = 0;
                         double trainerGrid = (status.main.Length / 3);
                         int numOfGrid = (int)Math.Ceiling(trainerGrid);
                         
                         StackPanel indSP = new StackPanel();
                         indSP.Orientation = Orientation.Horizontal;
                         indSP.VerticalAlignment = VerticalAlignment.Center;
+
+                        StackPanel[] spArray = new StackPanel[2];
+                        List<Trainer_Card> cardList = new List<Trainer_Card>();
+                        List<StackPanel> spList = new List<StackPanel>();
 
                         foreach (Trainer t in status.main)
                         {
@@ -81,7 +85,8 @@ namespace BC_Digital_Displays
                             card.Height = 800;
                             card.Margin = new Thickness(31, 0, 31, 0);
 
-                            indSP.Children.Add(card);
+                            cardList.Add(card);
+                            //indSP.Children.Add(card);
 
                             #region scraps
                             //Trainer_Flipview.Items.Add(card);
@@ -96,16 +101,41 @@ namespace BC_Digital_Displays
                             //}
                             #endregion
 
-                            if (indSP.Children.Count == 3)
-                            {
-                                indSP.Name = "SP_" + indSpNum;
+                            //if (indSP.Children.Count == 3)
+                            //{
+                            //    indSP.Name = "SP_" + indSpNum;
 
-                                Trainer_Flipview.Items.Add(indSP);
+                            //    spList.Add(indSP);
+                            //    //spArray[indSpNum] = indSP;
+                            //    //Trainer_Flipview.Items.Add(indSP);
+                            //    indSpNum++;
+                            //    //indSP.Children.Clear();
+                            //}
+
+                            //indCardNum++;
+                        }
+
+                        foreach (Trainer_Card card in cardList)
+                        {
+                            card.Name = "Card_" + indCardNum;
+                            indSP.Children.Add(card);
+
+                            if (indCardNum == 2)
+                            {
+                                indSP.Name = "IndSp_" + indSpNum;
+                                spList.Add(indSP);
                                 indSpNum++;
-                                //indSP.Children.Clear();
+                                indCardNum = -1;
+                                indSP.Children.Clear();
                             }
 
                             indCardNum++;
+                        }
+
+                        foreach (StackPanel sp in spList)
+                        {
+                            Debug.WriteLine("Children: " + sp.Children.Count);
+                            //Trainer_Flipview.Items.Add(sp);
                         }
                     }
                 }

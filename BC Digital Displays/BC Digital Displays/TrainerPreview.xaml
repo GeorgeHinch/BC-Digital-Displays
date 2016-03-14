@@ -21,7 +21,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="0" Tapped="previewReturn_Clicked">
                 <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,10,0" Foreground="#FFE9E9E9" />
-                <TextBlock Text="return to preview" VerticalAlignment="Center" Foreground="#FFC6C6C6" />
+                <TextBlock Text="return to trainers" VerticalAlignment="Center" Foreground="#FFC6C6C6" />
             </StackPanel>
 
             <ScrollViewer Grid.Row="1">
@@ -47,10 +47,9 @@
                                 <Run Text="Years at Club: " FontWeight="Normal" />
                                 <Run x:Name="Trainer_YearsBC" FontWeight="Thin" />
                             </TextBlock>
-                            <TextBlock TextWrapping="Wrap" Foreground="Gray" FontSize="26.667" Margin="0,10,0,0">
-                                <Run Text="Expertise: " FontWeight="Normal" />
-                                <Run x:Name="Trainer_Expertise" FontWeight="Thin" />
-                            </TextBlock>
+                            <TextBlock Text="Expertise" Foreground="Gray" FontWeight="Normal" FontSize="26.667" Margin="0,10,0,0"/>
+                            <TextBlock x:Name="Trainer_Expertise" TextWrapping="Wrap" Foreground="Gray" FontWeight="Thin" FontSize="21.333" Margin="0,5,0,0"/>
+
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Vertical" Margin="25,0,15,0">
