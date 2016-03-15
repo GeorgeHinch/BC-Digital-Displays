@@ -67,7 +67,8 @@ namespace BC_Digital_Displays
                         indSP.Orientation = Orientation.Horizontal;
                         indSP.VerticalAlignment = VerticalAlignment.Center;
 
-                        StackPanel[] spArray = new StackPanel[2];
+                        // this may be the way you need to do this!
+                        StackPanel[] spArray = new StackPanel[numOfGrid];
                         List<Trainer_Card> cardList = new List<Trainer_Card>();
                         List<StackPanel> spList = new List<StackPanel>();
 
@@ -86,9 +87,10 @@ namespace BC_Digital_Displays
                             card.Margin = new Thickness(31, 0, 31, 0);
 
                             cardList.Add(card);
-                            //indSP.Children.Add(card);
 
                             #region scraps
+                            //indSP.Children.Add(card);
+
                             //Trainer_Flipview.Items.Add(card);
 
                             //if (indCardNum % 3 == 0)
@@ -99,7 +101,7 @@ namespace BC_Digital_Displays
                             //    indSpNum++;
                             //    indSP.Children.Clear();
                             //}
-                            #endregion
+
 
                             //if (indSP.Children.Count == 3)
                             //{
@@ -113,6 +115,7 @@ namespace BC_Digital_Displays
                             //}
 
                             //indCardNum++;
+                            #endregion
                         }
 
                         foreach (Trainer_Card card in cardList)
@@ -123,10 +126,12 @@ namespace BC_Digital_Displays
                             if (indCardNum == 2)
                             {
                                 indSP.Name = "IndSp_" + indSpNum;
+
+                                // Add to index of stackpanel list !important
                                 spList.Add(indSP);
                                 indSpNum++;
                                 indCardNum = -1;
-                                indSP.Children.Clear();
+                                //indSP.Children.Clear();
                             }
 
                             indCardNum++;
