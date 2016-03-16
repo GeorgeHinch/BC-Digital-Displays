@@ -9,7 +9,7 @@
     d:DesignHeight="800"
     d:DesignWidth="450">
 
-    <Grid>
+    <Grid x:Name="cardView">
         <Grid CornerRadius="10" Background="#FFF6F6F6" Grid.Column="1" Grid.Row="1">
 
             <StackPanel x:Name="TrainerCard">

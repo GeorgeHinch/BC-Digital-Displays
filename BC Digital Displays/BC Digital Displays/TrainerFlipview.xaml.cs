@@ -69,6 +69,8 @@ namespace BC_Digital_Displays
                         int indexVal = 1;
                         IList<StackPanel> spList = new List<StackPanel>(numOfGrid);
 
+                        int tbVal = 0;
+
                         foreach (Trainer t in status.main)
                         {
                             Trainer_Card card = new Trainer_Card();
@@ -82,6 +84,11 @@ namespace BC_Digital_Displays
                             card.Width = 450;
                             card.Height = 800;
                             card.Margin = new Thickness(31, 0, 31, 0);
+
+                            if(card.TrainerName == null)
+                            {
+                                card.Visibility = Visibility.Collapsed;
+                            }
 
                             cardList.Add(card);
                         }
@@ -104,6 +111,7 @@ namespace BC_Digital_Displays
                             Debug.WriteLine("Children: " + sp.Children.Count);
 
                             TextBlock tb = new TextBlock();
+                            tb.Name = tbVal.ToString();
                             tb.Text = WebUtility.HtmlDecode("&#xEA3A;");
                             tb.FontFamily = new FontFamily("Segoe MDL2 Assets");
                             tb.TextAlignment = TextAlignment.Center;
@@ -111,6 +119,8 @@ namespace BC_Digital_Displays
                             tb.Foreground = new SolidColorBrush(Color.FromArgb(127,255,255,255));
                             tb.Tapped += new TappedEventHandler(indicator_Clicked);
                             MainPage.mainPage.FlipviewIndicator_Stackpanel.Children.Add(tb);
+
+                            tbVal++;
 
                             sp.Orientation = Orientation.Horizontal;
                             sp.VerticalAlignment = VerticalAlignment.Center;
@@ -136,6 +146,10 @@ namespace BC_Digital_Displays
             TextBlock tb = (TextBlock)sender;
             tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
             tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
+
+            int tbValOut = Int32.Parse(tb.Name);
+
+            Trainer_Flipview.SelectedIndex = tbValOut;
         }
         #endregion
     }
