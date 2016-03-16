@@ -35,6 +35,12 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
+            <StackPanel x:Name="MessageBlock" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Center" Width="750" VerticalAlignment="Center">
+                <TextBlock x:Name="Message_Welcome" Text="Welcome to the Bellevue Club!" TextAlignment="Center" FontSize="29.333" Margin="0,0,0,5" Foreground="#7FFFFFFF" FontWeight="Light" />
+                <TextBlock x:Name="Message_OneLine" TextAlignment="Center" Foreground="#7FFFFFFF" FontSize="18.667" />
+                <TextBlock x:Name="Message_MultiLine" TextAlignment="Center" Foreground="#7FFFFFFF" FontSize="16" MaxLines="2" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" FontWeight="Light" />
+            </StackPanel>
+
             <TextBlock x:Name="DateBlock" Text="" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" FontWeight="Light" Margin="0,0,0,5" >
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="White" Opacity="0.5"/>

@@ -102,6 +102,31 @@ namespace BC_Digital_Displays
 
                         /* Store Background Image */
                         roamingSettings.Values["BackgroundImage"] = status.background;
+
+                        Display_Message dm = status.display_message;
+                        if (dm.is_active == true)
+                        {
+                            MessageBlock.Visibility = Visibility.Visible;
+
+                            if (dm.type == "One_Line")
+                            {
+                                Message_OneLine.Visibility = Visibility.Visible;
+                                Message_MultiLine.Visibility = Visibility.Collapsed;
+
+                                Message_OneLine.Text = dm.message;
+                            }
+                            else if (dm.type == "Multi_Line")
+                            {
+                                Message_OneLine.Visibility = Visibility.Collapsed;
+                                Message_MultiLine.Visibility = Visibility.Visible;
+
+                                Message_MultiLine.Text = dm.message;
+                            }
+                        }
+                        else
+                        {
+                            MessageBlock.Visibility = Visibility.Collapsed;
+                        }
                     }
                 }
             }

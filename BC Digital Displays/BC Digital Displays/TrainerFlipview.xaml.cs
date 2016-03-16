@@ -144,6 +144,7 @@ namespace BC_Digital_Displays
         }
         #endregion
 
+        #region Flipview Indicator on Flipview Index Change
         private void Trainer_Flipview_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int siVal = Trainer_Flipview.SelectedIndex;
@@ -158,5 +159,6 @@ namespace BC_Digital_Displays
             tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
             tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
         }
+        #endregion
     }
 }
