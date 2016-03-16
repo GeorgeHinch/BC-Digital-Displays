@@ -60,10 +60,8 @@ namespace BC_Digital_Displays
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
 
             LoadSettings();
-            LoadBackgroundImage();
             LoadMainMenu();
             LoadCalendarEvents();
-            LoadBCLogo();
         }
 
         void dispatchTimer_Tick(object sender, object e)
@@ -95,14 +93,10 @@ namespace BC_Digital_Displays
                         var serializer = new DataContractJsonSerializer(typeof(Settings));
                         Settings status = (Settings)serializer.ReadObject(stream);
 
-                        var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                        // Send profile image to function
+                        LoadBCLogo(status.logo);
 
-                        /* Store Profile Image */
-                        roamingSettings.Values["ProfileImage"] = status.logo;
-
-                        /* Store Background Image */
-                        roamingSettings.Values["BackgroundImage"] = status.background;
-
+                        // Sets welcome message status and text
                         Display_Message dm = status.display_message;
                         if (dm.is_active == true)
                         {
@@ -127,6 +121,16 @@ namespace BC_Digital_Displays
                         {
                             MessageBlock.Visibility = Visibility.Collapsed;
                         }
+
+                        // Determines if background is image or video
+                        if (status.background_type == "image")
+                        {
+                            LoadBackgroundImage(status.background);
+                        }
+                        else if (status.background_type == "video")
+                        {
+                            LoadBackgroundVideo(status.background);
+                        }
                     }
                 }
             }
@@ -134,46 +138,29 @@ namespace BC_Digital_Displays
         #endregion
 
         #region Load BC Logo
-        public void LoadBCLogo()
+        public void LoadBCLogo(string s)
         {
-            // Loads profile image from Windows Roaming Settings
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            string logo;
-            if (roamingSettings.Values["ProfileImage"] != null)
-            {
-                logo = roamingSettings.Values["ProfileImage"].ToString();
-            }
-            else
-            {
-                logo = "https://pbs.twimg.com/profile_images/1080017859/New_BC_Box_Only.jpg";
-            }
-
-            // sets image url as BitmapImage
+            // sets image url string as BitmapImage
             BClogo.Source = new BitmapImage(
-                        new Uri(logo, UriKind.Absolute));
+                        new Uri(s, UriKind.Absolute));
+        }
+        #endregion
+
+        #region Load Background Video
+        public void LoadBackgroundVideo(string s)
+        {
+
         }
         #endregion
 
         #region Load Background Image
-        public void LoadBackgroundImage()
+        public void LoadBackgroundImage(string s)
         {
-            // Loads background image from Windows Roaming Settings
-            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            string backgroundImg;
-            if (roamingSettings.Values["BackgroundImage"] != null)
-            {
-                backgroundImg = roamingSettings.Values["BackgroundImage"].ToString();
-            }
-            else
-            {
-                backgroundImg = "http://www.bellevueclub.com/digital-signage/bc-background.jpg";
-            }
-
             // Sets image url as background brush
             ImageBrush background = new ImageBrush
             {
                 ImageSource = new BitmapImage(
-                        new Uri(backgroundImg, UriKind.Absolute)),
+                        new Uri(s, UriKind.Absolute)),
                 Stretch = Stretch.Fill
             };
             MainGrid.Background = background;
