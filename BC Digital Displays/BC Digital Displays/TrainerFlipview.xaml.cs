@@ -38,6 +38,7 @@ namespace BC_Digital_Displays
             LoadTrainers();
         }
 
+        #region Load Trainers
         public void LoadTrainers()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
@@ -121,7 +122,9 @@ namespace BC_Digital_Displays
                 }
             }
         }
+        #endregion
 
+        #region Creating Click Event for Flipview Indicators
         public void indicator_Clicked(object sender, RoutedEventArgs e)
         {
             foreach (TextBlock t in MainPage.mainPage.FlipviewIndicator_Stackpanel.Children)
@@ -134,5 +137,6 @@ namespace BC_Digital_Displays
             tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
             tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
         }
+        #endregion
     }
 }

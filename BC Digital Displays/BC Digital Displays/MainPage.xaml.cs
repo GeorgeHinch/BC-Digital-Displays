@@ -71,6 +71,7 @@ namespace BC_Digital_Displays
             DateBlock.Text = DateTime.Now.ToString("dddd, " + "MMMM dd" + ", " + "yyyy");
         }
 
+        #region Load Settings
         public void LoadSettings()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
@@ -104,7 +105,9 @@ namespace BC_Digital_Displays
                 }
             }
         }
+        #endregion
 
+        #region Load BC Logo
         public void LoadBCLogo()
         {
             // Loads profile image from Windows Roaming Settings
@@ -123,7 +126,9 @@ namespace BC_Digital_Displays
             BClogo.Source = new BitmapImage(
                         new Uri(logo, UriKind.Absolute));
         }
+        #endregion
 
+        #region Load Background Image
         public void LoadBackgroundImage()
         {
             // Loads background image from Windows Roaming Settings
@@ -147,7 +152,9 @@ namespace BC_Digital_Displays
             };
             MainGrid.Background = background;
         }
+        #endregion
 
+        #region Load Cal Events
         public void LoadCalendarEvents()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
@@ -245,7 +252,9 @@ namespace BC_Digital_Displays
                 }
             }
         }
+        #endregion
 
+        #region Load Menu
         public void LoadMainMenu()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
@@ -306,6 +315,7 @@ namespace BC_Digital_Displays
                 }
             }
         }
+        #endregion
 
         public class MenuItems
         {
@@ -320,6 +330,7 @@ namespace BC_Digital_Displays
             public MenuItems[] main { get; set; }
         }
 
+        #region Radio Button Checked Events
         private void radioButton_Checked(object sender, RoutedEventArgs routedEventArgs)
         {
             string selectedContent = (string)((RadioButton)sender).Content;
@@ -413,6 +424,8 @@ namespace BC_Digital_Displays
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "menu_click", "Equipment", 0);
         }
 
+        #endregion
+
         private void refreshPageButton(object sender, RoutedEventArgs e)
         {
             // track a custom event
@@ -432,6 +445,7 @@ namespace BC_Digital_Displays
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
             ScheduleGrid.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Collapsed;
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             WebView.Visibility = Visibility.Visible;
             LoadSettings();
             LoadBackgroundImage();
@@ -485,7 +499,7 @@ namespace BC_Digital_Displays
         }
     }
 
-    #region Appointment Class
+    #region Appointment Class Extension
     public class Appointment : ScheduleAppointment
     {
         #region Public Properties       

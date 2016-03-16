@@ -23,6 +23,7 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class TrainerPreview : Page
     {
+        #region Load Trainer Preview from Card.Tag on Page Load
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Trainer trainer_info = (Trainer)e.Parameter;
@@ -37,17 +38,20 @@ namespace BC_Digital_Displays
             Trainer_Expertise.Text = trainer_info.expertise;
             Trainer_Accomplishment.Text = trainer_info.accomplishment;
         }
+        #endregion
 
         public TrainerPreview()
         {
             this.InitializeComponent();
         }
 
+        #region Back Button Event
         public void previewReturn_Clicked (object sender, RoutedEventArgs e)
         {
             MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Visible;
             MainPage.mainPage.FlipviewIndicator_Stackpanel.Visibility = Visibility.Visible;
             MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
         }
+        #endregion
     }
 }
