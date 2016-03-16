@@ -111,6 +111,7 @@ namespace BC_Digital_Displays.Cards
 
             MainPage.mainPage.IndTrainerInfo_Frame.Navigate(typeof(TrainerPreview), this.Tag);
             MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Visible;
+            MainPage.mainPage.FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Collapsed;
         }
     }

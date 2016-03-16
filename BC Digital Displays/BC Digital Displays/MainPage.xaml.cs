@@ -157,7 +157,6 @@ namespace BC_Digital_Displays
                     HttpMethod.Get,
                     $"http://www.bellevueclub.com/digital-signage/BC-Schedule.txt");
             HttpClient client = new HttpClient();
-            //Debug.WriteLine(client);
             if (internet == false)
             {
                 NoInternetAlert();
@@ -256,7 +255,6 @@ namespace BC_Digital_Displays
                     HttpMethod.Get,
                     $"http://www.bellevueclub.com/digital-signage/BC-Display-Menu.txt");
             HttpClient client = new HttpClient();
-            //Debug.WriteLine(client);
             if (internet == false)
             {
                 NoInternetAlert();
@@ -304,23 +302,6 @@ namespace BC_Digital_Displays
 
                             this.NavStack.Children.Add(radioButtons[i]);
                         }
-
-                        //RadioButton schedule = new RadioButton();
-                        //schedule.Name = "Schedule_RB";
-                        //schedule.Content = "Schedule";
-                        //schedule.GroupName = WebUtility.HtmlDecode("&#xE787;");
-                        //schedule.Style = this.Resources["SplitViewNavButtonStyle"] as Style;
-                        //schedule.Checked += new RoutedEventHandler(radioButtonCal_Checked);
-
-                        //RadioButton equipment = new RadioButton();
-                        //equipment.Name = "Equipment_RB";
-                        //equipment.Content = "Equipment";
-                        //equipment.GroupName = WebUtility.HtmlDecode("&#xE1C4;");
-                        //equipment.Style = this.Resources["SplitViewNavButtonStyle"] as Style;
-                        //equipment.Checked += new RoutedEventHandler(radioButtonEquip_Checked);
-
-                        //this.NavStack.Children.Add(equipment);
-                        //this.NavStack.Children.Add(schedule);
                     }
                 }
             }
@@ -356,6 +337,7 @@ namespace BC_Digital_Displays
             ScheduleGrid.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Collapsed;
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             WebView.Source = new Uri(item.Link);
             WebView.Visibility = Visibility.Visible;
 
@@ -378,6 +360,7 @@ namespace BC_Digital_Displays
             WebView.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Collapsed;
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             ScheduleGrid.Visibility = Visibility.Visible;
 
             // track a custom event
@@ -399,6 +382,7 @@ namespace BC_Digital_Displays
             WebView.Visibility = Visibility.Collapsed;
             ScheduleGrid.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Collapsed;
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Visible;
 
             // track a custom event
@@ -421,6 +405,7 @@ namespace BC_Digital_Displays
             ScheduleGrid.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Visible;
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Visible;
             IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
             TrainerCard_Frame.Visibility = Visibility.Visible;
 

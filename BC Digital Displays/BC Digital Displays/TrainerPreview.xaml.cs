@@ -46,6 +46,7 @@ namespace BC_Digital_Displays
         public void previewReturn_Clicked (object sender, RoutedEventArgs e)
         {
             MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Visible;
+            MainPage.mainPage.FlipviewIndicator_Stackpanel.Visibility = Visibility.Visible;
             MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
         }
     }

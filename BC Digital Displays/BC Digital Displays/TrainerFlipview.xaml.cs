@@ -13,6 +13,7 @@ using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -57,20 +58,15 @@ namespace BC_Digital_Displays
                     {
                         var serializer = new DataContractJsonSerializer(typeof(Trainers));
                         Trainers status = (Trainers)serializer.ReadObject(stream);
-
-                        int indCardNum = 0;
-                        int indSpNum = 0;
+                        
                         double trainerGrid = (status.main.Length / 3);
                         int numOfGrid = (int)Math.Ceiling(trainerGrid);
                         
-                        StackPanel indSP = new StackPanel();
-                        indSP.Orientation = Orientation.Horizontal;
-                        indSP.VerticalAlignment = VerticalAlignment.Center;
-
-                        // this may be the way you need to do this!
-                        StackPanel[] spArray = new StackPanel[numOfGrid];
                         List<Trainer_Card> cardList = new List<Trainer_Card>();
-                        List<StackPanel> spList = new List<StackPanel>();
+
+                        StackPanel indexSP = new StackPanel();
+                        int indexVal = 1;
+                        IList<StackPanel> spList = new List<StackPanel>(numOfGrid);
 
                         foreach (Trainer t in status.main)
                         {
@@ -87,64 +83,56 @@ namespace BC_Digital_Displays
                             card.Margin = new Thickness(31, 0, 31, 0);
 
                             cardList.Add(card);
-
-                            #region scraps
-                            //indSP.Children.Add(card);
-
-                            //Trainer_Flipview.Items.Add(card);
-
-                            //if (indCardNum % 3 == 0)
-                            //{
-                            //    //indSP.Name = "SP_" + indSpNum;
-
-                            //    Trainer_Flipview.Items.Add(card);
-                            //    indSpNum++;
-                            //    indSP.Children.Clear();
-                            //}
-
-
-                            //if (indSP.Children.Count == 3)
-                            //{
-                            //    indSP.Name = "SP_" + indSpNum;
-
-                            //    spList.Add(indSP);
-                            //    //spArray[indSpNum] = indSP;
-                            //    //Trainer_Flipview.Items.Add(indSP);
-                            //    indSpNum++;
-                            //    //indSP.Children.Clear();
-                            //}
-
-                            //indCardNum++;
-                            #endregion
                         }
 
                         foreach (Trainer_Card card in cardList)
                         {
-                            card.Name = "Card_" + indCardNum;
-                            indSP.Children.Add(card);
+                            indexSP.Children.Add(card);
 
-                            if (indCardNum == 2)
+                            if (indexVal % 3 == 0)
                             {
-                                indSP.Name = "IndSp_" + indSpNum;
-
-                                // Add to index of stackpanel list !important
-                                spList.Add(indSP);
-                                indSpNum++;
-                                indCardNum = -1;
-                                //indSP.Children.Clear();
+                                spList.Add(indexSP);
+                                indexSP = new StackPanel();
                             }
 
-                            indCardNum++;
+                            indexVal++;
                         }
 
                         foreach (StackPanel sp in spList)
                         {
                             Debug.WriteLine("Children: " + sp.Children.Count);
-                            //Trainer_Flipview.Items.Add(sp);
+
+                            TextBlock tb = new TextBlock();
+                            tb.Text = WebUtility.HtmlDecode("&#xEA3A;");
+                            tb.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                            tb.TextAlignment = TextAlignment.Center;
+                            tb.Margin = new Thickness(10, 0, 10, 0);
+                            tb.Foreground = new SolidColorBrush(Color.FromArgb(127,255,255,255));
+                            tb.Tapped += new TappedEventHandler(indicator_Clicked);
+                            MainPage.mainPage.FlipviewIndicator_Stackpanel.Children.Add(tb);
+
+                            sp.Orientation = Orientation.Horizontal;
+                            sp.VerticalAlignment = VerticalAlignment.Center;
+                            sp.HorizontalAlignment = HorizontalAlignment.Center;
+
+                            Trainer_Flipview.Items.Add(sp);
                         }
                     }
                 }
             }
+        }
+
+        public void indicator_Clicked(object sender, RoutedEventArgs e)
+        {
+            foreach (TextBlock t in MainPage.mainPage.FlipviewIndicator_Stackpanel.Children)
+            {
+                t.Text = WebUtility.HtmlDecode("&#xEA3A;");
+                t.Foreground = new SolidColorBrush(Color.FromArgb(127, 255, 255, 255));
+            }
+
+            TextBlock tb = (TextBlock)sender;
+            tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
+            tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
         }
     }
 }
