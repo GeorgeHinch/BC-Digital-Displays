@@ -137,20 +137,26 @@ namespace BC_Digital_Displays
         #region Creating Click Event for Flipview Indicators
         public void indicator_Clicked(object sender, RoutedEventArgs e)
         {
+            TextBlock tb = (TextBlock)sender;
+            int tbValOut = Int32.Parse(tb.Name);
+
+            Trainer_Flipview.SelectedIndex = tbValOut;
+        }
+        #endregion
+
+        private void Trainer_Flipview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int siVal = Trainer_Flipview.SelectedIndex;
+
             foreach (TextBlock t in MainPage.mainPage.FlipviewIndicator_Stackpanel.Children)
             {
                 t.Text = WebUtility.HtmlDecode("&#xEA3A;");
                 t.Foreground = new SolidColorBrush(Color.FromArgb(127, 255, 255, 255));
             }
 
-            TextBlock tb = (TextBlock)sender;
+            TextBlock tb = (TextBlock)MainPage.mainPage.FlipviewIndicator_Stackpanel.Children.ElementAt(siVal);
             tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
             tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
-
-            int tbValOut = Int32.Parse(tb.Name);
-
-            Trainer_Flipview.SelectedIndex = tbValOut;
         }
-        #endregion
     }
 }

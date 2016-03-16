@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <FlipView x:Name="Trainer_Flipview" Background="{x:Null}"/>
+        <FlipView x:FieldModifier="Public" x:Name="Trainer_Flipview" Background="{x:Null}" SelectionChanged="Trainer_Flipview_SelectionChanged" />
     </Grid>
 </Page>
