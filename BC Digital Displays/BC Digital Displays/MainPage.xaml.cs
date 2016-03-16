@@ -55,6 +55,7 @@ namespace BC_Digital_Displays
             ScheduleGrid.Visibility = Visibility.Collapsed;
             Trainer_Grid.Visibility = Visibility.Collapsed;
             TrainerCard_Frame.Navigate(typeof(TrainerFlipview));
+            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
 
@@ -439,19 +440,9 @@ namespace BC_Digital_Displays
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "refresh_click", "Refresh", 0);
 
-            this.NavStack.Children.Clear();
-            SfCalendarView.Appointments.Clear();
-            EquipmentPreview_Frame.Visibility = Visibility.Collapsed;
-            EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
-            ScheduleGrid.Visibility = Visibility.Collapsed;
-            Trainer_Grid.Visibility = Visibility.Collapsed;
-            FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
-            WebView.Visibility = Visibility.Visible;
-            LoadSettings();
-            LoadBackgroundImage();
-            LoadMainMenu();
-            LoadCalendarEvents();
-            LoadBCLogo();
+            var _Frame = Window.Current.Content as Frame;
+            _Frame.Navigate(_Frame.Content.GetType());
+            _Frame.GoBack(); // remove from BackStack
         }
 
         private async void NoInternetAlert()
