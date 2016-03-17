@@ -149,7 +149,8 @@ namespace BC_Digital_Displays
         #region Load Background Video
         public void LoadBackgroundVideo(string s)
         {
-
+            // Sets video url as background brush
+            VideoBackground.Source = new Uri(s);
         }
         #endregion
 
