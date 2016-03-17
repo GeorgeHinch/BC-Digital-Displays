@@ -299,7 +299,7 @@ namespace BC_Digital_Displays
                         /* Limit the mneu to 9 options */
 
                         int navLength;
-                        if (nav.main.Length < 9)
+                        if (nav.main.Length <= 9)
                         {
                             navLength = nav.main.Length;
                         }
