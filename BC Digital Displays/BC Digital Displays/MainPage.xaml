@@ -22,7 +22,8 @@
     </Page.Resources>
 
     <Grid x:Name="MainGrid">
-
+        <MediaElement IsLooping="True" IsMuted="True" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Width="1920" Height="1080" IsHitTestVisible="False" />
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*" />
