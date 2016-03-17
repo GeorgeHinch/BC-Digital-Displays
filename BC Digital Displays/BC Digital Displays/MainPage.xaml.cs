@@ -293,9 +293,24 @@ namespace BC_Digital_Displays
                         var serializer = new DataContractJsonSerializer(typeof(Menu));
                         Menu nav = (Menu)serializer.ReadObject(stream);
 
-                        RadioButton[] radioButtons = new RadioButton[nav.main.Length];
+                        /* Menu set to the number of options in JSON */
+                        //RadioButton[] radioButtons = new RadioButton[nav.main.Length]; && for (int i = 0; i < nav.main.Length; ++i)
 
-                        for (int i = 0; i < nav.main.Length; ++i)
+                        /* Limit the mneu to 9 options */
+
+                        int navLength;
+                        if (nav.main.Length < 9)
+                        {
+                            navLength = nav.main.Length;
+                        }
+                        else if (nav.main.Length > 9)
+                        {
+                            navLength = 9;
+                        }
+                        else { navLength = 0; }
+                        RadioButton[] radioButtons = new RadioButton[navLength];
+
+                        for (int i = 0; i < navLength; ++i)
                         {
                             MenuItems current = nav.main[i];
 
