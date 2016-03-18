@@ -60,7 +60,6 @@ namespace BC_Digital_Displays
             EquipmentPreview_Frame.Navigate(typeof(EquipmentPreview));
 
             LoadSettings();
-            LoadMainMenu();
             LoadCalendarEvents();
         }
 
@@ -92,6 +91,15 @@ namespace BC_Digital_Displays
                     {
                         var serializer = new DataContractJsonSerializer(typeof(Settings));
                         Settings status = (Settings)serializer.ReadObject(stream);
+
+                        var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+                        string selectedOption;
+                        if (roamingSettings.Values["SelectedMenu"] == null)
+                        {
+                            selectedOption = roamingSettings.Values["SelectedMenu"].ToString();
+                        }
+                        else { selectedOption = "1"; }
+                        LoadMainMenu(selectedOption);
 
                         // Send profile image to function
                         LoadBCLogo(status.logo);
@@ -269,14 +277,15 @@ namespace BC_Digital_Displays
         #endregion
 
         #region Load Menu
-        public void LoadMainMenu()
+        public void LoadMainMenu(string e)
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
 
+            string menuLink = "http://www.bellevueclub.com/digital-signage/BC-Display-Menu-" + e + ".txt";
             HttpRequestMessage request = new HttpRequestMessage(
                     HttpMethod.Get,
-                    $"http://www.bellevueclub.com/digital-signage/BC-Display-Menu.txt");
+                    menuLink);
             HttpClient client = new HttpClient();
             if (internet == false)
             {
