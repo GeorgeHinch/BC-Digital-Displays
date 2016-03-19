@@ -74,6 +74,12 @@ namespace BC_Digital_Displays
                         foreach (Trainer t in status.main)
                         {
                             Trainer_Card card = new Trainer_Card();
+
+                            //int years = (int)DateTime.Now.Year - Int32.Parse(t.years);
+                            //int yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
+                            //Debug.WriteLine("Years: " + years + " |");
+                            //Debug.WriteLine("Years: " + yearsBC + " |");
+
                             card.TrainerName = t.name;
                             card.Degree = t.degree;
                             card.YearsExp = t.years;
