@@ -35,7 +35,7 @@
             <Rectangle x:Name="Error_Bar" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="7" Fill="#CCE74C3C" Height="5" VerticalAlignment="Top" Visibility="Collapsed" />
 
             <Rectangle Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Fill="#66FFFFFF" />
-            <TextBlock x:Name="MenuSelect_Textbox" Text="1" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" FontSize="48" Foreground="White" FontWeight="Thin" TextAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock x:Name="MenuSelect_Textbox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" FontSize="48" Foreground="White" FontWeight="Thin" TextAlignment="Center" VerticalAlignment="Center" />
 
             <Button x:Name="Button_1" Grid.Column="1" Grid.Row="3" Content="1" Background="#19FFFFFF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" FontWeight="Light" BorderBrush="#7F000000" Foreground="#BFFFFFFF" Click="key_Click" />
             <Button x:Name="Button_2" Grid.Column="3" Grid.Row="3" Content="2" Background="#19FFFFFF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" FontWeight="Light" BorderBrush="#7F000000" Foreground="#BFFFFFFF" Click="key_Click" />

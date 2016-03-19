@@ -92,11 +92,12 @@ namespace BC_Digital_Displays
                         var serializer = new DataContractJsonSerializer(typeof(Settings));
                         Settings status = (Settings)serializer.ReadObject(stream);
 
+                        // Sets prefered menu from roaming settings
                         var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
                         string selectedOption;
-                        if (roamingSettings.Values["SelectedMenu"] == null)
+                        if (roamingSettings.Values["SelectedMenu"] != null)
                         {
-                            selectedOption = roamingSettings.Values["SelectedMenu"].ToString();
+                            selectedOption = (string)roamingSettings.Values["SelectedMenu"];
                         }
                         else { selectedOption = "1"; }
                         LoadMainMenu(selectedOption);
@@ -283,6 +284,7 @@ namespace BC_Digital_Displays
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
 
             string menuLink = "http://www.bellevueclub.com/digital-signage/BC-Display-Menu-" + e + ".txt";
+            Debug.WriteLine("E: " + e + " |");
             HttpRequestMessage request = new HttpRequestMessage(
                     HttpMethod.Get,
                     menuLink);

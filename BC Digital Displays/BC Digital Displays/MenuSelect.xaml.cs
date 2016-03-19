@@ -43,7 +43,7 @@ namespace BC_Digital_Displays
 
         private void enter_Click(object sender, RoutedEventArgs e)
         {
-            if(MenuSelect_Textbox.Text == null || MenuSelect_Textbox.Text  == "")
+            if(MenuSelect_Textbox.Text != null)
             {
                 var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
@@ -51,6 +51,7 @@ namespace BC_Digital_Displays
                 roamingSettings.Values["SelectedMenu"] = MenuSelect_Textbox.Text;
 
                 MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
+                MainPage.mainPage.refreshPage();
             }
             else
             {
