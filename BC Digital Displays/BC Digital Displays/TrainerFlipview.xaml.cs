@@ -75,15 +75,19 @@ namespace BC_Digital_Displays
                         {
                             Trainer_Card card = new Trainer_Card();
 
-                            //int years = (int)DateTime.Now.Year - Int32.Parse(t.years);
-                            //int yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
-                            //Debug.WriteLine("Years: " + years + " |");
-                            //Debug.WriteLine("Years: " + yearsBC + " |");
+                            int years;
+                            int yearsBC;
+                            if (t.years != null && t.years_bc != null)
+                            {
+                                years = (int)DateTime.Now.Year - Int32.Parse(t.years);
+                                yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
+                            }
+                            else { years = 0; yearsBC = 0; }
 
                             card.TrainerName = t.name;
                             card.Degree = t.degree;
-                            card.YearsExp = t.years;
-                            card.YearsBC = t.years_bc;
+                            card.YearsExp = years.ToString();
+                            card.YearsBC = yearsBC.ToString();
                             card.Exp = t.expertise;
                             card.TrainerPhotoURL = t.photo;
                             card.Tag = t;

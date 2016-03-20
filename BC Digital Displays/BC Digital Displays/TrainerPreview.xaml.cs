@@ -28,11 +28,20 @@ namespace BC_Digital_Displays
         {
             Trainer trainer_info = (Trainer)e.Parameter;
 
+            int years;
+            int yearsBC;
+            if (trainer_info.years != null && trainer_info.years_bc != null)
+            {
+                years = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years);
+                yearsBC = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years_bc);
+            }
+            else { years = 0; yearsBC = 0; }
+
             Trainer_Img.UriSource = new Uri(trainer_info.photo, UriKind.Absolute);
             Trainer_Name.Text = trainer_info.name;
             Trainer_Degree.Text = trainer_info.degree;
-            Trainer_Years.Text = trainer_info.years;
-            Trainer_YearsBC.Text = trainer_info.years_bc;
+            Trainer_Years.Text = years.ToString();
+            Trainer_YearsBC.Text = yearsBC.ToString();
             Trainer_Session.Text = trainer_info.session;
             Trainer_Reward.Text = trainer_info.reward;
             Trainer_Expertise.Text = trainer_info.expertise;
