@@ -30,18 +30,37 @@ namespace BC_Digital_Displays
 
             int years;
             int yearsBC;
+            string years_String;
+            string yearsBC_String;
             if (trainer_info.years != null && trainer_info.years_bc != null)
             {
-                years = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years);
-                yearsBC = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years_bc);
+                try
+                {
+                    years = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years);
+                    years_String = years.ToString();
+                }
+                catch
+                {
+                    years_String = "Nan";
+                }
+
+                try
+                {
+                    yearsBC = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years_bc);
+                    yearsBC_String = yearsBC.ToString();
+                }
+                catch
+                {
+                    yearsBC_String = "Nan";
+                }
             }
-            else { years = 0; yearsBC = 0; }
+            else { years_String = "0"; yearsBC_String = "0"; }
 
             Trainer_Img.UriSource = new Uri(trainer_info.photo, UriKind.Absolute);
             Trainer_Name.Text = trainer_info.name;
             Trainer_Degree.Text = trainer_info.degree;
-            Trainer_Years.Text = years.ToString();
-            Trainer_YearsBC.Text = yearsBC.ToString();
+            Trainer_Years.Text = years_String;
+            Trainer_YearsBC.Text = yearsBC_String;
             Trainer_Session.Text = trainer_info.session;
             Trainer_Reward.Text = trainer_info.reward;
             Trainer_Expertise.Text = trainer_info.expertise;

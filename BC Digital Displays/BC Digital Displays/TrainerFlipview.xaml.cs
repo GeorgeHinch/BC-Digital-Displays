@@ -77,17 +77,36 @@ namespace BC_Digital_Displays
 
                             int years;
                             int yearsBC;
+                            string years_String;
+                            string yearsBC_String;
                             if (t.years != null && t.years_bc != null)
                             {
-                                years = (int)DateTime.Now.Year - Int32.Parse(t.years);
-                                yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
+                                try
+                                {
+                                    years = (int)DateTime.Now.Year - Int32.Parse(t.years);
+                                    years_String = years.ToString();
+                                }
+                                catch
+                                {
+                                    years_String = "Nan";
+                                }
+
+                                try
+                                {
+                                    yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
+                                    yearsBC_String = yearsBC.ToString();
+                                }
+                                catch
+                                {
+                                    yearsBC_String = "Nan";
+                                }
                             }
-                            else { years = 0; yearsBC = 0; }
+                            else { years_String = "0"; yearsBC_String = "0"; }
 
                             card.TrainerName = t.name;
                             card.Degree = t.degree;
-                            card.YearsExp = years.ToString();
-                            card.YearsBC = yearsBC.ToString();
+                            card.YearsExp = years_String;
+                            card.YearsBC = yearsBC_String;
                             card.Exp = t.expertise;
                             card.TrainerPhotoURL = t.photo;
                             card.Tag = t;
