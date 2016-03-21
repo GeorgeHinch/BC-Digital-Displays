@@ -9,5 +9,4 @@
         <!-- http://do.remifa.so/archives/unicode/unicode.php?start=E000&end=F8FF -->
         <FontFamily x:Key="Segoe MDL2 BC">ms-appx:/Fonts/segmdl2-BC.ttf#Segoe MDL2 BC</FontFamily>
     </Application.Resources>
-
 </Application>

@@ -15,15 +15,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/SplitViewStyles.xaml"/>
                 <ResourceDictionary Source="Styles/AppointmentStyles.xaml"/>
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
-        
     </Page.Resources>
 
     <Grid x:Name="MainGrid">
         <MediaElement x:Name="VideoBackground" IsLooping="True" IsMuted="True" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Width="1920" Height="1080" IsHitTestVisible="False" />
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*" />
@@ -37,9 +36,9 @@
             </Grid.RowDefinitions>
 
             <StackPanel x:Name="MessageBlock" Grid.ColumnSpan="3" Orientation="Vertical" HorizontalAlignment="Center" Width="750" VerticalAlignment="Center">
-                <TextBlock x:Name="Message_Welcome" Text="Welcome to the Bellevue Club!" TextAlignment="Center" FontSize="29.333" Margin="0,0,0,5" Foreground="#7FFFFFFF" FontWeight="Light" />
-                <TextBlock x:Name="Message_OneLine" TextAlignment="Center" Foreground="#7FFFFFFF" FontSize="18.667" />
-                <TextBlock x:Name="Message_MultiLine" TextAlignment="Center" Foreground="#7FFFFFFF" FontSize="16" MaxLines="2" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" FontWeight="Light" />
+                <TextBlock x:Name="Message_Welcome" Text="Welcome to the Bellevue Club!" TextAlignment="Center" FontSize="29.333" Margin="0,0,0,5" FontWeight="Light" Foreground="{StaticResource Foreground_Solid}"/>
+                <TextBlock x:Name="Message_OneLine" TextAlignment="Center" FontSize="18.667" Foreground="{StaticResource Foreground_Solid}" />
+                <TextBlock x:Name="Message_MultiLine" TextAlignment="Center" FontSize="16" MaxLines="2" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" FontWeight="Light" Foreground="{StaticResource Foreground_Solid}"/>
             </StackPanel>
 
             <TextBlock x:Name="DateBlock" Text="" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" FontWeight="Light" Margin="0,0,0,5" >

@@ -23,6 +23,9 @@ namespace BC_Digital_Displays.Classes
         public string logo { get; set; }
 
         [DataMember]
+        public string theme { get; set; }
+
+        [DataMember]
         public Display_Message display_message { get; set; }
     }
 

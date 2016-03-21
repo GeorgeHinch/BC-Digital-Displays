@@ -88,7 +88,7 @@ namespace BC_Digital_Displays
                                 }
                                 catch
                                 {
-                                    years_String = "Nan";
+                                    years_String = "NaN";
                                 }
 
                                 try
@@ -98,7 +98,7 @@ namespace BC_Digital_Displays
                                 }
                                 catch
                                 {
-                                    yearsBC_String = "Nan";
+                                    yearsBC_String = "NaN";
                                 }
                             }
                             else { years_String = "0"; yearsBC_String = "0"; }

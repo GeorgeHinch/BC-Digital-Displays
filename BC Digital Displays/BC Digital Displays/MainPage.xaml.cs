@@ -102,6 +102,44 @@ namespace BC_Digital_Displays
                         else { selectedOption = "1"; }
                         LoadMainMenu(selectedOption);
 
+                        // Sets theme colors
+                        if (status.theme == "dark")
+                        {
+                            // Time color and opactity
+                            TimeBlock.Foreground = new SolidColorBrush(Colors.White);
+                            TimeBlock.Opacity = 0.5;
+
+                            // Date color and opacity
+                            DateBlock.Foreground = new SolidColorBrush(Colors.White);
+                            DateBlock.Opacity = 0.5;
+
+                            // Welcome message color and opacity
+                            Message_Welcome.Foreground = new SolidColorBrush(Colors.White);
+                            Message_Welcome.Opacity = 0.5;
+                            Message_OneLine.Foreground = new SolidColorBrush(Colors.White);
+                            Message_OneLine.Opacity = 0.5;
+                            Message_MultiLine.Foreground = new SolidColorBrush(Colors.White);
+                            Message_MultiLine.Opacity = 0.5;
+                        }
+                        else if (status.theme == "light")
+                        {
+                            // Time color and opactity
+                            TimeBlock.Foreground = new SolidColorBrush(Colors.Black);
+                            TimeBlock.Opacity = 0.75;
+
+                            // Date color and opacity
+                            DateBlock.Foreground = new SolidColorBrush(Colors.Black);
+                            DateBlock.Opacity = 0.75;
+
+                            // Welcome message color and opacity
+                            Message_Welcome.Foreground = new SolidColorBrush(Colors.Black);
+                            Message_Welcome.Opacity = 0.75;
+                            Message_OneLine.Foreground = new SolidColorBrush(Colors.Black);
+                            Message_OneLine.Opacity = 0.75;
+                            Message_MultiLine.Foreground = new SolidColorBrush(Colors.Black);
+                            Message_MultiLine.Opacity = 0.75;
+                        }
+
                         // Send profile image to function
                         LoadBCLogo(status.logo);
 
@@ -159,7 +197,7 @@ namespace BC_Digital_Displays
         public void LoadBackgroundVideo(string s)
         {
             // Sets video url as background brush
-            VideoBackground.Source = new Uri(s);
+            VideoBackground.Source = new Uri(s, UriKind.Absolute);
         }
         #endregion
 
