@@ -21,7 +21,7 @@
     </Page.Resources>
 
     <Grid x:Name="MainGrid">
-        <MediaElement x:Name="VideoBackground" IsLooping="True" IsMuted="True" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Width="1920" Height="1080" IsHitTestVisible="False" />
+        <MediaElement x:Name="VideoBackground" IsLooping="True" IsMuted="True" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Width="1920" Height="1080" IsHitTestVisible="False" Stretch="UniformToFill" />
 
         <Grid>
             <Grid.ColumnDefinitions>

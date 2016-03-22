@@ -196,8 +196,12 @@ namespace BC_Digital_Displays
         #region Load Background Video
         public void LoadBackgroundVideo(string s)
         {
+            // Sample videos are located here: http://www.sample-videos.com
+
             // Sets video url as background brush
-            VideoBackground.Source = new Uri(s, UriKind.Absolute);
+            Uri pathUri = new Uri(s, UriKind.Absolute);
+            VideoBackground.Source = pathUri;
+            VideoBackground.Stretch = Stretch.UniformToFill;
         }
         #endregion
 
@@ -548,11 +552,11 @@ namespace BC_Digital_Displays
             e.Cancel = true;
             if (e.Appointment != null)
             {
-                // track a custom event
-                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "appointment_click", "Appointment Open", 0);
-
                 Appointment App = (Appointment)e.Appointment;
-            
+
+                // track a custom event
+                GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "appointment_click", "Appointment Open: " + App.Subject, 0);
+
                 AppointmentPreview_Frame.Navigate(typeof(AppointmentPreview), App);
             }
             else
