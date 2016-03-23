@@ -10,13 +10,13 @@
     xmlns:Gauge="using:Syncfusion.UI.Xaml.Gauges"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#7FFFFFFF" Padding="25" CornerRadius="10">
             <Image Source="Assets/Precor_Logo.png" Width="200" Margin="0,0,10,5" />
             <TextBlock Text="Equipment Availibility" FontSize="37.333" FontWeight="Thin" Foreground="#FF414141" />
         </StackPanel>
@@ -30,12 +30,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-
+            <StackPanel Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
                 <TextBlock Text="Studio 1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
                 <Gauge:SfCircularGauge x:Name="Studio1_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
                     <Gauge:SfCircularGauge.GaugeHeader>
@@ -53,14 +48,9 @@
                         </Gauge:CircularScale>
                     </Gauge:SfCircularGauge.Scales>
                 </Gauge:SfCircularGauge>
-            </Grid>
+            </StackPanel>
 
-            <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-
+            <StackPanel Grid.Row="1" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
                 <TextBlock Text="Studio 3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
                 <Gauge:SfCircularGauge x:Name="Studio3_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
                     <Gauge:SfCircularGauge.GaugeHeader>
@@ -78,14 +68,9 @@
                         </Gauge:CircularScale>
                     </Gauge:SfCircularGauge.Scales>
                 </Gauge:SfCircularGauge>
-            </Grid>
+            </StackPanel>
 
-            <Grid Grid.Row="0" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-
+            <StackPanel Grid.Row="0" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
                 <TextBlock Text="Studio 2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
                 <Gauge:SfCircularGauge x:Name="Studio2_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
                     <Gauge:SfCircularGauge.GaugeHeader>
@@ -103,14 +88,9 @@
                         </Gauge:CircularScale>
                     </Gauge:SfCircularGauge.Scales>
                 </Gauge:SfCircularGauge>
-            </Grid>
+            </StackPanel>
 
-            <Grid Grid.Row="1" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
-
+            <StackPanel Grid.Row="1" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
                 <TextBlock Text="Studio 4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
                 <Gauge:SfCircularGauge x:Name="Studio4_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
                     <Gauge:SfCircularGauge.GaugeHeader>
@@ -128,7 +108,7 @@
                         </Gauge:CircularScale>
                     </Gauge:SfCircularGauge.Scales>
                 </Gauge:SfCircularGauge>
-            </Grid>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>
