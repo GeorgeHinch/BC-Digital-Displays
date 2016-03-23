@@ -36,7 +36,7 @@ namespace BC_Digital_Displays
             this.InitializeComponent();
 
             // Remove sample gauge ranges from the xaml before enabling
-            //checkMachineStudio();
+            checkMachineStudio();
         }
 
         #region Set Color Brushes
@@ -89,7 +89,7 @@ namespace BC_Digital_Displays
 
             HttpRequestMessage request = new HttpRequestMessage(
                     HttpMethod.Get,
-                    $"https://bc-machine-status.firebaseio.com/kimono/api/czvzv1jg/latest.json?auth=LHhnx6MUimP9hJEFZ3qPmsrPMsLVKs0lkKAyhLou");
+                    $"https://bc-machine-status.firebaseio.com/kimono/api/3rgdu3xk/latest.json?auth=LHhnx6MUimP9hJEFZ3qPmsrPMsLVKs0lkKAyhLou");
             HttpClient client = new HttpClient();
             if (internet == false)
             {
