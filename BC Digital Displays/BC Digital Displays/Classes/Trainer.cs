@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 namespace BC_Digital_Displays.Classes
 {
     [DataContract]
+    public class Trainers
+    {
+        [DataMember]
+        public Trainer[] main { get; set; }
+    }
+
+    [DataContract]
     public class Trainer
     {
         [DataMember]
@@ -36,12 +43,5 @@ namespace BC_Digital_Displays.Classes
 
         [DataMember]
         public string photo { get; set; }
-    }
-
-    [DataContract]
-    public class Trainers
-    {
-        [DataMember]
-        public Trainer[] main { get; set; }
     }
 }

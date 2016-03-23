@@ -36,7 +36,7 @@ namespace BC_Digital_Displays
             this.InitializeComponent();
 
             // Remove sample gauge ranges from the xaml before enabling
-            //checkMachineStatus();
+            //checkMachineStudio();
         }
 
         #region Set Color Brushes
@@ -46,7 +46,43 @@ namespace BC_Digital_Displays
         public SolidColorBrush Clouds = new SolidColorBrush(Color.FromArgb(255, 236, 240, 241));
         #endregion
 
-        public void checkMachineStatus()
+        #region Deserializes Machine Locations
+        public void checkMachineStudio()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
+            HttpRequestMessage request = new HttpRequestMessage(
+                    HttpMethod.Get,
+                    $"http://www.bellevueclub.com/digital-signage/BC-Machines.txt");
+            HttpClient client = new HttpClient();
+            if (internet == false)
+            {
+                Debug.WriteLine("No internet");
+            }
+            else
+            {
+                var response = client.SendAsync(request).Result;
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    var bytes = Encoding.Unicode.GetBytes(result);
+                    using (MemoryStream stream = new MemoryStream(bytes))
+                    {
+                        var serializer = new DataContractJsonSerializer(typeof(Machines));
+                        Machines status = (Machines)serializer.ReadObject(stream);
+
+                        Studios studio = (Studios)status.main;
+
+                        checkMachineStatus(studio);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Checks the status of each machine
+        public void checkMachineStatus(Studios s)
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
@@ -55,7 +91,6 @@ namespace BC_Digital_Displays
                     HttpMethod.Get,
                     $"https://bc-machine-status.firebaseio.com/kimono/api/czvzv1jg/latest.json?auth=LHhnx6MUimP9hJEFZ3qPmsrPMsLVKs0lkKAyhLou");
             HttpClient client = new HttpClient();
-            Debug.WriteLine(client);
             if (internet == false)
             {
                 Debug.WriteLine("No internet");
@@ -63,7 +98,6 @@ namespace BC_Digital_Displays
             else
             {
                 var response = client.SendAsync(request).Result;
-                //Debug.WriteLine(response);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var result = response.Content.ReadAsStringAsync().Result;
@@ -87,31 +121,48 @@ namespace BC_Digital_Displays
                         SolidColorBrush Studio3Brush;
                         SolidColorBrush Studio4Brush;
 
+                        #region Compare Machine Names and Studio Locaiton, Then Set Count
+                        var activeMachines = from machine in status.results.Preva where machine.Status.Equals("In Use") select machine.Name.text;
+                        HashSet<String> setOfMachines = new HashSet<string>(activeMachines);
+
+                        int s1active = getNumberOfMachineActive(s.Studio1, setOfMachines);
+                        int s1Total = s.Studio1.Count;
+
+                        int s2active = getNumberOfMachineActive(s.Studio2, setOfMachines);
+                        int s2Total = s.Studio2.Count;
+
+                        int s3active = getNumberOfMachineActive(s.Studio3, setOfMachines);
+                        int s3Total = s.Studio3.Count;
+
+                        int s4active = getNumberOfMachineActive(s.Studio4, setOfMachines);
+                        int s4Total = s.Studio4.Count;
+                        #endregion
+
                         #region Percentage Math
-                        if (status.studio1total != 0)
+                        if (s1Total != 0)
                         {
-                            studio1per = ((double)status.studio1active / (double)status.studio1total) * 100;
+                            studio1per = ((double)s1active / (double)s1Total) * 100;
                             studio1fin = Math.Round(studio1per, 0);
                         }
                         else { studio1fin = 0; }
 
-                        if (status.studio2total != 0)
+                        if (s2Total != 0)
                         {
-                            studio2per = ((double)status.studio2active / (double)status.studio2total) * 100;
+                            studio2per = ((double)s2active / (double)s2Total) * 100;
                             studio2fin = Math.Round(studio2per, 0);
                         }
                         else { studio2fin = 0; }
 
-                        if (status.studio3total != 0)
+                        if (s3Total != 0)
                         {
-                            studio3per = ((double)status.studio3active / (double)status.studio3total) * 100;
+                            studio3per = ((double)s3active / (double)s3Total) * 100;
                             studio3fin = Math.Round(studio3per, 0);
                         }
                         else { studio3fin = 0; }
 
-                        if (status.studio4total != 0)
+                        if (s4Total != 0)
                         {
-                            studio4per = ((double)status.studio4active / (double)status.studio4total) * 100;
+                            studio4per = ((double)s4active / (double)s4Total) * 100;
                             studio4fin = Math.Round(studio4per, 0);
                         }
                         else { studio4fin = 0; }
@@ -123,19 +174,16 @@ namespace BC_Digital_Displays
                         if (studio1fin >= 0 && studio1fin <= 74)
                         {
                             Studio1Brush = PeterRiver;
-                            Debug.WriteLine("Color set to PeterRiver.");
                         }
                         else if (studio1fin >= 75 && studio1fin <= 89)
                         {
                             Studio1Brush = SunFlower;
-                            Debug.WriteLine("Color set to SunFlower.");
                         }
                         else if (studio1fin >= 90 && studio1fin <= 100)
                         {
                             Studio1Brush = Alizarin;
-                            Debug.WriteLine("Color set to Alizarin.");
                         }
-                        else { Studio1Brush = Clouds; Debug.WriteLine("Color set to Clouds."); }
+                        else { Studio1Brush = Clouds; }
 
                         _mainscale1.Ranges.Add(new CircularRange()
                         {
@@ -204,19 +252,16 @@ namespace BC_Digital_Displays
                         if (studio3fin >= 0 && studio3fin <= 74)
                         {
                             Studio3Brush = PeterRiver;
-                            Debug.WriteLine("Color set to PeterRiver.");
                         }
                         else if (studio3fin >= 75 && studio3fin <= 89)
                         {
                             Studio3Brush = SunFlower;
-                            Debug.WriteLine("Color set to SunFlower.");
                         }
                         else if (studio3fin >= 90 && studio3fin <= 100)
                         {
                             Studio3Brush = Alizarin;
-                            Debug.WriteLine("Color set to Alizarin.");
                         }
-                        else { Studio3Brush = Clouds; Debug.WriteLine("Color set to Clouds."); }
+                        else { Studio3Brush = Clouds; }
 
                         _mainscale3.Ranges.Add(new CircularRange()
                         {
@@ -246,19 +291,16 @@ namespace BC_Digital_Displays
                         if (studio4fin >= 0 && studio4fin <= 74)
                         {
                             Studio4Brush = PeterRiver;
-                            Debug.WriteLine("Color set to PeterRiver.");
                         }
                         else if (studio4fin >= 75 && studio4fin <= 89)
                         {
                             Studio4Brush = SunFlower;
-                            Debug.WriteLine("Color set to SunFlower.");
                         }
                         else if (studio4fin >= 90 && studio4fin <= 100)
                         {
                             Studio4Brush = Alizarin;
-                            Debug.WriteLine("Color set to Alizarin.");
                         }
-                        else { Studio4Brush = Clouds; Debug.WriteLine("Color set to Clouds."); }
+                        else { Studio4Brush = Clouds; }
 
                         _mainscale4.Ranges.Add(new CircularRange()
                         {
@@ -287,5 +329,21 @@ namespace BC_Digital_Displays
                 }
             }
         }
+        #endregion
+
+        #region Method to Compare Machine Lists to Determine Studio
+        public int getNumberOfMachineActive(IList<String> sutdioMachines, HashSet<String> activeMachines)
+        {
+            int active = 0;
+            foreach (String m in sutdioMachines)
+            {
+                if (activeMachines.Contains(m))
+                {
+                    active++;
+                }
+            }
+            return active;
+        }
+        #endregion
     }
 }
