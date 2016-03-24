@@ -118,6 +118,9 @@
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Trainer.cs" />
+    <Compile Include="Concierge.xaml.cs">
+      <DependentUpon>Concierge.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Cards\Trainer_Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Concierge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
