@@ -181,6 +181,7 @@ namespace BC_Digital_Displays
                     }
                 }
             }
+            else { NoInternetAlert(); }
         }
         #endregion
 
@@ -333,7 +334,7 @@ namespace BC_Digital_Displays
             HttpClient client = new HttpClient();
             if (internet == false)
             {
-                NoInternetAlert();
+        
             } else
             {
                 var response = client.SendAsync(request).Result;
