@@ -1,20 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC Digital Displays", "BC Digital Displays\BC Digital Displays.csproj", "{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Web Portal", "..\Web Portal\", "{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50721"
+		Debug.AspNetCompiler.PhysicalPath = "..\Web Portal\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50721\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50721"
+		Release.AspNetCompiler.PhysicalPath = "..\Web Portal\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50721\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50721"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|ARM.ActiveCfg = Debug|ARM
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|ARM.Build.0 = Debug|ARM
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -24,6 +48,7 @@ Global
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|x86.ActiveCfg = Debug|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|x86.Build.0 = Debug|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Debug|x86.Deploy.0 = Debug|x86
+		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|Any CPU.ActiveCfg = Release|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|ARM.ActiveCfg = Release|ARM
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|ARM.Build.0 = Release|ARM
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|ARM.Deploy.0 = Release|ARM
@@ -33,6 +58,22 @@ Global
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|x86.ActiveCfg = Release|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|x86.Build.0 = Release|x86
 		{A179D4E1-4F8E-4EB3-899E-9CD9CFA91F9B}.Release|x86.Deploy.0 = Release|x86
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|ARM.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|x64.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Debug|x86.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|ARM.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|ARM.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|x64.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|x64.Build.0 = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|x86.ActiveCfg = Debug|Any CPU
+		{3E490F6A-2075-414B-AEC9-EEDFC213A5F0}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
