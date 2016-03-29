@@ -1,0 +1,116 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="display-settings.aspx.cs" Inherits="display_settings" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Digital Display Admin - Display Settings</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+    <!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Digital Display Admin</a>
+				<nav>
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../index.html#wiki">Wiki</a></li>
+						<li><a href="../index.html#settings"  class="active">Settings</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+						  <h1 class="major">Display Settings</h1>
+						  <span class="image fit"><img src="../images/gear-1040.jpg" alt="" /></span>
+                          <form method="post" id="display-settings" runat="server">
+                              <h2>Images</h2>
+                              
+                              <p>Logo:
+                              <input type="text" name="settings-logo" id="settings-logo" value="" placeholder="Logo URL" />
+                              </p>
+                              
+                              <p>Background Type:<br/>
+                              <span>
+								<input type="radio" id="settings-radio-image" name="settings-background" checked="checked" />
+								<label for="settings-radio-image">Image</label>
+								<input type="radio" id="settings-radio-video" name="settings-background" />
+								<label for="settings-radio-video">Video</label></span></p>
+                              
+                              <p>Background:
+                              <input type="text" name="settings-bgimg" id="settings-bgimg" value="" placeholder="Background URL" />
+                              </p>
+                              
+                              <h2>Password</h2>
+                              
+                              <p><input type="text" maxlength="5"  name="settings-password" id="settings-password" value="" placeholder="Number only password" /></p>
+                              
+                              <h2>Theme</h2>
+                              
+                              <p>Set to dark for backgrounds, light for light backgrounds.<br/>
+                              <span>
+								<input type="radio" id="settings-radio-light" name="settings-theme" checked="checked" />
+								<label for="settings-radio-light">Light</label>
+								<input type="radio" id="settings-radio-dark" name="settings-theme" />
+								<label for="settings-radio-dark">Dark</label></span></p>
+                                
+                                <h2>Welcome Message</h2>
+                                
+                                <p><input type="checkbox" id="settings-message-active" name="settings-message-active" checked="checked" />
+                                <label for="settings-message-active">Active</label>
+                                <div>
+                                	<span>
+										<input type="radio" id="settings-radio-oneline" name="settings-messageconfig" checked="checked" />
+										<label for="settings-radio-oneline">Single Line</label>
+										<input type="radio" id="settings-radio-multiline" name="settings-messageconfig" />
+										<label for="settings-radio-multiline">Multi-Line</label>
+                                        
+                                        <div>
+                                        	<input type="text" name="settings-message-oneline" id="settings-bmessage-oneline" value="" placeholder="Enter your message" />
+                                        </div>
+                                        <div>
+                                        	<textarea name="settings-message-multiline" id="settings-message-multiline" placeholder="Enter your message" rows="3"></textarea>
+                                        </div>
+                                    </span>
+                                </div></p>
+                          </form>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Bellevue Club. All rights reserved.</li><li>Contact: <a href="http://www.georgehinch.com">George Hinchliffe</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/js/main.js"></script>
+
+    <form id="form1" runat="server">
+    <div>
+    
+    </div>
+    </form>
+</body>
+</html>
