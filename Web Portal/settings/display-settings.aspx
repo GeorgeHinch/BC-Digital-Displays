@@ -82,7 +82,9 @@
                                 
                                 <h2>Welcome Message</h2>
                                 
-                                <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" OnCheckedChanged="settingsMessageActive_CheckedChanged" runat="server" OnClientClick="Show_Hide_Display()" />
+                                <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" OnCheckedChanged="chkShowHideDiv_CheckedChanged" runat="server" />
+                                
+                              <div id="myDiv" runat="server">
                                 <asp:Panel ID="messagePanel" runat="server">
                                     <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" OnCheckedChanged="settingsRadioSingle_CheckedChanged"  />
                                     <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" OnCheckedChanged="settingsRadioMulti_CheckedChanged" />
@@ -90,6 +92,7 @@
                                     <asp:TextBox ID="settingsMessageOneline" runat="server" TextMode="SingleLine" />
                                     <asp:TextBox ID="settingsMessageMultiline" runat="server" TextMode="MultiLine" Visible="false" />
                                 </asp:Panel>
+                              </div>
                                 
                                 <hr />
                                 

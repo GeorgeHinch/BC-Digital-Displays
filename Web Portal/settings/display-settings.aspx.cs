@@ -33,4 +33,9 @@ public partial class display_settings : System.Web.UI.Page
         }
         else { messagePanel.Visible = false; }
     }
+
+    protected void chkShowHideDiv_CheckedChanged(object sender, EventArgs e)
+    {
+        myDiv.Visible = settingsMessageActive.Checked ? false : true;
+    }
 }
