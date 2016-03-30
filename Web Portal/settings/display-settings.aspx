@@ -11,6 +11,22 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+
+    <script type="text/javascript">
+
+    function Show_Hide_Display() {
+        var div1 = document.getElementById("<%=messagePanel.ClientID%>");
+            if (div1.style.display == "" || div1.style.display == "block") {
+                div1.style.display = "none";
+            }
+            else {
+                div1.style.display = "block";
+            }
+
+        return false;
+}    
+
+</script>
 </head>
 <body>
     <!-- Header -->
@@ -33,7 +49,7 @@
 						<div class="inner">
 						  <h1 class="major">Display Settings</h1>
 						  <span class="image fit"><img src="../images/gear-1040.jpg" alt="" /></span>
-                          <form method="post" id="display-settings" runat="server">
+                          <form method="post" runat="server" name="display-settings">
                               <h2>Images</h2>
                               
                               <p>Logo:
@@ -53,7 +69,7 @@
                               
                               <h2>Password</h2>
                               
-                              <p><input type="text" maxlength="5"  name="settings-password" id="settings-password" value="" placeholder="Number only password" /></p>
+                              <p><input type="number"  name="settings-password" id="settings-password" value="" /></p>
                               
                               <h2>Theme</h2>
                               
@@ -66,27 +82,23 @@
                                 
                                 <h2>Welcome Message</h2>
                                 
-                                <p><input type="checkbox" id="settings-message-active" name="settings-message-active" checked="checked" />
-                                <label for="settings-message-active">Active</label>
-                                <div>
-                                	<span>
-										<input type="radio" id="settings-radio-oneline" name="settings-messageconfig" checked="checked" />
-										<label for="settings-radio-oneline">Single Line</label>
-										<input type="radio" id="settings-radio-multiline" name="settings-messageconfig" />
-										<label for="settings-radio-multiline">Multi-Line</label>
-                                        
-                                        <div>
-                                        	<input type="text" name="settings-message-oneline" id="settings-bmessage-oneline" value="" placeholder="Enter your message" />
-                                        </div>
-                                        <div>
-                                        	<textarea name="settings-message-multiline" id="settings-message-multiline" placeholder="Enter your message" rows="3"></textarea>
-                                        </div>
-                                    </span>
-                                </div></p>
-                          </form>
-						</div>
-					</section>
+                                <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" OnCheckedChanged="settingsMessageActive_CheckedChanged" runat="server" OnClientClick="Show_Hide_Display()" />
+                                <asp:Panel ID="messagePanel" runat="server">
+                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" OnCheckedChanged="settingsRadioSingle_CheckedChanged"  />
+                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" OnCheckedChanged="settingsRadioMulti_CheckedChanged" />
 
+                                    <asp:TextBox ID="settingsMessageOneline" runat="server" TextMode="SingleLine" />
+                                    <asp:TextBox ID="settingsMessageMultiline" runat="server" TextMode="MultiLine" Visible="false" />
+                                </asp:Panel>
+                                
+                                <hr />
+                                
+                                <p>
+                                	<a href="#" class="button special fit">Save</a>
+                                </p>
+                          </form>
+                         </div>
+					</section>
 			</div>
 
 		<!-- Footer -->
@@ -106,11 +118,5 @@
 			<script src="../assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="../assets/js/main.js"></script>
-
-    <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
 </body>
 </html>
