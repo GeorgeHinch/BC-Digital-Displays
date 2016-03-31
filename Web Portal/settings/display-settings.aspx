@@ -1,6 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="display-settings.aspx.cs" Inherits="display_settings" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+    protected void settingsRadioMulti_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -13,18 +21,29 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
 
     <script type="text/javascript">
-
-    function Show_Hide_Display() {
-        var div1 = document.getElementById("<%=messagePanel.ClientID%>");
-            if (div1.style.display == "" || div1.style.display == "block") {
-                div1.style.display = "none";
+        function loadPage() {
+            hideLineType(null);
+        }
+        function hideMessage(obj) {
+            if (obj.checked == true) {
+                document.getElementById("messageDiv").style.display = 'block';
             }
             else {
-                div1.style.display = "block";
+                document.getElementById("messageDiv").style.display = 'none';
             }
+        }
 
-        return false;
-}    
+        function hideLineType(obj) {
+            if (document.getElementById("<%=settingsRadioSingle.ClientID%>").checked) {
+                document.getElementById("singlelineDiv").style.display = 'block';
+                document.getElementById("multilineDiv").style.display = 'none';
+            } else if (document.getElementById("<%=settingsRadioMulti.ClientID%>").checked) {
+                document.getElementById("singlelineDiv").style.display = 'none';
+                document.getElementById("multilineDiv").style.display = 'block';
+            }
+        }
+
+        window.onload = loadPage;
 
 </script>
 </head>
@@ -69,7 +88,7 @@
                               
                               <h2>Password</h2>
                               
-                              <p><input type="number"  name="settings-password" id="settings-password" value="" /></p>
+                              <p><input type="number" name="settings-password" id="settings-password" value="" /></p>
                               
                               <h2>Theme</h2>
                               
@@ -82,24 +101,25 @@
                                 
                                 <h2>Welcome Message</h2>
                                 
-                                <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" OnCheckedChanged="chkShowHideDiv_CheckedChanged" runat="server" />
+                                <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" runat="server" onClick="hideMessage(this)" />
                                 
-                              <div id="myDiv" runat="server">
-                                <asp:Panel ID="messagePanel" runat="server">
-                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" OnCheckedChanged="settingsRadioSingle_CheckedChanged"  />
-                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" OnCheckedChanged="settingsRadioMulti_CheckedChanged" />
+                                <div id="messageDiv" runat="server">
+                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" onClick="hideLineType(this)" />
+                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" onClick="hideLineType(this)" />
 
-                                    <asp:TextBox ID="settingsMessageOneline" runat="server" TextMode="SingleLine" />
-                                    <asp:TextBox ID="settingsMessageMultiline" runat="server" TextMode="MultiLine" Visible="false" />
-                                </asp:Panel>
-                              </div>
+                                    <div id="singlelineDiv" runat="server">
+                                        <asp:TextBox ID="settingsMessageOneline" runat="server" TextMode="SingleLine" />
+                                    </div>
+                                    <div id="multilineDiv" runat="server">
+                                        <asp:TextBox ID="settingsMessageMultiline" runat="server" TextMode="MultiLine" />
+                                    </div>
+                                </div>
                                 
-                                <hr />
+                                <hr style="padding-bottom:10px;" />
                                 
-                                <p>
-                                	<a href="#" class="button special fit">Save</a>
-                                </p>
+                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
                           </form>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BC_DisplaysConnectionString %>" SelectCommand="SELECT * FROM [settings]"></asp:SqlDataSource>
                          </div>
 					</section>
 			</div>
