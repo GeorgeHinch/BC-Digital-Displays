@@ -1,15 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="display-settings.aspx.cs" Inherits="display_settings" %>
 
+
 <!DOCTYPE html>
-<script runat="server">
-
-    protected void settingsRadioMulti_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
-</script>
-
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Digital Display Admin - Display Settings</title>

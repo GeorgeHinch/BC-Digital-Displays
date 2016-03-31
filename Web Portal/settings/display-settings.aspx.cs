@@ -13,33 +13,65 @@ public partial class display_settings : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        settingsLogo.Attributes.Add("placeholder", "Logo URL placeholder");
+        settingsBgUrl.Attributes.Add("placeholder", "Logo URL placeholder");
+        settingsPassword.Attributes.Add("placeholder", "Logo URL placeholder");
+        settingsMessageOneline.Attributes.Add("placeholder", "Logo URL placeholder");
+        settingsMessageMultiline.Attributes.Add("placeholder", "Logo URL placeholder");
     }
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
         string logoURL = settingsLogo.Text;
-        int bType;
+        if (logoURL == "")
+        {
+            logoURL = settingsLogo.Attributes["placeholder"].ToString();
+        }
+        string bType;
         if (settingsRadioBgImg.Checked == true)
         {
-            bType = 0;
-        } else { bType = 1; }
+            bType = "image";
+        } else { bType = "video"; }
         string bgURL = settingsBgUrl.Text;
+        if (bgURL == "")
+        {
+            bgURL = settingsBgUrl.Attributes["placeholder"].ToString();
+        }
         string pass = settingsPassword.Text;
-        int tType;
+        if (pass == "")
+        {
+            pass = settingsPassword.Attributes["placeholder"].ToString();
+        }
+        string tType;
         if (settingsRadioLight.Checked == true)
         {
-            tType = 0;
-        } else { tType = 1; }
+            tType = "light";
+        } else { tType = "dark"; }
         int activeBit = Convert.ToInt32(settingsMessageActive.Checked);
         int mType;
         if(settingsRadioSingle.Checked == true)
         {
             mType = 0;
         } else { mType = 1; }
-        string oneLineText = settingsMessageOneline.Text;
-        string multiLineText = settingsMessageMultiline.Text;
-        Debug.WriteLine("Text: " + oneLineText + " |");
+        string oneLineText;
+        if (mType == 0)
+        {
+            oneLineText = settingsMessageOneline.Text;
+            if (oneLineText == "")
+            {
+                oneLineText = settingsMessageOneline.Attributes["placeholder"].ToString();
+            }
+        } else { oneLineText = null; }
+        string multiLineText;
+        if (mType == 1)
+        {
+            multiLineText = settingsMessageMultiline.Text;
+            if (multiLineText == "")
+            {
+                multiLineText = settingsMessageMultiline.Attributes["placeholder"].ToString();
+            }
+        }
+        else { multiLineText = null; }
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
