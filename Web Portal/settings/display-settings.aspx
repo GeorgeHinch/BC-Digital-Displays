@@ -72,32 +72,32 @@
                               <h2>Images</h2>
                               
                               <p>Logo:
-                              <input type="text" name="settings-logo" id="settings-logo" value="" placeholder="Logo URL" />
+                                  <asp:TextBox ID="settingsLogo" runat="server" />
                               </p>
                               
                               <p>Background Type:<br/>
                               <span>
-								<input type="radio" id="settings-radio-image" name="settings-background" checked="checked" />
-								<label for="settings-radio-image">Image</label>
-								<input type="radio" id="settings-radio-video" name="settings-background" />
-								<label for="settings-radio-video">Video</label></span></p>
+                                  <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgImg" Text="Image" runat="server" Checked="true" />
+                                  <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgVid" Text="Video" runat="server" />
+                              </span></p>
                               
                               <p>Background:
-                              <input type="text" name="settings-bgimg" id="settings-bgimg" value="" placeholder="Background URL" />
+                                  <asp:TextBox ID="settingsBgimg" runat="server" />
                               </p>
                               
                               <h2>Password</h2>
                               
-                              <p><input type="number" name="settings-password" id="settings-password" value="" /></p>
+                              <p>
+                                  <asp:TextBox ID="settingsPassword" TextMode="Number" runat="server" />
+                              </p>
                               
                               <h2>Theme</h2>
                               
                               <p>Set to dark for backgrounds, light for light backgrounds.<br/>
                               <span>
-								<input type="radio" id="settings-radio-light" name="settings-theme" checked="checked" />
-								<label for="settings-radio-light">Light</label>
-								<input type="radio" id="settings-radio-dark" name="settings-theme" />
-								<label for="settings-radio-dark">Dark</label></span></p>
+                                  <asp:RadioButton GroupName="settings-theme" ID="settingsRadioLight" Text="Light" runat="server" Checked="true" />
+                                  <asp:RadioButton GroupName="settings-theme" ID="settingsRadioDark" Text="Dark" runat="server" />
+                              </span></p>
                                 
                                 <h2>Welcome Message</h2>
                                 
@@ -119,7 +119,6 @@
                                 
                                 <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
                           </form>
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BC_DisplaysConnectionString %>" SelectCommand="SELECT * FROM [settings]"></asp:SqlDataSource>
                          </div>
 					</section>
 			</div>
