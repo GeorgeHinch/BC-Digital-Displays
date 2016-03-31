@@ -18,6 +18,19 @@ public partial class display_settings : System.Web.UI.Page
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
+        string logoURL = settingsLogo.Text;
+        int bType;
+        if (settingsRadioBgImg.Checked == true)
+        {
+            bType = 0;
+        } else { bType = 1; }
+        string bgURL = settingsBgUrl.Text;
+        string pass = settingsPassword.Text;
+        int tType;
+        if (settingsRadioLight.Checked == true)
+        {
+            tType = 0;
+        } else { tType = 1; }
         int activeBit = Convert.ToInt32(settingsMessageActive.Checked);
         int mType;
         if(settingsRadioSingle.Checked == true)
@@ -42,11 +55,11 @@ public partial class display_settings : System.Web.UI.Page
                 cmd.Connection = conn;
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO settings(logoURL, backgroundType, backgroundURL, password, theme, welcomeActive, messageType, messageOne, messageMulti) Values (@logo, @btype, @back, @pass, @theme, @active, @mtype, @otext, @mtext)";
-                cmd.Parameters.AddWithValue("@logo", "logoURL");
-                cmd.Parameters.AddWithValue("@btype", "image");
-                cmd.Parameters.AddWithValue("@back", "backgroundURL");
-                cmd.Parameters.AddWithValue("@pass", "11111");
-                cmd.Parameters.AddWithValue("@theme", "light");
+                cmd.Parameters.AddWithValue("@logo", logoURL);
+                cmd.Parameters.AddWithValue("@btype", bType);
+                cmd.Parameters.AddWithValue("@back", bgURL);
+                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.Parameters.AddWithValue("@theme", tType);
                 cmd.Parameters.AddWithValue("@active", activeBit);
                 cmd.Parameters.AddWithValue("@mtype", mType);
                 cmd.Parameters.AddWithValue("@otext", oneLineText);

@@ -82,7 +82,7 @@
                               </span></p>
                               
                               <p>Background:
-                                  <asp:TextBox ID="settingsBgimg" runat="server" />
+                                  <asp:TextBox ID="settingsBgUrl" runat="server" />
                               </p>
                               
                               <h2>Password</h2>
