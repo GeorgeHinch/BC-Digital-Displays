@@ -13,11 +13,86 @@ public partial class display_settings : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        settingsLogo.Attributes.Add("placeholder", "Logo URL placeholder");
-        settingsBgUrl.Attributes.Add("placeholder", "Logo URL placeholder");
-        settingsPassword.Attributes.Add("placeholder", "Logo URL placeholder");
-        settingsMessageOneline.Attributes.Add("placeholder", "Logo URL placeholder");
-        settingsMessageMultiline.Attributes.Add("placeholder", "Logo URL placeholder");
+        bool hasUserVisitedPage = false;
+        string pagePath = HttpContext.Current.Request.Url.LocalPath;
+
+        try { hasUserVisitedPage = (bool)HttpContext.Current.Session[pagePath]; }
+        catch { }
+
+        if (!hasUserVisitedPage)
+        {
+            HttpContext.Current.Session[pagePath] = true;
+
+            string logoURL;
+            string backgroundType;
+            string backgroundURL;
+            string password;
+            string theme;
+            bool welcomeActive;
+            bool messageType;
+            string messageOne;
+            string messageMulti;
+
+            string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(connString);
+                //conn.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM [display-settings] WHERE DATE IN (SELECT MAX(DATE) FROM [display-settings])", conn);
+                conn.Open();
+                SqlDataReader sdr = command.ExecuteReader();
+
+                while (sdr.Read())
+                {
+                    logoURL = (string)sdr["logoURL"];
+                    backgroundType = (string)sdr["backgroundType"];
+                    backgroundURL = (string)sdr["backgroundURL"];
+                    password = (string)sdr["password"];
+                    theme = (string)sdr["theme"];
+                    welcomeActive = Convert.ToBoolean(sdr["welcomeActive"]);
+                    messageType = Convert.ToBoolean(sdr["messageType"]);
+                    messageOne = (string)sdr["messageOne"];
+                    messageMulti = (string)sdr["messageMulti"];
+
+                    settingsLogo.Attributes.Add("placeholder", logoURL);
+                    settingsBgUrl.Attributes.Add("placeholder", backgroundURL);
+                    settingsPassword.Attributes.Add("placeholder", password);
+                    settingsMessageOneline.Attributes.Add("placeholder", messageOne);
+                    settingsMessageMultiline.Attributes.Add("placeholder", messageMulti);
+
+                    if (theme == "light")
+                    {
+                        settingsRadioLight.Checked = true;
+                    } else { settingsRadioDark.Checked = true; }
+
+                    if (welcomeActive == false)
+                    {
+                        settingsMessageActive.Checked = false;
+                    } else { settingsMessageActive.Checked = true; }
+
+                    if (messageType == false)
+                    {
+                        settingsRadioSingle.Checked = true;
+                    } else { settingsRadioMulti.Checked = true; }
+                }
+            }
+            catch (Exception ex)
+            {
+                //log error 
+                //display friendly error to user
+                Debug.WriteLine("Ex: " + ex.Message + " |");
+                throw;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    //cleanup connection i.e close 
+                    conn.Close();
+                }
+            }
+        }
     }
 
     protected void FormSubmit_Click(object sender, EventArgs e)
@@ -48,30 +123,30 @@ public partial class display_settings : System.Web.UI.Page
             tType = "light";
         } else { tType = "dark"; }
         int activeBit = Convert.ToInt32(settingsMessageActive.Checked);
-        int mType;
+        int messageType;
         if(settingsRadioSingle.Checked == true)
         {
-            mType = 0;
-        } else { mType = 1; }
+            messageType = 0;
+        } else { messageType = 1; }
         string oneLineText;
-        if (mType == 0)
+        if (messageType == 0)
         {
-            oneLineText = settingsMessageOneline.Text;
-            if (oneLineText == "")
+            if (settingsMessageOneline.Text == "")
             {
                 oneLineText = settingsMessageOneline.Attributes["placeholder"].ToString();
             }
-        } else { oneLineText = null; }
+            else { oneLineText = settingsMessageOneline.Text; }
+        } else { oneLineText = ""; }
         string multiLineText;
-        if (mType == 1)
+        if (messageType == 1)
         {
-            multiLineText = settingsMessageMultiline.Text;
-            if (multiLineText == "")
+            if (settingsMessageMultiline.Text == "")
             {
                 multiLineText = settingsMessageMultiline.Attributes["placeholder"].ToString();
             }
+            else { multiLineText = settingsMessageMultiline.Text; }
         }
-        else { multiLineText = null; }
+        else { multiLineText = ""; }
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
@@ -86,14 +161,16 @@ public partial class display_settings : System.Web.UI.Page
             {
                 cmd.Connection = conn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO settings(logoURL, backgroundType, backgroundURL, password, theme, welcomeActive, messageType, messageOne, messageMulti) Values (@logo, @btype, @back, @pass, @theme, @active, @mtype, @otext, @mtext)";
+                cmd.CommandText = "INSERT INTO [display-settings](date, ticks, logoURL, backgroundType, backgroundURL, password, theme, welcomeActive, messageType, messageOne, messageMulti) Values (@date, @ticks, @logo, @btype, @back, @pass, @theme, @active, @mtype, @otext, @mtext)";
+                cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("@ticks", DateTime.UtcNow.Ticks);
                 cmd.Parameters.AddWithValue("@logo", logoURL);
                 cmd.Parameters.AddWithValue("@btype", bType);
                 cmd.Parameters.AddWithValue("@back", bgURL);
                 cmd.Parameters.AddWithValue("@pass", pass);
                 cmd.Parameters.AddWithValue("@theme", tType);
                 cmd.Parameters.AddWithValue("@active", activeBit);
-                cmd.Parameters.AddWithValue("@mtype", mType);
+                cmd.Parameters.AddWithValue("@mtype", messageType);
                 cmd.Parameters.AddWithValue("@otext", oneLineText);
                 cmd.Parameters.AddWithValue("@mtext", multiLineText);
                 int rowsAffected = cmd.ExecuteNonQuery();
