@@ -58,46 +58,54 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-						  <h1 class="major">Display Settings</h1>
-						  <span class="image fit"><img src="../images/gear-1040.jpg" alt="" /></span>
-                          <form method="post" runat="server" name="display-settings">
-                              <h2>Images</h2>
+						    <h1 class="major">Display Settings</h1>
+						    <span class="image fit"><img src="../images/gear-1040.jpg" alt="" /></span>
+                            <form method="post" runat="server" name="display-settings">
+                                <h2>Images</h2>
                               
-                              <p>Logo:
-                                  <asp:TextBox ID="settingsLogo" runat="server" />
-                              </p>
+                                <div class="field">
+                                    <label for="settingsLogo">Logo</label>
+                                    <asp:TextBox ID="settingsLogo" runat="server" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="settings-background">Background Type</label>
+                                    <span>
+                                        <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgImg" Text="Image" runat="server" Checked="true" />
+                                        <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgVid" Text="Video" runat="server" />
+                                    </span>
+                                </div>
+
+                                <div class="field">
+                                    <label for="settingsBgUrl">Background</label>
+                                    <asp:TextBox ID="settingsBgUrl" runat="server" />
+                                </div>
                               
-                              <p>Background Type:<br/>
-                              <span>
-                                  <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgImg" Text="Image" runat="server" Checked="true" />
-                                  <asp:RadioButton GroupName="settings-background" ID="settingsRadioBgVid" Text="Video" runat="server" />
-                              </span></p>
+                                <h2>Password</h2>
                               
-                              <p>Background:
-                                  <asp:TextBox ID="settingsBgUrl" runat="server" />
-                              </p>
+                                <div class="field">
+                                    <asp:TextBox ID="settingsPassword" TextMode="Number" runat="server" />
+                                </div>
                               
-                              <h2>Password</h2>
+                                <h2>Theme</h2>
                               
-                              <p>
-                                  <asp:TextBox ID="settingsPassword" TextMode="Number" runat="server" />
-                              </p>
-                              
-                              <h2>Theme</h2>
-                              
-                              <p>Set to dark for backgrounds, light for light backgrounds.<br/>
-                              <span>
-                                  <asp:RadioButton GroupName="settings-theme" ID="settingsRadioLight" Text="Light" runat="server" Checked="true" />
-                                  <asp:RadioButton GroupName="settings-theme" ID="settingsRadioDark" Text="Dark" runat="server" />
-                              </span></p>
+                                <div class="field">
+                                    <label for="settings-theme">Set to dark for backgrounds, light for light backgrounds.</label>
+                                    <span>
+                                        <asp:RadioButton GroupName="settings-theme" ID="settingsRadioLight" Text="Light" runat="server" Checked="true" />
+                                        <asp:RadioButton GroupName="settings-theme" ID="settingsRadioDark" Text="Dark" runat="server" />
+                                    </span>
+                                </div>
                                 
                                 <h2>Welcome Message</h2>
                                 
                                 <asp:CheckBox ID="settingsMessageActive" Text="Active?" Checked="true" runat="server" onClick="hideMessage(this)" />
                                 
                                 <div id="messageDiv" runat="server">
-                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" onClick="hideLineType(this)" />
-                                    <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" onClick="hideLineType(this)" />
+                                    <div class="field">
+                                        <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioSingle" Text="Single Line" runat="server" Checked="true" onClick="hideLineType(this)" />
+                                        <asp:RadioButton GroupName="settingsMessageType" ID="settingsRadioMulti" Text="Multi-Line" runat="server" onClick="hideLineType(this)" />
+                                    </div>
 
                                     <div id="singlelineDiv" runat="server">
                                         <asp:TextBox ID="settingsMessageOneline" runat="server" TextMode="SingleLine" />

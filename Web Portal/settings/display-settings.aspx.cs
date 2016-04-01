@@ -22,76 +22,7 @@ public partial class display_settings : System.Web.UI.Page
         if (!hasUserVisitedPage)
         {
             HttpContext.Current.Session[pagePath] = true;
-
-            string logoURL;
-            string backgroundType;
-            string backgroundURL;
-            string password;
-            string theme;
-            bool welcomeActive;
-            bool messageType;
-            string messageOne;
-            string messageMulti;
-
-            string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
-            SqlConnection conn = null;
-            try
-            {
-                conn = new SqlConnection(connString);
-                //conn.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM [display-settings] WHERE DATE IN (SELECT MAX(DATE) FROM [display-settings])", conn);
-                conn.Open();
-                SqlDataReader sdr = command.ExecuteReader();
-
-                while (sdr.Read())
-                {
-                    logoURL = (string)sdr["logoURL"];
-                    backgroundType = (string)sdr["backgroundType"];
-                    backgroundURL = (string)sdr["backgroundURL"];
-                    password = (string)sdr["password"];
-                    theme = (string)sdr["theme"];
-                    welcomeActive = Convert.ToBoolean(sdr["welcomeActive"]);
-                    messageType = Convert.ToBoolean(sdr["messageType"]);
-                    messageOne = (string)sdr["messageOne"];
-                    messageMulti = (string)sdr["messageMulti"];
-
-                    settingsLogo.Attributes.Add("placeholder", logoURL);
-                    settingsBgUrl.Attributes.Add("placeholder", backgroundURL);
-                    settingsPassword.Attributes.Add("placeholder", password);
-                    settingsMessageOneline.Attributes.Add("placeholder", messageOne);
-                    settingsMessageMultiline.Attributes.Add("placeholder", messageMulti);
-
-                    if (theme == "light")
-                    {
-                        settingsRadioLight.Checked = true;
-                    } else { settingsRadioDark.Checked = true; }
-
-                    if (welcomeActive == false)
-                    {
-                        settingsMessageActive.Checked = false;
-                    } else { settingsMessageActive.Checked = true; }
-
-                    if (messageType == false)
-                    {
-                        settingsRadioSingle.Checked = true;
-                    } else { settingsRadioMulti.Checked = true; }
-                }
-            }
-            catch (Exception ex)
-            {
-                //log error 
-                //display friendly error to user
-                Debug.WriteLine("Ex: " + ex.Message + " |");
-                throw;
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    //cleanup connection i.e close 
-                    conn.Close();
-                }
-            }
+            LoadLastSettings();
         }
     }
 
@@ -184,6 +115,118 @@ public partial class display_settings : System.Web.UI.Page
                     //Error notification
                     Debug.WriteLine("Else");
                 }
+            }
+        }
+        catch (Exception ex)
+        {
+            //log error 
+            //display friendly error to user
+            Debug.WriteLine("Ex: " + ex.Message + " |");
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                //cleanup connection i.e close 
+                conn.Close();
+                ClearForm(Page.Form.Controls);
+                LoadLastSettings();
+            }
+        }
+    }
+
+    public void ClearForm(ControlCollection controls)
+    {
+        foreach (Control c in controls)
+        {
+            if (c.GetType() == typeof(TextBox))
+            {
+                TextBox t = (TextBox)c;
+                t.Text = String.Empty;
+            }
+
+            if (c.GetType() == typeof(CheckBox)){
+                CheckBox cb = (CheckBox)c;
+                cb.Checked = false;
+            }
+
+            if (c.GetType() == typeof(RadioButton))
+            {
+                RadioButton rb = (RadioButton)c;
+                rb.Checked = false;
+            }
+
+            if (c.Controls.Count > 0)
+            {
+                ClearForm(c.Controls);
+            }
+        }
+    }
+
+    public void LoadLastSettings()
+    {
+        string logoURL;
+        string backgroundType;
+        string backgroundURL;
+        string password;
+        string theme;
+        bool welcomeActive;
+        bool messageType;
+        string messageOne;
+        string messageMulti;
+
+        string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
+        SqlConnection conn = null;
+        try
+        {
+            conn = new SqlConnection(connString);
+            //conn.Open();
+            SqlCommand command = new SqlCommand("SELECT * FROM [display-settings] WHERE DATE IN (SELECT MAX(DATE) FROM [display-settings])", conn);
+            conn.Open();
+            SqlDataReader sdr = command.ExecuteReader();
+
+            while (sdr.Read())
+            {
+                logoURL = (string)sdr["logoURL"];
+                backgroundType = (string)sdr["backgroundType"];
+                backgroundURL = (string)sdr["backgroundURL"];
+                password = (string)sdr["password"];
+                theme = (string)sdr["theme"];
+                welcomeActive = Convert.ToBoolean(sdr["welcomeActive"]);
+                messageType = Convert.ToBoolean(sdr["messageType"]);
+                messageOne = (string)sdr["messageOne"];
+                messageMulti = (string)sdr["messageMulti"];
+
+                settingsLogo.Attributes.Add("placeholder", logoURL);
+                settingsBgUrl.Attributes.Add("placeholder", backgroundURL);
+                settingsPassword.Attributes.Add("placeholder", password);
+                settingsMessageOneline.Attributes.Add("placeholder", messageOne);
+                settingsMessageMultiline.Attributes.Add("placeholder", messageMulti);
+
+                if (theme == "image")
+                {
+                    settingsRadioBgImg.Checked = true;
+                }
+                else { settingsRadioBgVid.Checked = true; }
+
+                if (theme == "light")
+                {
+                    settingsRadioLight.Checked = true;
+                }
+                else { settingsRadioDark.Checked = true; }
+
+                if (welcomeActive == false)
+                {
+                    settingsMessageActive.Checked = false;
+                }
+                else { settingsMessageActive.Checked = true; }
+
+                if (messageType == false)
+                {
+                    settingsRadioSingle.Checked = true;
+                }
+                else { settingsRadioMulti.Checked = true; }
             }
         }
         catch (Exception ex)
