@@ -74,7 +74,7 @@
 									</div>
                                     
                           <h2>New Trainer</h2>
-						  <a href="#" class="button">Add Trainer</a>
+						  <a href="add/add-trainer.aspx" class="button">Add Trainer</a>
 						</div>
 					</section>
 

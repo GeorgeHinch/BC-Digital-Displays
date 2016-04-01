@@ -37,45 +37,54 @@
                             </p>
 
                             <form method="post" runat="server" name="add-trainer">
-                                    <p>Name:
-                                        <asp:TextBox ID="trainerName" runat="server" />
-                                    </p>
+                                <div class="field">
+                                    <label for="trainerName">Name</label>
+                                    <asp:TextBox ID="trainerName" runat="server" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="trainerDegree">Degree</label>
+                                    <asp:TextBox ID="trainerDegree" runat="server" />
+                                </div>
+
+                                <div class="field half first"> 
+                                    <label for="trainerYears">Years(YYYY) Training</label>
+                                    <asp:TextBox ID="trainerYears" TextMode="Number" runat="server" />
+                                </div>   
                               
-                                    <p>Degree:
-                                        <asp:TextBox ID="trainerDegree" runat="server" />
-                                    </p>
+                                <div class="field half">
+                                    <label for="trainerYearsBC">Years(YYYY) Training at BC</label>
+                                    <asp:TextBox ID="trainerYearsBC" TextMode="Number" runat="server" />
+                                </div>
                               
-                                    <p>Years(YYYY) Training:
-                                        <asp:TextBox ID="trainerYears" TextMode="Number" runat="server" />
-                                    </p>
+                                <div class="field">
+                                    <label for="trainerExpertise">Areas of Expertise</label>
+                                    <asp:TextBox ID="trainerExpertise" runat="server" TextMode="MultiLine" Rows="2" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="trainerReward">Reward</label>
+                                    <asp:TextBox ID="trainerReward" runat="server" TextMode="MultiLine" Rows="3" />
+                                </div>
                               
-                                    <p>Years(YYYY) Training at Bellevue Club:
-                                        <asp:TextBox ID="trainerYearsBC" TextMode="Number" runat="server" />
-                                    </p>
-                              
-                                    <p>Areas of Expertise:
-                                        <asp:TextBox ID="trainerExpertise" runat="server" TextMode="MultiLine" Rows="2" />
-                                    </p>
-                              
-                                    <p>Reward:
-                                        <asp:TextBox ID="trainerReward" runat="server" TextMode="MultiLine" Rows="3" />
-                                    </p>
-                              
-                                    <p>What to Expect Out of a Training Session:
-                                        <asp:TextBox ID="trainerSession" runat="server" TextMode="MultiLine" Rows="3" />
-                                    </p>
-                              
-                                    <p>What is Your Biggest Athletic Accomplishment:
-                                        <asp:TextBox ID="trainerAccomplishment" runat="server" TextMode="MultiLine" Rows="3" />
-                                    </p>
-                              
-                                    <p>Photo URL:
-                                        <asp:TextBox ID="trainerPhoto" runat="server" />
-                                    </p>
+                                <div class="field">
+                                    <label for="trainerSession">What to Expect Out of a Training Session</label>
+                                    <asp:TextBox ID="trainerSession" runat="server" TextMode="MultiLine" Rows="3" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="trainerAccomplishment">What is Your Biggest Athletic Accomplishment</label>
+                                    <asp:TextBox ID="trainerAccomplishment" runat="server" TextMode="MultiLine" Rows="3" />
+                                </div>
+
+                                <div class="field">
+                                    <label for="trainerPhoto">Photo URL</label>
+                                    <asp:TextBox ID="trainerPhoto" runat="server" />
+                                </div>
                                 
-                                    <hr style="padding-bottom:10px;" />
+                                <hr style="padding-bottom:10px;" />
                                 
-                                    <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
+                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
                               </form>
 						</div>
 					</section>

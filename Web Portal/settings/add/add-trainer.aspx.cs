@@ -27,9 +27,7 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
         string name = trainerName.Text;
-        Debug.WriteLine("Name: " + trainerName.Text + " |");
         string degree = trainerDegree.Text;
-        Debug.WriteLine("To Int: " + trainerYears.Text + " |");
         int years = Convert.ToInt32(trainerYears.Text);
         int yearsBC = Convert.ToInt32(trainerYearsBC.Text);
         string expertise = trainerExpertise.Text;
