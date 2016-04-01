@@ -32,7 +32,10 @@
 					<section id="main" class="wrapper">
 						<div class="inner">
 						    <h1 class="major">Add Trainer</h1>
-                            <asp:Button ID="Button1" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
+                            <p>
+                                <a href="../trainer-manager.aspx" class="button small icon fa-angle-left">return to trainers</a>
+                            </p>
+
                             <form method="post" runat="server" name="add-trainer">
                                     <p>Name:
                                         <asp:TextBox ID="trainerName" runat="server" />
@@ -42,12 +45,12 @@
                                         <asp:TextBox ID="trainerDegree" runat="server" />
                                     </p>
                               
-                                    <p>Years Training:
-                                        <asp:TextBox ID="trainerYears" runat="server" />
+                                    <p>Years(YYYY) Training:
+                                        <asp:TextBox ID="trainerYears" TextMode="Number" runat="server" />
                                     </p>
                               
-                                    <p>Years Training at Bellevue Club:
-                                        <asp:TextBox ID="trainerYearsBC" runat="server" />
+                                    <p>Years(YYYY) Training at Bellevue Club:
+                                        <asp:TextBox ID="trainerYearsBC" TextMode="Number" runat="server" />
                                     </p>
                               
                                     <p>Areas of Expertise:
