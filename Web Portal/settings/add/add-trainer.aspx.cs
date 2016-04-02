@@ -14,11 +14,11 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         trainerName.Attributes.Add("placeholder", "Trainer name");
-        trainerDegree.Attributes.Add("placeholder", "Trainer degree (i.e. BS, BA, etc.");
+        trainerDegree.Attributes.Add("placeholder", "Trainer degree (i.e. BS, BA, etc.)");
         trainerYears.Attributes.Add("placeholder", "Year trainer started working");
         trainerYearsBC.Attributes.Add("placeholder", "Year trainer started working at BC");
         trainerExpertise.Attributes.Add("placeholder", "Expertise");
-        trainerReward.Attributes.Add("placeholder", "Reward");
+        trainerReward.Attributes.Add("placeholder", "What do you find most rewarding");
         trainerSession.Attributes.Add("placeholder", "What to expect from a session");
         trainerAccomplishment.Attributes.Add("placeholder", "Trainer accomplishment");
         trainerPhoto.Attributes.Add("placeholder", "URL path to trainer photo");

@@ -138,9 +138,8 @@
 											<label for="emailMessage">Message</label>
                                             <asp:TextBox ID="emailMessage" TextMode="MultiLine" Rows="5" runat="server" />
 										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">Send Message</a></li>
-										</ul>
+
+                                        <asp:Button ID="SendEmail" CssClass="button submit" Text="Send Message" runat="server" OnClick="FormSubmit_Click" />
 									</form>
 								</section>
 								<section>

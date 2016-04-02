@@ -18,9 +18,9 @@
 				<a href="index.html" class="title">Digital Display Admin</a>
 				<nav>
 					<ul>
-						<li><a href="../../index.html">Home</a></li>
-						<li><a href="../../index.html#wiki">Wiki</a></li>
-						<li><a href="../../index.html#settings"  class="active">Settings</a></li>
+						<li><a href="../../default.aspx">Home</a></li>
+						<li><a href="../../default.aspx#wiki">Wiki</a></li>
+						<li><a href="../../default.aspx#settings"  class="active">Settings</a></li>
 					</ul>
 				</nav>
 			</header>
