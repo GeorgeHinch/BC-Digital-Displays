@@ -41,10 +41,8 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
         SqlConnection conn = null;
         try
         {
-            Debug.WriteLine("String: " + connString + " |");
             conn = new SqlConnection(connString);
             conn.Open();
-            Debug.WriteLine("State: " + conn.State + " |");
 
             using (SqlCommand cmd = new SqlCommand())
             {

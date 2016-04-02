@@ -75,8 +75,8 @@
                                         <asp:ListItem Text="Aquatics" Value="1" />
                                         <asp:ListItem Text="Fitness" Value="2" />
                                         <asp:ListItem Text="Food & Beverage" Value="3" />
-                                        <asp:ListItem Text="Recreation" Value="4" />
-                                        <asp:ListItem Text="Social" Value="5" />
+                                        <asp:ListItem Text="Member Events" Value="4" />
+                                        <asp:ListItem Text="Recreation" Value="5" />
                                         <asp:ListItem Text="Tennis" Value="6" />
                                     </asp:DropDownList>
                                 </div>
@@ -128,7 +128,7 @@
                                 
                                 <hr style="padding-bottom:10px;" />
                                 
-                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" />
+                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
                               </form>
 						</div>
 					</section>
