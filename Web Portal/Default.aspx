@@ -87,27 +87,27 @@
 						  <h2>Make Some Changes</h2>
 						  <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="features">
-								<section><a href="settings/menu-manager.html">
+								<section><a href="settings/menu-manager.aspx">
 									<span class="icon major fa-list"></span>
 									<h3>Menu Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
-								<section><a href="settings/trainer-manager.html">
+								<section><a href="settings/trainer-manager.aspx">
 									<span class="icon major fa-user"></span>
 								  <h3>Trainer Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
-								<section><a href="settings/equipment-manager.html">
+								<section><a href="settings/equipment-manager.aspx">
 									<span class="icon major fa-server"></span>
 									<h3>Equipment Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
-								<section><a href="settings/calendar-manager.html">
+								<section><a href="settings/calendar-manager.aspx">
 									<span class="icon major fa-calendar"></span>
 									<h3>Calendar Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
-								<section><a href="settings/display-settings.html">
+								<section><a href="settings/display-settings.aspx">
 									<span class="icon major fa-cog"></span>
 								  <h3>Display Settings</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
