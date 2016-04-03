@@ -7,10 +7,10 @@
     <title>Digital Display Admin - Add Trainer</title>
     <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	    <!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+	    <!--[if lte IE 8]><script src="../../assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="../../assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="../../assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="../../assets/css/ie8.css" /><![endif]-->
 </head>
 <body>
     <!-- Header -->
@@ -31,7 +31,7 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-						    <h1 class="major">Add Trainer</h1>
+                            <asp:literal ID="pageH1" runat="server" />
                             <p>
                                 <a href="../trainer-manager.aspx" class="button small icon fa-angle-left">return to trainers</a>
                             </p>
@@ -101,12 +101,12 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/jquery.scrolly.min.js"></script>
-			<script src="../assets/js/skel.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="../assets/js/main.js"></script>
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
 </body>
 </html>

@@ -23,6 +23,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
+        Guid guid = Guid.NewGuid();
         string name = eventSubject.Text;
         string location = eventLocation.Text;
         int allDay = Convert.ToInt32(eventAllDay.Checked);
@@ -83,8 +84,9 @@ public partial class settings_add_add_event : System.Web.UI.Page
             {
                 cmd.Connection = conn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO [events](isActive, created, name, allDay, start, end, location, department, instructor, price, description, flier) Values (@isActive, @created, @name, @allDay, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
+                cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
                 cmd.Parameters.AddWithValue("@isActive", 1);
+                cmd.Parameters.AddWithValue("@guid", guid);
                 cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@allDay", allDay);

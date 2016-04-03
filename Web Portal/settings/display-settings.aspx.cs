@@ -11,9 +11,10 @@ using System.Web.UI.WebControls;
 
 public partial class display_settings : System.Web.UI.Page
 {
+    public bool hasUserVisitedPage = false;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool hasUserVisitedPage = false;
         string pagePath = HttpContext.Current.Request.Url.LocalPath;
 
         try { hasUserVisitedPage = (bool)HttpContext.Current.Session[pagePath]; }
@@ -130,6 +131,7 @@ public partial class display_settings : System.Web.UI.Page
             {
                 //cleanup connection i.e close 
                 conn.Close();
+                hasUserVisitedPage = false;
                 ClearForm(Page.Form.Controls);
                 LoadLastSettings();
             }
@@ -181,7 +183,6 @@ public partial class display_settings : System.Web.UI.Page
         try
         {
             conn = new SqlConnection(connString);
-            //conn.Open();
             SqlCommand command = new SqlCommand("SELECT * FROM [display-settings] WHERE DATE IN (SELECT MAX(DATE) FROM [display-settings])", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();

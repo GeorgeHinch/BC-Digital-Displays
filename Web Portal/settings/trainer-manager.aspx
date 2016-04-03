@@ -15,7 +15,7 @@
 <body>
     <!-- Header -->
 			<header id="header">
-				<a href="index.html" class="title">Digital Display Admin</a>
+				<a href="../default.aspx" class="title">Digital Display Admin</a>
 				<nav>
 					<ul>
 						<li><a href="../default.aspx">Home</a></li>
@@ -34,47 +34,13 @@
 						  <h1 class="major">Trainer Manager</h1>
 						  <span class="image fit"><img src="../images/trainer-1040.jpg" alt="" /></span>
                           <h2>Current Trainers</h2>
-                          <div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th style="width:5%;">Num.</th>
-												  <th style="width:85%;">Name</th>
-												  <th style="width:10%;"></th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Justin Ehling</td>
-													<td><a href="#">edit</a></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Cameron Court</td>
-													<td><a href="#">edit</a></td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>Tyler Greer</td>
-													<td><a href="#">edit</a></td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td>Mary Worley</td>
-													<td><a href="#">edit</a></td>
-												</tr>
-												<tr>
-													<td>5</td>
-													<td>Cory Patterson</td>
-													<td><a href="#">edit</a></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
+                            <div class="table-wrapper">
+                                <asp:Literal ID="trainerTable" runat="server" />
+                            </div>
                                     
-                          <h2>New Trainer</h2>
-						  <a href="add/add-trainer.aspx" class="button">Add Trainer</a>
+                            <h2>Trainer Options</h2>
+						    <a href="add/add-trainer.aspx" class="button">Add Trainer</a>
+                            <a href="restore/trainer-restore.aspx" class="button">Restore Trainer</a>
 						</div>
 					</section>
 
