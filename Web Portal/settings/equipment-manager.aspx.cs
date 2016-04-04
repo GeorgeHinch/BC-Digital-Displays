@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class settings_add_equipment_manager : System.Web.UI.Page
+public partial class settings_equipment_manager : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

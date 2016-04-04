@@ -27,7 +27,6 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
         trainerAccomplishment.Attributes.Add("placeholder", "Trainer accomplishment");
         trainerPhoto.Attributes.Add("placeholder", "URL path to trainer photo");
         
-
         StringBuilder trainerH1 = new StringBuilder();
 
         string v = Request.QueryString["edit"];

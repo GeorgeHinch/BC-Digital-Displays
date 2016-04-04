@@ -36,7 +36,7 @@
 <body>
     <!-- Header -->
 			<header id="header">
-				<a href="../../default.aspx" class="title">Digital Display Admin</a>
+				<a href="../../default.aspx" class="title">Digital Display Admin - Add Event</a>
 				<nav>
 					<ul>
 						<li><a href="../../default.aspx">Home</a></li>
@@ -52,9 +52,9 @@
 				<!-- Main -->
 					<section id="main" class="wrapper">
 						<div class="inner">
-						    <h1 class="major">Add Event</h1>
+						    <asp:literal ID="pageH1" runat="server" />
                             <p>
-                                <a href="../event-manager.aspx" class="button small icon fa-angle-left">return to events</a>
+                                <a href="../calendar-manager.aspx" class="button small icon fa-angle-left">return to events</a>
                             </p>
 
                             <form method="post" runat="server" name="add-trainer">
@@ -93,7 +93,7 @@
 
                                 <div class="field half">
                                     <label for="eventPrice">Price</label>
-                                    <asp:TextBox ID="eventPrice" TextMode="Number" runat="server" />
+                                    <asp:TextBox ID="eventPrice" runat="server" />
                                 </div>
 
                                 <div class="field half first"> 

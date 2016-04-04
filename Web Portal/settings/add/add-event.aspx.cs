@@ -5,12 +5,16 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class settings_add_add_event : System.Web.UI.Page
 {
+    public Guid finalGuid;
+    public bool isUpdate = false;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         eventSubject.Attributes.Add("placeholder", "Event name");
@@ -19,6 +23,76 @@ public partial class settings_add_add_event : System.Web.UI.Page
         eventPrice.Attributes.Add("placeholder", "Event price (without currency symbols)");
         eventDecription.Attributes.Add("placeholder", "Description of event");
         eventFlier.Attributes.Add("placeholder", "Flier URL location");
+
+        StringBuilder eventH1 = new StringBuilder();
+
+        string v = Request.QueryString["edit"];
+        string u = Request.QueryString["update"];
+        if (v != null)
+        {
+            finalGuid = Guid.Parse(v);
+            isUpdate = true;
+            eventH1.AppendLine("<h1 class=\"major\">Update Trainer</h1>");
+            pageH1.Text = eventH1.ToString();
+            SaveForm.Text = "Update";
+            SaveForm.PostBackUrl = "?edit=" + finalGuid + "&update=true";
+            if (u != "true")
+            {
+                LoadEventInfo(v);
+            }
+        }
+        else
+        {
+            eventH1.AppendLine("<h1 class=\"major\">Add Trainer</h1>");
+            pageH1.Text = eventH1.ToString();
+            finalGuid = Guid.NewGuid();
+        }
+    }
+
+    protected void LoadEventInfo(string v)
+    {
+        string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
+        SqlConnection conn = null;
+
+        try
+        {
+            conn = new SqlConnection(connString);
+            SqlCommand command = new SqlCommand("Select * FROM [events] WHERE [guid]='" + v.ToUpper() + "'", conn);
+            conn.Open();
+            SqlDataReader sdr = command.ExecuteReader();
+
+            while (sdr.Read())
+            {
+                string eName = (string)sdr["name"];
+                trainerName.Text = tName.Trim();
+                bool eAllDay = (bool)sdr["allDay"];
+                string eStartTime = (string)sdr["startTime"];
+                string eEndTime = (string)sdr["endTime"];
+                string eLocation = (string)sdr["location"];
+                string eDepartment = (string)sdr["department"];
+                string eInstructor = (string)sdr["instructor"];
+                string eDescription = (string)sdr["description"];
+                string eFlier = (string)sdr["flier"];
+                string ePrice = (string)sdr["price"];
+            }
+
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            //log error 
+            //display friendly error to user
+            Debug.WriteLine("Ex: " + ex.Message + " |");
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                //cleanup connection i.e close 
+                conn.Close();
+            }
+        }
     }
 
     protected void FormSubmit_Click(object sender, EventArgs e)
@@ -44,33 +118,33 @@ public partial class settings_add_add_event : System.Web.UI.Page
         string dtFormatStart = dtStartYear + ",  " + dtStartMonth + ",  " + dtStartDay + ",  " + dtStartHour + ",  " + dtStartMinute + ",  0";
         string dtFormatEnd = dtEndYear + ",  " + dtEndMonth + ",  " + dtEndDay + ",  " + dtEndHour + ",  " + dtEndMinute + ",  0";
         string instructor = eventInstructor.Text;
-        string department = eventDepartment.Text;
+        string description = eventDecription.Text;
         string price = eventPrice.Text;
-        string description;
-        if (eventDecription.Text == "1")
+        string department;
+        if (eventDepartment.Text == "1")
         {
-            description = "Aquatics";
+            department = "Aquatics";
         }
-        if (eventDecription.Text == "2")
+        if (eventDepartment.Text == "2")
         {
-            description = "Fitness";
+            department = "Fitness";
         }
-        if (eventDecription.Text == "3")
+        if (eventDepartment.Text == "3")
         {
-            description = "Food & Beverage";
+            department = "Food & Beverage";
         }
-        if (eventDecription.Text == "4")
+        if (eventDepartment.Text == "4")
         {
-            description = "Member Events";
+            department = "Member Events";
         }
-        if (eventDecription.Text == "5")
+        if (eventDepartment.Text == "5")
         {
-            description = "Recreation";
+            department = "Recreation";
         }
-        if (eventDecription.Text == "6")
+        if (eventDepartment.Text == "6")
         {
-            description = "Tennis";
-        } else { description = "none"; }
+            department = "Tennis";
+        } else { department = "none"; }
         string flier = eventFlier.Text;
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;

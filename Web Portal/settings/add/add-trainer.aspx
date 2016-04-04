@@ -15,7 +15,7 @@
 <body>
     <!-- Header -->
 			<header id="header">
-				<a href="../../default.aspx" class="title">Digital Display Admin</a>
+				<a href="../../default.aspx" class="title">Digital Display Admin - Add Trainer</a>
 				<nav>
 					<ul>
 						<li><a href="../../default.aspx">Home</a></li>
