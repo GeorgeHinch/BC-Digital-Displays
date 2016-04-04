@@ -11,18 +11,13 @@ using System.Web.UI.WebControls;
 
 public partial class display_settings : System.Web.UI.Page
 {
-    public bool hasUserVisitedPage = false;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        string pagePath = HttpContext.Current.Request.Url.LocalPath;
+        SaveForm.PostBackUrl = "?save=true";
 
-        try { hasUserVisitedPage = (bool)HttpContext.Current.Session[pagePath]; }
-        catch { }
-
-        if (!hasUserVisitedPage)
+        string s = Request.QueryString["save"];
+        if (s != "true")
         {
-            HttpContext.Current.Session[pagePath] = true;
             LoadLastSettings();
         }
     }
@@ -131,9 +126,9 @@ public partial class display_settings : System.Web.UI.Page
             {
                 //cleanup connection i.e close 
                 conn.Close();
-                hasUserVisitedPage = false;
                 ClearForm(Page.Form.Controls);
-                LoadLastSettings();
+                //LoadLastSettings();
+                Response.Redirect("~/settings/display-settings.aspx");
             }
         }
     }
@@ -205,7 +200,7 @@ public partial class display_settings : System.Web.UI.Page
                 settingsMessageOneline.Attributes.Add("placeholder", messageOne);
                 settingsMessageMultiline.Attributes.Add("placeholder", messageMulti);
 
-                if (theme == "image")
+                if (backgroundType == "image")
                 {
                     settingsRadioBgImg.Checked = true;
                 }

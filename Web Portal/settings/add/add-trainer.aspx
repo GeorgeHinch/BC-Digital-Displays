@@ -84,7 +84,7 @@
                                 
                                 <hr style="padding-bottom:10px;" />
                                 
-                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click" />
+                                <asp:Button ID="SaveForm" Text="Save" CssClass="button special fit" runat="server" OnClick="FormSubmit_Click"/>
                               </form>
 						</div>
 					</section>

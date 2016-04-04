@@ -12,8 +12,7 @@ using System.Web.UI.WebControls;
 
 public partial class settings_add_add_trainer : System.Web.UI.Page
 {
-    public string pageGuid = null;
-    public Guid guid;
+    public Guid finalGuid;
     public bool isUpdate = false;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -32,19 +31,25 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
         StringBuilder trainerH1 = new StringBuilder();
 
         string v = Request.QueryString["edit"];
+        string u = Request.QueryString["update"];
         if (v != null)
         {
-            pageGuid = v;
+            finalGuid = Guid.Parse(v);
             isUpdate = true;
             trainerH1.AppendLine("<h1 class=\"major\">Update Trainer</h1>");
             pageH1.Text = trainerH1.ToString();
             SaveForm.Text = "Update";
-            LoadTrainerInfo(v);
+            SaveForm.PostBackUrl = "?edit=" + finalGuid + "&update=true";
+            if (u != "true")
+            {
+                LoadTrainerInfo(v);
+            }
         }
         else
         {
             trainerH1.AppendLine("<h1 class=\"major\">Add Trainer</h1>");
             pageH1.Text = trainerH1.ToString();
+            finalGuid = Guid.NewGuid();
         }
     }
 
@@ -97,11 +102,6 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
-        if (pageGuid == null)
-        {
-            guid = Guid.NewGuid();
-        }
-        else { guid = Guid.Parse(pageGuid); Debug.WriteLine("Parsed GUID: " + guid + " |"); }
         string name = trainerName.Text;
         string degree = trainerDegree.Text;
         int years = Convert.ToInt32(trainerYears.Text);
@@ -126,13 +126,13 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [trainers] SET isActive='1', guid='" + guid + "', date='" + DateTime.UtcNow + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', session='" + session + "', accomplishment='" + accomplishment + "', photo='" + photo + "' WHERE [guid]='" + pageGuid + "'";
+                    cmd.CommandText = "UPDATE [trainers] SET isActive='1', guid='" + finalGuid + "', date='" + DateTime.UtcNow + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', session='" + session + "', accomplishment='" + accomplishment + "', photo='" + photo + "' WHERE [guid]='" + finalGuid + "'";
                 }
                 else
                 {
                     cmd.CommandText = "INSERT INTO [trainers](isActive, guid, date, name, degree, years, yearsBC, expertise, reward, session, accomplishment, photo) Values (@isActive, @guid, @date, @name, @degree, @years, @yearsBC, @expertise, @reward, @session, @accomp, @photo)";
                     cmd.Parameters.AddWithValue("@isActive", 1);
-                    cmd.Parameters.AddWithValue("@guid", guid);
+                    cmd.Parameters.AddWithValue("@guid", finalGuid);
                     cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@degree", degree);
@@ -171,6 +171,10 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
                 //cleanup connection i.e close 
                 conn.Close();
                 ClearForm(Page.Form.Controls);
+                if (isUpdate == true)
+                {
+                    Response.Redirect("~/settings/trainer-manager.aspx");
+                }
             }
         }
     }
