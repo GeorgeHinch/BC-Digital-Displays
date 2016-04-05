@@ -38,7 +38,7 @@
 
         window.onload = loadPage;
 
-</script>
+    </script>
 </head>
 <body>
     <!-- Header -->

@@ -11,6 +11,59 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+
+    <script type="text/javascript">
+        function studio1Btn(obj) {
+            document.getElementById("s1Div").style.display = 'block';
+            document.getElementById("btn1").className = "button special fit";
+            document.getElementById("s2Div").style.display = 'none';
+            document.getElementById("btn2").className = "button fit";
+            document.getElementById("s3Div").style.display = 'none';
+            document.getElementById("btn3").className = "button fit";
+            document.getElementById("s4Div").style.display = 'none';
+            document.getElementById("btn4").className = "button fit";
+        }
+        function studio2Btn(obj) {
+            document.getElementById("s1Div").style.display = 'none';
+            document.getElementById("btn1").className = "button fit";
+            document.getElementById("s2Div").style.display = 'block';
+            document.getElementById("btn2").className = "button special fit";
+            document.getElementById("s3Div").style.display = 'none';
+            document.getElementById("btn3").className = "button fit";
+            document.getElementById("s4Div").style.display = 'none';
+            document.getElementById("btn4").className = "button fit";
+        }
+        function studio3Btn(obj) {
+            document.getElementById("s1Div").style.display = 'none';
+            document.getElementById("btn1").className = "button fit";
+            document.getElementById("s2Div").style.display = 'none';
+            document.getElementById("btn2").className = "button fit";
+            document.getElementById("s3Div").style.display = 'block';
+            document.getElementById("btn3").className = "button special fit";
+            document.getElementById("s4Div").style.display = 'none';
+            document.getElementById("btn4").className = "button fit";
+        }
+        function studio4Btn(obj) {
+            document.getElementById("s1Div").style.display = 'none';
+            document.getElementById("btn1").className = "button fit";
+            document.getElementById("s2Div").style.display = 'none';
+            document.getElementById("btn2").className = "button fit";
+            document.getElementById("s3Div").style.display = 'none';
+            document.getElementById("btn3").className = "button fit";
+            document.getElementById("s4Div").style.display = 'block';
+            document.getElementById("btn4").className = "button special fit";
+        }
+        function hideAll(obj) {
+            document.getElementById("s1Div").style.display = 'none';
+            document.getElementById("btn1").className = "button fit";
+            document.getElementById("s2Div").style.display = 'none';
+            document.getElementById("btn2").className = "button fit";
+            document.getElementById("s3Div").style.display = 'none';
+            document.getElementById("btn3").className = "button fit";
+            document.getElementById("s4Div").style.display = 'none';
+            document.getElementById("btn4").className = "button fit";
+        }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -36,11 +89,42 @@
 						    <h2>Add Equipment to Studio:</h2>
                        	  
                             <ul class="actions fit">
-                            	<li><a href="#" class="button fit">Studio 1</a></li>
-                                <li><a href="#" class="button fit">Studio 2</a></li>
-                                <li><a href="#" class="button fit">Studio 3</a></li>
-                                <li><a href="#" class="button fit">Studio 4</a></li>
+                            	<li><a href="#" id="btn1" class="button fit" onClick="studio1Btn(this)">Studio 1</a></li>
+                                <li><a href="#" id="btn2" class="button fit" onClick="studio2Btn(this)">Studio 2</a></li>
+                                <li><a href="#" id="btn3" class="button fit" onClick="studio3Btn(this)">Studio 3</a></li>
+                                <li><a href="#" id="btn4" class="button fit" onClick="studio4Btn(this)">Studio 4</a></li>
                             </ul>
+                            <form method="post" runat="server" name="add-equipment">
+                                <div id="s1Div" runat="server" style="display: none;">
+                                    <div class="field">
+                                        <label for="studio1Tb">Add to Studio 1</label>
+                                        <asp:TextBox ID="studio1Tb" runat="server" />
+                                    </div>
+                                    <asp:Button ID="SaveForm1" Text="Save" CssClass="button special fit" runat="server" OnClientClick="hideAll()" OnClick="FormSubmit_Click" />
+                                </div>
+                                <div id="s2Div" runat="server" style="display: none;">
+                                    <div class="field">
+                                        <label for="studio2Tb">Add to Studio 2</label>
+                                        <asp:TextBox ID="studio2Tb" runat="server" />
+                                    </div>
+                                    <asp:Button ID="SaveForm2" Text="Save" CssClass="button special fit" runat="server" OnClientClick="hideAll()" OnClick="FormSubmit_Click" />
+                                </div>
+                                <div id="s3Div" runat="server" style="display: none;">
+                                    <div class="field">
+                                        <label for="studio3Tb">Add to Studio 3</label>
+                                        <asp:TextBox ID="studio3Tb" runat="server" />
+                                    </div>
+                                    <asp:Button ID="SaveForm3" Text="Save" CssClass="button special fit" runat="server" OnClientClick="hideAll()" OnClick="FormSubmit_Click" />
+                                </div>
+                                <div id="s4Div" runat="server" style="display: none;">
+                                    <div class="field">
+                                        <label for="studio4Tb">Add to Studio 4</label>
+                                        <asp:TextBox ID="studio4Tb" runat="server" />
+                                    </div>
+                                    <asp:Button ID="SaveForm4" Text="Save" CssClass="button special fit" runat="server" OnClientClick="hideAll()" OnClick="FormSubmit_Click" />
+                                </div>
+                            </form>
+                            
                           
                           <hr />
                           

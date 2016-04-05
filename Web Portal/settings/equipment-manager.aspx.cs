@@ -127,7 +127,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
             else if (t.studio == "2")
             {
                 studio2Table.AppendLine("<tr>");
-                studio2Table.AppendLine("<td>" + num1 + "</td>");
+                studio2Table.AppendLine("<td>" + num2 + "</td>");
                 studio2Table.AppendLine("<td>" + t.name.Trim() + "</td>");
                 studio2Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
                 studio2Table.AppendLine("</tr>");
@@ -137,7 +137,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
             else if (t.studio == "3")
             {
                 studio3Table.AppendLine("<tr>");
-                studio3Table.AppendLine("<td>" + num1 + "</td>");
+                studio3Table.AppendLine("<td>" + num3 + "</td>");
                 studio3Table.AppendLine("<td>" + t.name.Trim() + "</td>");
                 studio3Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
                 studio3Table.AppendLine("</tr>");
@@ -147,7 +147,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
             else if (t.studio == "4")
             {
                 studio4Table.AppendLine("<tr>");
-                studio4Table.AppendLine("<td>" + num1 + "</td>");
+                studio4Table.AppendLine("<td>" + num4 + "</td>");
                 studio4Table.AppendLine("<td>" + t.name.Trim() + "</td>");
                 studio4Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
                 studio4Table.AppendLine("</tr>");
@@ -190,7 +190,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
                 Equipment obj = new Equipment(
                     (bool)sdr["isActive"],
                     (Guid)sdr["guid"],
-                    (DateTime)sdr["date"],
+                    (DateTime)sdr["lastModified"],
                     (string)sdr["studio"],
                     (string)sdr["name"]);
                 data.Add(obj);
@@ -217,6 +217,100 @@ public partial class settings_equipment_manager : System.Web.UI.Page
             {
                 //cleanup connection i.e close 
                 conn.Close();
+            }
+        }
+    }
+
+    protected void FormSubmit_Click(object sender, EventArgs e)
+    {
+        Guid finalGuid = Guid.NewGuid();
+        string eStudio;
+        string eName;
+        Button btn = (Button)sender;
+        if (btn.ID == "SaveForm1")
+        {
+            eStudio = "1";
+            eName = studio1Tb.Text;
+        }
+        else if (btn.ID == "SaveForm2")
+        {
+            eStudio = "2";
+            eName = studio2Tb.Text;
+        }
+        else if (btn.ID == "SaveForm3")
+        {
+            eStudio = "3";
+            eName = studio3Tb.Text;
+        }
+        else if (btn.ID == "SaveForm4")
+        {
+            eStudio = "4";
+            eName = studio4Tb.Text;
+        } else { eStudio = "0"; eName = ""; }
+
+        string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
+        SqlConnection conn = null;
+        try
+        {
+            conn = new SqlConnection(connString);
+            conn.Open();
+
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.Connection = conn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "INSERT INTO [equipment](isActive, guid, lastModified, studio, name) Values (@isActive, @guid, @created, @studio, @name)";
+                cmd.Parameters.AddWithValue("@isActive", 1);
+                cmd.Parameters.AddWithValue("@guid", finalGuid);
+                cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("@studio", eStudio);
+                cmd.Parameters.AddWithValue("@name", eName);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected == 1)
+                {
+                    //Success notification
+                    Debug.WriteLine("If");
+                }
+                else
+                {
+                    //Error notification
+                    Debug.WriteLine("Else");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            //log error 
+            //display friendly error to user
+            Debug.WriteLine("Ex: " + ex.Message + " |");
+            throw;
+        }
+        finally
+        {
+            if (conn != null)
+            {
+                //cleanup connection i.e close 
+                conn.Close();
+                ClearForm(Page.Form.Controls);
+                Response.Redirect("~/settings/equipment-manager.aspx");
+            }
+        }
+    }
+
+    public void ClearForm(ControlCollection controls)
+    {
+        foreach (Control c in controls)
+        {
+            if (c.GetType() == typeof(TextBox))
+            {
+                TextBox t = (TextBox)c;
+                t.Text = String.Empty;
+            }
+
+            if (c.Controls.Count > 0)
+            {
+                ClearForm(c.Controls);
             }
         }
     }
