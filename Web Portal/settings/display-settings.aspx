@@ -14,10 +14,11 @@
 
     <script type="text/javascript">
         function loadPage() {
+            hideMessage(null);
             hideLineType(null);
         }
         function hideMessage(obj) {
-            if (obj.checked == true) {
+            if (document.getElementById("<%=settingsMessageActive.ClientID%>").checked) {
                 document.getElementById("messageDiv").style.display = 'block';
             }
             else {
