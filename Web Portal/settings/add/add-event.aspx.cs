@@ -134,10 +134,6 @@ public partial class settings_add_add_event : System.Web.UI.Page
             {
                 //cleanup connection i.e close 
                 conn.Close();
-                if (isUpdate == true)
-                {
-                    Response.Redirect("~/settings/calendar-manager.aspx");
-                }
             }
         }
     }
@@ -162,6 +158,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
         string dtEndHour = hourEnd.Hour.ToString();
         string dtEndMinute = hourEnd.Minute.ToString();
         string dtFormatStart = dtStartYear + ",  " + dtStartMonth + ",  " + dtStartDay + ",  " + dtStartHour + ",  " + dtStartMinute + ",  0";
+        DateTime orderTime = DateTime.ParseExact(dtFormatStart, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
         string dtFormatEnd = dtEndYear + ",  " + dtEndMonth + ",  " + dtEndDay + ",  " + dtEndHour + ",  " + dtEndMinute + ",  0";
         string instructor = eventInstructor.Text;
         string description = eventDecription.Text;
@@ -206,17 +203,18 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if (isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [events] SET isActive='1', guid='" + finalGuid + "', created='" + DateTime.UtcNow + "', name='" + name + "', allDay='" + allDay + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [guid]='" + finalGuid + "'";
+                    cmd.CommandText = "UPDATE [events] SET isActive='1', guid='" + finalGuid + "', created='" + DateTime.UtcNow + "', name='" + name + "', allDay='" + allDay + "', orderTime='" + orderTime + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [guid]='" + finalGuid + "'";
 
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
+                    cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, orderTime, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @order, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
                     cmd.Parameters.AddWithValue("@isActive", 1);
                     cmd.Parameters.AddWithValue("@guid", finalGuid);
                     cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@allDay", allDay);
+                    cmd.Parameters.AddWithValue("@order", orderTime);
                     cmd.Parameters.AddWithValue("@start", dtFormatStart);
                     cmd.Parameters.AddWithValue("@end", dtFormatEnd);
                     cmd.Parameters.AddWithValue("@location", location);

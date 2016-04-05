@@ -10,11 +10,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class settings_calendar_manager : System.Web.UI.Page
+public partial class settings_restore_calendar_restore : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string v = Request.QueryString["remove"];
+        string v = Request.QueryString["restore"];
         if (v != null)
         {
             string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
@@ -29,7 +29,7 @@ public partial class settings_calendar_manager : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [events] SET [isActive]='0' WHERE [guid]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [events] SET [isActive]='1' WHERE [guid]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
@@ -92,7 +92,7 @@ public partial class settings_calendar_manager : System.Web.UI.Page
             eventHtmlTable.AppendLine("<td>" + ev.Subject.Trim() + "</td>");
             eventHtmlTable.AppendLine("<td>" + DayStart + "</td>");
             eventHtmlTable.AppendLine("<td>" + TimeStart + "</td>");
-            eventHtmlTable.AppendLine("<td><a href=\"add/add-event.aspx?edit=" + ev.guid + "\">edit</a> / <a href=\"?remove=" + ev.guid + "\">remove</a></td>");
+            eventHtmlTable.AppendLine("<td><a href=\"add/add-event.aspx?edit=" + ev.guid + "\">edit</a> / <a href=\"?restore=" + ev.guid + "\">restore</a></td>");
             eventHtmlTable.AppendLine("</tr>");
 
             num++;
@@ -114,7 +114,7 @@ public partial class settings_calendar_manager : System.Web.UI.Page
         {
             List<Events> data = new List<Events>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [events] WHERE [isActive]='1' ORDER BY orderTime", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [events] WHERE [isActive]='0' ORDER BY orderTime", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
