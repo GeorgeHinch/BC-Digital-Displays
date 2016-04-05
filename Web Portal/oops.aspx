@@ -32,9 +32,7 @@
 					<section id="main" class="wrapper">
 						<div class="inner" style="text-align:center;">
 						  <h1 class="major">Oops</h1>
-                          <div style="text-align:center; padding-bottom: 15px;">
-                          	<img src="http://i.imgur.com/YiwxQKy.gif" alt=""/>
-                          </div>
+                          <asp:Literal ID="serverError" runat="server" />
                           <p style="text-align: center;"><a href="default.aspx">Go Home</a></p>
 						</div>
 					</section>
