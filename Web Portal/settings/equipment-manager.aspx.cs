@@ -230,22 +230,22 @@ public partial class settings_equipment_manager : System.Web.UI.Page
         if (btn.ID == "SaveForm1")
         {
             eStudio = "1";
-            eName = studio1Tb.Text;
+            eName = studio1Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm2")
         {
             eStudio = "2";
-            eName = studio2Tb.Text;
+            eName = studio2Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm3")
         {
             eStudio = "3";
-            eName = studio3Tb.Text;
+            eName = studio3Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm4")
         {
             eStudio = "4";
-            eName = studio4Tb.Text;
+            eName = studio4Tb.Text.ToUpper();
         } else { eStudio = "0"; eName = ""; }
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
