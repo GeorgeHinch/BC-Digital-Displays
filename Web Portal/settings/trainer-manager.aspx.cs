@@ -112,7 +112,6 @@ public partial class settings_trainer_manager : System.Web.UI.Page
 
             while (sdr.Read())
             {
-                //Debug.WriteLine("Guid: " + (Guid)sdr["guid"] + " |");
                 Trainers obj = new Trainers(
                     (bool)sdr["isActive"],
                     (Guid)sdr["guid"],

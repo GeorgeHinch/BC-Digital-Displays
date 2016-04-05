@@ -16,7 +16,7 @@ public class Trainers
         this.name = name;
         this.degree = degree;
         this.years = years;
-        this.years_bc = years_bc;
+        this.years_bc = yearsBC;
         this.expertise = expertise;
         this.reward = reward;
         this.session = session;
