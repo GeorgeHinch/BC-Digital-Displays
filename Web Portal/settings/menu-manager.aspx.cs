@@ -118,14 +118,32 @@ public partial class settings_menu_manager : System.Web.UI.Page
                     (string)sdr["name"],
                     (int)sdr["menuId"],
                     (string)sdr["menuItem1"],
+                    (string)sdr["menuItem1Link"],
+                    (string)sdr["menuItem1Icon"],
                     (string)sdr["menuItem2"],
+                    (string)sdr["menuItem2Link"],
+                    (string)sdr["menuItem2Icon"],
                     (string)sdr["menuItem3"],
+                    (string)sdr["menuItem3Link"],
+                    (string)sdr["menuItem3Icon"],
                     (string)sdr["menuItem4"],
+                    (string)sdr["menuItem4Link"],
+                    (string)sdr["menuItem4Icon"],
                     (string)sdr["menuItem5"],
+                    (string)sdr["menuItem5Link"],
+                    (string)sdr["menuItem5Icon"],
                     (string)sdr["menuItem6"],
+                    (string)sdr["menuItem6Link"],
+                    (string)sdr["menuItem6Icon"],
                     (string)sdr["menuItem7"],
+                    (string)sdr["menuItem7Link"],
+                    (string)sdr["menuItem7Icon"],
                     (string)sdr["menuItem8"],
-                    (string)sdr["menuItem9"]);
+                    (string)sdr["menuItem8Link"],
+                    (string)sdr["menuItem8Icon"],
+                    (string)sdr["menuItem9"],
+                    (string)sdr["menuItem9Link"],
+                    (string)sdr["menuItem9Icon"]);
                 data.Add(obj);
             }
 
