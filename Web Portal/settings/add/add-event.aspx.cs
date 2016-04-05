@@ -64,16 +64,59 @@ public partial class settings_add_add_event : System.Web.UI.Page
             while (sdr.Read())
             {
                 string eName = (string)sdr["name"];
-                trainerName.Text = tName.Trim();
+                eventSubject.Text = eName.Trim();
                 bool eAllDay = (bool)sdr["allDay"];
+                if (eAllDay == true)
+                {
+                    eventAllDay.Checked = true;
+                } else { eventAllDay.Checked = false; }
                 string eStartTime = (string)sdr["startTime"];
+                string startTrimTime = eStartTime.Trim();
+                DateTime startParse = DateTime.ParseExact(startTrimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                eventStartDate.Text = startParse.ToString("yyyy-MM-dd");
+                eventStartTime.Text = startParse.ToString("HH:mm");
                 string eEndTime = (string)sdr["endTime"];
+                string endTrimTime = eEndTime.Trim();
+                DateTime endParse = DateTime.ParseExact(endTrimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                eventEndDate.Text = endParse.ToString("yyyy-MM-dd");
+                eventEndTime.Text = endParse.ToString("HH:mm");
                 string eLocation = (string)sdr["location"];
-                string eDepartment = (string)sdr["department"];
+                eventLocation.Text = eLocation;
+                string eDepartmentNoTrim = (string)sdr["department"];
+                string eDepartment = eDepartmentNoTrim.Trim();
+                Debug.WriteLine("Department: " + eDepartment + " |");
+                if (eDepartment == "Aquatics")
+                {
+                    eventDepartment.SelectedIndex = 1;
+                }
+                else if (eDepartment == "Fitness")
+                {
+                    eventDepartment.SelectedIndex = 2;
+                }
+                else if (eDepartment == "Food & Beverage")
+                {
+                    eventDepartment.SelectedIndex = 3;
+                }
+                else if (eDepartment == "Member Events")
+                {
+                    eventDepartment.SelectedIndex = 4;
+                }
+                else if (eDepartment == "Recreation")
+                {
+                    eventDepartment.SelectedIndex = 5;
+                }
+                else if (eDepartment == "Tennis")
+                {
+                    eventDepartment.SelectedIndex = 6;
+                }
                 string eInstructor = (string)sdr["instructor"];
+                eventInstructor.Text = eInstructor.Trim();
                 string eDescription = (string)sdr["description"];
+                eventDecription.Text = eDescription;
                 string eFlier = (string)sdr["flier"];
+                eventFlier.Text = eFlier.Trim();
                 string ePrice = (string)sdr["price"];
+                eventPrice.Text = ePrice.Trim();
             }
 
             conn.Close();
@@ -91,13 +134,16 @@ public partial class settings_add_add_event : System.Web.UI.Page
             {
                 //cleanup connection i.e close 
                 conn.Close();
+                if (isUpdate == true)
+                {
+                    Response.Redirect("~/settings/calendar-manager.aspx");
+                }
             }
         }
     }
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
-        Guid guid = Guid.NewGuid();
         string name = eventSubject.Text;
         string location = eventLocation.Text;
         int allDay = Convert.ToInt32(eventAllDay.Checked);
@@ -125,23 +171,23 @@ public partial class settings_add_add_event : System.Web.UI.Page
         {
             department = "Aquatics";
         }
-        if (eventDepartment.Text == "2")
+        else if (eventDepartment.Text == "2")
         {
             department = "Fitness";
         }
-        if (eventDepartment.Text == "3")
+        else if (eventDepartment.Text == "3")
         {
             department = "Food & Beverage";
         }
-        if (eventDepartment.Text == "4")
+        else if (eventDepartment.Text == "4")
         {
             department = "Member Events";
         }
-        if (eventDepartment.Text == "5")
+        else if (eventDepartment.Text == "5")
         {
             department = "Recreation";
         }
-        if (eventDepartment.Text == "6")
+        else if (eventDepartment.Text == "6")
         {
             department = "Tennis";
         } else { department = "none"; }
@@ -158,20 +204,28 @@ public partial class settings_add_add_event : System.Web.UI.Page
             {
                 cmd.Connection = conn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
-                cmd.Parameters.AddWithValue("@isActive", 1);
-                cmd.Parameters.AddWithValue("@guid", guid);
-                cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
-                cmd.Parameters.AddWithValue("@name", name);
-                cmd.Parameters.AddWithValue("@allDay", allDay);
-                cmd.Parameters.AddWithValue("@start", dtFormatStart);
-                cmd.Parameters.AddWithValue("@end", dtFormatEnd);
-                cmd.Parameters.AddWithValue("@location", location);
-                cmd.Parameters.AddWithValue("@department", department);
-                cmd.Parameters.AddWithValue("@instructor", instructor);
-                cmd.Parameters.AddWithValue("@price", price);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@flier", flier);
+                if (isUpdate == true)
+                {
+                    cmd.CommandText = "UPDATE [events] SET isActive='1', guid='" + finalGuid + "', created='" + DateTime.UtcNow + "', name='" + name + "', allDay='" + allDay + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [guid]='" + finalGuid + "'";
+
+                }
+                else
+                {
+                    cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
+                    cmd.Parameters.AddWithValue("@isActive", 1);
+                    cmd.Parameters.AddWithValue("@guid", finalGuid);
+                    cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@allDay", allDay);
+                    cmd.Parameters.AddWithValue("@start", dtFormatStart);
+                    cmd.Parameters.AddWithValue("@end", dtFormatEnd);
+                    cmd.Parameters.AddWithValue("@location", location);
+                    cmd.Parameters.AddWithValue("@department", department);
+                    cmd.Parameters.AddWithValue("@instructor", instructor);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@flier", flier);
+                }
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
                 {
@@ -199,6 +253,10 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 //cleanup connection i.e close 
                 conn.Close();
                 ClearForm(Page.Form.Controls);
+                if (isUpdate == true)
+                {
+                    Response.Redirect("~/settings/calendar-manager.aspx");
+                }
             }
         }
     }
