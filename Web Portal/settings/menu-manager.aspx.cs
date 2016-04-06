@@ -117,7 +117,16 @@ public partial class settings_menu_manager : System.Web.UI.Page
                     (DateTime)sdr["lastModified"],
                     (string)sdr["name"],
                     (int)sdr["menuId"],
-                    (string)sdr["menuItem1"],
+                    (MenuItem)sdr["mItem1"],
+                    (MenuItem)sdr["mItem2"],
+                    (MenuItem)sdr["mItem3"],
+                    (MenuItem)sdr["mItem4"],
+                    (MenuItem)sdr["mItem5"],
+                    (MenuItem)sdr["mItem6"],
+                    (MenuItem)sdr["mItem7"],
+                    (MenuItem)sdr["mItem8"],
+                    (MenuItem)sdr["mItem9"]
+                    /*(string)sdr["menuItem1"],
                     (string)sdr["menuItem1Link"],
                     (string)sdr["menuItem1Icon"],
                     (string)sdr["menuItem2"],
@@ -143,7 +152,7 @@ public partial class settings_menu_manager : System.Web.UI.Page
                     (string)sdr["menuItem8Icon"],
                     (string)sdr["menuItem9"],
                     (string)sdr["menuItem9Link"],
-                    (string)sdr["menuItem9Icon"]);
+                    (string)sdr["menuItem9Icon"]*/);
                 data.Add(obj);
             }
 
@@ -152,7 +161,7 @@ public partial class settings_menu_manager : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            //log error 
+            //log error
             //display friendly error to user
             Debug.WriteLine("----");
             Debug.WriteLine("Source: " + ex.Source + " |");
