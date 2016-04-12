@@ -15,12 +15,12 @@
 <body>
     <!-- Header -->
 			<header id="header">
-				<a href="default.aspx" class="title">Digital Display Admin</a>
+				<a href="~/default.aspx" class="title" runat="server">Digital Display Admin</a>
 				<nav>
 					<ul>
-						<li><a href="default.aspx" class="active">Home</a></li>
-						<li><a href="default.aspx#wiki">Wiki</a></li>
-						<li><a href="default.aspx#settings">Settings</a></li>
+						<li><a href="~/default.aspx" class="active" runat="server">Home</a></li>
+						<li><a href="~/default.aspx#wiki" runat="server">Wiki</a></li>
+						<li><a href="~/default.aspx#settings" runat="server">Settings</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -33,7 +33,7 @@
 						<div class="inner" style="text-align:center;">
 						  <h1 class="major">Oops</h1>
                           <asp:Literal ID="serverError" runat="server" />
-                          <p style="text-align: center;"><a href="default.aspx">Go Home</a></p>
+                          <p style="text-align: center;"><a href="~/default.aspx" runat="server">Go Home</a></p>
 						</div>
 					</section>
 
