@@ -12,6 +12,10 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
 
+        <link href="../assets/css/toastr.min.css" rel="stylesheet"/>
+
+    <script src="../assets/js/toastr.js"></script>
+
     <script type="text/javascript">
         function studio1Btn(obj) {
             document.getElementById("s1Div").style.display = 'block';
@@ -63,6 +67,16 @@
             document.getElementById("s4Div").style.display = 'none';
             document.getElementById("btn4").className = "button fit";
         }
+
+        function removeToast() {
+            toastr.success('Your updates have been saved to the database.', 'Menu Removed');
+        }
+        function updateToast() {
+            toastr.success('Your updates have been saved to the database.', 'Menu Updated');
+        }
+        function addToast() {
+            toastr.success('Your updates have been saved to the database.', 'Menu Added');
+        }
     </script>
 </head>
 <body>
@@ -89,10 +103,10 @@
 						    <h2>Add Equipment to Studio:</h2>
                        	  
                             <ul class="actions fit">
-                            	<li><a href="#" id="btn1" class="button fit" onClick="studio1Btn(this)">Studio 1</a></li>
-                                <li><a href="#" id="btn2" class="button fit" onClick="studio2Btn(this)">Studio 2</a></li>
-                                <li><a href="#" id="btn3" class="button fit" onClick="studio3Btn(this)">Studio 3</a></li>
-                                <li><a href="#" id="btn4" class="button fit" onClick="studio4Btn(this)">Studio 4</a></li>
+                            	<li><a href="#" id="btn1" class="button fit" onclick="studio1Btn(this)">Studio 1</a></li>
+                                <li><a href="#" id="btn2" class="button fit" onclick="studio2Btn(this)">Studio 2</a></li>
+                                <li><a href="#" id="btn3" class="button fit" onclick="studio3Btn(this)">Studio 3</a></li>
+                                <li><a href="#" id="btn4" class="button fit" onclick="studio4Btn(this)">Studio 4</a></li>
                             </ul>
                             <form method="post" runat="server" name="add-equipment">
                                 <div id="s1Div" runat="server" style="display: none;">

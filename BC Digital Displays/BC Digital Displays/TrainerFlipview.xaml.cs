@@ -71,6 +71,7 @@ namespace BC_Digital_Displays
 
                         int tbVal = 0;
 
+                        #region Creates trainer cards
                         foreach (Trainer t in status.main)
                         {
                             Trainer_Card card = new Trainer_Card();
@@ -121,7 +122,9 @@ namespace BC_Digital_Displays
 
                             cardList.Add(card);
                         }
+                        #endregion
 
+                        #region Adds cards to stackpanels
                         foreach (Trainer_Card card in cardList)
                         {
                             indexSP.Children.Add(card);
@@ -135,6 +138,13 @@ namespace BC_Digital_Displays
                             indexVal++;
                         }
 
+                        if (indexSP.Children.Count != 0)
+                        {
+                            spList.Add(indexSP);
+                        }
+                        #endregion
+
+                        #region Adds stackpanels to flipview
                         foreach (StackPanel sp in spList)
                         {
                             Debug.WriteLine("Children: " + sp.Children.Count);
@@ -157,6 +167,7 @@ namespace BC_Digital_Displays
 
                             Trainer_Flipview.Items.Add(sp);
                         }
+                        #endregion
                     }
                 }
             }

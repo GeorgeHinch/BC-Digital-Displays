@@ -15,6 +15,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string v = Request.QueryString["remove"];
+        string toast = Request.QueryString["toast"];
         if (v != null)
         {
             string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
@@ -57,6 +58,22 @@ public partial class settings_equipment_manager : System.Web.UI.Page
                     //cleanup connection i.e close 
                     conn.Close();
                 }
+            }
+        }
+
+        if (toast != null)
+        {
+            if (toast == "add")
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "showAddToast", "toastr.success('Your updates have been saved to the database.', 'Menu Removed')", true);
+            }
+            if (toast == "remove")
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "showRemoveToast", "removeToast()", true);
+            }
+            if (toast == "update")
+            {
+                Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "showUpdateToast", "updateToast()", true);
             }
         }
 
@@ -293,7 +310,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
                 //cleanup connection i.e close 
                 conn.Close();
                 ClearForm(Page.Form.Controls);
-                Response.Redirect("~/settings/equipment-manager.aspx");
+                Response.Redirect("~/settings/equipment-manager.aspx?toast=add");
             }
         }
     }
