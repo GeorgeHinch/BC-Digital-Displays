@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="BC_Digital_Displays.Controls.ClassesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Digital_Displays.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Grid Margin="0,50,0,0">
+                <Line Y2="{Binding ActualHeight, ElementName=Group_1, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,50,0,0">
+                <Line Y2="{Binding ActualHeight, ElementName=Group_2, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                <StackPanel x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,50,0,0">
+                <Line Y2="{Binding ActualHeight, ElementName=Group_3, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                <StackPanel x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

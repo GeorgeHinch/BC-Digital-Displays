@@ -46,7 +46,7 @@
                     <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=TrainerCard, Mode=TwoWay}" Y2="0" />
 
                     <StackPanel Orientation="Horizontal" BorderThickness="25,20,25,15">
-                        <TextBlock Text="Learn More" FontSize="21.333" Foreground="#FF009688" Tapped="LearnMore_Tapped" />
+                        <TextBlock Text="Learn More" FontSize="21.333" Foreground="{StaticResource UI_Hightlight}" Tapped="LearnMore_Tapped" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

@@ -8,5 +8,33 @@
     <Application.Resources>
         <!-- http://do.remifa.so/archives/unicode/unicode.php?start=E000&end=F8FF -->
         <FontFamily x:Key="Segoe MDL2 BC">ms-appx:/Fonts/segmdl2-BC.ttf#Segoe MDL2 BC</FontFamily>
+
+        <Color x:Key="UI_Turquoise">#FF1abc9c</Color>
+        <Color x:Key="UI_GreenSea">#FF16a085</Color>
+        <Color x:Key="UI_Emerald">#FF2ecc71</Color>
+        <Color x:Key="UI_Nephritis">#FF27ae60</Color>
+        <Color x:Key="UI_PeterRiver">#FF3498db</Color>
+        <Color x:Key="UI_BelizeHole">#FF2980b9</Color>
+        <Color x:Key="UI_Amethyst">#FF9b59b6</Color>
+        <Color x:Key="UI_Wisteria">#FF8e44ad</Color>
+        <Color x:Key="UI_WetAsphalt">#FF34495e</Color>
+        <Color x:Key="UI_MidnightBlue">#FF2c3e50</Color>
+        <Color x:Key="UI_SunFlower">#FFf1c40f</Color>
+        <Color x:Key="UI_Orange">#FFf39c12</Color>
+        <Color x:Key="UI_Carrot">#FFe67e22</Color>
+        <Color x:Key="UI_Pumpkin">#FFd35400</Color>
+        <Color x:Key="UI_Alizarin">#FFe74c3c</Color>
+        <Color x:Key="UI_Pomegranate">#FFc0392b</Color>
+        <Color x:Key="UI_Clouds">#FFecf0f1</Color>
+        <Color x:Key="UI_Silver">#FFbdc3c7</Color>
+        <Color x:Key="UI_Concrete">#FF95a5a6</Color>
+        <Color x:Key="UI_Asbestos">#FF7f8c8d</Color>
+
+        <Color x:Key="UI_RB_Checked">#FF3498db</Color>
+        <Color x:Key="UI_RB_Hover">#FF2980b9</Color>
+        <Color x:Key="UI_Element_Border">#FFbdc3c7</Color>
+        
+        <SolidColorBrush x:Key="UI_Hightlight" Color="{StaticResource UI_PeterRiver}"/>
+        <SolidColorBrush x:Key="UI_BorderBrush" Color="{StaticResource UI_Silver}"/>
     </Application.Resources>
 </Application>
