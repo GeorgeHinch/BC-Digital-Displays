@@ -68,14 +68,14 @@ namespace BC_Digital_Displays.Controls
 
         public static readonly DependencyProperty ClassTimeProperty = DependencyProperty.Register(
             "ClassTime",                   // The name of the DependencyProperty
-            typeof(DateTime),               // The type of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
             typeof(ClassView),     // The type of the owner of the DependencyProperty
             null
         );
 
-        public DateTime ClassTime
+        public string ClassTime
         {
-            get { return (DateTime)GetValue(ClassTimeProperty); }
+            get { return (string)GetValue(ClassTimeProperty); }
             set { SetValue(ClassTimeProperty, value); }
         }
         #endregion
