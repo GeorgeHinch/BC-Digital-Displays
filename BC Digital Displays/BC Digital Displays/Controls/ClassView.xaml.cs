@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,6 +25,18 @@ namespace BC_Digital_Displays.Controls
             this.InitializeComponent();
             this.DefaultStyleKey = typeof(ClassView);
             this.DataContext = this;
+            this.Loaded += UserControl_Loaded;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Department Number: " + (string)DepartmentType + " |");
+            Debug.WriteLine("Class Name: " + (string)ClassName + " |");
+
+            if ((string)this.DepartmentType == "1")
+            {
+                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
+            }
         }
 
         #region Dependency Properties
@@ -77,6 +90,19 @@ namespace BC_Digital_Displays.Controls
         {
             get { return (string)GetValue(ClassTimeProperty); }
             set { SetValue(ClassTimeProperty, value); }
+        }
+
+        public static readonly DependencyProperty DepartmentTypeProperty = DependencyProperty.Register(
+            "DepartmentType",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(ClassView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string DepartmentType
+        {
+            get { return (string)GetValue(DepartmentTypeProperty); }
+            set { SetValue(DepartmentTypeProperty, value); }
         }
         #endregion
 

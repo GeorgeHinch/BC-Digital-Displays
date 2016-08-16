@@ -36,5 +36,7 @@
         
         <SolidColorBrush x:Key="UI_Hightlight" Color="{StaticResource UI_PeterRiver}"/>
         <SolidColorBrush x:Key="UI_BorderBrush" Color="{StaticResource UI_Silver}"/>
+
+        <SolidColorBrush x:Key="Dept_Aquatics" Color="{StaticResource UI_BelizeHole}"/>
     </Application.Resources>
 </Application>

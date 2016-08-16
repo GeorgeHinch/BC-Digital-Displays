@@ -15,7 +15,7 @@
 
                 <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
                     <TextBlock Text="Ages 3-6" Foreground="{StaticResource UI_BorderBrush}"  />
-                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="1"/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
                 </StackPanel>
