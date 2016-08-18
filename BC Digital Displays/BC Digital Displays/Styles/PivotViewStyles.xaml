@@ -279,7 +279,7 @@
                         <Grid.RenderTransform>
                             <TranslateTransform x:Name="ContentPresenterTranslateTransform" />
                         </Grid.RenderTransform>
-                        <Rectangle x:Name="TopPipe" Height="5" Fill="{StaticResource UI_Hightlight}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Visibility="Collapsed" />
+                        <Rectangle x:Name="TopPipe" Height="5" Fill="{StaticResource UI_Hightlight_Dark}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Visibility="Collapsed" />
                         <ContentPresenter x:Name="ContentPresenter"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -288,7 +288,7 @@
                             FontWeight="{TemplateBinding FontWeight}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Padding="10,0,10,0" />
-                        <Rectangle x:Name="BottomPipe" Height="3" Fill="{StaticResource UI_Hightlight}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Visibility="Collapsed" />
+                        <Rectangle x:Name="BottomPipe" Height="3" Fill="{StaticResource UI_Hightlight_Dark}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Visibility="Collapsed" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

@@ -16,7 +16,7 @@
                 <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
                     <TextBlock Text="Ages 3-6" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="1"/>
-                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="0"/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
                 </StackPanel>
             </Grid>
@@ -26,7 +26,7 @@
 
                 <StackPanel x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
                     <TextBlock Text="Ages 7-9" Foreground="{StaticResource UI_BorderBrush}"  />
-                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="2"/>
                 </StackPanel>
             </Grid>
 
@@ -36,7 +36,27 @@
                 <StackPanel x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
                     <TextBlock Text="Ages 10-14" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" ClassTime="8:45 - 10:00 a.m."/>
-                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F"/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="3"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,50,0,0">
+                <Line Y2="{Binding ActualHeight, ElementName=Group_4, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                <StackPanel x:Name="Group_4" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <TextBlock Text="Ages 10-14" Foreground="{StaticResource UI_BorderBrush}"  />
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" ClassTime="8:45 - 10:00 a.m."/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="3"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,50,0,0">
+                <Line Y2="{Binding ActualHeight, ElementName=Group_5, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                <StackPanel x:Name="Group_5" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                    <TextBlock Text="Ages 10-14" Foreground="{StaticResource UI_BorderBrush}"  />
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" ClassTime="8:45 - 10:00 a.m."/>
+                    <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="3"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

@@ -270,27 +270,27 @@ namespace BC_Digital_Displays
                             newappointment.Instructor = current.Instructor;
                             if(current.Department == "Aquatics")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 52, 152, 219));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
                             }
                             else if (current.Department == "Fitness")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 155, 89, 182));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_Fitness"];
                             }
                             else if (current.Department == "Food & Beverage")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 243, 156, 18));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_FoodAndBeverage"];
                             }
                             else if (current.Department == "Member Events")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 234, 76, 136));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_MemberEvents"];
                             }
                             else if (current.Department == "Recreation")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 197, 57, 43));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_Recreation"];
                             }
                             else if (current.Department == "Tennis")
                             {
-                                newappointment.AppointmentBackground = new SolidColorBrush(Color.FromArgb(255, 39, 174, 96));
+                                newappointment.AppointmentBackground = (SolidColorBrush)Application.Current.Resources["Dept_Tennis"];
                             }
                             newappointment.Department = current.Department;
                             newappointment.Price = current.Price;

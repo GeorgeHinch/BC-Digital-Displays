@@ -42,7 +42,7 @@
         </Grid>
 
         <Grid Grid.Column="3">
-            <ScrollViewer x:Name="Classes_Scrollviewer" IsHorizontalRailEnabled="False" IsVerticalRailEnabled="False">
+            <ScrollViewer x:Name="Classes_Scrollviewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
                 <local:ClassesView />
             </ScrollViewer>
         </Grid>
