@@ -30,12 +30,24 @@ namespace BC_Digital_Displays.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Department Number: " + (string)DepartmentType + " |");
-            Debug.WriteLine("Class Name: " + (string)ClassName + " |");
+            if ((string)this.DepartmentType == "0")
+            {
+                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
+            }
 
             if ((string)this.DepartmentType == "1")
             {
-                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
+                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_MemberEvents"];
+            }
+
+            if ((string)this.DepartmentType == "2")
+            {
+                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Recreation"];
+            }
+
+            if ((string)this.DepartmentType == "3")
+            {
+                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Tennis"];
             }
         }
 
