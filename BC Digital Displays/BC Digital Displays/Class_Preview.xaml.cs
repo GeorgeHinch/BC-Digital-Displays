@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.UI.Animations;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +27,13 @@ namespace BC_Digital_Displays
         public Class_Preview()
         {
             this.InitializeComponent();
+
+            blurBackground();
+        }
+
+        public async void blurBackground()
+        {
+            await Gradient_Background.Blur(duration: 0, delay: 0, value: 10).StartAsync();
         }
     }
 }
