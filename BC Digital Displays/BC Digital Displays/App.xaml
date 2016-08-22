@@ -37,12 +37,26 @@
         <Color x:Key="UI_RB_Checked">#FF3498db</Color>
         <Color x:Key="UI_RB_Hover">#FF2980b9</Color>
         <Color x:Key="UI_Element_Border">#FFbdc3c7</Color>
-        
+
         <SolidColorBrush x:Key="UI_Hightlight" Color="{StaticResource UI_PeterRiver}"/>
         <SolidColorBrush x:Key="UI_Hightlight_Dark" Color="{StaticResource UI_BelizeHole}"/>
         <SolidColorBrush x:Key="UI_BorderBrush" Color="{StaticResource UI_Silver}"/>
-
+        <SolidColorBrush x:Key="UI_Return" Color="{StaticResource UI_Clouds}"/>
         
+        
+        <!-- Text -->
+        <SolidColorBrush x:Key="Text_90" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_80" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_75" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_60" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_50" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_40" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_30" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_25" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_20" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_10" Color="#FF000000"/>
+
+
         <!-- Department Colors -->
         <SolidColorBrush x:Key="Dept_Aquatics" Color="{StaticResource UI_PeterRiver}"/>
         <SolidColorBrush x:Key="Dept_Fitness" Color="{StaticResource UI_Amethyst}"/>

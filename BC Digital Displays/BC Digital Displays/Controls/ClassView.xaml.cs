@@ -30,22 +30,22 @@ namespace BC_Digital_Displays.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if ((string)this.DepartmentType == "0")
+            if (DepartmentType == "0")
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
             }
 
-            if ((string)this.DepartmentType == "1")
+            if (DepartmentType == "1")
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_MemberEvents"];
             }
 
-            if ((string)this.DepartmentType == "2")
+            if (DepartmentType == "2")
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Recreation"];
             }
 
-            if ((string)this.DepartmentType == "3")
+            if (DepartmentType == "3")
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Tennis"];
             }
@@ -120,7 +120,12 @@ namespace BC_Digital_Displays.Controls
 
         private void MoreInfo_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + this.Name + ") Open: " + this.Name, 0);
 
+            YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Visible;
+            // TODO: PASS PARAMETER
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Class_Preview), null);
         }
     }
 }

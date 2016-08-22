@@ -111,6 +111,9 @@
     <Compile Include="AppointmentPreview.xaml.cs">
       <DependentUpon>AppointmentPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Cards\Class_Card.xaml.cs">
+      <DependentUpon>Class_Card.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Cards\Trainer_Card.xaml.cs">
       <DependentUpon>Trainer_Card.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Trainer.cs" />
+    <Compile Include="Class_Preview.xaml.cs">
+      <DependentUpon>Class_Preview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Concierge.xaml.cs">
       <DependentUpon>Concierge.xaml</DependentUpon>
     </Compile>
@@ -184,7 +190,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Cards\Class_Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Cards\Trainer_Card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Class_Preview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,9 +22,15 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class YouthBrochure : Page
     {
+        public static YouthBrochure youthBrochure;
         public YouthBrochure()
         {
             this.InitializeComponent();
+
+            youthBrochure = this;
+
+            // track a page view
+            GoogleAnalytics.EasyTracker.GetTracker().SendView("youth_brochure");
         }
     }
 }

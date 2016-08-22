@@ -13,20 +13,19 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace BC_Digital_Displays.Controls
+namespace BC_Digital_Displays
 {
-    public sealed partial class BrochureView : UserControl
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class Class_Preview : Page
     {
-        public BrochureView()
+        public static Class_Preview classPreview;
+        public Class_Preview()
         {
             this.InitializeComponent();
-        }
-
-        private void Monday_Checked(object sender, RoutedEventArgs e)
-        {
-            ClassesGroup.FilterChecked = "Monday";
         }
     }
 }

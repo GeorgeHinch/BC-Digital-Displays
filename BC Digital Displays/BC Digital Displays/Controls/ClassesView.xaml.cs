@@ -30,7 +30,52 @@ namespace BC_Digital_Displays.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            Debug.WriteLine("Checked: " + this.FilterChecked + " |");
+            if (this.FilterChecked == "Monday")
+            {
+                Debug.WriteLine("YAYYYYYYYY!!!");
+            }
         }
+
+        #region Dependency Properties
+        public static readonly DependencyProperty IssueProperty = DependencyProperty.Register(
+            "Issue",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(ClassesView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string Issue
+        {
+            get { return (string)GetValue(IssueProperty); }
+            set { SetValue(IssueProperty, value); }
+        }
+
+        public static readonly DependencyProperty DeptTabProperty = DependencyProperty.Register(
+            "DeptTab",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(ClassesView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string DeptTab
+        {
+            get { return (string)GetValue(DeptTabProperty); }
+            set { SetValue(DeptTabProperty, value); }
+        }
+
+        public static readonly DependencyProperty FilterCheckedProperty = DependencyProperty.Register(
+            "FilterChecked",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(ClassesView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string FilterChecked
+        {
+            get { return (string)GetValue(FilterCheckedProperty); }
+            set { SetValue(FilterCheckedProperty, value); }
+        }
+        #endregion
     }
 }

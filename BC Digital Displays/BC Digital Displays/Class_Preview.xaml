@@ -1,0 +1,26 @@
+﻿<Page xmlns:cards="using:BC_Digital_Displays.Cards" 
+    x:Class="BC_Digital_Displays.Class_Preview"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BC_Digital_Displays"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" x:FieldModifier="Public">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
+                <GradientStop Color="#FF9BDAB4" Offset="0"/>
+                <GradientStop Color="#FF2AA7C2" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid x:Name="Class_Template" x:FieldModifier="Public">
+            <cards:Class_Card HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid x:Name="Email_Template" x:FieldModifier="Public">
+            
+        </Grid>
+    </Grid>
+</Page>

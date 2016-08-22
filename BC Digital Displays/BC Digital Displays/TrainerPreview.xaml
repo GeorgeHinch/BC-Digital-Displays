@@ -20,7 +20,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Horizontal" Grid.Row="0" Tapped="previewReturn_Clicked">
-                <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,10,0" Foreground="#FFE9E9E9" />
+                <TextBlock Text="&#xE760;" FontFamily="Segoe MDL2 Assets" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,10,0" Foreground="{StaticResource UI_Return}" />
                 <TextBlock Text="return to trainers" VerticalAlignment="Center" Foreground="#FFC6C6C6" />
             </StackPanel>
 

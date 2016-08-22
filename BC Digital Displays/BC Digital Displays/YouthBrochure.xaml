@@ -52,5 +52,8 @@
             </PivotItem>
         </Pivot>
 
+        <Grid Grid.ColumnSpan="2">
+            <Frame x:Name="classCard_Frame" x:FieldModifier="Public" />
+        </Grid>
     </Grid>
 </Page>
