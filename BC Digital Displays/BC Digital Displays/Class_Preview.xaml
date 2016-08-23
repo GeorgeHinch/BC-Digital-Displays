@@ -7,22 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" x:FieldModifier="Public">
 
-    <Grid x:Name="Gradient_Background">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
-                <GradientStop Color="#FF9BDAB4" Offset="0"/>
-                <GradientStop Color="#FF2AA7C2" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/EmailTBStyles.xaml"/>
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
-        <Grid x:Name="Class_Template" x:FieldModifier="Public">
-            <cards:Class_Card HorizontalAlignment="Center" VerticalAlignment="Center" />
+    <Grid>
+        <Grid x:Name="Gradient_Background">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
+                    <GradientStop Color="#FF9BDAB4" Offset="0"/>
+                    <GradientStop Color="#FF2AA7C2" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+        
+        <Grid x:Name="Class_Template" x:FieldModifier="Public" Visibility="Collapsed">
+            <cards:Class_Card HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" />
         </Grid>
 
-        <Grid x:Name="Email_Template" x:FieldModifier="Public">
-            <StackPanel>
+        <Grid x:Name="Email_Template" x:FieldModifier="Public" Visibility="Visible">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Send class info:" Foreground="White" />
-                <TextBox Width="400" Height="50" PlaceholderText="Enter Email"/>
+                <TextBox Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}"/>
                 <TextBlock Text="Interested Sessions: " Foreground="White" />
                 <StackPanel Orientation="Horizontal">
                     <ToggleButton Content="1" />

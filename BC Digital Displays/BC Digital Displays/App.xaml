@@ -29,6 +29,7 @@
         <Color x:Key="UI_Clouds">#FFecf0f1</Color>
         <Color x:Key="UI_Silver">#FFbdc3c7</Color>
         <Color x:Key="UI_Concrete">#FF95a5a6</Color>
+        <Color x:Key="UI_SeattleGray">#FFDDE2E5</Color>
         <Color x:Key="UI_Asbestos">#FF7f8c8d</Color>
         <Color x:Key="UI_Cerise">#FFEA4C88</Color>
 
@@ -41,20 +42,13 @@
         <SolidColorBrush x:Key="UI_Hightlight" Color="{StaticResource UI_PeterRiver}"/>
         <SolidColorBrush x:Key="UI_Hightlight_Dark" Color="{StaticResource UI_BelizeHole}"/>
         <SolidColorBrush x:Key="UI_BorderBrush" Color="{StaticResource UI_Silver}"/>
-        <SolidColorBrush x:Key="UI_Return" Color="{StaticResource UI_Clouds}"/>
+        <SolidColorBrush x:Key="UI_Return" Color="{StaticResource UI_SeattleGray}"/>
         
         
         <!-- Text -->
-        <SolidColorBrush x:Key="Text_90" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_80" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_75" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_60" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_50" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_40" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_30" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_25" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_20" Color="#FF000000"/>
-        <SolidColorBrush x:Key="Text_10" Color="#FF000000"/>
+        <SolidColorBrush x:Key="Text_Title" Color="{StaticResource UI_MidnightBlue}"/>
+        <SolidColorBrush x:Key="Text_Detail" Color="{StaticResource UI_Concrete}"/>
+        <SolidColorBrush x:Key="Text_Body" Color="{StaticResource UI_Asbestos}"/>
 
 
         <!-- Department Colors -->

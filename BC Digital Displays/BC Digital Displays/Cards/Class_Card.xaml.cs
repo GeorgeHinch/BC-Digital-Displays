@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -15,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-    // TODO: Pass values through GA strings
+// TODO: Pass values through GA strings
 
 namespace BC_Digital_Displays.Cards
 {
@@ -31,9 +32,13 @@ namespace BC_Digital_Displays.Cards
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "email_click", "(" + this.Name + ") Email: " + this.Name, 0);
 
-            Class_Preview.classPreview.Class_Template.Visibility = Visibility.Collapsed;
-            Class_Preview.classPreview.Email_Template.Visibility = Visibility.Visible;
-
+            this.Visibility = Visibility.Collapsed;
+            Debug.WriteLine("Parent: " + this.Parent.ToString() +" |");
+            
+            Grid grCase = (Grid)this.Parent;
+            Grid grCaseCase = (Grid)grCase.Parent;
+            Grid neededGrid = (Grid)grCaseCase.FindName("Email_Template");
+            neededGrid.Visibility = Visibility.Visible;
         }
 
         private void Close_Tapped(object sender, TappedRoutedEventArgs e)
