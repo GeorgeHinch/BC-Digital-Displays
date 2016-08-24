@@ -250,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\SessionTgBStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\PivotViewStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -43,8 +43,9 @@
         <SolidColorBrush x:Key="UI_Hightlight_Dark" Color="{StaticResource UI_BelizeHole}"/>
         <SolidColorBrush x:Key="UI_BorderBrush" Color="{StaticResource UI_Silver}"/>
         <SolidColorBrush x:Key="UI_Return" Color="{StaticResource UI_SeattleGray}"/>
-        
-        
+        <SolidColorBrush x:Key="UI_TgB_Fill" Color="#7fFFFFFF"/>
+
+
         <!-- Text -->
         <SolidColorBrush x:Key="Text_Title" Color="{StaticResource UI_MidnightBlue}"/>
         <SolidColorBrush x:Key="Text_Detail" Color="{StaticResource UI_Concrete}"/>

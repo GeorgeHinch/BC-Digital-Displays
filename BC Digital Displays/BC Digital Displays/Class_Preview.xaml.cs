@@ -30,5 +30,10 @@ namespace BC_Digital_Displays
             
             Gradient_Background.Blur(duration: 10, delay: 0, value: 10).Start();
         }
+
+        private void CloseEmail_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
+        }
     }
 }
