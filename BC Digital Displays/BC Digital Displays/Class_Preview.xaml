@@ -17,7 +17,22 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="PageGrid">
+        <Grid.Resources>
+            <Storyboard x:Name="ExitStoryboard">
+                <FadeOutThemeAnimation Storyboard.TargetName="PageGrid" />
+            </Storyboard>
+        </Grid.Resources>
         <Grid x:Name="Gradient_Background">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">

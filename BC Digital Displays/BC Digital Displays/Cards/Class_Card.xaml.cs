@@ -46,6 +46,7 @@ namespace BC_Digital_Displays.Cards
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "close_click", "(" + this.Name + ") Email: " + this.Name, 0);
 
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
         }
     }

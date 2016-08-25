@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Toolkit.Uwp.UI.Animations;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -33,6 +34,7 @@ namespace BC_Digital_Displays
 
         private void CloseEmail_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
         }
     }
