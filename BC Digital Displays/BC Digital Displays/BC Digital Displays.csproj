@@ -117,6 +117,7 @@
     <Compile Include="Cards\Trainer_Card.xaml.cs">
       <DependentUpon>Trainer_Card.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\DayBuilder.cs" />
     <Compile Include="Classes\GenerateEmail.cs" />
     <Compile Include="Classes\Machines.cs" />
     <Compile Include="Classes\PrecorStatus.cs" />

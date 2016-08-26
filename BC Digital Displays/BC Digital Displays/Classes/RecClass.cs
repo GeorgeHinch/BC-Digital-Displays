@@ -26,7 +26,7 @@ namespace BC_Digital_Displays.Classes
         public string age { get; set; }
 
         [DataMember(Name = "days")]
-        public string days { get; set; }
+        public IList<Day> days { get; set; }
 
         [DataMember(Name = "time")]
         public string time { get; set; }
@@ -39,5 +39,30 @@ namespace BC_Digital_Displays.Classes
 
         [DataMember(Name = "brochureID")]
         public Guid brochureID { get; set; }
+    }
+
+    [DataContract]
+    class Day
+    {
+        [DataMember(Name = "Monday")]
+        public bool monday { get; set; }
+
+        [DataMember(Name = "Tuesday")]
+        public bool tuesday { get; set; }
+
+        [DataMember(Name = "Wednesday")]
+        public bool wednesday { get; set; }
+
+        [DataMember(Name = "Thursday")]
+        public bool thursday { get; set; }
+
+        [DataMember(Name = "Friday")]
+        public bool friday { get; set; }
+
+        [DataMember(Name = "Saturday")]
+        public bool saturday { get; set; }
+
+        [DataMember(Name = "Sunday")]
+        public bool sunday { get; set; }
     }
 }

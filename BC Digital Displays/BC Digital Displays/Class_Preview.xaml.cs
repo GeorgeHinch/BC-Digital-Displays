@@ -1,12 +1,10 @@
 ﻿using BC_Digital_Displays.Classes;
-using LightBuzz.SMTP;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -31,7 +29,8 @@ namespace BC_Digital_Displays
         public Class_Preview()
         {
             this.InitializeComponent();
-            RecClass rec = (RecClass)this.Tag;
+            //RecClass rec = (RecClass)this.Tag;
+            
             
             Gradient_Background.Blur(duration: 10, delay: 0, value: 10).Start();
         }
@@ -42,12 +41,17 @@ namespace BC_Digital_Displays
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
         }
 
-        private async void EmailSent_Tapped(object sender, TappedRoutedEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EmailSent_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "emailSent_click", "(" + this.Name + ") Email: " + this.Name, 0);
 
-            SmtpClient client = new SmtpClient("example.com", 25, false, "info@example.com", "Pa$$w0rd");
+            /*SmtpClient client = new SmtpClient("example.com", 25, false, "info@example.com", "Pa$$w0rd");
             EmailMessage emailMessage = new EmailMessage();
             
             emailMessage.To.Add(new EmailRecipient());
@@ -55,7 +59,7 @@ namespace BC_Digital_Displays
             emailMessage.Body = "This is an email sent from a WinRT app!";
             emailMessage.Attachments.Add(null);
 
-            await client.SendMail(emailMessage);
+            await client.SendMail(emailMessage);/**/
 
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
