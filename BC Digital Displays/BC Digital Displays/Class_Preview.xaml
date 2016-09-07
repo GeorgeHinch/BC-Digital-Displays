@@ -59,10 +59,8 @@
                     <ToggleButton Content="3" Style="{StaticResource SessionToggleButtonStyles}" IsEnabled="False"/>
                     <ToggleButton Content="4" Style="{StaticResource SessionToggleButtonStyles}"/>
                     <ToggleButton Content="5" Style="{StaticResource SessionToggleButtonStyles}" IsEnabled="False"/>
-                    <ToggleButton Content="6" Style="{StaticResource SessionToggleButtonStyles}"/>
-                    <ToggleButton Content="7" Style="{StaticResource SessionToggleButtonStyles}"/>
                 </StackPanel>
-                <Button HorizontalAlignment="Center" Margin="0,40,0,0">
+                <Button HorizontalAlignment="Center" Margin="0,40,0,0" Tapped="SendEmail_Tapped">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Send Email" Foreground="#BFFFFFFF" />
                         <SymbolIcon x:Name="forward" Symbol="Forward" Margin="10,0,0,0" Foreground="#BFFFFFFF"/>

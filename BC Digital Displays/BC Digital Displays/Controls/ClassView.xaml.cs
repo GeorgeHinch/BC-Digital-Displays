@@ -125,7 +125,7 @@ namespace BC_Digital_Displays.Controls
 
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Visible;
             // TODO: PASS PARAMETER
-            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Class_Preview), null);
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Class_Preview), this.Tag);
         }
     }
 }

@@ -35,7 +35,11 @@ namespace BC_Digital_Displays
         private void CloseEmail_Tapped(object sender, TappedRoutedEventArgs e)
         {
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
-            YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
+        }
+
+        private void SendEmail_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
         }
     }
 }
