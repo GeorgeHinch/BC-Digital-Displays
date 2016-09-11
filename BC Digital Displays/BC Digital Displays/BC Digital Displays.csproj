@@ -122,6 +122,7 @@
     <Compile Include="Classes\Machines.cs" />
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\RecClass.cs" />
+    <Compile Include="Classes\RecSession.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Trainer.cs" />
     <Compile Include="Class_Preview.xaml.cs">

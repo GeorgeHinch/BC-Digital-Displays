@@ -4,7 +4,6 @@
     xmlns:local="using:BC_Digital_Displays"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Navigation="using:Syncfusion.UI.Xaml.Controls.Navigation"
     xmlns:Brochure="using:BC_Digital_Displays.Controls"
     x:Class="BC_Digital_Displays.YouthBrochure"
     mc:Ignorable="d">
@@ -28,7 +27,7 @@
 
         <Pivot Grid.ColumnSpan="2">
             <PivotItem Header="Family Events">
-                <Brochure:BrochureView />
+                <Brochure:BrochureView  />
             </PivotItem>
 
             <PivotItem Header="School Breaks">

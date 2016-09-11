@@ -29,7 +29,7 @@
             <StackPanel Orientation="Vertical" Margin="0,50,0,0">
                 <TextBlock Text="Filter" Foreground="{StaticResource UI_BorderBrush}" Margin="0,0,0,5" />
                 <StackPanel Orientation="Vertical">
-                    <RadioButton Content="Mondays" Style="{StaticResource FilterRBButtonStyle}" Checked="Monday_Checked"/>
+                    <RadioButton Content="Mondays" Style="{StaticResource FilterRBButtonStyle}"/>
                     <RadioButton Content="Tuesdays" Style="{StaticResource FilterRBButtonStyle}" />
                     <RadioButton Content="Wednesdays" Style="{StaticResource FilterRBButtonStyle}" />
                     <RadioButton Content="Thursdays" Style="{StaticResource FilterRBButtonStyle}" />

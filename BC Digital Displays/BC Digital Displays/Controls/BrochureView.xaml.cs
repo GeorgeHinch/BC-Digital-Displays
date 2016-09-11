@@ -24,9 +24,19 @@ namespace BC_Digital_Displays.Controls
             this.InitializeComponent();
         }
 
-        private void Monday_Checked(object sender, RoutedEventArgs e)
+        #region Dependency Properties
+        public static readonly DependencyProperty BrochureIDProperty = DependencyProperty.Register(
+            "Brochure ID",                   // The name of the DependencyProperty
+            typeof(Guid),               // The type of the DependencyProperty
+            typeof(BrochureView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public Guid BrochureID
         {
-            ClassesGroup.FilterChecked = "Monday";
+            get { return (Guid)GetValue(BrochureIDProperty); }
+            set { SetValue(BrochureIDProperty, value); }
         }
+        #endregion
     }
 }
