@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace BC_Digital_Displays
 {
@@ -37,6 +38,11 @@ namespace BC_Digital_Displays
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        /// <summary>
+        /// Mobile App connector for SQL Azure database
+        /// </summary>
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://bc-digitaldisplays.azurewebsites.net");
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

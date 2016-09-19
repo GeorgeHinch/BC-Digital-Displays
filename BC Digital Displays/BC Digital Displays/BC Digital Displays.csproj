@@ -117,6 +117,12 @@
     <Compile Include="Cards\Trainer_Card.xaml.cs">
       <DependentUpon>Trainer_Card.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\bcEquipment.cs" />
+    <Compile Include="Classes\bcEvents.cs" />
+    <Compile Include="Classes\bcRecBrochure.cs" />
+    <Compile Include="Classes\bcRecClasses.cs" />
+    <Compile Include="Classes\bcSettings.cs" />
+    <Compile Include="Classes\bcTrainers.cs" />
     <Compile Include="Classes\DayBuilder.cs" />
     <Compile Include="Classes\EmailBuilder.cs" />
     <Compile Include="Classes\Machines.cs" />
@@ -124,7 +130,8 @@
     <Compile Include="Classes\RecClass.cs" />
     <Compile Include="Classes\RecSession.cs" />
     <Compile Include="Classes\Settings.cs" />
-    <Compile Include="Classes\Trainer.cs" />
+    <Compile Include="Classes\TodoItem.cs" />
+    <Compile Include="Classes\Trainers.cs" />
     <Compile Include="Class_Preview.xaml.cs">
       <DependentUpon>Class_Preview.xaml</DependentUpon>
     </Compile>

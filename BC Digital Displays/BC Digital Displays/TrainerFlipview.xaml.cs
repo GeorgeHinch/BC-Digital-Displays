@@ -72,7 +72,7 @@ namespace BC_Digital_Displays
                         int tbVal = 0;
 
                         #region Creates trainer cards
-                        foreach (Trainer t in status.main)
+                        foreach (trainers t in status.main)
                         {
                             Trainer_Card card = new Trainer_Card();
 

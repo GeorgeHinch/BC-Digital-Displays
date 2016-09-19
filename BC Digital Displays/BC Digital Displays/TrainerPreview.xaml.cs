@@ -26,7 +26,7 @@ namespace BC_Digital_Displays
         #region Load Trainer Preview from Card.Tag on Page Load
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Trainer trainer_info = (Trainer)e.Parameter;
+            trainers trainer_info = (trainers)e.Parameter;
 
             int years;
             int yearsBC;

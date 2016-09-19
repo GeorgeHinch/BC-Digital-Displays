@@ -11,12 +11,21 @@ namespace BC_Digital_Displays.Classes
     public class Trainers
     {
         [DataMember]
-        public Trainer[] main { get; set; }
+        public trainers[] main { get; set; }
     }
 
     [DataContract]
-    public class Trainer
+    public class trainers
     {
+        [DataMember]
+        public string Id { get; set; }
+
+        [DataMember]
+        public Guid guid { get; set; }
+
+        [DataMember]
+        public bool isActive { get; set; }
+
         [DataMember]
         public string name { get; set; }
 

@@ -30,7 +30,7 @@ public partial class settings_trainer_manager : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [trainers] SET [isActive]='0' WHERE [guid]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [bcTrainers] SET [isActive]='0' WHERE [guid]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
@@ -106,7 +106,7 @@ public partial class settings_trainer_manager : System.Web.UI.Page
         {
             List<Trainers> data = new List<Trainers>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [trainers] WHERE [isActive]='1' ORDER BY name", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcTrainers] WHERE [isActive]='1' ORDER BY name", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 

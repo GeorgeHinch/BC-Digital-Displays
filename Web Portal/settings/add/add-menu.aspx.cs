@@ -17,7 +17,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        trainerName.Attributes.Add("placeholder", "Trainer name");
+        /*trainerName.Attributes.Add("placeholder", "Trainer name");
         trainerDegree.Attributes.Add("placeholder", "Trainer degree (i.e. BS, BA, etc.)");
         trainerYears.Attributes.Add("placeholder", "Year trainer started working");
         trainerYearsBC.Attributes.Add("placeholder", "Year trainer started working at BC");
@@ -25,7 +25,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
         trainerReward.Attributes.Add("placeholder", "What do you find most rewarding");
         trainerSession.Attributes.Add("placeholder", "What to expect from a session");
         trainerAccomplishment.Attributes.Add("placeholder", "Trainer accomplishment");
-        trainerPhoto.Attributes.Add("placeholder", "URL path to trainer photo");
+        trainerPhoto.Attributes.Add("placeholder", "URL path to trainer photo");*?*/
 
         StringBuilder trainerH1 = new StringBuilder();
 
@@ -35,7 +35,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
         {
             finalGuid = Guid.Parse(v);
             isUpdate = true;
-            menuH1.AppendLine("<h1 class=\"major\">Update Menu</h1>");
+            //menuH1.AppendLine("<h1 class=\"major\">Update Menu</h1>");
             pageH1.Text = trainerH1.ToString();
             SaveForm.Text = "Update";
             SaveForm.PostBackUrl = "?edit=" + finalGuid + "&update=true";
@@ -46,7 +46,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
         }
         else
         {
-            menuH1.AppendLine("<h1 class=\"major\">Add Menu</h1>");
+            //menuH1.AppendLine("<h1 class=\"major\">Add Menu</h1>");
             pageH1.Text = trainerH1.ToString();
             finalGuid = Guid.NewGuid();
         }
@@ -66,7 +66,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
 
             while (sdr.Read())
             {
-                string tName = (string)sdr["name"];
+                /*string tName = (string)sdr["name"];
                 trainerName.Text = tName.Trim();
                 trainerDegree.Text = (string)sdr["degree"];
                 int yS = (int)sdr["years"];
@@ -77,7 +77,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
                 trainerReward.Text = (string)sdr["reward"];
                 trainerSession.Text = (string)sdr["session"];
                 trainerAccomplishment.Text = (string)sdr["accomplishment"];
-                trainerPhoto.Text = (string)sdr["photo"];
+                trainerPhoto.Text = (string)sdr["photo"];/**/
             }
 
             conn.Close();
@@ -101,7 +101,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
-        string name = trainerName.Text;
+        /*string name = trainerName.Text;
         string degree = trainerDegree.Text;
         int years = Convert.ToInt32(trainerYears.Text);
         int yearsBC = Convert.ToInt32(trainerYearsBC.Text);
@@ -177,7 +177,7 @@ public partial class settings_add_add_menu : System.Web.UI.Page
                     Response.Redirect("~/settings/menu-manager.aspx");
                 }
             }
-        }
+        }/**/
     }
 
     public void ClearForm(ControlCollection controls)

@@ -27,7 +27,7 @@
 
         <Pivot Grid.ColumnSpan="2">
             <PivotItem Header="Family Events">
-                <Brochure:BrochureView  />
+                <Brochure:BrochureView />
             </PivotItem>
 
             <PivotItem Header="School Breaks">
