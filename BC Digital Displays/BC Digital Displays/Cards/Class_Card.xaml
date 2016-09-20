@@ -1,4 +1,4 @@
-﻿<UserControl x:Name="userControl"
+﻿<UserControl
     x:Class="BC_Digital_Displays.Cards.Class_Card"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,20 +9,20 @@
 
     <Grid x:Name="ClassCard" Background="White" CornerRadius="10">
         <TextBlock x:Name="Close_Button" FontSize="29.333" Text="&#xEA39;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" Margin="0,20,20,0" VerticalAlignment="Top" Foreground="{StaticResource UI_Return}" Tapped="Close_Tapped"/>
-
-        <Grid Margin="0,30">
+        
+        <Grid Margin="30">
             <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="Class_Name" FontSize="29.333" Text="Sample Name" Foreground="{StaticResource Text_Title}" Margin="30,0,30,5"/>
-                <TextBlock x:Name="Class_Day" Text="Ages 3-6, M-F, 2-2:30 p.m." Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18" Margin="30,0"/>
-                <TextBlock x:Name="Class_Sessions" Text="Session: 1, 3, 5" Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18" Margin="30,0"/>
+                <TextBlock x:Name="Class_Name" FontSize="29.333" Text="Sample Name" Foreground="{StaticResource Text_Title}" Margin="0,0,0,5"/>
+                <TextBlock x:Name="Class_Day" Text="Ages 3-6, M-F, 2-2:30 p.m." Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18"/>
+                <TextBlock x:Name="Class_Sessions" Text="Session: 1, 3, 5" Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18"/>
 
-                <TextBlock x:Name="Class_Description" FontSize="21.333" Text="This is a sample of a description. It should be multiple lines long and break after. It will continue to get longer and should wrap down to the next line." Foreground="{StaticResource Text_Body}" TextWrapping="Wrap" Margin="30,15,30,25"/>
+                <TextBlock x:Name="Class_Description" FontSize="21.333" Text="This is a sample of a description. It should be multiple lines long and break after. It will continue to get longer and should wrap down to the next line." Foreground="{StaticResource Text_Body}" TextWrapping="Wrap" Margin="0,15,0,25"/>
 
-                <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=userControl, Mode=OneWay}" Y2="0" />
-
-                <TextBlock x:Name="Class_Email" FontSize="21.333" Text="Email Me Info" Foreground="{StaticResource UI_Hightlight}" Tapped="SendEmail_Tapped" Margin="30,20,30,0" />
+                <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="{Binding ActualWidth, ElementName=ClassCard, Mode=TwoWay}" Y2="0" />
+                
+                <TextBlock x:Name="Class_Email" FontSize="21.333" Text="Email Me Info" Foreground="{StaticResource UI_Hightlight}" Tapped="SendEmail_Tapped" Margin="0,20,0,0" />
             </StackPanel>
         </Grid>
-
+        
     </Grid>
 </UserControl>

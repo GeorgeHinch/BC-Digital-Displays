@@ -81,6 +81,11 @@
                                     <label for="trainerPhoto">Photo URL</label>
                                     <asp:TextBox ID="trainerPhoto" runat="server" />
                                 </div>
+
+                                <div class="field">
+                                    <label for="trainerReflections">Reflections Article URL</label>
+                                    <asp:TextBox ID="trainerReflections" runat="server" />
+                                </div>
                                 
                                 <hr style="padding-bottom:10px;" />
                                 

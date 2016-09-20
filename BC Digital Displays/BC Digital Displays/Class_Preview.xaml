@@ -43,7 +43,7 @@
         </Grid>
         
         <Grid x:Name="Class_Template" x:FieldModifier="Public" Visibility="Visible">
-            <cards:Class_Card HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" />
+            <cards:Class_Card x:Name="Card_Template" HorizontalAlignment="Center" VerticalAlignment="Center" Width="600" />
         </Grid>
 
         <Grid x:Name="Email_Template" x:FieldModifier="Public" Visibility="Collapsed">
@@ -51,7 +51,7 @@
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Send class info:" Foreground="White" Margin="0,0,0,10" />
-                <TextBox Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}" Margin="0,0,0,25"/>
+                <TextBox x:Name="userEmailTB" Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}" Margin="0,0,0,25"/>
                 <TextBlock Text="Select interested sessions: " Foreground="White" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <ToggleButton Content="1" Style="{StaticResource SessionToggleButtonStyles}"/>
@@ -60,7 +60,7 @@
                     <ToggleButton Content="4" Style="{StaticResource SessionToggleButtonStyles}"/>
                     <ToggleButton Content="5" Style="{StaticResource SessionToggleButtonStyles}" IsEnabled="False"/>
                 </StackPanel>
-                <Button HorizontalAlignment="Center" Margin="0,40,0,0" Tapped="SendEmail_Tapped">
+                <Button HorizontalAlignment="Center" Margin="0,40,0,0" Tapped="EmailSent_Tapped">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Send Email" Foreground="#BFFFFFFF" />
                         <SymbolIcon x:Name="forward" Symbol="Forward" Margin="10,0,0,0" Foreground="#BFFFFFFF"/>

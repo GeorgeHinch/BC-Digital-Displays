@@ -5,8 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BC_Digital_Displays.Classes
-{
+
     [DataContract]
     class bcRecClasses
     {
@@ -14,10 +13,10 @@ namespace BC_Digital_Displays.Classes
         public string id { get; set; }
 
         [DataMember]
-        public DateTime createdAt { get; set; }
+        public DateTimeOffset createdAt { get; set; }
 
         [DataMember]
-        public DateTime updatedAt { get; set; }
+        public DateTimeOffset updatedAt { get; set; }
 
         [DataMember]
         public bool deleted { get; set; }
@@ -29,10 +28,10 @@ namespace BC_Digital_Displays.Classes
         public string ageRange { get; set; }
 
         [DataMember]
-        public int ageMin { get; set; }
+        public double ageMin { get; set; }
 
         [DataMember]
-        public int ageMax { get; set; }
+        public double ageMax { get; set; }
 
         [DataMember]
         public string days { get; set; }
@@ -50,9 +49,8 @@ namespace BC_Digital_Displays.Classes
         public string description { get; set; }
 
         [DataMember]
-        public int category { get; set; }
+        public double category { get; set; }
 
         [DataMember]
         public string brochureID { get; set; }
     }
-}

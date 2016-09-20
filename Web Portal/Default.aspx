@@ -139,7 +139,6 @@
                                             <asp:TextBox ID="emailMessage" TextMode="MultiLine" Rows="5" runat="server" />
 										</div>
 
-                                        <asp:Button ID="TestObject" CssClass="button submit" Text="Create Test" runat="server" OnClick="testCheck_Click" />
                                         <asp:Button ID="SendEmail" CssClass="button submit" Text="Send Message" runat="server" OnClick="FormSubmit_Click" />
 									</form>
 								</section>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BC_Digital_Displays.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -25,6 +26,14 @@ namespace BC_Digital_Displays.Cards
         public Class_Card()
         {
             this.InitializeComponent();
+
+            //RecClass rec = (RecClass)this.Tag;
+
+            //Class_Name.Text = rec.name;
+            //string dayString = dayBuilder(rec.days);
+            //Class_Day.Text = "Ages: " + rec.age + ", " + dayString + ", " + rec.time;
+
+            //Class_Description.Text = rec.description;
         }
 
         private void SendEmail_Tapped(object sender, TappedRoutedEventArgs e)

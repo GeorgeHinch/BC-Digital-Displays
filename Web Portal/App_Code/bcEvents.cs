@@ -5,8 +5,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BC_Digital_Displays.Classes
-{
     [DataContract]
     class bcEvents
     {
@@ -14,10 +12,10 @@ namespace BC_Digital_Displays.Classes
         public string id { get; set; }
 
         [DataMember]
-        public DateTime createdAt { get; set; }
+        public DateTimeOffset createdAt { get; set; }
 
         [DataMember]
-        public DateTime updatedAt { get; set; }
+        public DateTimeOffset updatedAt { get; set; }
 
         [DataMember]
         public bool deleted { get; set; }
@@ -29,7 +27,7 @@ namespace BC_Digital_Displays.Classes
         public bool allDay { get; set; }
 
         [DataMember]
-        public DateTime orderTime { get; set; }
+        public DateTimeOffset orderTime { get; set; }
 
         [DataMember]
         public string startTime { get; set; }
@@ -58,4 +56,3 @@ namespace BC_Digital_Displays.Classes
         [DataMember]
         public bool isApproved { get; set; }
     }
-}

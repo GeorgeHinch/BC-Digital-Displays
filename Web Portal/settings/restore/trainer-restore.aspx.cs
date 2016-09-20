@@ -29,7 +29,7 @@ public partial class settings_restore_trainer_restore : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [trainers] SET [isActive]='1' WHERE [guid]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [bcTrainers] SET [deleted]='0' WHERE [id]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
@@ -76,14 +76,14 @@ public partial class settings_restore_trainer_restore : System.Web.UI.Page
 
         int num = 1;
 
-        List<Trainers> data = GetData();
-        foreach (Trainers t in data)
+        List<bcTrainers> data = GetData();
+        foreach (bcTrainers t in data)
         {
             trainerHtmlTable.AppendLine("<tr>");
             trainerHtmlTable.AppendLine("<td>" + num + "</td>");
             trainerHtmlTable.AppendLine("<td>" + t.name.Trim() + "</td>");
-            trainerHtmlTable.AppendLine("<td>" + t.years_bc + "</td>");
-            trainerHtmlTable.AppendLine("<td><a href=\"../add/add-trainer.aspx?edit=" + t.guid + "\">edit</a> / <a href=\"?restore=" + t.guid + "\">restore</a></td>");
+            trainerHtmlTable.AppendLine("<td>" + t.yearsBC + "</td>");
+            trainerHtmlTable.AppendLine("<td><a href=\"../add/add-trainer.aspx?edit=" + t.id + "\">edit</a> / <a href=\"?restore=" + t.id + "\">restore</a></td>");
             trainerHtmlTable.AppendLine("</tr>");
 
             num++;
@@ -96,35 +96,37 @@ public partial class settings_restore_trainer_restore : System.Web.UI.Page
         trainerTable.Text = trainerHtmlTable.ToString();
     }
 
-    public List<Trainers> GetData()
+    public List<bcTrainers> GetData()
     {
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
 
         try
         {
-            List<Trainers> data = new List<Trainers>();
+            List<bcTrainers> data = new List<bcTrainers>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [trainers] WHERE [isActive]='0' ORDER BY name", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcTrainers] WHERE [deleted]='1' ORDER BY name", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
             while (sdr.Read())
             {
                 //Debug.WriteLine("Guid: " + (Guid)sdr["guid"] + " |");
-                Trainers obj = new Trainers(
-                    (bool)sdr["isActive"],
-                    (Guid)sdr["guid"],
-                    (DateTime)sdr["date"],
+                bcTrainers obj = new bcTrainers(
+                    (string)sdr["id"],
+                    (DateTimeOffset)sdr["createdAt"],
+                    (DateTimeOffset)sdr["updatedAt"],
+                    (bool)sdr["deleted"],
                     (string)sdr["name"],
                     (string)sdr["degree"],
-                    (int)sdr["years"],
-                    (int)sdr["yearsBC"],
+                    (double)sdr["years"],
+                    (double)sdr["yearsBC"],
                     (string)sdr["expertise"],
                     (string)sdr["reward"],
-                    (string)sdr["session"],
+                    (string)sdr["expectation"],
                     (string)sdr["accomplishment"],
-                    (string)sdr["photo"]);
+                    (string)sdr["photo"],
+                    (string)sdr["reflections"]);
                 data.Add(obj);
             }
 

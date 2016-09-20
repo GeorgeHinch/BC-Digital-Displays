@@ -26,7 +26,8 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
         trainerSession.Attributes.Add("placeholder", "What to expect from a session");
         trainerAccomplishment.Attributes.Add("placeholder", "Trainer accomplishment");
         trainerPhoto.Attributes.Add("placeholder", "URL path to trainer photo");
-        
+        trainerReflections.Attributes.Add("placeholder", "URL path to Reflections article");
+
         StringBuilder trainerH1 = new StringBuilder();
 
         string v = Request.QueryString["edit"];
@@ -60,7 +61,7 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
         try
         {
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("Select * FROM [trainers] WHERE [guid]='" + v.ToUpper() + "'", conn);
+            SqlCommand command = new SqlCommand("Select * FROM [bcTrainers] WHERE [id]='" + v.ToUpper() + "'", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
@@ -69,15 +70,16 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
                 string tName = (string)sdr["name"];
                 trainerName.Text = tName.Trim();
                 trainerDegree.Text = (string)sdr["degree"];
-                int yS = (int)sdr["years"];
+                double yS = (double)sdr["years"];
                 trainerYears.Text = yS.ToString();
-                int BCS = (int)sdr["yearsBC"];
+                double BCS = (double)sdr["yearsBC"];
                 trainerYearsBC.Text = BCS.ToString();
                 trainerExpertise.Text = (string)sdr["expertise"];
                 trainerReward.Text = (string)sdr["reward"];
-                trainerSession.Text = (string)sdr["session"];
+                trainerSession.Text = (string)sdr["expectation"];
                 trainerAccomplishment.Text = (string)sdr["accomplishment"];
                 trainerPhoto.Text = (string)sdr["photo"];
+                trainerReflections.Text = (string)sdr["reflections"];
             }
 
             conn.Close();
@@ -103,13 +105,14 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
     {
         string name = trainerName.Text;
         string degree = trainerDegree.Text;
-        int years = Convert.ToInt32(trainerYears.Text);
-        int yearsBC = Convert.ToInt32(trainerYearsBC.Text);
+        double years = Convert.ToDouble(trainerYears.Text);
+        double yearsBC = Convert.ToDouble(trainerYearsBC.Text); 
         string expertise = trainerExpertise.Text;
         string reward = trainerReward.Text;
-        string session = trainerSession.Text;
+        string expectation = trainerSession.Text;
         string accomplishment = trainerAccomplishment.Text;
         string photo = trainerPhoto.Text;
+        string reflections = trainerReflections.Text;
 
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
@@ -125,23 +128,22 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [trainers] SET isActive='1', guid='" + finalGuid + "', date='" + DateTime.UtcNow + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', session='" + session + "', accomplishment='" + accomplishment + "', photo='" + photo + "' WHERE [guid]='" + finalGuid + "'";
+                    cmd.CommandText = "UPDATE [bcTrainers] SET deleted='0', id='" + finalGuid.ToString() + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', expectation='" + expectation + "', accomplishment='" + accomplishment + "', photo='" + photo + "', reflections='" + reflections + "' WHERE [id]='" + finalGuid.ToString() + "'";
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO [trainers](isActive, guid, date, name, degree, years, yearsBC, expertise, reward, session, accomplishment, photo) Values (@isActive, @guid, @date, @name, @degree, @years, @yearsBC, @expertise, @reward, @session, @accomp, @photo)";
-                    cmd.Parameters.AddWithValue("@isActive", 1);
-                    cmd.Parameters.AddWithValue("@guid", finalGuid);
-                    cmd.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                    cmd.CommandText = "INSERT INTO [bcTrainers](id, name, degree, years, yearsBC, expertise, reward, expectation, accomplishment, photo, reflections) Values (@id, @name, @degree, @years, @yearsBC, @expertise, @reward, @expectation, @accomp, @photo, @reflections)";
+                    cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@degree", degree);
                     cmd.Parameters.AddWithValue("@years", years);
                     cmd.Parameters.AddWithValue("@yearsBC", yearsBC);
                     cmd.Parameters.AddWithValue("@expertise", expertise);
                     cmd.Parameters.AddWithValue("@reward", reward);
-                    cmd.Parameters.AddWithValue("@session", session);
+                    cmd.Parameters.AddWithValue("@expectation", expectation);
                     cmd.Parameters.AddWithValue("@accomp", accomplishment);
                     cmd.Parameters.AddWithValue("@photo", photo);
+                    cmd.Parameters.AddWithValue("@reflections", reflections);
                 }
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
