@@ -14,10 +14,10 @@ namespace BC_Digital_Displays.Classes
         public string id { get; set; }
 
         [DataMember]
-        public DateTime createdAt { get; set; }
+        public DateTimeOffset createdAt { get; set; }
 
         [DataMember]
-        public DateTime updatedAt { get; set; }
+        public DateTimeOffset updatedAt { get; set; }
 
         [DataMember]
         public bool deleted { get; set; }
@@ -29,10 +29,10 @@ namespace BC_Digital_Displays.Classes
         public string degree { get; set; }
 
         [DataMember]
-        public int years { get; set; }
+        public double years { get; set; }
 
         [DataMember]
-        public int yearsBC { get; set; }
+        public double yearsBC { get; set; }
 
         [DataMember]
         public string expertise { get; set; }

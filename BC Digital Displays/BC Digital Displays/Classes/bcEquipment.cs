@@ -14,10 +14,10 @@ namespace BC_Digital_Displays.Classes
         public string id { get; set; }
 
         [DataMember]
-        public DateTime createdAt { get; set; }
+        public DateTimeOffset createdAt { get; set; }
 
         [DataMember]
-        public DateTime updatedAt { get; set; }
+        public DateTimeOffset updatedAt { get; set; }
 
         [DataMember]
         public bool deleted { get; set; }
@@ -26,6 +26,6 @@ namespace BC_Digital_Displays.Classes
         public string name { get; set; }
 
         [DataMember]
-        public int studio { get; set; }
+        public double studio { get; set; }
     }
 }

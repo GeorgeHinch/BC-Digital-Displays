@@ -57,33 +57,28 @@ public partial class settings_add_add_event : System.Web.UI.Page
         try
         {
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("Select * FROM [events] WHERE [guid]='" + v.ToUpper() + "'", conn);
+            SqlCommand command = new SqlCommand("Select * FROM [bcEvents] WHERE [id]='" + v.ToUpper() + "'", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
             while (sdr.Read())
             {
-                string eName = (string)sdr["name"];
-                eventSubject.Text = eName.Trim();
+                eventSubject.Text = (string)sdr["name"];
                 bool eAllDay = (bool)sdr["allDay"];
                 if (eAllDay == true)
                 {
                     eventAllDay.Checked = true;
                 } else { eventAllDay.Checked = false; }
                 string eStartTime = (string)sdr["startTime"];
-                string startTrimTime = eStartTime.Trim();
-                DateTime startParse = DateTime.ParseExact(startTrimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime startParse = DateTime.ParseExact(eStartTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
                 eventStartDate.Text = startParse.ToString("yyyy-MM-dd");
                 eventStartTime.Text = startParse.ToString("HH:mm");
                 string eEndTime = (string)sdr["endTime"];
-                string endTrimTime = eEndTime.Trim();
-                DateTime endParse = DateTime.ParseExact(endTrimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime endParse = DateTime.ParseExact(eEndTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
                 eventEndDate.Text = endParse.ToString("yyyy-MM-dd");
                 eventEndTime.Text = endParse.ToString("HH:mm");
-                string eLocation = (string)sdr["location"];
-                eventLocation.Text = eLocation;
-                string eDepartmentNoTrim = (string)sdr["department"];
-                string eDepartment = eDepartmentNoTrim.Trim();
+                eventLocation.Text = (string)sdr["location"];
+                string eDepartment = (string)sdr["department"];
                 Debug.WriteLine("Department: " + eDepartment + " |");
                 if (eDepartment == "Aquatics")
                 {
@@ -109,14 +104,10 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 {
                     eventDepartment.SelectedIndex = 6;
                 }
-                string eInstructor = (string)sdr["instructor"];
-                eventInstructor.Text = eInstructor.Trim();
-                string eDescription = (string)sdr["description"];
-                eventDecription.Text = eDescription;
-                string eFlier = (string)sdr["flier"];
-                eventFlier.Text = eFlier.Trim();
-                string ePrice = (string)sdr["price"];
-                eventPrice.Text = ePrice.Trim();
+                eventInstructor.Text = (string)sdr["instructor"];
+                eventDecription.Text = (string)sdr["description"];
+                eventFlier.Text = (string)sdr["flier"];
+                eventPrice.Text = (string)sdr["price"];
             }
 
             conn.Close();
@@ -203,15 +194,13 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if (isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [events] SET isActive='1', guid='" + finalGuid + "', created='" + DateTime.UtcNow + "', name='" + name + "', allDay='" + allDay + "', orderTime='" + orderTime + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [guid]='" + finalGuid + "'";
+                    cmd.CommandText = "UPDATE [bcEvents] SET id='" + finalGuid.ToString() + "', name='" + name + "', allDay='" + allDay + "', orderTime='" + orderTime + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [id]='" + finalGuid.ToString() + "'";
 
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO [events](isActive, guid, created, name, allDay, orderTime, startTime, endTime, location, department, instructor, price, description, flier) Values (@isActive, @guid, @created, @name, @allDay, @order, @start, @end, @location, @department, @instructor, @price, @description, @flier)";
-                    cmd.Parameters.AddWithValue("@isActive", 1);
-                    cmd.Parameters.AddWithValue("@guid", finalGuid);
-                    cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
+                    cmd.CommandText = "INSERT INTO [bcEvents](id, name, allDay, orderTime, startTime, endTime, location, department, instructor, price, description, flier, isApproved) Values (@id, @name, @allDay, @order, @start, @end, @location, @department, @instructor, @price, @description, @flier, @isApproved)";
+                    cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@allDay", allDay);
                     cmd.Parameters.AddWithValue("@order", orderTime);
@@ -223,6 +212,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@price", price);
                     cmd.Parameters.AddWithValue("@description", description);
                     cmd.Parameters.AddWithValue("@flier", flier);
+                    cmd.Parameters.AddWithValue("@isApproved", 0);
                 }
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)

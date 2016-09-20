@@ -29,7 +29,7 @@ public partial class settings_calendar_manager : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [events] SET [isActive]='0' WHERE [guid]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [bcEvents] SET [deleted]='1' WHERE [id]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
@@ -77,10 +77,10 @@ public partial class settings_calendar_manager : System.Web.UI.Page
 
         int num = 1;
 
-        List<Events> data = GetData();
-        foreach (Events ev in data)
+        List<bcEvents> data = GetData();
+        foreach (bcEvents ev in data)
         {
-            string trimTime = ev.StartTime.Trim();
+            string trimTime = ev.startTime;
             Debug.WriteLine("Trime Time: " + trimTime + " |");
             DateTime start = DateTime.ParseExact(trimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
 
@@ -89,10 +89,10 @@ public partial class settings_calendar_manager : System.Web.UI.Page
 
             eventHtmlTable.AppendLine("<tr>");
             eventHtmlTable.AppendLine("<td>" + num + "</td>");
-            eventHtmlTable.AppendLine("<td>" + ev.Subject.Trim() + "</td>");
+            eventHtmlTable.AppendLine("<td>" + ev.name + "</td>");
             eventHtmlTable.AppendLine("<td>" + DayStart + "</td>");
             eventHtmlTable.AppendLine("<td>" + TimeStart + "</td>");
-            eventHtmlTable.AppendLine("<td><a href=\"add/add-event.aspx?edit=" + ev.guid + "\">edit</a> / <a href=\"?remove=" + ev.guid + "\">remove</a></td>");
+            eventHtmlTable.AppendLine("<td><a href=\"add/add-event.aspx?edit=" + ev.id + "\">edit</a> / <a href=\"?remove=" + ev.id + "\">remove</a></td>");
             eventHtmlTable.AppendLine("</tr>");
 
             num++;
@@ -105,36 +105,38 @@ public partial class settings_calendar_manager : System.Web.UI.Page
         eventTable.Text = eventHtmlTable.ToString();
     }
 
-    public List<Events> GetData()
+    public List<bcEvents> GetData()
     {
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
 
         try
         {
-            List<Events> data = new List<Events>();
+            List<bcEvents> data = new List<bcEvents>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [events] WHERE [isActive]='1' ORDER BY orderTime", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcEvents] WHERE [deleted]='0' ORDER BY orderTime", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
             while (sdr.Read())
             {
-                Events obj = new Events(
-                    (bool)sdr["isActive"],
-                    (Guid)sdr["guid"],
-                    (DateTime)sdr["created"],
+                bcEvents obj = new bcEvents(
+                    (string)sdr["id"],
+                    (DateTimeOffset)sdr["createdAt"],
+                    (DateTimeOffset)sdr["updatedAt"],
+                    (bool)sdr["deleted"],
                     (string)sdr["name"],
-                    (string)sdr["location"],
-                    (string)sdr["description"],
-                    (DateTime)sdr["orderTime"],
+                    (bool)sdr["allDay"],
+                    (DateTimeOffset)sdr["orderTime"],
                     (string)sdr["startTime"],
                     (string)sdr["endTime"],
+                    (string)sdr["location"],
                     (string)sdr["instructor"],
+                    (string)sdr["description"],
                     (string)sdr["department"],
-                    (string)sdr["price"],
                     (string)sdr["flier"],
-                    (bool)sdr["allDay"]);
+                    (string)sdr["price"],
+                    (bool)sdr["isApproved"]);
                 data.Add(obj);
             }
 
