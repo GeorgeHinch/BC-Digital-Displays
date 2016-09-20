@@ -30,7 +30,7 @@ public partial class settings_equipment_manager : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [equipment] SET [isActive]='0' WHERE [guid]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [bcEquipment] SET [deleted]='1' WHERE [id]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
@@ -128,45 +128,45 @@ public partial class settings_equipment_manager : System.Web.UI.Page
         int num3 = 1;
         int num4 = 1;
 
-        List<Equipment> data = GetData();
-        foreach (Equipment t in data)
+        List<bcEquipment> data = GetData();
+        foreach (bcEquipment t in data)
         {
-            if (t.studio == "1")
+            if (t.studio == 1)
             {
                 studio1Table.AppendLine("<tr>");
                 studio1Table.AppendLine("<td>" + num1 + "</td>");
                 studio1Table.AppendLine("<td>" + t.name.Trim() + "</td>");
-                studio1Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
+                studio1Table.AppendLine("<td><a href=\"?remove=" + t.id + "\">remove</a></td>");
                 studio1Table.AppendLine("</tr>");
 
                 num1++;
             }
-            else if (t.studio == "2")
+            else if (t.studio == 2)
             {
                 studio2Table.AppendLine("<tr>");
                 studio2Table.AppendLine("<td>" + num2 + "</td>");
                 studio2Table.AppendLine("<td>" + t.name.Trim() + "</td>");
-                studio2Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
+                studio2Table.AppendLine("<td><a href=\"?remove=" + t.id + "\">remove</a></td>");
                 studio2Table.AppendLine("</tr>");
 
                 num2++;
             }
-            else if (t.studio == "3")
+            else if (t.studio == 3)
             {
                 studio3Table.AppendLine("<tr>");
                 studio3Table.AppendLine("<td>" + num3 + "</td>");
                 studio3Table.AppendLine("<td>" + t.name.Trim() + "</td>");
-                studio3Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
+                studio3Table.AppendLine("<td><a href=\"?remove=" + t.id + "\">remove</a></td>");
                 studio3Table.AppendLine("</tr>");
 
                 num3++;
             }
-            else if (t.studio == "4")
+            else if (t.studio == 4)
             {
                 studio4Table.AppendLine("<tr>");
                 studio4Table.AppendLine("<td>" + num4 + "</td>");
                 studio4Table.AppendLine("<td>" + t.name.Trim() + "</td>");
-                studio4Table.AppendLine("<td><a href=\"?remove=" + t.guid + "\">remove</a></td>");
+                studio4Table.AppendLine("<td><a href=\"?remove=" + t.id + "\">remove</a></td>");
                 studio4Table.AppendLine("</tr>");
 
                 num4++;
@@ -189,27 +189,28 @@ public partial class settings_equipment_manager : System.Web.UI.Page
         studio4HTMLTable.Text = studio4Table.ToString();
     }
 
-    public List<Equipment> GetData()
+    public List<bcEquipment> GetData()
     {
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
 
         try
         {
-            List<Equipment> data = new List<Equipment>();
+            List<bcEquipment> data = new List<bcEquipment>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [equipment] WHERE [isActive]='1' ORDER BY studio", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcEquipment] WHERE [deleted]='0' ORDER BY studio", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
             while (sdr.Read())
             {
-                Equipment obj = new Equipment(
-                    (bool)sdr["isActive"],
-                    (Guid)sdr["guid"],
-                    (DateTime)sdr["lastModified"],
-                    (string)sdr["studio"],
-                    (string)sdr["name"]);
+                bcEquipment obj = new bcEquipment(
+                    (string)sdr["id"],
+                    (DateTimeOffset)sdr["createdAt"],
+                    (DateTimeOffset)sdr["updatedAt"],
+                    (bool)sdr["deleted"],
+                    (string)sdr["name"],
+                    (double)sdr["studio"]);
                 data.Add(obj);
             }
 
@@ -241,29 +242,29 @@ public partial class settings_equipment_manager : System.Web.UI.Page
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
         Guid finalGuid = Guid.NewGuid();
-        string eStudio;
+        double eStudio;
         string eName;
         Button btn = (Button)sender;
         if (btn.ID == "SaveForm1")
         {
-            eStudio = "1";
+            eStudio = 1;
             eName = studio1Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm2")
         {
-            eStudio = "2";
+            eStudio = 2;
             eName = studio2Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm3")
         {
-            eStudio = "3";
+            eStudio = 3;
             eName = studio3Tb.Text.ToUpper();
         }
         else if (btn.ID == "SaveForm4")
         {
-            eStudio = "4";
+            eStudio = 4;
             eName = studio4Tb.Text.ToUpper();
-        } else { eStudio = "0"; eName = ""; }
+        } else { eStudio = 0; eName = ""; }
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
@@ -276,12 +277,10 @@ public partial class settings_equipment_manager : System.Web.UI.Page
             {
                 cmd.Connection = conn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "INSERT INTO [equipment](isActive, guid, lastModified, studio, name) Values (@isActive, @guid, @created, @studio, @name)";
-                cmd.Parameters.AddWithValue("@isActive", 1);
-                cmd.Parameters.AddWithValue("@guid", finalGuid);
-                cmd.Parameters.AddWithValue("@created", DateTime.UtcNow);
-                cmd.Parameters.AddWithValue("@studio", eStudio);
+                cmd.CommandText = "INSERT INTO [bcEquipment](id, name, studio) Values (@id, @name, @studio)";
+                cmd.Parameters.AddWithValue("@id", finalGuid);
                 cmd.Parameters.AddWithValue("@name", eName);
+                cmd.Parameters.AddWithValue("@studio", eStudio);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)
