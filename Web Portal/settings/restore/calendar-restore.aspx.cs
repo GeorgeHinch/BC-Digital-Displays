@@ -92,7 +92,7 @@ public partial class settings_restore_calendar_restore : System.Web.UI.Page
             eventHtmlTable.AppendLine("<td>" + ev.name + "</td>");
             eventHtmlTable.AppendLine("<td>" + DayStart + "</td>");
             eventHtmlTable.AppendLine("<td>" + TimeStart + "</td>");
-            eventHtmlTable.AppendLine("<td><a href=\"add/add-event.aspx?edit=" + ev.id + "\">edit</a> / <a href=\"?restore=" + ev.id + "\">restore</a></td>");
+            eventHtmlTable.AppendLine("<td><a href=\"../add/add-event.aspx?edit=" + ev.id + "\">edit</a> / <a href=\"?restore=" + ev.id + "\">restore</a></td>");
             eventHtmlTable.AppendLine("</tr>");
 
             num++;

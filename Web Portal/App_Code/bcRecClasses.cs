@@ -73,3 +73,13 @@ public class bcRecClasses
     [DataMember]
     public string brochureID { get; set; }
 }
+
+[DataContract]
+public class cTimes
+{
+    [DataMember]
+    public DateTime cStartTime { get; set; }
+
+    [DataMember]
+    public DateTime cEndTime { get; set; }
+}

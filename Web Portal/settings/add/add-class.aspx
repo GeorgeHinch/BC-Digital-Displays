@@ -60,62 +60,66 @@
                                 </div>
                               
                                 <div class="field">
-                                    <label for="classMonday">Monday</label>
-                                    <asp:CheckBox ID="classMonday" Text="Monday" runat="server" />
-
-                                    <label for="classTuesday">Tuesday</label>
-                                    <asp:CheckBox ID="classTuesday" Text="Tuesday" runat="server" />
-
-                                    <label for="classWednesday">Wednesday</label>
-                                    <asp:CheckBox ID="classWednesday" Text="Wednesday" runat="server" />
-
-                                    <label for="classThursday">Thursday</label>
-                                    <asp:CheckBox ID="classThursday" Text="Thursday" runat="server" />
-
-                                    <label for="classFriday">Friday</label>
-                                    <asp:CheckBox ID="classFriday" Text="Friday" runat="server" />
-
-                                    <label for="classSaturday">Saturday</label>
-                                    <asp:CheckBox ID="classSaturday" Text="Saturday" runat="server" />
-
-                                    <label for="classSunday">Sunday</label>
-                                    <asp:CheckBox ID="classSunday" Text="Sunday" runat="server" />
+                                    <label for="classMonday">Class Days</label>
+                                    <span>
+                                        <asp:CheckBox ID="classMonday" Text="Monday" runat="server" />
+                                        <asp:CheckBox ID="classTuesday" Text="Tuesday" runat="server" />
+                                        <asp:CheckBox ID="classWednesday" Text="Wednesday" runat="server" />
+                                        <asp:CheckBox ID="classThursday" Text="Thursday" runat="server" />
+                                        <asp:CheckBox ID="classFriday" Text="Friday" runat="server" />
+                                        <asp:CheckBox ID="classSaturday" Text="Saturday" runat="server" />
+                                        <asp:CheckBox ID="classSunday" Text="Sunday" runat="server" />
+                                    </span>
                                 </div>
 
-                                <div class="field half first"> 
-                                    <label for="classTime">Time</label>
-                                    <asp:TextBox ID="classTime" TextMode="Time" runat="server" />
+                                <div class="field half first">
+                                    <div class="field half first"> 
+                                        <label for="classTime">Start Time</label>
+                                        <asp:TextBox ID="classStartTime" TextMode="Time" runat="server" />
+                                    </div>
+
+                                    <div class="field half"> 
+                                        <label for="classTime">End Time</label>
+                                        <asp:TextBox ID="classEndTime" TextMode="Time" runat="server" />
+                                    </div>
                                 </div>   
                               
                                 <div class="field half">
-                                    <label for="classLocations">Location</label>
-                                    <asp:TextBox ID="classLocation" runat="server" />
+                                    <div class="field half first">
+                                        <label for="classLocations">Location</label>
+                                        <asp:TextBox ID="classLocation" runat="server" />
+                                    </div>
+
+                                    <div class="field half">
+                                        <label for="classCategory">Class Category</label>
+                                        <asp:DropDownList ID="classCategory" runat="server" >
+                                            <asp:ListItem Text="Select Category" Value="0" />
+                                            <asp:ListItem Text="Family Events" Value="1" />
+                                            <asp:ListItem Text="School Breaks" Value="2" />
+                                            <asp:ListItem Text="Recreation" Value="3" />
+                                            <asp:ListItem Text="Tennis" Value="4" />
+                                            <asp:ListItem Text="Swim" Value="5" />
+                                            <asp:ListItem Text="Basketball" Value="6" />
+                                        </asp:DropDownList>
+                                    </div>
                                 </div>
 
                                 <div class="field">
-                                    <label for="trainerReward">Reward</label>
-                                    <asp:TextBox ID="trainerReward" runat="server" TextMode="MultiLine" Rows="3" />
-                                </div>
-                              
-                                <div class="field">
-                                    <label for="trainerSession">What to Expect Out of a Training Session</label>
-                                    <asp:TextBox ID="trainerSession" runat="server" TextMode="MultiLine" Rows="3" />
-                                </div>
-
-                                <div class="field">
-                                    <label for="trainerAccomplishment">What is Your Biggest Athletic Accomplishment</label>
-                                    <asp:TextBox ID="trainerAccomplishment" runat="server" TextMode="MultiLine" Rows="3" />
+                                    <label for="classSession1">Class Sessions</label>
+                                    <span>
+                                        <asp:CheckBox ID="classSession1" Text="Session 1" runat="server" />
+                                        <asp:CheckBox ID="classSession2" Text="Session 2" runat="server" />
+                                        <asp:CheckBox ID="classSession3" Text="Session 3" runat="server" />
+                                        <asp:CheckBox ID="classSession4" Text="Session 4" runat="server" />
+                                        <asp:CheckBox ID="classSession5" Text="Session 5" runat="server" />
+                                    </span>
                                 </div>
 
                                 <div class="field">
-                                    <label for="trainerPhoto">Photo URL</label>
-                                    <asp:TextBox ID="trainerPhoto" runat="server" />
+                                    <label for="classDescription">Description</label>
+                                    <asp:TextBox ID="classDescription" TextMode="MultiLine" runat="server" />
                                 </div>
 
-                                <div class="field">
-                                    <label for="trainerReflections">Reflections Article URL</label>
-                                    <asp:TextBox ID="trainerReflections" runat="server" />
-                                </div>
                                 
                                 <hr style="padding-bottom:10px;" />
                                 

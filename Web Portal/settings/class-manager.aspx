@@ -39,8 +39,7 @@
                             </div>
                                     
                             <h2>Class Options</h2>
-						    <a href="add/add-class.aspx" class="button">Add Class</a>
-                            <a href="restore/class-restore.aspx" class="button">Restore Class</a>
+                            <asp:literal ID="classOptions" runat="server" />
 						</div>
 					</section>
 

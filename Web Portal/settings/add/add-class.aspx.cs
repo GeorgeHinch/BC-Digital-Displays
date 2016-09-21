@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -18,14 +19,16 @@ public partial class settings_add_add_class : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string i = Request.QueryString["bid"];
-        if(i != null)
+        bId = Request.QueryString["bid"];
+        if(bId == null)
         {
-            bId = i;
+            Response.Redirect("~/settings/youth-manager.aspx");
         }
 
         className.Attributes.Add("placeholder", "Class name");
         classAgeRange.Attributes.Add("placeholder", "i.e. \"Ages 3-6\"");
+        classStartTime.Attributes.Add("placeholder", "24hr clock value");
+        classEndTime.Attributes.Add("placeholder", "24hr clock value");
 
         StringBuilder classH1 = new StringBuilder();
 
@@ -73,13 +76,29 @@ public partial class settings_add_add_class : System.Web.UI.Page
                 className.Text = (string)sdr["name"];
                 classAgeRange.Text = (string)sdr["ageRange"];
                 double aMin = (double)sdr["ageMin"];
-                classAgeMin.Text = aMin.ToString();
+                    classAgeMin.Text = aMin.ToString();
                 double BCS = (double)sdr["ageMax"];
-                classAgeMax.Text = BCS.ToString();
+                    classAgeMax.Text = BCS.ToString();
                 string dayString = (string)sdr["days"];
-                // Do the things with the strings
-                classTime.Text = (string)sdr["time"];
+                    if (dayString.Substring(0, 1) == "1") { classMonday.Checked = true; }
+                    if (dayString.Substring(1, 1) == "1") { classTuesday.Checked = true; }
+                    if (dayString.Substring(2, 1) == "1") { classWednesday.Checked = true; }
+                    if (dayString.Substring(3, 1) == "1") { classThursday.Checked = true; }
+                    if (dayString.Substring(4, 1) == "1") { classFriday.Checked = true; }
+                    if (dayString.Substring(5, 1) == "1") { classSaturday.Checked = true; }
+                    if (dayString.Substring(6, 1) == "1") { classSunday.Checked = true; }
+                cTimes cTimes = JsonConvert.DeserializeObject<cTimes>((string)sdr["time"]);
+                    classStartTime.Text = cTimes.cStartTime.ToString("HH:mm");
+                    classEndTime.Text = cTimes.cEndTime.ToString("HH:mm");
                 classLocation.Text = (string)sdr["location"];
+                classCategory.Text = Convert.ToString((double)sdr["category"]);
+                string sessionString = (string)sdr["sessions"];
+                    if (sessionString.Substring(0, 1) == "1") { classSession1.Checked = true; }
+                    if (sessionString.Substring(1, 1) == "1") { classSession2.Checked = true; }
+                    if (sessionString.Substring(2, 1) == "1") { classSession3.Checked = true; }
+                    if (sessionString.Substring(3, 1) == "1") { classSession4.Checked = true; }
+                    if (sessionString.Substring(4, 1) == "1") { classSession5.Checked = true; }
+                classDescription.Text = (string)sdr["description"];
             }
 
             conn.Close();
@@ -104,15 +123,33 @@ public partial class settings_add_add_class : System.Web.UI.Page
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
         string name = className.Text;
-        string degree = trainerDegree.Text;
-        double years = Convert.ToDouble(trainerYears.Text);
-        double yearsBC = Convert.ToDouble(trainerYearsBC.Text); 
-        string expertise = trainerExpertise.Text;
-        string reward = trainerReward.Text;
-        string expectation = trainerSession.Text;
-        string accomplishment = trainerAccomplishment.Text;
-        string photo = trainerPhoto.Text;
-        string reflections = trainerReflections.Text;
+        string ageRange = classAgeRange.Text;
+        double ageMin = Convert.ToDouble(classAgeMin.Text);
+        double ageMax = Convert.ToDouble(classAgeMax.Text);
+        StringBuilder classDays = new StringBuilder();
+            classDays.Append(Convert.ToInt16(classMonday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classTuesday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classWednesday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classThursday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classFriday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classSaturday.Checked).ToString());
+            classDays.Append(Convert.ToInt16(classSunday.Checked).ToString());
+            string days = classDays.ToString();
+        cTimes classTime = new cTimes();
+            classTime.cStartTime = Convert.ToDateTime(classStartTime.Text);
+            classTime.cEndTime = Convert.ToDateTime(classEndTime.Text);
+            string time = JsonConvert.SerializeObject(classTime);
+        string location = classLocation.Text;
+        double category = Convert.ToDouble(classCategory.Text);
+        StringBuilder classSessions = new StringBuilder();
+            classSessions.Append(Convert.ToInt16(classSession1.Checked).ToString());
+            classSessions.Append(Convert.ToInt16(classSession2.Checked).ToString());
+            classSessions.Append(Convert.ToInt16(classSession3.Checked).ToString());
+            classSessions.Append(Convert.ToInt16(classSession4.Checked).ToString());
+            classSessions.Append(Convert.ToInt16(classSession5.Checked).ToString());
+            string sessions = classSessions.ToString();
+        string description = classDescription.Text;
+
 
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
@@ -128,22 +165,23 @@ public partial class settings_add_add_class : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcTrainers] SET deleted='0', id='" + finalGuid.ToString() + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', expectation='" + expectation + "', accomplishment='" + accomplishment + "', photo='" + photo + "', reflections='" + reflections + "' WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.CommandText = "UPDATE [bcRecClasses] SET id='" + finalGuid.ToString() + "', name='" + name + "', ageRange='" + ageRange + "', ageMin='" + ageMin + "', ageMax='" + ageMax + "', days='" + days + "', time='" + time + "', location='" + location + "', sessions='" + sessions + "', description='" + description + "', category='" + category + "', brochureId='" + bId + "'  WHERE [id]='" + finalGuid.ToString() + "'";
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO [bcTrainers](id, name, degree, years, yearsBC, expertise, reward, expectation, accomplishment, photo, reflections) Values (@id, @name, @degree, @years, @yearsBC, @expertise, @reward, @expectation, @accomp, @photo, @reflections)";
+                    cmd.CommandText = "INSERT INTO [bcRecClasses](id, name, ageRange, ageMin, ageMax, days, time, location, sessions, description, category, brochureId) Values (@id, @name, @ageRange, @ageMin, @ageMax, @days, @time, @location, @sessions, @description, @category, @brochureId)";
                     cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
                     cmd.Parameters.AddWithValue("@name", name);
-                    cmd.Parameters.AddWithValue("@degree", degree);
-                    cmd.Parameters.AddWithValue("@years", years);
-                    cmd.Parameters.AddWithValue("@yearsBC", yearsBC);
-                    cmd.Parameters.AddWithValue("@expertise", expertise);
-                    cmd.Parameters.AddWithValue("@reward", reward);
-                    cmd.Parameters.AddWithValue("@expectation", expectation);
-                    cmd.Parameters.AddWithValue("@accomp", accomplishment);
-                    cmd.Parameters.AddWithValue("@photo", photo);
-                    cmd.Parameters.AddWithValue("@reflections", reflections);
+                    cmd.Parameters.AddWithValue("@ageRange", ageRange);
+                    cmd.Parameters.AddWithValue("@ageMin", ageMin);
+                    cmd.Parameters.AddWithValue("@ageMax", ageMax);
+                    cmd.Parameters.AddWithValue("@days", days);
+                    cmd.Parameters.AddWithValue("@time", time);
+                    cmd.Parameters.AddWithValue("@location", location);
+                    cmd.Parameters.AddWithValue("@sessions", sessions);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@category", category);
+                    cmd.Parameters.AddWithValue("@brochureId", bId);
                 }
                 int rowsAffected = cmd.ExecuteNonQuery();
                 if (rowsAffected == 1)

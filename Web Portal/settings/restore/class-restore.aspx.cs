@@ -4,22 +4,23 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class settings_class_manager : System.Web.UI.Page
+public partial class settings_restore_class_restore : System.Web.UI.Page
 {
     public string bId;
     protected void Page_Load(object sender, EventArgs e)
     {
         bId = Request.QueryString["id"];
-        string v = Request.QueryString["remove"];
-
-        #region Remove a class
+        if (bId == null)
+        {
+            Response.Redirect("~/settings/youth-manager.aspx");
+        }
+        string v = Request.QueryString["restore"];
         if (v != null)
         {
             string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
@@ -34,17 +35,17 @@ public partial class settings_class_manager : System.Web.UI.Page
                 {
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.Text;
-                    cmd.CommandText = "UPDATE [bcRecClasses] SET [deleted]='1' WHERE [id]='" + v.ToUpper() + "'";
+                    cmd.CommandText = "UPDATE [bcRecClasses] SET [deleted]='0' WHERE [id]='" + v.ToUpper() + "'";
                     int rowsAffected = cmd.ExecuteNonQuery();
                     if (rowsAffected == 1)
                     {
                         //Success notification
-                        Debug.WriteLine("Updated successfully.");
+                        Debug.WriteLine("If");
                     }
                     else
                     {
                         //Error notification
-                        Debug.WriteLine("Update failed.");
+                        Debug.WriteLine("Else");
                     }
                 }
             }
@@ -64,55 +65,52 @@ public partial class settings_class_manager : System.Web.UI.Page
                 }
             }
         }
-        #endregion
 
-        StringBuilder classHtmlTable = new StringBuilder();
-        classHtmlTable.AppendLine("<table>");
+        StringBuilder classesHtmlTable = new StringBuilder();
+        classesHtmlTable.AppendLine("<table>");
 
-        classHtmlTable.AppendLine("<thead>");
-        classHtmlTable.AppendLine("<tr>");
-        classHtmlTable.AppendLine("<th style=\"width: 5%;\"></th>");
-        classHtmlTable.AppendLine("<th style=\"width: 30%;\"> Name</th>");
-        classHtmlTable.AppendLine("<th style=\"width: 20%;\"> Days</th>");
-        classHtmlTable.AppendLine("<th style=\"width: 30%;\"> Category</th>");
-        classHtmlTable.AppendLine("<th style=\"width: 15%;\"></th> ");
-        classHtmlTable.AppendLine("</tr>");
-        classHtmlTable.AppendLine("</thead>");
+        classesHtmlTable.AppendLine("<thead>");
+        classesHtmlTable.AppendLine("<tr>");
+        classesHtmlTable.AppendLine("<th style=\"width: 5%;\"></th>");
+        classesHtmlTable.AppendLine("<th style=\"width: 30%;\"> Name</th>");
+        classesHtmlTable.AppendLine("<th style=\"width: 20%;\"> Days</th>");
+        classesHtmlTable.AppendLine("<th style=\"width: 30%;\"> Category</th>");
+        classesHtmlTable.AppendLine("<th style=\"width: 15%;\"></th> ");
+        classesHtmlTable.AppendLine("</tr>");
+        classesHtmlTable.AppendLine("</thead>");
 
-        classHtmlTable.AppendLine("<tbody>");
+        classesHtmlTable.AppendLine("<tbody>");
 
         int num = 1;
 
-        List <bcRecClasses> data = GetData();
+        List<bcRecClasses> data = GetData();
         foreach (bcRecClasses t in data)
         {
-            classHtmlTable.AppendLine("<tr>");
-            classHtmlTable.AppendLine("<td>"+ num + "</td>");
-            classHtmlTable.AppendLine("<td>" + t.name + "</td>");
-            classHtmlTable.AppendLine("<td>" + DayBuilder.dayBuilder(t.days) + "</td>");
-            if (t.category == 1) { classHtmlTable.AppendLine("<td>Family Events</td>"); }
-            else if (t.category == 2) { classHtmlTable.AppendLine("<td>School Breaks</td>"); }
-            else if (t.category == 3) { classHtmlTable.AppendLine("<td>Recreation</td>"); }
-            else if (t.category == 4) { classHtmlTable.AppendLine("<td>Tennis</td>"); }
-            else if (t.category == 5) { classHtmlTable.AppendLine("<td>Swim</td>"); }
-            else if (t.category == 6) { classHtmlTable.AppendLine("<td>Basketball</td>"); }
-            else { classHtmlTable.AppendLine("<td></td>"); }
-            classHtmlTable.AppendLine("<td><a href=\"add/add-class.aspx?bid=" + bId + "&edit=" + t.id + "\">edit</a> / <a href=\"?id=" + bId + "&remove=" + t.id + "\">remove</a></td>");
-            classHtmlTable.AppendLine("</tr>");
+            classesHtmlTable.AppendLine("<tr>");
+            classesHtmlTable.AppendLine("<td>" + num + "</td>");
+            classesHtmlTable.AppendLine("<td>" + t.name + "</td>");
+            classesHtmlTable.AppendLine("<td>" + DayBuilder.dayBuilder(t.days) + "</td>");
+            if (t.category == 1) { classesHtmlTable.AppendLine("<td>Family Events</td>"); }
+            else if (t.category == 2) { classesHtmlTable.AppendLine("<td>School Breaks</td>"); }
+            else if (t.category == 3) { classesHtmlTable.AppendLine("<td>Recreation</td>"); }
+            else if (t.category == 4) { classesHtmlTable.AppendLine("<td>Tennis</td>"); }
+            else if (t.category == 5) { classesHtmlTable.AppendLine("<td>Swim</td>"); }
+            else if (t.category == 6) { classesHtmlTable.AppendLine("<td>Basketball</td>"); }
+            else { classesHtmlTable.AppendLine("<td></td>"); }
+            classesHtmlTable.AppendLine("<td><a href=\"../add/add-class.aspx?bid=" + bId + "&edit=" + t.id + "\">edit</a> / <a href=\"?id=" + bId + "&restore=" + t.id + "\">restore</a></td>");
+            classesHtmlTable.AppendLine("</tr>");
 
             num++;
         }
 
-        classHtmlTable.AppendLine("</tbody>");
+        classesHtmlTable.AppendLine("</tbody>");
+        classesHtmlTable.AppendLine("</table>");
 
-        classHtmlTable.AppendLine("</table>");
+        classesTable.Text = classesHtmlTable.ToString();
 
-        classTable.Text = classHtmlTable.ToString();
-
-        StringBuilder cOptions = new StringBuilder();
-        cOptions.AppendLine("<a href=\"add/add-class.aspx?bid=" + bId + "\" class=\"button\">Add Class</a>");
-        cOptions.AppendLine("<a href=\"restore/class-restore.aspx?id=" + bId + "\" class=\"button\">Restore Class</a>");
-        classOptions.Text = cOptions.ToString();
+        StringBuilder returnLink = new StringBuilder();
+        returnLink.AppendLine("<a href=\"../class-manager.aspx?id=" + bId + "\" class=\"button small icon fa-angle-left\">return to classes</a>");
+        returnToClasses.Text = returnLink.ToString();
     }
 
     public List<bcRecClasses> GetData()
@@ -124,7 +122,7 @@ public partial class settings_class_manager : System.Web.UI.Page
         {
             List<bcRecClasses> data = new List<bcRecClasses>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [bcRecClasses] WHERE ([brochureId]='" + bId + "' AND [deleted]='0') ORDER BY name", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcRecClasses] WHERE ([brochureId]='" + bId + "' AND [deleted]='1') ORDER BY name", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
