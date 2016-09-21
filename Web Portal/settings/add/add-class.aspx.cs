@@ -27,8 +27,8 @@ public partial class settings_add_add_class : System.Web.UI.Page
 
         className.Attributes.Add("placeholder", "Class name");
         classAgeRange.Attributes.Add("placeholder", "i.e. \"Ages 3-6\"");
-        classStartTime.Attributes.Add("placeholder", "24hr clock value");
-        classEndTime.Attributes.Add("placeholder", "24hr clock value");
+        classStartTime.Attributes.Add("placeholder", "i.e 5PM or 17:00");
+        classEndTime.Attributes.Add("placeholder", "i.e 5PM or 17:00");
 
         StringBuilder classH1 = new StringBuilder();
 

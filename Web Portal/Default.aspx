@@ -88,8 +88,8 @@
 						  <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
 							<div class="features">
 								<section><a href="settings/youth-manager.aspx">
-									<span class="icon major fa-list"></span>
-									<h3>Youth Manager</h3>
+									<span class="icon major fa-child"></span>
+									<h3>Rec Youth Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
 								<section><a href="settings/trainer-manager.aspx">

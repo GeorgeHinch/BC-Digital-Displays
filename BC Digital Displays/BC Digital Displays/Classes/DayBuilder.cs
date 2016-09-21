@@ -35,32 +35,32 @@ namespace BC_Digital_Displays.Classes
                     returnString.Append("M");
                 }
 
-                else if (d[1] == '1')
+                if (d[1] == '1')
                 {
                     returnString.Append("Tu");
                 }
 
-                else if (d[2] == '1')
+                if (d[2] == '1')
                 {
                     returnString.Append("W");
                 }
 
-                else if (d[3] == '1')
+                if (d[3] == '1')
                 {
                     returnString.Append("Th");
                 }
 
-                else if (d[4] == '1')
+                if (d[4] == '1')
                 {
                     returnString.Append("F");
                 }
 
-                else if (d[5] == '1')
+                if (d[5] == '1')
                 {
                     returnString.Append("Sa");
                 }
 
-                else if (d[6] == '1')
+                if (d[6] == '1')
                 {
                     returnString.Append("Su");
                 }
