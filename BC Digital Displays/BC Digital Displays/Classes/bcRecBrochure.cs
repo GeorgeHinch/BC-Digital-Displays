@@ -27,5 +27,8 @@ namespace BC_Digital_Displays.Classes
 
         [DataMember]
         public string sessions { get; set; }
+
+        [DataMember]
+        public bool isActive { get; set; }
     }
 }

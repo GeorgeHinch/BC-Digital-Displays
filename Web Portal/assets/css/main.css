@@ -2298,6 +2298,13 @@
 		form .field {
 			margin: 0 0 1em 0;
 		}
+            form .field.mainField {
+				padding: 0 0 3em 0;
+			}
+
+            form .field.spaceBelow {
+				padding: 0 0 2em 0;
+			}
 
 			form .field.half {
 				width: 50%;
