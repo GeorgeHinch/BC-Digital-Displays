@@ -55,4 +55,14 @@ namespace BC_Digital_Displays.Classes
         [DataMember]
         public string brochureID { get; set; }
     }
+
+    [DataContract]
+    public class cTimes
+    {
+        [DataMember]
+        public DateTime cStartTime { get; set; }
+
+        [DataMember]
+        public DateTime cEndTime { get; set; }
+    }
 }

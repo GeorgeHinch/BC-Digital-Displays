@@ -26,28 +26,20 @@
         </Grid.ColumnDefinitions>
 
         <Pivot Grid.ColumnSpan="2">
-            <PivotItem Header="Family Events">
-                <Brochure:BrochureView />
-            </PivotItem>
-
-            <PivotItem Header="School Breaks">
-                <Brochure:BrochureView />
-            </PivotItem>
-
             <PivotItem Header="Recreation">
-                <Brochure:BrochureView />
+                <Brochure:BrochureView x:Name="BrochureRec" BrochureSection="3" />
             </PivotItem>
 
             <PivotItem Header="Tennis">
-                <Brochure:BrochureView />
+                <Brochure:BrochureView x:Name="BrochureTennis" BrochureSection="4" />
             </PivotItem>
 
             <PivotItem Header="Swim">
-                <Brochure:BrochureView />
+                <Brochure:BrochureView x:Name="BrochureSwim" BrochureSection="5" />
             </PivotItem>
 
             <PivotItem Header="Basketball">
-                <Brochure:BrochureView />
+                <Brochure:BrochureView x:Name="BrochureBasketball" BrochureSection="6" />
             </PivotItem>
         </Pivot>
 

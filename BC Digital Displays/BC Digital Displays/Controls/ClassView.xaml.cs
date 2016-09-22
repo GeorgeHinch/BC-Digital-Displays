@@ -30,22 +30,17 @@ namespace BC_Digital_Displays.Controls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DepartmentType == "0")
+            if (DepartmentType == 5)
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Aquatics"];
             }
 
-            if (DepartmentType == "1")
-            {
-                Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_MemberEvents"];
-            }
-
-            if (DepartmentType == "2")
+            if (DepartmentType == 3)
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Recreation"];
             }
 
-            if (DepartmentType == "3")
+            if (DepartmentType == 4)
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Tennis"];
             }
@@ -106,14 +101,14 @@ namespace BC_Digital_Displays.Controls
 
         public static readonly DependencyProperty DepartmentTypeProperty = DependencyProperty.Register(
             "DepartmentType",                   // The name of the DependencyProperty
-            typeof(string),               // The type of the DependencyProperty
+            typeof(double),               // The type of the DependencyProperty
             typeof(ClassView),     // The type of the owner of the DependencyProperty
             null
         );
 
-        public string DepartmentType
+        public double DepartmentType
         {
-            get { return (string)GetValue(DepartmentTypeProperty); }
+            get { return (double)GetValue(DepartmentTypeProperty); }
             set { SetValue(DepartmentTypeProperty, value); }
         }
         #endregion

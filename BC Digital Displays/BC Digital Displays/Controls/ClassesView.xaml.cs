@@ -1,9 +1,12 @@
-﻿using System;
+﻿using BC_Digital_Displays.Classes;
+using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -28,53 +31,86 @@ namespace BC_Digital_Displays.Controls
             this.Loaded += UserControl_Loaded;
         }
 
+        public string bID;
+        public double bCAT;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Checked: " + this.FilterChecked + " |");
-            if (this.FilterChecked == "Monday")
+            bID = this.BrochureID;
+            bCAT = this.BrochureSection;
+
+            var task = Task.Run(async () => { await loadClassCards(); });
+            task.Wait();
+
+            IEnumerable<bcRecClasses> itemsControl = items;
+            foreach (bcRecClasses i in items)
             {
-                Debug.WriteLine("YAYYYYYYYY!!!");
+                ClassView classView = new ClassView();
+                classView.ClassName = i.name;
+                classView.ClassDay = DayBuilder.dayBuilder(i.days) + ",";
+                classView.ClassTime = TimeBuilder.timeBuilder(i.time);
+                classView.DepartmentType = i.category;
+                classView.Tag = i;
+
+                Group_1.Children.Add(classView);
             }
         }
 
+        #region Load class cards
+        private MobileServiceCollection<bcRecClasses, bcRecClasses> items;
+        private IMobileServiceTable<bcRecClasses> bcRecClassesTable = App.MobileService.GetTable<bcRecClasses>();
+        public async Task loadClassCards()
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                items = await bcRecClassesTable
+                    .Where(aBrochure => aBrochure.brochureID == bID)
+                    .Where(aBrochure => aBrochure.category == bCAT)
+                    .Where(aBrochure => aBrochure.deleted == false)
+                    .ToCollectionAsync();
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+                Debug.WriteLine("Exception: " + exception.Message + " | ");
+            }
+
+            if (exception != null)
+            {
+                Debug.WriteLine("Exception: " + exception.Message + " | ");
+            }
+            else
+            {
+                Debug.WriteLine("Made it here;");
+            }
+        }
+        #endregion
+
         #region Dependency Properties
-        public static readonly DependencyProperty IssueProperty = DependencyProperty.Register(
-            "Issue",                   // The name of the DependencyProperty
+        public static readonly DependencyProperty BrochureIDProperty = DependencyProperty.Register(
+            "Brochure ID",                   // The name of the DependencyProperty
             typeof(string),               // The type of the DependencyProperty
             typeof(ClassesView),     // The type of the owner of the DependencyProperty
             null
         );
 
-        public string Issue
+        public string BrochureID
         {
-            get { return (string)GetValue(IssueProperty); }
-            set { SetValue(IssueProperty, value); }
+            get { return (string)GetValue(BrochureIDProperty); }
+            set { SetValue(BrochureIDProperty, value); }
         }
 
-        public static readonly DependencyProperty DeptTabProperty = DependencyProperty.Register(
-            "DeptTab",                   // The name of the DependencyProperty
-            typeof(string),               // The type of the DependencyProperty
+        public static readonly DependencyProperty BrochureSectionProperty = DependencyProperty.Register(
+            "Brochure Section",                   // The name of the DependencyProperty
+            typeof(double),               // The type of the DependencyProperty
             typeof(ClassesView),     // The type of the owner of the DependencyProperty
             null
         );
 
-        public string DeptTab
+        public double BrochureSection
         {
-            get { return (string)GetValue(DeptTabProperty); }
-            set { SetValue(DeptTabProperty, value); }
-        }
-
-        public static readonly DependencyProperty FilterCheckedProperty = DependencyProperty.Register(
-            "FilterChecked",                   // The name of the DependencyProperty
-            typeof(string),               // The type of the DependencyProperty
-            typeof(ClassesView),     // The type of the owner of the DependencyProperty
-            null
-        );
-
-        public string FilterChecked
-        {
-            get { return (string)GetValue(FilterCheckedProperty); }
-            set { SetValue(FilterCheckedProperty, value); }
+            get { return (double)GetValue(BrochureSectionProperty); }
+            set { SetValue(BrochureSectionProperty, value); }
         }
         #endregion
     }
