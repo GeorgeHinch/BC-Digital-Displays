@@ -52,14 +52,39 @@ namespace BC_Digital_Displays.Controls
                 classView.Tag = i;
 
                 #region Sort class cards into groups
-                if (0 < i.ageMin && i.ageMin < 6)
+                if (i.ageMin == 0 && i.ageMax == 0)
                 {
                     // Group_1.Children.Add(classView);
+                }
 
-                    if (i.ageMax > 6)
+                if (0 < i.ageMin && i.ageMin <= 6)
+                {
+                    // Group_2.Children.Add(classView);
+
+                    if (i.ageMax > 6 && i.ageMax < 10)
                     {
-                        // Group_2.Children.Add(classView);
+                        // Group_3.Children.Add(classView);
                     }
+
+                    if (i.ageMax > 10 && i.ageMax <= 17)
+                    {
+                        // Group_4.Children.Add(classView);
+                    }
+                }
+
+                if (6 < i.ageMin && i.ageMin <= 10)
+                {
+                    // Group_3.Children.Add(classView);
+
+                    if (i.ageMax > 10 && i.ageMax <= 17)
+                    {
+                        // Group_4.Children.Add(classView);
+                    }
+                }
+
+                if (10 < i.ageMin)
+                {
+                    // Group_4.Children.Add(classView);
                 }
                 #endregion
 
