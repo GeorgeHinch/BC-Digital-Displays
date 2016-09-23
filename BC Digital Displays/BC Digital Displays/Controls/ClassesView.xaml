@@ -11,9 +11,9 @@
         <StackPanel Orientation="Vertical">
             <Grid Margin="0,50,0,0">
                 <Ellipse Width="6" Height="6" Margin="7,0,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{StaticResource UI_BorderBrush}" />
-                <Line Y2="{Binding ActualHeight, ElementName=Group_1, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                <Line x:Name="Group1_Line" Y2="{Binding ActualHeight, ElementName=Group_1, Mode=TwoWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-                <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_1_SizeChanged">
                     <TextBlock Text="Ages 3-6" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="1"/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="0"/>
@@ -22,18 +22,18 @@
             </Grid>
 
             <Grid Margin="0,50,0,0">
-                <Line Y2="{Binding ActualHeight, ElementName=Group_2, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                <Line x:Name="Group2_Line" Y2="{Binding ActualHeight, ElementName=Group_2, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-                <StackPanel x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                <StackPanel x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_2_SizeChanged">
                     <TextBlock Text="Ages 7-9" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="2"/>
                 </StackPanel>
             </Grid>
 
             <Grid Margin="0,50,0,0">
-                <Line Y2="{Binding ActualHeight, ElementName=Group_3, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                <Line x:Name="Group3_Line" Y2="{Binding ActualHeight, ElementName=Group_3, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-                <StackPanel x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                <StackPanel x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_3_SizeChanged">
                     <TextBlock Text="Ages 10-14" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" ClassTime="8:45 - 10:00 a.m."/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="3"/>
@@ -41,9 +41,9 @@
             </Grid>
 
             <Grid Margin="0,50,0,0">
-                <Line Y2="{Binding ActualHeight, ElementName=Group_4, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                <Line x:Name="Group4_Line" Y2="{Binding ActualHeight, ElementName=Group_4, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-                <StackPanel x:Name="Group_4" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0">
+                <StackPanel x:Name="Group_4" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_4_SizeChanged">
                     <TextBlock Text="Ages 10-14" Foreground="{StaticResource UI_BorderBrush}"  />
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" ClassTime="8:45 - 10:00 a.m."/>
                     <local:ClassView ClassName="Sample Class Name" ClassDay="M, W, F" DepartmentType="3"/>

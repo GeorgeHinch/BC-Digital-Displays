@@ -51,9 +51,43 @@ namespace BC_Digital_Displays.Controls
                 classView.DepartmentType = i.category;
                 classView.Tag = i;
 
+                #region Sort class cards into groups
+                if (0 < i.ageMin && i.ageMin < 6)
+                {
+                    // Group_1.Children.Add(classView);
+
+                    if (i.ageMax > 6)
+                    {
+                        // Group_2.Children.Add(classView);
+                    }
+                }
+                #endregion
+
                 Group_1.Children.Add(classView);
             }
         }
+
+        #region Update UI line size based
+        private void Group_1_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group1_Line.Y2 = Group_1.ActualHeight;
+        }
+
+        private void Group_2_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group2_Line.Y2 = Group_2.ActualHeight;
+        }
+
+        private void Group_3_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group3_Line.Y2 = Group_3.ActualHeight;
+        }
+
+        private void Group_4_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group4_Line.Y2 = Group_4.ActualHeight;
+        }
+        #endregion
 
         #region Load class cards
         private MobileServiceCollection<bcRecClasses, bcRecClasses> items;
