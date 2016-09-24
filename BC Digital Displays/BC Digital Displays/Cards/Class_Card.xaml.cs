@@ -26,14 +26,7 @@ namespace BC_Digital_Displays.Cards
         public Class_Card()
         {
             this.InitializeComponent();
-
-            //RecClass rec = (RecClass)this.Tag;
-
-            //Class_Name.Text = rec.name;
-            //string dayString = dayBuilder(rec.days);
-            //Class_Day.Text = "Ages: " + rec.age + ", " + dayString + ", " + rec.time;
-
-            //Class_Description.Text = rec.description;
+            this.Loaded += UserControl_Loaded;
         }
 
         private void SendEmail_Tapped(object sender, TappedRoutedEventArgs e)
@@ -50,6 +43,14 @@ namespace BC_Digital_Displays.Cards
             neededGrid.Visibility = Visibility.Visible;
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Class_Name.Text = this.ClassName;
+            Class_AgeDayTime.Text = this.ClassAgeDayTime;
+            Class_Sessions.Text = this.ClassSession;
+            Class_Description.Text = this.ClassDescription;
+        }
+
         private void Close_Tapped(object sender, TappedRoutedEventArgs e)
         {
             // track a custom event
@@ -57,5 +58,59 @@ namespace BC_Digital_Displays.Cards
 
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
         }
+
+        #region Dependency Properties
+        public static readonly DependencyProperty ClassNameProperty = DependencyProperty.Register(
+            "ClassName",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(Class_Preview),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string ClassName
+        {
+            get { return (string)GetValue(ClassNameProperty); }
+            set { SetValue(ClassNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClassAgeDayTimeProperty = DependencyProperty.Register(
+            "ClassAgeDayTime",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(Class_Preview),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string ClassAgeDayTime
+        {
+            get { return (string)GetValue(ClassAgeDayTimeProperty); }
+            set { SetValue(ClassAgeDayTimeProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClassSessionProperty = DependencyProperty.Register(
+            "ClassSession",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(Class_Preview),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string ClassSession
+        {
+            get { return (string)GetValue(ClassSessionProperty); }
+            set { SetValue(ClassSessionProperty, value); }
+        }
+
+        public static readonly DependencyProperty ClassDescriptionProperty = DependencyProperty.Register(
+            "ClassDescritpion",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(Class_Preview),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string ClassDescription
+        {
+            get { return (string)GetValue(ClassDescriptionProperty); }
+            set { SetValue(ClassDescriptionProperty, value); }
+        }
+        #endregion
     }
 }

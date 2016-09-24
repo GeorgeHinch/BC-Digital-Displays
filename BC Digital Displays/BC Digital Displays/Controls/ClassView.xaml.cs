@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BC_Digital_Displays.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -44,6 +45,18 @@ namespace BC_Digital_Displays.Controls
             {
                 Class_Icon.Foreground = (SolidColorBrush)Application.Current.Resources["Dept_Tennis"];
             }
+        }
+
+        private void MoreInfo_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            bcRecClasses thisClass = (bcRecClasses)this.Tag;
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + thisClass.name + ") Open: " + thisClass.name, (long)thisClass.category);
+
+            YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Visible;
+            // TODO: PASS PARAMETER
+            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Class_Preview), this.Tag);
         }
 
         #region Dependency Properties
@@ -112,15 +125,5 @@ namespace BC_Digital_Displays.Controls
             set { SetValue(DepartmentTypeProperty, value); }
         }
         #endregion
-
-        private void MoreInfo_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            // track a custom event
-            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + this.Name + ") Open: " + this.Name, 0);
-
-            YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Visible;
-            // TODO: PASS PARAMETER
-            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Class_Preview), this.Tag);
-        }
     }
 }

@@ -130,6 +130,7 @@
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\RecClass.cs" />
     <Compile Include="Classes\RecSession.cs" />
+    <Compile Include="Classes\SessionBuilder.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\TimeBuilder.cs" />
     <Compile Include="Classes\Trainers.cs" />

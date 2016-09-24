@@ -26,12 +26,22 @@ namespace BC_Digital_Displays
     public sealed partial class Class_Preview : Page
     {
         public static Class_Preview classPreview;
+
+        bcRecClasses thisClass;
+        #region Load Class Preview from Card.Tag on Page Load
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            thisClass = (bcRecClasses)e.Parameter;
+            Card_Template.ClassName = thisClass.name;
+            Card_Template.ClassAgeDayTime = thisClass.ageRange + ", " + DayBuilder.dayBuilder(thisClass.days) + ", " + TimeBuilder.timeBuilder(thisClass.time);
+            Card_Template.ClassSession = SessionBuilder.sessionBuilder(thisClass.sessions);
+            Card_Template.ClassDescription = thisClass.description;
+        }
+        #endregion
         public Class_Preview()
         {
             this.InitializeComponent();
-            //RecClass rec = (RecClass)this.Tag;
-            
-            
+
             Gradient_Background.Blur(duration: 10, delay: 0, value: 10).Start();
         }
 

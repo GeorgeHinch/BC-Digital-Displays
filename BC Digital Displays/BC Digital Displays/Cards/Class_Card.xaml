@@ -13,7 +13,7 @@
         <Grid Margin="30">
             <StackPanel Orientation="Vertical">
                 <TextBlock x:Name="Class_Name" FontSize="29.333" Text="Sample Name" Foreground="{StaticResource Text_Title}" Margin="0,0,0,5"/>
-                <TextBlock x:Name="Class_Day" Text="Ages 3-6, M-F, 2-2:30 p.m." Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18"/>
+                <TextBlock x:Name="Class_AgeDayTime" Text="Ages 3-6, M-F, 2-2:30 p.m." Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18"/>
                 <TextBlock x:Name="Class_Sessions" Text="Session: 1, 3, 5" Foreground="{StaticResource Text_Detail}" FontStyle="Italic" FontWeight="Light" FontSize="18"/>
 
                 <TextBlock x:Name="Class_Description" FontSize="21.333" Text="This is a sample of a description. It should be multiple lines long and break after. It will continue to get longer and should wrap down to the next line." Foreground="{StaticResource Text_Body}" TextWrapping="Wrap" Margin="0,15,0,25"/>

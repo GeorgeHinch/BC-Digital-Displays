@@ -15,11 +15,11 @@ namespace BC_Digital_Displays.Classes
 
             if (t.cStartTime.ToString("tt") == t.cEndTime.ToString("tt"))
             {
-                return t.cStartTime.ToString("hh:mm") + " - " + t.cEndTime.ToString("hh:mm tt");
+                return t.cStartTime.ToString("h:mm") + " - " + t.cEndTime.ToString("h:mm tt");
             }
             else
             {
-                return t.cStartTime.ToString("hh:mm tt") + " - " + t.cEndTime.ToString("hh:mm tt");
+                return t.cStartTime.ToString("h:mm tt") + " - " + t.cEndTime.ToString("h:mm tt");
             }
         }
     }
