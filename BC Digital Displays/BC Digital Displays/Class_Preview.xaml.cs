@@ -84,62 +84,9 @@ namespace BC_Digital_Displays
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "emailSent_click", "(" + thisClass.name + ") Email: " + thisClass.name, (long)thisClass.category);
 
-            string email = DataBuilder.emailBuilder(thisClass, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked)
-            StringBuilder sessionSelected = new StringBuilder();
-            if ((bool)tbSession1.IsChecked)
-            {
-                sessionSelected.AppendLine("<b>" + "//empty" + "</b><br />");
-            }
-            else
-            {
-                sessionSelected.AppendLine("//empty" + "<br />");
-            }
-
-            if ((bool)tbSession2.IsChecked)
-            {
-                sessionSelected.AppendLine("<b>" + "//empty" + "</b><br />");
-            }
-            else
-            {
-                sessionSelected.AppendLine("//empty" + "<br />");
-            }
-
-            if ((bool)tbSession3.IsChecked)
-            {
-                sessionSelected.AppendLine("<b>" + "//empty" + "</b><br />");
-            }
-            else
-            {
-                sessionSelected.AppendLine("//empty" + "<br />");
-            }
-
-            if ((bool)tbSession4.IsChecked)
-            {
-                sessionSelected.AppendLine("<b>" + "//empty" + "</b><br />");
-            }
-            else
-            {
-                sessionSelected.AppendLine("//empty" + "<br />");
-            }
-
-            if ((bool)tbSession5.IsChecked)
-            {
-                sessionSelected.AppendLine("<b>" + "//empty" + "</b><br />");
-            }
-            else
-            {
-                sessionSelected.AppendLine("//empty" + "<br />");
-            }
-
-            /*SmtpClient client = new SmtpClient("example.com", 25, false, "info@example.com", "Pa$$w0rd");
-            EmailMessage emailMessage = new EmailMessage();
-            
-            emailMessage.To.Add(new EmailRecipient());
-            emailMessage.Subject = "Subject line of your message";
-            emailMessage.Body = "This is an email sent from a WinRT app!";
-            emailMessage.Attachments.Add(null);
-
-            await client.SendMail(emailMessage);/**/
+            string emailSubject = "Bellevue Club Details for " + thisClass.name;
+            string emailBody = DataBuilder.emailRecClassBuilder(thisClass, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
+            EmailSender.emailSender(userEmailTB.Text, emailSubject, emailBody, null);
 
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;

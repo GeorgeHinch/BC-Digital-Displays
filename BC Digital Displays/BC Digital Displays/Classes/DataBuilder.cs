@@ -72,8 +72,8 @@ namespace BC_Digital_Displays.Classes
         }
         #endregion
 
-        #region Builds email string
-        public static string emailBuilder(bcRecClasses thisClass, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
+        #region Builds email string for classes
+        public static string emailRecClassBuilder(bcRecClasses thisClass, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
         {
             StringBuilder returnString = new StringBuilder();
 
@@ -124,6 +124,13 @@ namespace BC_Digital_Displays.Classes
             }
 
             return returnString.ToString();
+        }
+        #endregion
+
+        #region Builds ics file from string
+        public static string icsBuilder()
+        {
+            return null;
         }
         #endregion
 
