@@ -194,8 +194,19 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if (isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcEvents] SET id='" + finalGuid.ToString() + "', name='" + name + "', allDay='" + allDay + "', orderTime='" + orderTime + "', startTime='" + dtFormatStart + "', endTime='" + dtFormatEnd + "', location='" + location + "', department='" + department + "', instructor='" + instructor + "', price='" + price + "', description='" + description + "', flier='" + flier + "' WHERE [id]='" + finalGuid.ToString() + "'";
-
+                    cmd.CommandText = "UPDATE [bcEvents] SET id = @id, name = @name, allDay = @allDay, orderTime = @orderTime, startTime = @startTime, endTime = @endTime, location = @location, department = @department, instructor = @instructor, price = @price, description = @description, flier = @flier WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@allDay", allDay);
+                    cmd.Parameters.AddWithValue("@order", orderTime);
+                    cmd.Parameters.AddWithValue("@start", dtFormatStart);
+                    cmd.Parameters.AddWithValue("@end", dtFormatEnd);
+                    cmd.Parameters.AddWithValue("@location", location);
+                    cmd.Parameters.AddWithValue("@department", department);
+                    cmd.Parameters.AddWithValue("@instructor", instructor);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@flier", flier);
                 }
                 else
                 {

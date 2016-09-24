@@ -41,7 +41,7 @@ public partial class settings_add_add_class : System.Web.UI.Page
             classH1.AppendLine("<h1 class=\"major\">Update Class</h1>");
             pageH1.Text = classH1.ToString();
             SaveForm.Text = "Update";
-            SaveForm.PostBackUrl = "?edit=" + finalGuid + "&update=true";
+            SaveForm.PostBackUrl = "?bid=" + bId + "&edit=" + finalGuid + "&update=true";
             if (u != "true")
             {
                 LoadClassInfo(v);
@@ -165,7 +165,19 @@ public partial class settings_add_add_class : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcRecClasses] SET id='" + finalGuid.ToString() + "', name='" + name + "', ageRange='" + ageRange + "', ageMin='" + ageMin + "', ageMax='" + ageMax + "', days='" + days + "', time='" + time + "', location='" + location + "', sessions='" + sessions + "', description='" + description + "', category='" + category + "', brochureId='" + bId + "'  WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.CommandText = "UPDATE [bcRecClasses] SET id = @id, name = @name, ageRange = @ageRange, ageMin = @ageMin, ageMax = @ageMax, days = @days, time = @time, location = @location, sessions = @sessions, description = @description, category = @category, brochureId = @brochureId WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@ageRange", ageRange);
+                    cmd.Parameters.AddWithValue("@ageMin", ageMin);
+                    cmd.Parameters.AddWithValue("@ageMax", ageMax);
+                    cmd.Parameters.AddWithValue("@days", days);
+                    cmd.Parameters.AddWithValue("@time", time);
+                    cmd.Parameters.AddWithValue("@location", location);
+                    cmd.Parameters.AddWithValue("@sessions", sessions);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@category", category);
+                    cmd.Parameters.AddWithValue("@brochureId", bId);
                 }
                 else
                 {

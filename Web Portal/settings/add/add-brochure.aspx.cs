@@ -120,7 +120,9 @@ public partial class settings_add_add_brochure : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcRecBrochure] SET  name='" + name + "', sessions='" + sessions + "' WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.CommandText = "UPDATE [bcRecBrochure] SET  name = @name, sessions = @sessions WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@sessions", sessions);
                 }
                 else
                 {

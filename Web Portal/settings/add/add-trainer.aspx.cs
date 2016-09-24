@@ -128,7 +128,18 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if(isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcTrainers] SET deleted='0', id='" + finalGuid.ToString() + "', name='" + name + "', degree='" + degree + "', years='" + years + "', yearsBC='" + yearsBC + "', expertise='" + expertise + "', reward='" + reward + "', expectation='" + expectation + "', accomplishment='" + accomplishment + "', photo='" + photo + "', reflections='" + reflections + "' WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.CommandText = "UPDATE [bcTrainers] SET id = @id, name = @name, degree = @degree, years = @years, yearsBC = @yearsBC, expertise = @expertise, reward = @reward, expectation = @expectation, accomplishment = @accomp, photo = @photo, reflections = @reflections WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@degree", degree);
+                    cmd.Parameters.AddWithValue("@years", years);
+                    cmd.Parameters.AddWithValue("@yearsBC", yearsBC);
+                    cmd.Parameters.AddWithValue("@expertise", expertise);
+                    cmd.Parameters.AddWithValue("@reward", reward);
+                    cmd.Parameters.AddWithValue("@expectation", expectation);
+                    cmd.Parameters.AddWithValue("@accomp", accomplishment);
+                    cmd.Parameters.AddWithValue("@photo", photo);
+                    cmd.Parameters.AddWithValue("@reflections", reflections);
                 }
                 else
                 {
@@ -163,7 +174,7 @@ public partial class settings_add_add_trainer : System.Web.UI.Page
             //log error 
             //display friendly error to user
             Debug.WriteLine("Ex: " + ex.Message + " |");
-            throw;
+            throw ex;
         }
         finally
         {
