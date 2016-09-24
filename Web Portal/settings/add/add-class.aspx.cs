@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -136,8 +137,8 @@ public partial class settings_add_add_class : System.Web.UI.Page
             classDays.Append(Convert.ToInt16(classSunday.Checked).ToString());
             string days = classDays.ToString();
         cTimes classTime = new cTimes();
-            classTime.cStartTime = Convert.ToDateTime(classStartTime.Text);
-            classTime.cEndTime = Convert.ToDateTime(classEndTime.Text);
+            classTime.cStartTime = Convert.ToDateTime(classStartTime.Text.Replace(".", string.Empty));
+            classTime.cEndTime = Convert.ToDateTime(classEndTime.Text.Replace(".", string.Empty));
             string time = JsonConvert.SerializeObject(classTime);
         string location = classLocation.Text;
         double category = Convert.ToDouble(classCategory.Text);
@@ -148,7 +149,8 @@ public partial class settings_add_add_class : System.Web.UI.Page
             classSessions.Append(Convert.ToInt16(classSession4.Checked).ToString());
             classSessions.Append(Convert.ToInt16(classSession5.Checked).ToString());
             string sessions = classSessions.ToString();
-        string description = classDescription.Text;
+        string descriptionReg = classDescription.Text;
+        string description = Regex.Replace(descriptionReg, @"\t|\n|\r", " ");
 
 
 
@@ -175,7 +177,7 @@ public partial class settings_add_add_class : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@time", time);
                     cmd.Parameters.AddWithValue("@location", location);
                     cmd.Parameters.AddWithValue("@sessions", sessions);
-                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@description", description.Replace(@"\t|\n|\r", " "));
                     cmd.Parameters.AddWithValue("@category", category);
                     cmd.Parameters.AddWithValue("@brochureId", bId);
                 }
