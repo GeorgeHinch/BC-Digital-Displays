@@ -46,8 +46,8 @@ namespace BC_Digital_Displays.Controls
             {
                 ClassView classView = new ClassView();
                 classView.ClassName = i.name;
-                classView.ClassDay = DayBuilder.dayBuilder(i.days) + ",";
-                classView.ClassTime = TimeBuilder.timeBuilder(i.time);
+                classView.ClassDay = DataBuilder.dayBuilder(i.days) + ",";
+                classView.ClassTime = DataBuilder.timeBuilder(i.time);
                 classView.DepartmentType = i.category;
                 classView.Tag = i;
 

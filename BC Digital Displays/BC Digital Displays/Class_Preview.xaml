@@ -54,11 +54,11 @@
                 <TextBox x:Name="userEmailTB" Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}" Margin="0,0,0,25"/>
                 <TextBlock Text="Select interested sessions: " Foreground="White" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <ToggleButton Content="1" Style="{StaticResource SessionToggleButtonStyles}"/>
-                    <ToggleButton Content="2" Style="{StaticResource SessionToggleButtonStyles}"/>
-                    <ToggleButton Content="3" Style="{StaticResource SessionToggleButtonStyles}" IsEnabled="False"/>
-                    <ToggleButton Content="4" Style="{StaticResource SessionToggleButtonStyles}"/>
-                    <ToggleButton Content="5" Style="{StaticResource SessionToggleButtonStyles}" IsEnabled="False"/>
+                    <ToggleButton x:Name="tbSession1" Content="1" Style="{StaticResource SessionToggleButtonStyles}"/>
+                    <ToggleButton x:Name="tbSession2" Content="2" Style="{StaticResource SessionToggleButtonStyles}"/>
+                    <ToggleButton x:Name="tbSession3" Content="3" Style="{StaticResource SessionToggleButtonStyles}"/>
+                    <ToggleButton x:Name="tbSession4" Content="4" Style="{StaticResource SessionToggleButtonStyles}"/>
+                    <ToggleButton x:Name="tbSession5" Content="5" Style="{StaticResource SessionToggleButtonStyles}"/>
                 </StackPanel>
                 <Button HorizontalAlignment="Center" Margin="0,40,0,0" Tapped="EmailSent_Tapped">
                     <StackPanel Orientation="Horizontal">

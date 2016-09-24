@@ -124,15 +124,12 @@
     <Compile Include="Classes\bcRecClasses.cs" />
     <Compile Include="Classes\bcSettings.cs" />
     <Compile Include="Classes\bcTrainers.cs" />
-    <Compile Include="Classes\DayBuilder.cs" />
-    <Compile Include="Classes\EmailBuilder.cs" />
+    <Compile Include="Classes\DataBuilder.cs" />
     <Compile Include="Classes\Machines.cs" />
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\RecClass.cs" />
     <Compile Include="Classes\RecSession.cs" />
-    <Compile Include="Classes\SessionBuilder.cs" />
     <Compile Include="Classes\Settings.cs" />
-    <Compile Include="Classes\TimeBuilder.cs" />
     <Compile Include="Classes\Trainers.cs" />
     <Compile Include="Class_Preview.xaml.cs">
       <DependentUpon>Class_Preview.xaml</DependentUpon>
