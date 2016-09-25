@@ -128,6 +128,7 @@
     <Compile Include="Classes\EmailSender.cs" />
     <Compile Include="Classes\PrecorStatus.cs" />
     <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Classes\Trainers.cs" />
     <Compile Include="Class_Preview.xaml.cs">
       <DependentUpon>Class_Preview.xaml</DependentUpon>
     </Compile>

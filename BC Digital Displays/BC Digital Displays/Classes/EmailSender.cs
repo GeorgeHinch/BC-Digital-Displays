@@ -23,5 +23,10 @@ namespace BC_Digital_Displays.Classes
 
             await client.SendMail(emailMessage);/**/
         }
+
+        public static async Task emailSender(string recipient, string subject, string body, string attatchments)
+        {
+            // TODO: send email with event
+        }
     }
 }

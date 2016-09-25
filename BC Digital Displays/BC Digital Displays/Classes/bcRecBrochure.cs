@@ -31,4 +31,17 @@ namespace BC_Digital_Displays.Classes
         [DataMember]
         public bool isActive { get; set; }
     }
+
+    [DataContract]
+    public class bcSessions
+    {
+        [DataMember]
+        public string name { get; set; }
+
+        [DataMember]
+        public string start { get; set; }
+
+        [DataMember]
+        public string end { get; set; }
+    }
 }
