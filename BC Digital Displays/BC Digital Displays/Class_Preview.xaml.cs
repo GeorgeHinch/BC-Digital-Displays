@@ -92,8 +92,8 @@ namespace BC_Digital_Displays
 
             string emailSubject = "Bellevue Club Details for " + thisClass.name;
             string emailBody = DataBuilder.emailRecClassBuilder(thisClass, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
-            List<string> attachments = DataBuilder.icsBuilder(thisClass, thisBrochure, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
-            EmailSender.emailSender(userEmailTB.Text, emailSubject, emailBody, attachments);
+            List<string> emailAttachments = DataBuilder.icsBuilder(thisClass, thisBrochure, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
+            EmailSender.emailSender(userEmailTB.Text, emailSubject, emailBody, thisClass.name, emailAttachments);
 
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
             YouthBrochure.youthBrochure.classCard_Frame.Visibility = Visibility.Collapsed;
@@ -108,8 +108,6 @@ namespace BC_Digital_Displays
             MobileServiceInvalidOperationException exception = null;
             try
             {
-                // This code refreshes the entries in the list view by querying the TodoItems table.
-                // The query excludes completed TodoItems
                 items = await bcRecBrochureTable
                     .Where(aBrochure => aBrochure.isActive == true)
                     .ToCollectionAsync();

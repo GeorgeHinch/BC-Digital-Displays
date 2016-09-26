@@ -236,7 +236,6 @@ namespace BC_Digital_Displays.Classes
         // Builds ics file for single events
         public static string icsBuilder(bcEvents thisEvent)
         {
-            // 2016,  4,  4,  8,  0,  0
             DateTime eventStart = DateTime.ParseExact(thisEvent.startTime, "yyyy,  M,  d,  H,  m,  s", CultureInfo.InvariantCulture);
             DateTime eventEnd = DateTime.ParseExact(thisEvent.endTime, "yyyy,  M,  d,  H,  m,  s", CultureInfo.InvariantCulture);
 

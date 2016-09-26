@@ -20,6 +20,15 @@
           "lib/uap10.0/GoogleAnalytics.winmd": {}
         }
       },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "type": "package",
         "compile": {
@@ -2335,6 +2344,15 @@
         "runtime": {
           "lib/uap10.0/GoogleAnalytics.Core.winmd": {},
           "lib/uap10.0/GoogleAnalytics.winmd": {}
+        }
+      },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/1.2.3": {
@@ -4749,6 +4767,15 @@
         "runtime": {
           "lib/uap10.0/GoogleAnalytics.Core.winmd": {},
           "lib/uap10.0/GoogleAnalytics.winmd": {}
+        }
+      },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/1.2.3": {
@@ -7204,6 +7231,15 @@
           "lib/uap10.0/GoogleAnalytics.winmd": {}
         }
       },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "type": "package",
         "compile": {
@@ -9625,6 +9661,15 @@
         "runtime": {
           "lib/uap10.0/GoogleAnalytics.Core.winmd": {},
           "lib/uap10.0/GoogleAnalytics.winmd": {}
+        }
+      },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/1.2.3": {
@@ -12089,6 +12134,15 @@
           "lib/uap10.0/GoogleAnalytics.winmd": {}
         }
       },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.2.3": {
         "type": "package",
         "compile": {
@@ -14510,6 +14564,15 @@
         "runtime": {
           "lib/uap10.0/GoogleAnalytics.Core.winmd": {},
           "lib/uap10.0/GoogleAnalytics.winmd": {}
+        }
+      },
+      "lightbuzz-smtp/1.5.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
+        },
+        "runtime": {
+          "lib/netcore/LightBuzz.SMTP.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/1.2.3": {
@@ -17035,6 +17098,20 @@
         "lib/wpa81/GoogleAnalytics.pdb",
         "lib/wpa81/GoogleAnalytics.winmd",
         "package/services/metadata/core-properties/0ea9a1266aa24b22abc1b2eeae4ee2d8.psmdcp"
+      ]
+    },
+    "lightbuzz-smtp/1.5.3": {
+      "sha512": "Ch72D69mqqvgqQe5DCG3VDZlpPNdX6hAnbBWonbsXJYw2e2wmJPA5ZztUNVHQSvkCQxNH9iAK4Nw892CKGWrJA==",
+      "type": "package",
+      "files": [
+        "build/netcore/LightBuzz.SMTP.dll",
+        "build/netcore/LightBuzz.SMTP.pdb",
+        "build/netcore/LightBuzz.SMTP.pri",
+        "lib/netcore/LightBuzz.SMTP.dll",
+        "lib/netcore/LightBuzz.SMTP.pdb",
+        "lib/netcore/LightBuzz.SMTP.pri",
+        "lightbuzz-smtp.1.5.3.nupkg.sha512",
+        "lightbuzz-smtp.nuspec"
       ]
     },
     "Microsoft.ApplicationInsights/1.2.3": {
@@ -23403,7 +23480,8 @@
       "Microsoft.Azure.Mobile.Client >= 2.1.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
       "Microsoft.Toolkit.Uwp.UI.Animations >= 1.0.0",
-      "Newtonsoft.Json >= 9.0.1"
+      "Newtonsoft.Json >= 9.0.1",
+      "lightbuzz-smtp >= 1.5.3"
     ],
     "UAP,Version=v10.0": []
   }
