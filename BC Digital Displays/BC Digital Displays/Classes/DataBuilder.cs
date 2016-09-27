@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -117,55 +118,74 @@ namespace BC_Digital_Displays.Classes
         #endregion
 
         #region Builds email string for classes
-        public static string emailRecClassBuilder(bcRecClasses thisClass, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
+        public static string emailRecClassBuilder(bcRecClasses thisClass, bcRecBrochure thisBrochure, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
         {
+            List<bcSessions> theseSessions = JsonConvert.DeserializeObject<List<bcSessions>>(thisBrochure.sessions);
             StringBuilder returnString = new StringBuilder();
 
+            #region Email template set up (DO NOT EDIT)
+            returnString.AppendLine("<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>Bellevue Club</title>");
+            returnString.AppendLine("<link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" />");
+            returnString.AppendLine("<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'>");
+            returnString.AppendLine("</head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td>");
+            #endregion
 
+            returnString.AppendLine("<h1>Details for " + thisClass.name + "</h1>");
+            returnString.AppendLine("<h2>Class Description</h2>");
+            returnString.AppendLine("<p><em>" + DataBuilder.dayBuilder(thisClass.days) + ", " + DataBuilder.timeBuilder(thisClass.time) + "</em></p>");
+            returnString.AppendLine("<p>" + thisClass.description + "</p>");
+
+            returnString.AppendLine("<h2>Class Sessions</h2>");
+            returnString.AppendLine("<p>The sessions you've show interest in are bolded below. We've also added calendar events to this email so you never miss an exciting class at the Bellevue Club.</p>  <p>");
             if (tb1)
             {
-                returnString.AppendLine("<b>" + "//empty" + "</b><br />");
+                returnString.AppendLine("<b>" + theseSessions[0].name + ": " + Convert.ToDateTime(theseSessions[0].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[0].end).ToString("MMMM d, yyyy") + "</b><br />");
             }
             else
             {
-                returnString.AppendLine("//empty" + "<br />");
+                returnString.AppendLine(theseSessions[0].name + ": " + Convert.ToDateTime(theseSessions[0].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[0].end).ToString("MMMM d, yyyy") + "<br />");
             }
 
             if (tb2)
             {
-                returnString.AppendLine("<b>" + "//empty" + "</b><br />");
+                returnString.AppendLine("<b>" + theseSessions[1].name + ": " + Convert.ToDateTime(theseSessions[1].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[1].end).ToString("MMMM d, yyyy") + "</b><br />");
             }
             else
             {
-                returnString.AppendLine("//empty" + "<br />");
+                returnString.AppendLine(theseSessions[1].name + ": " + Convert.ToDateTime(theseSessions[1].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[1].end).ToString("MMMM d, yyyy") + "<br />");
             }
 
             if (tb3)
             {
-                returnString.AppendLine("<b>" + "//empty" + "</b><br />");
+                returnString.AppendLine("<b>" + theseSessions[2].name + ": " + Convert.ToDateTime(theseSessions[2].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[2].end).ToString("MMMM d, yyyy") + "</b><br />");
             }
             else
             {
-                returnString.AppendLine("//empty" + "<br />");
+                returnString.AppendLine(theseSessions[2].name + ": " + Convert.ToDateTime(theseSessions[2].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[2].end).ToString("MMMM d, yyyy") + "<br />");
             }
 
             if (tb4)
             {
-                returnString.AppendLine("<b>" + "//empty" + "</b><br />");
+                returnString.AppendLine("<b>" + theseSessions[3].name + ": " + Convert.ToDateTime(theseSessions[3].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[3].end).ToString("MMMM d, yyyy") + "</b><br />");
             }
             else
             {
-                returnString.AppendLine("//empty" + "<br />");
+                returnString.AppendLine(theseSessions[3].name + ": " + Convert.ToDateTime(theseSessions[3].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[3].end).ToString("MMMM d, yyyy") + "<br />");
             }
 
             if (tb5)
             {
-                returnString.AppendLine("<b>" + "//empty" + "</b><br />");
+                returnString.AppendLine("<b>" + theseSessions[4].name + ": " + Convert.ToDateTime(theseSessions[4].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[4].end).ToString("MMMM d, yyyy") + "</b><br />");
             }
             else
             {
-                returnString.AppendLine("//empty" + "<br />");
+                returnString.AppendLine(theseSessions[4].name + ": " + Convert.ToDateTime(theseSessions[4].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[4].end).ToString("MMMM d, yyyy") + "<br />");
             }
+
+            #region Email template footer (DO NOT EDIT)
+            returnString.AppendLine("</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>");
+            #endregion
+
 
             return returnString.ToString();
         }
@@ -208,8 +228,8 @@ namespace BC_Digital_Displays.Classes
                     returnString.AppendLine("CLASS:PUBLIC");
                     returnString.AppendLine(string.Format("CREATED:{0:yyyyMMddTHHmmssZ}", DateTime.UtcNow));
                     returnString.AppendLine("DESCRIPTION:" + thisClass.description);
-                    returnString.AppendLine("DTSTART:" + string.Format("{0:yyyyMMddTHHmmssZ}", sessionStart));
-                    returnString.AppendLine("DTEND:" + string.Format("{0:yyyyMMddTHHmmssZ}", sessionEnd));
+                    returnString.AppendLine("DTSTART;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", sessionStart));
+                    returnString.AppendLine("DTEND;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", sessionEnd));
                     returnString.AppendLine("RRULE:FREQ=WEEKLY;UNTIL=" + string.Format("{0:yyyyMMddTHHmmssZ}",sessionFinal));
                     returnString.AppendLine("UID:" + Guid.NewGuid());
                     returnString.AppendLine("LOCATION:Bellevue Club " + thisClass.location);
@@ -250,8 +270,8 @@ namespace BC_Digital_Displays.Classes
             returnString.AppendLine("CLASS:PUBLIC");
             returnString.AppendLine(string.Format("CREATED:{0:yyyyMMddTHHmmssZ}", DateTime.UtcNow));
             returnString.AppendLine("DESCRIPTION:" + thisEvent.description);
-            returnString.AppendLine("DTSTART:" + string.Format("{0:yyyyMMddTHHmmssZ}", eventStart));
-            returnString.AppendLine("DTEND:" + string.Format("{0:yyyyMMddTHHmmssZ}", eventEnd));
+            returnString.AppendLine("DTSTART;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", eventStart));
+            returnString.AppendLine("DTEND;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", eventEnd));
             returnString.AppendLine("UID:" + Guid.NewGuid());
             returnString.AppendLine("LOCATION:Bellevue Club " + thisEvent.location);
 

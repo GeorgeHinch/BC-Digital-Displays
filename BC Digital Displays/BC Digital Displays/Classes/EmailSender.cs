@@ -17,7 +17,8 @@ namespace BC_Digital_Displays.Classes
         {
             try
             {
-                SmtpClient client = new SmtpClient("nemesis.bellevueclub.com", 25, false, "georgeh@bellevueclub.com", "Communications1");
+                //SmtpClient client = new SmtpClient("nemesis.bellevueclub.com", 25, false, "georgeh@bellevueclub.com", "Communications1");
+                SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 25, false, "ghtestacc@outlook.com", "!testacc!");
                 EmailMessage emailMessage = new EmailMessage();
 
                 emailMessage.To.Add(new EmailRecipient(recipient));
@@ -27,9 +28,13 @@ namespace BC_Digital_Displays.Classes
                 foreach (string s in attatchments)
                 {
                     string attatchName = attachmentName + "_" + attachNum.ToString() + ".ics";
-                    var bytes = Encoding.UTF8.GetBytes(s);
-                    MemoryStream stream = new MemoryStream(bytes);
-                    //emailMessage.Attachments.Add(new EmailAttachment(attatchName, RandomAccessStreamReference.CreateFromStream(stream), "text/calendar"));
+
+                    Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                    Windows.Storage.StorageFile icsFile = await storageFolder.CreateFileAsync(attatchName,
+                            Windows.Storage.CreationCollisionOption.ReplaceExisting);
+                    await Windows.Storage.FileIO.WriteTextAsync(icsFile, s);
+
+                    emailMessage.Attachments.Add(new EmailAttachment(attatchName, RandomAccessStreamReference.CreateFromFile(icsFile), "text/calendar"));
 
                     attachNum++;
                 }

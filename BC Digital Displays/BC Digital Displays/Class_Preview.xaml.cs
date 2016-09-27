@@ -91,7 +91,7 @@ namespace BC_Digital_Displays
             task.Wait();
 
             string emailSubject = "Bellevue Club Details for " + thisClass.name;
-            string emailBody = DataBuilder.emailRecClassBuilder(thisClass, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
+            string emailBody = DataBuilder.emailRecClassBuilder(thisClass, thisBrochure, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
             List<string> emailAttachments = DataBuilder.icsBuilder(thisClass, thisBrochure, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
             EmailSender.emailSender(userEmailTB.Text, emailSubject, emailBody, thisClass.name, emailAttachments);
 
