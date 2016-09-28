@@ -27,19 +27,19 @@
 
         <Pivot Grid.ColumnSpan="2">
             <PivotItem Header="Recreation">
-                <Brochure:BrochureView x:Name="BrochureRec" BrochureSection="3" />
+                <Brochure:ClassesView x:Name="BrochureRec" BrochureSection="3" />
             </PivotItem>
 
             <PivotItem Header="Tennis">
-                <Brochure:BrochureView x:Name="BrochureTennis" BrochureSection="4" />
+                <Brochure:ClassesView x:Name="BrochureTennis" BrochureSection="4" />
             </PivotItem>
 
             <PivotItem Header="Swim">
-                <Brochure:BrochureView x:Name="BrochureSwim" BrochureSection="5" />
+                <Brochure:ClassesView x:Name="BrochureSwim" BrochureSection="5" />
             </PivotItem>
 
             <PivotItem Header="Basketball">
-                <Brochure:BrochureView x:Name="BrochureBasketball" BrochureSection="6" />
+                <Brochure:ClassesView x:Name="BrochureBasketball" BrochureSection="6" />
             </PivotItem>
         </Pivot>
 

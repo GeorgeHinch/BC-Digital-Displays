@@ -7,56 +7,95 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/FilterRBStyles.xaml"/>
+                <ResourceDictionary Source="../Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
-        <StackPanel Orientation="Vertical" Padding="0,0,0,50">
-            <Grid x:Name="Grid_1" Margin="0,50,0,0">
-                <Ellipse Width="6" Height="6" Margin="7,0,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{StaticResource UI_BorderBrush}" />
-                <Line x:Name="Group1_Line" Y2="{Binding ActualHeight, ElementName=Group_1, Mode=TwoWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-                <StackPanel x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_1_SizeChanged">
-                    <TextBlock Text="All Ages" Foreground="{StaticResource UI_BorderBrush}"  />
+        <Grid Grid.Column="1">
+            <StackPanel Orientation="Vertical" Margin="0,50,0,0">
+                <TextBlock Text="Filter" Foreground="{StaticResource UI_BorderBrush}" Margin="0,0,0,5" />
+                <StackPanel x:Name="Rb_StackPanel" Orientation="Vertical">
+                    <RadioButton x:Name="Rb_1" Content="All Ages" Tag="1" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
+                    <RadioButton x:Name="Rb_2" Content="Parents/Child | 0-3 years" Tag="2" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
+                    <RadioButton x:Name="Rb_3" Content="Preschool | 3-6 years" Tag="3" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
+                    <RadioButton x:Name="Rb_4" Content="Elementary | 6-12 years" Tag="4" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
+                    <RadioButton x:Name="Rb_5" Content="Middle School | 12-15 years" Tag="5" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
+                    <RadioButton x:Name="Rb_6" Content="High School | 15-18 years" Tag="6" Style="{StaticResource FilterRBButtonStyle}" Checked="yearRB_Checked" />
                 </StackPanel>
-            </Grid>
 
-            <Grid x:Name="Grid_2" Margin="0,50,0,0">
-                <Line x:Name="Group2_Line" Y2="{Binding ActualHeight, ElementName=Group_2, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                <Button Content="reset" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Margin="0,10,0,0" Foreground="#ffcfcfcf" Tapped="resetButton_Tapped" />
+            </StackPanel>
+        </Grid>
 
-                <StackPanel x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_2_SizeChanged">
-                    <TextBlock Text="Parents/Child | 0-3 years" Foreground="{StaticResource UI_BorderBrush}"  />
-                </StackPanel>
-            </Grid>
+        <Grid Grid.Column="3">
+            <ScrollViewer x:Name="Classes_Scrollviewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                <Grid>
+                    <StackPanel Orientation="Vertical" Padding="0,0,0,50">
+                        <Grid x:FieldModifier="Public" x:Name="Grid_1" Margin="0,50,0,0">
+                            <Ellipse Width="6" Height="6" Margin="7,0,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="{StaticResource UI_BorderBrush}" />
+                            <Line x:Name="Group1_Line" Y2="{Binding ActualHeight, ElementName=Group_1, Mode=TwoWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-            <Grid x:Name="Grid_3" Margin="0,50,0,0">
-                <Line x:Name="Group3_Line" Y2="{Binding ActualHeight, ElementName=Group_3, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_1" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_1_SizeChanged">
+                                <TextBlock Text="All Ages" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
 
-                <StackPanel x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_3_SizeChanged">
-                    <TextBlock Text="Preschool | 3-6 years" Foreground="{StaticResource UI_BorderBrush}"  />
-                </StackPanel>
-            </Grid>
+                        <Grid x:FieldModifier="Public" x:Name="Grid_2" Margin="0,50,0,0">
+                            <Line x:Name="Group2_Line" Y2="{Binding ActualHeight, ElementName=Group_2, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-            <Grid x:Name="Grid_4" Margin="0,50,0,0">
-                <Line x:Name="Group4_Line" Y2="{Binding ActualHeight, ElementName=Group_4, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_2" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_2_SizeChanged">
+                                <TextBlock Text="Parents/Child | 0-3 years" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
 
-                <StackPanel x:Name="Group_4" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_4_SizeChanged">
-                    <TextBlock Text="Elementary | 6-11 years" Foreground="{StaticResource UI_BorderBrush}"  />
-                </StackPanel>
-            </Grid>
+                        <Grid x:FieldModifier="Public" x:Name="Grid_3" Margin="0,50,0,0">
+                            <Line x:Name="Group3_Line" Y2="{Binding ActualHeight, ElementName=Group_3, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-            <Grid x:Name="Grid_5" Margin="0,50,0,0">
-                <Line x:Name="Group5_Line" Y2="{Binding ActualHeight, ElementName=Group_5, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_3" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_3_SizeChanged">
+                                <TextBlock Text="Preschool | 3-6 years" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
 
-                <StackPanel x:Name="Group_5" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_5_SizeChanged">
-                    <TextBlock Text="Middle School | 12-14 years" Foreground="{StaticResource UI_BorderBrush}"  />
-                </StackPanel>
-            </Grid>
+                        <Grid x:FieldModifier="Public" x:Name="Grid_4" Margin="0,50,0,0">
+                            <Line x:Name="Group4_Line" Y2="{Binding ActualHeight, ElementName=Group_4, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
 
-            <Grid x:Name="Grid_6" Margin="0,50,0,0">
-                <Line x:Name="Group6_Line" Y2="{Binding ActualHeight, ElementName=Group_6, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_4" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_4_SizeChanged">
+                                <TextBlock Text="Elementary | 6-12 years" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
 
-                <StackPanel x:Name="Group_6" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_6_SizeChanged">
-                    <TextBlock Text="High School | 15-18 years" Foreground="{StaticResource UI_BorderBrush}"  />
-                </StackPanel>
-            </Grid>
-        </StackPanel>
+                        <Grid x:FieldModifier="Public" x:Name="Grid_5" Margin="0,50,0,0">
+                            <Line x:Name="Group5_Line" Y2="{Binding ActualHeight, ElementName=Group_5, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_5" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_5_SizeChanged">
+                                <TextBlock Text="Middle School | 12-15 years" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid x:FieldModifier="Public" x:Name="Grid_6" Margin="0,50,0,0">
+                            <Line x:Name="Group6_Line" Y2="{Binding ActualHeight, ElementName=Group_6, Mode=OneWay}" Margin="10,0,20,0" Fill="{StaticResource UI_BorderBrush}" Stroke="{StaticResource UI_BorderBrush}" />
+
+                            <StackPanel x:FieldModifier="Public" x:Name="Group_6" Orientation="Vertical" VerticalAlignment="Top" Margin="40,0,0,0" SizeChanged="Group_6_SizeChanged">
+                                <TextBlock Text="High School | 15-18 years" Foreground="{StaticResource UI_BorderBrush}"  />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </UserControl>

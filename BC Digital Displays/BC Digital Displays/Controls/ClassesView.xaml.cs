@@ -23,6 +23,7 @@ namespace BC_Digital_Displays.Controls
 {
     public sealed partial class ClassesView : UserControl
     {
+        public static ClassesView classView;
         public ClassesView()
         {
             this.InitializeComponent();
@@ -134,37 +135,9 @@ namespace BC_Digital_Displays.Controls
                 #endregion
             }
 
-            #region Hide groups that contain no children
-            if(Group_1.Children.Count < 2)
-            {
-                Grid_1.Visibility = Visibility.Collapsed;
-            }
-
-            if (Group_2.Children.Count < 2)
-            {
-                Grid_2.Visibility = Visibility.Collapsed;
-            }
-
-            if (Group_3.Children.Count < 2)
-            {
-                Grid_3.Visibility = Visibility.Collapsed;
-            }
-
-            if (Group_4.Children.Count < 2)
-            {
-                Grid_4.Visibility = Visibility.Collapsed;
-            }
-
-            if (Group_5.Children.Count < 2)
-            {
-                Grid_5.Visibility = Visibility.Collapsed;
-            }
-
-            if (Group_6.Children.Count < 2)
-            {
-                Grid_6.Visibility = Visibility.Collapsed;
-            }
-            #endregion
+            hideSections();
+            
+            disableRB();
         }
 
         #region Update UI line size based
@@ -227,6 +200,152 @@ namespace BC_Digital_Displays.Controls
             {
                 Debug.WriteLine("Made it here;");
             }
+        }
+        #endregion
+
+        #region Hide sections that have no children
+        public void hideSections()
+        {
+            if (Group_1.Children.Count < 2)
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_2.Children.Count < 2)
+            {
+                Grid_2.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_3.Children.Count < 2)
+            {
+                Grid_3.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_4.Children.Count < 2)
+            {
+                Grid_4.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_5.Children.Count < 2)
+            {
+                Grid_5.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_6.Children.Count < 2)
+            {
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
+
+        #region Controller for filters
+        public void disableRB()
+        {
+            if (Group_1.Children.Count < 2)
+            {
+                Rb_1.IsEnabled = false;
+            }
+
+            if (Group_2.Children.Count < 2)
+            {
+                Rb_2.IsEnabled = false;
+            }
+
+            if (Group_3.Children.Count < 2)
+            {
+                Rb_3.IsEnabled = false;
+            }
+
+            if (Group_4.Children.Count < 2)
+            {
+                Rb_4.IsEnabled = false;
+            }
+
+            if (Group_5.Children.Count < 2)
+            {
+                Rb_5.IsEnabled = false;
+            }
+
+            if (Group_6.Children.Count < 2)
+            {
+                Rb_6.IsEnabled = false;
+            }
+        }
+
+        private void yearRB_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Tag.ToString() == "1")
+            {
+                Grid_1.Visibility = Visibility.Visible;
+                Grid_2.Visibility = Visibility.Collapsed;
+                Grid_3.Visibility = Visibility.Collapsed;
+                Grid_4.Visibility = Visibility.Collapsed;
+                Grid_5.Visibility = Visibility.Collapsed;
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            else if (rb.Tag.ToString() == "2")
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+                Grid_2.Visibility = Visibility.Visible;
+                Grid_3.Visibility = Visibility.Collapsed;
+                Grid_4.Visibility = Visibility.Collapsed;
+                Grid_5.Visibility = Visibility.Collapsed;
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            else if (rb.Tag.ToString() == "3")
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+                Grid_2.Visibility = Visibility.Collapsed;
+                Grid_3.Visibility = Visibility.Visible;
+                Grid_4.Visibility = Visibility.Collapsed;
+                Grid_5.Visibility = Visibility.Collapsed;
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            else if (rb.Tag.ToString() == "4")
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+                Grid_2.Visibility = Visibility.Collapsed;
+                Grid_3.Visibility = Visibility.Collapsed;
+                Grid_4.Visibility = Visibility.Visible;
+                Grid_5.Visibility = Visibility.Collapsed;
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            else if (rb.Tag.ToString() == "5")
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+                Grid_2.Visibility = Visibility.Collapsed;
+                Grid_3.Visibility = Visibility.Collapsed;
+                Grid_4.Visibility = Visibility.Collapsed;
+                Grid_5.Visibility = Visibility.Visible;
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            else if (rb.Tag.ToString() == "6")
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+                Grid_2.Visibility = Visibility.Collapsed;
+                Grid_3.Visibility = Visibility.Collapsed;
+                Grid_4.Visibility = Visibility.Collapsed;
+                Grid_5.Visibility = Visibility.Collapsed;
+                Grid_6.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void resetButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Grid_1.Visibility = Visibility.Visible;
+            Grid_2.Visibility = Visibility.Visible;
+            Grid_3.Visibility = Visibility.Visible;
+            Grid_4.Visibility = Visibility.Visible;
+            Grid_5.Visibility = Visibility.Visible;
+            Grid_6.Visibility = Visibility.Visible;
+
+            foreach (RadioButton rb in Rb_StackPanel.Children)
+            {
+                rb.IsChecked = false;
+            }
+
+            hideSections();
         }
         #endregion
 

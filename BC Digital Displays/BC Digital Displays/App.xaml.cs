@@ -41,9 +41,9 @@ namespace BC_Digital_Displays
 
             this.UnhandledException += (sender, e) =>
             {
-                e.Handled = true;
+                //e.Handled = true;
                 GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, true);
-                Debug.WriteLine(e.Exception);
+                Debug.WriteLine("Unhandeled: " + e.Exception);
             };
         }
 

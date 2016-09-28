@@ -135,9 +135,6 @@
     <Compile Include="Concierge.xaml.cs">
       <DependentUpon>Concierge.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BrochureView.xaml.cs">
-      <DependentUpon>BrochureView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
     </Compile>
@@ -211,10 +208,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Concierge.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\BrochureView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
