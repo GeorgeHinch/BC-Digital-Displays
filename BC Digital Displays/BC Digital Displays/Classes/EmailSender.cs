@@ -46,6 +46,7 @@ namespace BC_Digital_Displays.Classes
             }
             catch(Exception e)
             {
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
                 Debug.WriteLine("Exception: " + e.Message + " | ");
             }
         }
@@ -78,6 +79,7 @@ namespace BC_Digital_Displays.Classes
 
             catch (Exception e)
             {
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
                 Debug.WriteLine("Exception: " + e.Message + " | ");
             }
         }

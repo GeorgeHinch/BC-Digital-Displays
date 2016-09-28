@@ -4,6 +4,5 @@
   <trackingId>UA-71357890-1</trackingId>
   <!--Replace placeholder name with your app name-->
   <appName>BC Digital Displays</appName>
-  <!--Replace placeholder version with your app version-->
-  <appVersion>1.0.0.0</appVersion>
+  <reportUncaughtExceptions>true</reportUncaughtExceptions>
 </analytics>

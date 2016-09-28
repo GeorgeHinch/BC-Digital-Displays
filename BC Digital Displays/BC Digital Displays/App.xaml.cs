@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.WindowsAzure.MobileServices;
+using System.Diagnostics;
 
 namespace BC_Digital_Displays
 {
@@ -37,6 +38,13 @@ namespace BC_Digital_Displays
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            this.UnhandledException += (sender, e) =>
+            {
+                e.Handled = true;
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, true);
+                Debug.WriteLine(e.Exception);
+            };
         }
 
         /// <summary>
