@@ -177,7 +177,7 @@ public partial class settings_add_add_class : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@time", time);
                     cmd.Parameters.AddWithValue("@location", location);
                     cmd.Parameters.AddWithValue("@sessions", sessions);
-                    cmd.Parameters.AddWithValue("@description", description.Replace(@"\t|\n|\r", " "));
+                    cmd.Parameters.AddWithValue("@description", description);
                     cmd.Parameters.AddWithValue("@category", category);
                     cmd.Parameters.AddWithValue("@brochureId", bId);
                 }
@@ -193,7 +193,7 @@ public partial class settings_add_add_class : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@time", time);
                     cmd.Parameters.AddWithValue("@location", location);
                     cmd.Parameters.AddWithValue("@sessions", sessions);
-                    cmd.Parameters.AddWithValue("@description", description.Replace(@"\t|\n|\r", " "));
+                    cmd.Parameters.AddWithValue("@description", description);
                     cmd.Parameters.AddWithValue("@category", category);
                     cmd.Parameters.AddWithValue("@brochureId", bId);
                 }
