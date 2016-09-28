@@ -28,6 +28,19 @@ namespace BC_Digital_Displays.Controls
             this.DataContext = this;
             this.Loaded += UserControl_Loaded;
         }
+        
+        public ClassView CreateCopy()
+        {
+            ClassView copy = new ClassView();
+
+            copy.ClassName = this.ClassName;
+            copy.ClassDay = this.ClassDay;
+            copy.ClassTime = this.ClassTime;
+            copy.DepartmentType = this.DepartmentType;
+            copy.Tag = this.Tag;
+
+            return copy;
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

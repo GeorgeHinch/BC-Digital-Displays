@@ -54,42 +54,117 @@ namespace BC_Digital_Displays.Controls
                 #region Sort class cards into groups
                 if (i.ageMin == 0 && i.ageMax == 0)
                 {
-                    // Group_1.Children.Add(classView);
+                    Group_1.Children.Add(classView);
                 }
 
-                if (0 < i.ageMin && i.ageMin <= 6)
+                if (0 < i.ageMin && i.ageMin < 3)
                 {
-                    // Group_2.Children.Add(classView);
+                    Group_2.Children.Add(classView);
 
-                    if (i.ageMax > 6 && i.ageMax < 10)
+                    if (3 <= i.ageMax)
                     {
-                        // Group_3.Children.Add(classView);
+                        Group_3.Children.Add(classView.CreateCopy());
                     }
 
-                    if (i.ageMax > 10 && i.ageMax <= 17)
+                    if (7 <= i.ageMax)
                     {
-                        // Group_4.Children.Add(classView);
+                        Group_4.Children.Add(classView.CreateCopy());
+                    }
+
+                    if (12 <= i.ageMax)
+                    {
+                        Group_5.Children.Add(classView.CreateCopy());
+                    }
+
+                    if (15 <= i.ageMax)
+                    {
+                        Group_6.Children.Add(classView.CreateCopy());
                     }
                 }
 
-                if (6 < i.ageMin && i.ageMin <= 10)
+                if (3 <= i.ageMin && i.ageMin < 7)
                 {
-                    // Group_3.Children.Add(classView);
+                    Group_3.Children.Add(classView);
 
-                    if (i.ageMax > 10 && i.ageMax <= 17)
+                    if (7 <= i.ageMax)
                     {
-                        // Group_4.Children.Add(classView);
+                        Group_4.Children.Add(classView.CreateCopy());
+                    }
+
+                    if (12 <= i.ageMax)
+                    {
+                        Group_5.Children.Add(classView.CreateCopy());
+                    }
+
+                    if (15 <= i.ageMax)
+                    {
+                        Group_6.Children.Add(classView.CreateCopy());
                     }
                 }
 
-                if (10 < i.ageMin)
+                if (7 <= i.ageMin && i.ageMin < 12)
                 {
-                    // Group_4.Children.Add(classView);
+                    Group_4.Children.Add(classView);
+
+                    if (12 <= i.ageMax)
+                    {
+                        Group_5.Children.Add(classView.CreateCopy());
+                    }
+
+                    if (15 <= i.ageMax)
+                    {
+                        Group_6.Children.Add(classView.CreateCopy());
+                    }
+                }
+
+                if (12 <= i.ageMin && i.ageMin < 15)
+                {
+                    Group_5.Children.Add(classView);
+
+                    if (15 <= i.ageMax)
+                    {
+                        Group_6.Children.Add(classView.CreateCopy());
+                    }
+                }
+
+                if (15 <= i.ageMin)
+                {
+                    Group_6.Children.Add(classView);
                 }
                 #endregion
-
-                Group_1.Children.Add(classView);
             }
+
+            #region Hide groups that contain no children
+            if(Group_1.Children.Count < 2)
+            {
+                Grid_1.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_2.Children.Count < 2)
+            {
+                Grid_2.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_3.Children.Count < 2)
+            {
+                Grid_3.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_4.Children.Count < 2)
+            {
+                Grid_4.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_5.Children.Count < 2)
+            {
+                Grid_5.Visibility = Visibility.Collapsed;
+            }
+
+            if (Group_6.Children.Count < 2)
+            {
+                Grid_6.Visibility = Visibility.Collapsed;
+            }
+            #endregion
         }
 
         #region Update UI line size based
@@ -111,6 +186,16 @@ namespace BC_Digital_Displays.Controls
         private void Group_4_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             Group4_Line.Y2 = Group_4.ActualHeight;
+        }
+
+        private void Group_5_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group5_Line.Y2 = Group_5.ActualHeight;
+        }
+
+        private void Group_6_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Group6_Line.Y2 = Group_6.ActualHeight;
         }
         #endregion
 
