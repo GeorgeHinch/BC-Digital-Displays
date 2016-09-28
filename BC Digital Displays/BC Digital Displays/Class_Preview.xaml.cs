@@ -1,6 +1,7 @@
 ﻿using BC_Digital_Displays.Classes;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -70,14 +71,24 @@ namespace BC_Digital_Displays
             this.InitializeComponent();
 
             Gradient_Background.Blur(duration: 10, delay: 0, value: 10).Start();
+
+            var task = Task.Run(async () => { await findBrochure(); });
+            task.Wait();
+
+            buildSessions();
+        }
+
+        public void buildSessions()
+        {
+            List<bcSessions> sessions = JsonConvert.DeserializeObject<List<bcSessions>>(thisBrochure.sessions);
+            Session1_data.Text = sessions[0].name + ": " + Convert.ToDateTime(sessions[0].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(sessions[0].end).ToString("MMMM d, yyyy");
+            Session2_data.Text = sessions[1].name + ": " + Convert.ToDateTime(sessions[1].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(sessions[1].end).ToString("MMMM d, yyyy");
+            Session3_data.Text = sessions[2].name + ": " + Convert.ToDateTime(sessions[2].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(sessions[2].end).ToString("MMMM d, yyyy");
+            Session4_data.Text = sessions[3].name + ": " + Convert.ToDateTime(sessions[3].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(sessions[3].end).ToString("MMMM d, yyyy");
+            Session5_data.Text = sessions[4].name + ": " + Convert.ToDateTime(sessions[4].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(sessions[4].end).ToString("MMMM d, yyyy");
         }
 
         private void CloseEmail_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
-        }
-
-        private void SendEmail_Tapped(object sender, TappedRoutedEventArgs e)
         {
             YouthBrochure.youthBrochure.classCard_Frame.Navigate(typeof(Page));
         }
@@ -86,9 +97,6 @@ namespace BC_Digital_Displays
         {
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "emailSent_click", "(" + thisClass.name + ") Email: " + thisClass.name, (long)thisClass.category);
-
-            var task = Task.Run(async () => { await findBrochure(); });
-            task.Wait();
 
             string emailSubject = "Bellevue Club Details for " + thisClass.name;
             string emailBody = DataBuilder.emailRecClassBuilder(thisClass, thisBrochure, (bool)tbSession1.IsChecked, (bool)tbSession2.IsChecked, (bool)tbSession3.IsChecked, (bool)tbSession4.IsChecked, (bool)tbSession5.IsChecked);
