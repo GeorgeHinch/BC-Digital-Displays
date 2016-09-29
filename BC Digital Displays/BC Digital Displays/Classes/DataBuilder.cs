@@ -128,15 +128,20 @@ namespace BC_Digital_Displays.Classes
             returnString.AppendLine("<link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" />");
             returnString.AppendLine("<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'>");
             returnString.AppendLine("</head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td>");
+            returnString.AppendLine("<div style=\"text-align:center; margin:auto; \"><img src=\"http://www.bellevueclub.com/Forms/email/assets/bc_logo.png\" style=\"width:200px;text-align:center;align:center;margin:auto;\" align=\"middle\"/></div>");
             #endregion
 
             returnString.AppendLine("<h1>Details for " + thisClass.name + "</h1>");
             returnString.AppendLine("<h2>Class Description</h2>");
-            returnString.AppendLine("<p><em>" + DataBuilder.dayBuilder(thisClass.days) + ", " + DataBuilder.timeBuilder(thisClass.time) + "</em></p>");
+            returnString.AppendLine("<p><em>"+ thisClass.ageRange + ", " + DataBuilder.dayBuilder(thisClass.days) + ", " + DataBuilder.timeBuilder(thisClass.time) + "</em></p>");
             returnString.AppendLine("<p>" + thisClass.description + "</p>");
 
+            returnString.AppendLine("<h2>Registering</h2>");
+            returnString.AppendLine("<p>From tennis, basketball and swim lessons to art classes and special holiday events, the Bellevue Club and our roster of excellent instructors have lots of plans for your family.</p>");
+            returnString.AppendLine("<p>Register for this class and many more at <a href=\"https://members.bellevueclub.com\">members.bellevueclub.com</a>.</p>");
+
             returnString.AppendLine("<h2>Class Sessions</h2>");
-            returnString.AppendLine("<p>The sessions you've show interest in are bolded below. We've also added calendar events to this email so you never miss an exciting class at the Bellevue Club.</p>  <p>");
+            returnString.AppendLine("<p>The sessions you've shown interest in are bolded below. We've also added calendar events to this email so you never miss an exciting class at the Bellevue Club.</p>  <p>");
             if (tb1)
             {
                 returnString.AppendLine("<b>" + theseSessions[0].name + ": " + Convert.ToDateTime(theseSessions[0].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[0].end).ToString("MMMM d, yyyy") + "</b><br />");
@@ -185,8 +190,7 @@ namespace BC_Digital_Displays.Classes
             #region Email template footer (DO NOT EDIT)
             returnString.AppendLine("</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>");
             #endregion
-
-
+            
             return returnString.ToString();
         }
         #endregion
