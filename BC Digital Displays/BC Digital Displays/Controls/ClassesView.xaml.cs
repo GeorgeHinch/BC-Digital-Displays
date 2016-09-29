@@ -198,7 +198,7 @@ namespace BC_Digital_Displays.Controls
             }
             else
             {
-                Debug.WriteLine("Made it here;");
+                //Debug.WriteLine("Made it here;");
             }
         }
         #endregion

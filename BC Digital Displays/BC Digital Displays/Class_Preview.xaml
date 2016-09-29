@@ -53,12 +53,12 @@
                 <TextBlock Text="Send class info:" Foreground="White" Margin="0,0,0,10" />
                 <TextBox x:Name="userEmailTB" Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}" Margin="0,0,0,25" InputScope="EmailSmtpAddress" IsSpellCheckEnabled="False"/>
                 <TextBlock Text="Sessions: " Foreground="White" />
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" Margin="0,0,0,25">
                     <TextBlock x:Name="Session1_data" Foreground="White" FontSize="18" FontWeight="Thin" />
                     <TextBlock x:Name="Session2_data" Foreground="White" FontSize="18" FontWeight="Thin" Margin="0,7,0,0" />
                     <TextBlock x:Name="Session3_data" Foreground="White" FontSize="18" FontWeight="Thin" Margin="0,7,0,0" />
                     <TextBlock x:Name="Session4_data" Foreground="White" FontSize="18" FontWeight="Thin" Margin="0,7,0,0" />
-                    <TextBlock x:Name="Session5_data" Foreground="White" FontSize="18" FontWeight="Thin" Margin="0,7,0,25" />
+                    <TextBlock x:Name="Session5_data" Foreground="White" FontSize="18" FontWeight="Thin" Margin="0,7,0,0" />
                 </StackPanel>
                 <TextBlock Text="Select interested sessions: " Foreground="White" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

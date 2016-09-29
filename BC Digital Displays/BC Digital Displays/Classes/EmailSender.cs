@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Email;
 using Windows.Storage.Streams;
@@ -29,7 +30,7 @@ namespace BC_Digital_Displays.Classes
                 int attachNum = 1;
                 foreach (string s in attatchments)
                 {
-                    string attatchName = attachmentName + "_" + attachNum.ToString() + ".ics";
+                    string attatchName = Regex.Replace(attachmentName, "[^0-9a-zA-Z]+", "").Replace(" ", "").Truncate(10) + "_" + attachNum.ToString() + ".ics";
 
                     Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                     Windows.Storage.StorageFile icsFile = await storageFolder.CreateFileAsync(attatchName,
@@ -41,7 +42,7 @@ namespace BC_Digital_Displays.Classes
                     attachNum++;
                 }
 
-                await client.SendMail(emailMessage);
+                //await client.SendMail(emailMessage);
                 EmailSender.popToast();
             }
             catch(Exception e)
@@ -112,12 +113,21 @@ namespace BC_Digital_Displays.Classes
 
                             new AdaptiveText()
                             {
-                                Text = "You will recieve an email from the Bellevue Club within the next few minutes."
+                                Text = "You will recieve an email from us shortly."
                             }
                         }
                     }
                 }
             };
+        }
+    }
+
+    public static class StringExt
+    {
+        public static string Truncate(this string value, int maxLength)
+        {
+            if (string.IsNullOrEmpty(value)) return value;
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
         }
     }
 }
