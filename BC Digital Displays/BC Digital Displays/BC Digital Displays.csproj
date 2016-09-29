@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Classes\bcEquipment.cs" />
     <Compile Include="Classes\bcEvents.cs" />
+    <Compile Include="Classes\bcNotification.cs" />
     <Compile Include="Classes\bcRecBrochure.cs" />
     <Compile Include="Classes\bcRecClasses.cs" />
     <Compile Include="Classes\bcSettings.cs" />
@@ -141,6 +142,9 @@
     <Compile Include="Controls\ClassView.xaml.cs">
       <DependentUpon>ClassView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\NotificationView.xaml.cs">
+      <DependentUpon>NotificationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
@@ -152,6 +156,9 @@
     </Compile>
     <Compile Include="MenuSelect.xaml.cs">
       <DependentUpon>MenuSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationPreview.xaml.cs">
+      <DependentUpon>NotificationPreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="OptionsMenu.xaml.cs">
       <DependentUpon>OptionsMenu.xaml</DependentUpon>
@@ -219,6 +226,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\NotificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EquipmentPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -232,6 +243,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MenuSelect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotificationPreview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
