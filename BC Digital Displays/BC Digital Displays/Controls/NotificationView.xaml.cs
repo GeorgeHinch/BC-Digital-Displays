@@ -37,7 +37,7 @@ namespace BC_Digital_Displays.Controls
 
         #region Dependency Properties
         public static readonly DependencyProperty GlyphTypeProperty = DependencyProperty.Register(
-            "GlyphType",                   // The name of the DependencyProperty
+            "Glyph",                   // The name of the DependencyProperty
             typeof(string),               // The type of the DependencyProperty
             typeof(NotificationView),     // The type of the owner of the DependencyProperty
             null

@@ -36,30 +36,47 @@ namespace BC_Digital_Displays
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var task = Task.Run(async () => { await loadNotifications(); });
-            task.Wait();
-
-            IEnumerable<bcNotification> itemsControl = items;
-            foreach (bcNotification i in items)
+            try
             {
-                NotificationView nV = new NotificationView();
-                nV.Subject = i.subject;
-                nV.Tag = i;
+                var task = Task.Run(async () => { await loadNotifications(); });
+                task.Wait();
+
+                if(items.Count != 0)
+                {
+                    IEnumerable<bcNotification> itemsControl = items;
+                    foreach (bcNotification i in items)
+                    {
+                        NotificationView nV = new NotificationView();
+                        nV.GlyphType = i.glyph;
+                        nV.Subject = i.subject;
+                        nV.Tag = i;
+
+                        Notification_StackPanel.Children.Add(nV);
+                    }
+                }
+                else
+                {
+                    Notifications_None.Visibility = Visibility.Visible;
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message + " | ");
             }
         }
 
         #region Load notifications
         private MobileServiceCollection<bcNotification, bcNotification> items;
-        private IMobileServiceTable<bcNotification> bcRecClassesTable = App.MobileService.GetTable<bcNotification>();
+        private IMobileServiceTable<bcNotification> bcNotificationTable = App.MobileService.GetTable<bcNotification>();
         public async Task loadNotifications()
         {
             MobileServiceInvalidOperationException exception = null;
             try
             {
-                items = await bcRecClassesTable
-                    .Where(aBrochure => aBrochure.deleted == false)
-                    .Where(aBrochure => aBrochure.startDate >= DateTime.Now)
-                    .Where(aBrochure => aBrochure.endDate <= DateTime.Now)
+                items = await bcNotificationTable
+                    .Where(aNotification => aNotification.deleted == false)
+                    .Where(aNotification => aNotification.startDate <= DateTime.Now)
+                    .Where(aNotification => aNotification.endDate >= DateTime.Now)
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)

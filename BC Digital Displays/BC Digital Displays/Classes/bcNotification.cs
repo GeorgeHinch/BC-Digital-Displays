@@ -32,9 +32,9 @@ namespace BC_Digital_Displays.Classes
         public string message { get; set; }
 
         [DataMember]
-        public DateTime startDate { get; set; }
+        public DateTimeOffset startDate { get; set; }
 
         [DataMember]
-        public DateTime endDate { get; set; }
+        public DateTimeOffset endDate { get; set; }
     }
 }

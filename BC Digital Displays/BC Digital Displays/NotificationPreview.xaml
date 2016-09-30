@@ -31,13 +31,10 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-
-        <StackPanel x:Name="Notification_StackPanel" Orientation="Vertical" Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Notification:NotificationView Subject="Fire Alarm Testing" />
-            <Notification:NotificationView />
-            <Notification:NotificationView />
-            <Notification:NotificationView />
-        </StackPanel>
+        <TextBlock x:Name="Notifications_None" Text="No recent news in feed." Foreground="#7FFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Thin" FontStyle="Italic" FontSize="36" Visibility="Collapsed" />
+        <ScrollViewer x:Name="Notifications_Scrollviewer" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="Notification_StackPanel" Orientation="Vertical" Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </ScrollViewer>
 
         <Frame x:Name="NotificationInfo_Frame" x:FieldModifier="Public" />
 
