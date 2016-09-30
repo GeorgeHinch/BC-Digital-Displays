@@ -49,6 +49,7 @@ namespace BC_Digital_Displays
                         NotificationView nV = new NotificationView();
                         nV.GlyphType = i.glyph;
                         nV.Subject = i.subject;
+                        nV.Message = i.message;
                         nV.Tag = i;
 
                         Notification_StackPanel.Children.Add(nV);

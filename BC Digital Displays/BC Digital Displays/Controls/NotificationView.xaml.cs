@@ -32,7 +32,16 @@ namespace BC_Digital_Displays.Controls
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "Open Notification: " + thisNotification.subject, 0);
 
-            NotificationPreview.notificatioPreview.NotificationInfo_Frame.Visibility = Visibility.Visible;
+            if (Notification_Message.Visibility == Visibility.Collapsed)
+            {
+                Notification_Message.Visibility = Visibility.Visible;
+                Notification_Button.Text = "Less Info";
+            }
+            else
+            {
+                Notification_Message.Visibility = Visibility.Collapsed;
+                Notification_Button.Text = "More Info";
+            }
         }
 
         #region Dependency Properties
@@ -60,6 +69,19 @@ namespace BC_Digital_Displays.Controls
         {
             get { return (string)GetValue(SubjectProperty); }
             set { SetValue(SubjectProperty, value); }
+        }
+
+        public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
+            "Message",                   // The name of the DependencyProperty
+            typeof(string),               // The type of the DependencyProperty
+            typeof(NotificationView),     // The type of the owner of the DependencyProperty
+            null
+        );
+
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
         }
         #endregion
     }

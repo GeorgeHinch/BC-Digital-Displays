@@ -5,26 +5,24 @@
     xmlns:local="using:BC_Digital_Displays.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Height="130">
+    mc:Ignorable="d" Margin="0,28">
 
-    <Grid Height="75">
-        <Grid BorderThickness="1" CornerRadius="2">
-            <Grid.BorderBrush>
-                <SolidColorBrush Color="White"/>
-            </Grid.BorderBrush>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="40,0,0,0">
-                <TextBlock x:Name="Notification_Icon" Text="{Binding Glyph, ElementName=userControl}" FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="0,0,25,0" Foreground="White" />
-                <TextBlock x:Name="Notification_Subject" Text="{Binding Subject, ElementName=userControl}" FontSize="20" Margin="0,0,25,0" Foreground="White" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
-            </StackPanel>
-
-            <Grid Grid.Column="1" Margin="0,0,40,0" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="White" CornerRadius="5" BorderThickness="1">
-                <TextBlock Text="More Info" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Tapped="MoreInfo_Tapped" Margin="10,5" Foreground="White" FontWeight="Thin" />
+    <Grid>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" BorderThickness="1" CornerRadius="2" BorderBrush="White">
+            <Grid Margin="0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"  Margin="40,0,0,0">
+                    <TextBlock x:Name="Notification_Icon" Text="{Binding Glyph, ElementName=userControl}" FontFamily="Segoe MDL2 Assets" FontSize="24" Margin="0,0,25,0" Foreground="White" VerticalAlignment="Center" />
+                    <TextBlock x:Name="Notification_Subject" Text="{Binding Subject, ElementName=userControl}" FontSize="20" Margin="0,0,25,0" Foreground="White" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+                </StackPanel>
+                <Grid Grid.Column="1" Margin="0,0,40,0" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="White" CornerRadius="5" BorderThickness="1">
+                    <TextBlock x:Name="Notification_Button" Text="More Info" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Tapped="MoreInfo_Tapped" Margin="10,5" Foreground="White" FontWeight="Thin" />
+                </Grid>
             </Grid>
-        </Grid>
+            <TextBlock x:Name="Notification_Message" Text="{Binding Message, ElementName=userControl}" TextWrapping="WrapWholeWords" FontWeight="Light" Foreground="White" Margin="90,20,40,30" FontSize="18" Visibility="Collapsed" />
+        </StackPanel>
     </Grid>
 </UserControl>
