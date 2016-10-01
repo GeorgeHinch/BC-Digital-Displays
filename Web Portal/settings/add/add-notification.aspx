@@ -73,18 +73,20 @@
                               
                                 <div class="field half">
                                     <div class="field half first">
-                                    <label for="notificationStartDate">Start Date</label>
-                                    <asp:TextBox ID="notificationStartDate" TextMode="Date" runat="server" />
-                                </div>
+                                        <label for="notificationStartDate">Start Date</label>
+                                        <asp:TextBox ID="notificationStartDate" TextMode="Date" runat="server" />
+                                    </div>
 
                                     <div class="field half">
-                                    <label for="notificationEndDate">End Date</label>
-                                    <asp:TextBox ID="notificationEndDate" TextMode="Date" runat="server" />
-                                </div>
+                                        <label for="notificationEndDate">End Date</label>
+                                        <asp:TextBox ID="notificationEndDate" TextMode="Date" runat="server" />
+                                    </div>
                                 </div>
                                 
                                 <div class="field">
                                     <label for="notificationMessage">Message</label>
+                                    <p>The notification message field supports a subset of the Github's Markdown language. View the <a href="../../wiki/notification.aspx" target="_blank">Notification Wiki</a> to learn more.
+                                    <br />Quick copy: __, **, ···, ··*</p>
                                     <asp:TextBox ID="notificationMessage" runat="server" TextMode="MultiLine" Rows="7" />
                                 </div>
                                 
