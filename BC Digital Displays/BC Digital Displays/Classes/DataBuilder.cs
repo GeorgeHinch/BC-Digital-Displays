@@ -7,7 +7,10 @@ using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.UI.Text;
+using Windows.UI.Xaml.Documents;
 
 namespace BC_Digital_Displays.Classes
 {
@@ -350,6 +353,79 @@ namespace BC_Digital_Displays.Classes
             {
                 return t.cStartTime.ToString("h:mm tt") + " - " + t.cEndTime.ToString("h:mm tt");
             }
+        }
+        #endregion
+
+        #region Builds rich text from markdown string
+        public static Paragraph markdownBuilder(string s)
+        {
+            // boldDelimiter = "__";
+            // italicDelimiter = "**";
+            // tabDelimiter = "···";
+            // bulletDelimiter = "··*";
+            s = s.Trim();
+            s = Regex.Replace(s, "\n", "\n\n");
+            s = Regex.Replace(s, "···", "        ");
+            s = Regex.Replace(s, @"··\*|\n\n··\*", "\n      • ");
+
+            Paragraph returnParagraph = new Paragraph();
+
+            Match specialChar = Regex.Match(s, @"(.*?)(\*\*|__)(.*?)(\*\*|__)");
+            Match lastSpecialChar = specialChar;
+
+            int maxIndex = 0;
+
+            while (specialChar.Success)
+            {
+                Run firstMatchRun = new Run();
+                firstMatchRun.Text = specialChar.Groups[1].ToString();
+                returnParagraph.Inlines.Add(firstMatchRun);
+
+                Run specialTextRun = new Run();
+                specialTextRun.Text = specialChar.Groups[3].ToString();
+
+                if(specialChar.Groups[2].ToString() == "__")
+                {
+                    specialTextRun.FontWeight = FontWeights.Bold;
+                }
+                else if (specialChar.Groups[2].ToString() == "**")
+                {
+                    specialTextRun.FontStyle = FontStyle.Italic;
+                }
+                returnParagraph.Inlines.Add(specialTextRun);
+
+                specialChar = specialChar.NextMatch();
+                if (maxIndex < specialChar.Index)
+                {
+                    // We want to track the last successful match so that we can reference it later
+                    // This will allow us to get the rest of the string after the last match and make sure that we include that string.
+                    maxIndex = specialChar.Index;
+                    lastSpecialChar = specialChar;
+                }
+
+            }
+
+            Run lastTextRun = new Run();
+            if (maxIndex > 0)
+            {
+                // We were able to match SOMETHING and put special styles
+
+
+                int lastMatchIndex = lastSpecialChar.Groups[4].Captures[0].Index;
+
+                // The last group begins with either "**" or "__" and contains the remainder of the string that we care about. Add two so that we ignore the "**" or "__"
+                lastMatchIndex += 2;
+
+                lastTextRun.Text = s.Substring(lastMatchIndex);
+            } else
+            {
+                // maxIndex == 0, meaning that we never matched anything at all
+
+                lastTextRun.Text = s;
+            }
+            returnParagraph.Inlines.Add(lastTextRun);
+
+            return returnParagraph;
         }
         #endregion
     }

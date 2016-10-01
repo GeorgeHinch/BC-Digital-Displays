@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using BC_Digital_Displays.Classes;
+using Windows.UI.Xaml.Documents;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -23,6 +24,13 @@ namespace BC_Digital_Displays.Controls
         public NotificationView()
         {
             this.InitializeComponent();
+            this.Loaded += UserControl_Loaded;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Paragraph richMessage = DataBuilder.markdownBuilder(this.Message);
+            Notification_Message.Blocks.Add(richMessage);
         }
 
         private void MoreInfo_Tapped(object sender, TappedRoutedEventArgs e)

@@ -22,7 +22,7 @@
                     <TextBlock x:Name="Notification_Button" Text="More Info" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Tapped="MoreInfo_Tapped" Margin="10,5" Foreground="White" FontWeight="Thin" />
                 </Grid>
             </Grid>
-            <TextBlock x:Name="Notification_Message" Text="{Binding Message, ElementName=userControl}" TextWrapping="WrapWholeWords" FontWeight="Light" Foreground="White" Margin="90,20,40,30" FontSize="18" Visibility="Collapsed" />
+            <RichTextBlock x:Name="Notification_Message" TextWrapping="WrapWholeWords" FontWeight="Light" Foreground="White" Margin="90,20,40,30" FontSize="18" Visibility="Collapsed" />
         </StackPanel>
     </Grid>
 </UserControl>
