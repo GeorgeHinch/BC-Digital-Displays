@@ -26,17 +26,17 @@ namespace BC_Digital_Displays
         #region Load Trainer Preview from Card.Tag on Page Load
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            trainers trainer_info = (trainers)e.Parameter;
+            bcTrainers trainer_info = (bcTrainers)e.Parameter;
 
             int years;
             int yearsBC;
             string years_String;
             string yearsBC_String;
-            if (trainer_info.years != null && trainer_info.years_bc != null)
+            if (trainer_info.years != null && trainer_info.yearsBC != null)
             {
                 try
                 {
-                    years = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years);
+                    years = (int)DateTime.Now.Year - (int)trainer_info.years;
                     years_String = years.ToString();
                 }
                 catch
@@ -46,7 +46,7 @@ namespace BC_Digital_Displays
 
                 try
                 {
-                    yearsBC = (int)DateTime.Now.Year - Int32.Parse(trainer_info.years_bc);
+                    yearsBC = (int)DateTime.Now.Year - (int)trainer_info.yearsBC;
                     yearsBC_String = yearsBC.ToString();
                 }
                 catch
@@ -61,7 +61,7 @@ namespace BC_Digital_Displays
             Trainer_Degree.Text = trainer_info.degree;
             Trainer_Years.Text = years_String;
             Trainer_YearsBC.Text = yearsBC_String;
-            Trainer_Session.Text = trainer_info.session;
+            Trainer_Session.Text = trainer_info.expectation;
             Trainer_Reward.Text = trainer_info.reward;
             Trainer_Expertise.Text = trainer_info.expertise;
             Trainer_Accomplishment.Text = trainer_info.accomplishment;

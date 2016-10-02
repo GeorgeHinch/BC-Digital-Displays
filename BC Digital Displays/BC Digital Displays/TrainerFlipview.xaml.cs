@@ -1,5 +1,6 @@
 ﻿using BC_Digital_Displays.Cards;
 using BC_Digital_Displays.Classes;
+using Microsoft.WindowsAzure.MobileServices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
@@ -35,143 +37,147 @@ namespace BC_Digital_Displays
         public TrainerFlipview()
         {
             this.InitializeComponent();
+            this.Loaded += UserControl_Loaded;
             trainerFlipView = this;
-
-            LoadTrainers();
         }
 
         #region Load Trainers
-        public void LoadTrainers()
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
-            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
-
-            HttpRequestMessage request = new HttpRequestMessage(
-                    HttpMethod.Get,
-                    $"http://www.bellevueclub.com/digital-signage/BC-Trainers.txt");
-            HttpClient client = new HttpClient();
-            if (internet != false)
+            try
             {
-                var response = client.SendAsync(request).Result;
-                if (response.StatusCode == HttpStatusCode.OK)
+                var task = Task.Run(async () => { await loadTrainers(); });
+                task.Wait();
+
+                double trainerGrid = (items.Count / 3);
+                int numOfGrid = (int)Math.Ceiling(trainerGrid);
+
+                List<Trainer_Card> cardList = new List<Trainer_Card>();
+
+                StackPanel indexSP = new StackPanel();
+                int indexVal = 1;
+                IList<StackPanel> spList = new List<StackPanel>(numOfGrid);
+
+                int tbVal = 0;
+
+                #region Creates trainer cards
+                foreach (bcTrainers t in items)
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
-                    var bytes = Encoding.Unicode.GetBytes(result);
-                    using (MemoryStream stream = new MemoryStream(bytes))
+                    Trainer_Card card = new Trainer_Card();
+
+                    int years;
+                    int yearsBC;
+                    string years_String;
+                    string yearsBC_String;
+                    if (t.years != null && t.yearsBC != null)
                     {
-                        var serializer = new DataContractJsonSerializer(typeof(Trainers));
-                        Trainers status = (Trainers)serializer.ReadObject(stream);
-                        
-                        double trainerGrid = (status.main.Length / 3);
-                        int numOfGrid = (int)Math.Ceiling(trainerGrid);
-                        
-                        List<Trainer_Card> cardList = new List<Trainer_Card>();
-
-                        StackPanel indexSP = new StackPanel();
-                        int indexVal = 1;
-                        IList<StackPanel> spList = new List<StackPanel>(numOfGrid);
-
-                        int tbVal = 0;
-
-                        #region Creates trainer cards
-                        foreach (trainers t in status.main)
+                        try
                         {
-                            Trainer_Card card = new Trainer_Card();
-
-                            int years;
-                            int yearsBC;
-                            string years_String;
-                            string yearsBC_String;
-                            if (t.years != null && t.years_bc != null)
-                            {
-                                try
-                                {
-                                    years = (int)DateTime.Now.Year - Int32.Parse(t.years);
-                                    years_String = years.ToString();
-                                }
-                                catch
-                                {
-                                    years_String = "NaN";
-                                }
-
-                                try
-                                {
-                                    yearsBC = (int)DateTime.Now.Year - Int32.Parse(t.years_bc);
-                                    yearsBC_String = yearsBC.ToString();
-                                }
-                                catch
-                                {
-                                    yearsBC_String = "NaN";
-                                }
-                            }
-                            else { years_String = "0"; yearsBC_String = "0"; }
-
-                            card.TrainerName = t.name;
-                            card.Degree = t.degree;
-                            card.YearsExp = years_String;
-                            card.YearsBC = yearsBC_String;
-                            card.Exp = t.expertise;
-                            card.TrainerPhotoURL = t.photo;
-                            card.Tag = t;
-                            card.Width = 450;
-                            card.Height = 800;
-                            card.Margin = new Thickness(31, 0, 31, 0);
-
-                            if(card.TrainerName == null)
-                            {
-                                card.Visibility = Visibility.Collapsed;
-                            }
-
-                            cardList.Add(card);
+                            years = (int)DateTime.Now.Year - (int)t.years;
+                            years_String = years.ToString();
                         }
-                        #endregion
-
-                        #region Adds cards to stackpanels
-                        foreach (Trainer_Card card in cardList)
+                        catch
                         {
-                            indexSP.Children.Add(card);
-
-                            if (indexVal % 3 == 0)
-                            {
-                                spList.Add(indexSP);
-                                indexSP = new StackPanel();
-                            }
-
-                            indexVal++;
+                            years_String = "NaN";
                         }
 
-                        if (indexSP.Children.Count != 0)
+                        try
                         {
-                            spList.Add(indexSP);
+                            yearsBC = (int)DateTime.Now.Year - (int)t.yearsBC;
+                            yearsBC_String = yearsBC.ToString();
                         }
-                        #endregion
-
-                        #region Adds stackpanels to flipview
-                        foreach (StackPanel sp in spList)
+                        catch
                         {
-                            Debug.WriteLine("Children: " + sp.Children.Count);
-
-                            TextBlock tb = new TextBlock();
-                            tb.Name = tbVal.ToString();
-                            tb.Text = WebUtility.HtmlDecode("&#xEA3A;");
-                            tb.FontFamily = new FontFamily("Segoe MDL2 Assets");
-                            tb.TextAlignment = TextAlignment.Center;
-                            tb.Margin = new Thickness(10, 0, 10, 0);
-                            tb.Foreground = new SolidColorBrush(Color.FromArgb(127,255,255,255));
-                            tb.Tapped += new TappedEventHandler(indicator_Clicked);
-                            FlipviewIndicator_Stackpanel.Children.Add(tb);
-
-                            tbVal++;
-
-                            sp.Orientation = Orientation.Horizontal;
-                            sp.VerticalAlignment = VerticalAlignment.Center;
-                            sp.HorizontalAlignment = HorizontalAlignment.Center;
-
-                            Trainer_Flipview.Items.Add(sp);
+                            yearsBC_String = "NaN";
                         }
-                        #endregion
                     }
+                    else { years_String = "0"; yearsBC_String = "0"; }
+
+                    card.TrainerName = t.name;
+                    card.Degree = t.degree;
+                    card.YearsExp = years_String;
+                    card.YearsBC = yearsBC_String;
+                    card.Exp = t.expertise;
+                    card.TrainerPhotoURL = t.photo;
+                    card.Tag = t;
+                    card.Width = 450;
+                    card.Height = 800;
+                    card.Margin = new Thickness(31, 0, 31, 0);
+
+                    if (card.TrainerName == null)
+                    {
+                        card.Visibility = Visibility.Collapsed;
+                    }
+
+                    cardList.Add(card);
                 }
+                #endregion
+
+                #region Adds cards to stackpanels
+                foreach (Trainer_Card card in cardList)
+                {
+                    indexSP.Children.Add(card);
+
+                    if (indexVal % 3 == 0)
+                    {
+                        spList.Add(indexSP);
+                        indexSP = new StackPanel();
+                    }
+
+                    indexVal++;
+                }
+
+                if (indexSP.Children.Count != 0)
+                {
+                    spList.Add(indexSP);
+                }
+                #endregion
+
+                #region Adds stackpanels to flipview
+                foreach (StackPanel sp in spList)
+                {
+                    TextBlock tb = new TextBlock();
+                    tb.Name = tbVal.ToString();
+                    tb.Text = WebUtility.HtmlDecode("&#xEA3A;");
+                    tb.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    tb.TextAlignment = TextAlignment.Center;
+                    tb.Margin = new Thickness(10, 0, 10, 0);
+                    tb.Foreground = new SolidColorBrush(Color.FromArgb(127, 255, 255, 255));
+                    tb.Tapped += new TappedEventHandler(indicator_Clicked);
+                    FlipviewIndicator_Stackpanel.Children.Add(tb);
+
+                    tbVal++;
+
+                    sp.Orientation = Orientation.Horizontal;
+                    sp.VerticalAlignment = VerticalAlignment.Center;
+                    sp.HorizontalAlignment = HorizontalAlignment.Center;
+
+                    Trainer_Flipview.Items.Add(sp);
+                }
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception: " + ex.Message + " | ");
+            }
+        }
+        
+        private MobileServiceCollection<bcTrainers, bcTrainers> items;
+        private IMobileServiceTable<bcTrainers> bcTrainersTable = App.MobileService.GetTable<bcTrainers>();
+        public async Task loadTrainers()
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                items = await bcTrainersTable
+                    .Where(aTrainer => aTrainer.deleted == false)
+                    .ToCollectionAsync();
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+                Debug.WriteLine("Exception: " + exception.Message + " | ");
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
             }
         }
         #endregion

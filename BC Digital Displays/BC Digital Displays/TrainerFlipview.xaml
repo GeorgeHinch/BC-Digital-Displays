@@ -18,10 +18,12 @@
     </Page.Transitions>
 
     <Grid>
-        <FlipView x:FieldModifier="Public" x:Name="Trainer_Flipview" Background="{x:Null}" Height="880" SelectionChanged="Trainer_Flipview_SelectionChanged" />
+        <Grid Height="880">
+            <FlipView x:FieldModifier="Public" x:Name="Trainer_Flipview" Background="{x:Null}" Height="840" SelectionChanged="Trainer_Flipview_SelectionChanged" VerticalAlignment="Top" />
 
-        <StackPanel x:FieldModifier="Public" x:Name="FlipviewIndicator_Stackpanel" Orientation="Horizontal" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,90" />
-
+            <StackPanel x:FieldModifier="Public" x:Name="FlipviewIndicator_Stackpanel" Orientation="Horizontal" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        </Grid>
+        
         <Frame x:Name="IndTrainerInfo_Frame" x:FieldModifier="Public" />
 
         <StackPanel x:Name="GoBack_Button" x:FieldModifier="Public" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Tapped="GoBack_Tapped">
