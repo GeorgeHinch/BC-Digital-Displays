@@ -7,7 +7,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <Grid>
-        <FlipView x:FieldModifier="Public" x:Name="Trainer_Flipview" Background="{x:Null}" SelectionChanged="Trainer_Flipview_SelectionChanged" />
+        <FlipView x:FieldModifier="Public" x:Name="Trainer_Flipview" Background="{x:Null}" Height="880" SelectionChanged="Trainer_Flipview_SelectionChanged" />
+
+        <StackPanel x:FieldModifier="Public" x:Name="FlipviewIndicator_Stackpanel" Orientation="Horizontal" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,90" />
+
+        <Frame x:Name="IndTrainerInfo_Frame" x:FieldModifier="Public" />
+
+        <StackPanel x:Name="GoBack_Button" x:FieldModifier="Public" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Tapped="GoBack_Tapped">
+            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,0,15,0" Tapped="GoBack_Tapped" />
+            <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Tapped="GoBack_Tapped" />
+        </StackPanel>
     </Grid>
 </Page>

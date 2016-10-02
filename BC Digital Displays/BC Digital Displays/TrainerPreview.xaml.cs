@@ -76,9 +76,11 @@ namespace BC_Digital_Displays
         #region Back Button Event
         public void previewReturn_Clicked (object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Visible;
-            MainPage.mainPage.FlipviewIndicator_Stackpanel.Visibility = Visibility.Visible;
-            MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
+            TrainerFlipview.trainerFlipView.Trainer_Flipview.Visibility = Visibility.Visible;
+            TrainerFlipview.trainerFlipView.FlipviewIndicator_Stackpanel.Visibility = Visibility.Visible;
+            TrainerFlipview.trainerFlipView.IndTrainerInfo_Frame.Navigate(typeof(Page));
+            TrainerFlipview.trainerFlipView.IndTrainerInfo_Frame.Visibility = Visibility.Collapsed;
+            TrainerFlipview.trainerFlipView.GoBack_Button.Visibility = Visibility.Visible;
         }
         #endregion
     }

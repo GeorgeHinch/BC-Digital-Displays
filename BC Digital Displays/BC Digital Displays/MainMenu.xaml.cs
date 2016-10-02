@@ -40,5 +40,11 @@ namespace BC_Digital_Displays
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(YouthBrochure), null);
         }
+
+        private void Menu_Trainers_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuFlipView.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(TrainerFlipview), null);
+        }
     }
 }

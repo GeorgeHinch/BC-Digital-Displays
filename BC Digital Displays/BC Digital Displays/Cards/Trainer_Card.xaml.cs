@@ -109,10 +109,11 @@ namespace BC_Digital_Displays.Cards
             // track a custom event
             GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "open_click", "(" + this.TrainerName + ") Open: " + this.TrainerName, 0);
 
-            MainPage.mainPage.IndTrainerInfo_Frame.Navigate(typeof(TrainerPreview), this.Tag);
-            MainPage.mainPage.IndTrainerInfo_Frame.Visibility = Visibility.Visible;
-            MainPage.mainPage.FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
-            MainPage.mainPage.TrainerCard_Frame.Visibility = Visibility.Collapsed;
+            TrainerFlipview.trainerFlipView.IndTrainerInfo_Frame.Navigate(typeof(TrainerPreview), this.Tag);
+            TrainerFlipview.trainerFlipView.IndTrainerInfo_Frame.Visibility = Visibility.Visible;
+            TrainerFlipview.trainerFlipView.FlipviewIndicator_Stackpanel.Visibility = Visibility.Collapsed;
+            TrainerFlipview.trainerFlipView.Trainer_Flipview.Visibility = Visibility.Collapsed;
+            TrainerFlipview.trainerFlipView.GoBack_Button.Visibility = Visibility.Collapsed;
         }
     }
 }

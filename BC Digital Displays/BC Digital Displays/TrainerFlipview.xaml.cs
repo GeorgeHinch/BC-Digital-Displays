@@ -31,9 +31,11 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class TrainerFlipview : Page
     {
+        public static TrainerFlipview trainerFlipView;
         public TrainerFlipview()
         {
             this.InitializeComponent();
+            trainerFlipView = this;
 
             LoadTrainers();
         }
@@ -157,7 +159,7 @@ namespace BC_Digital_Displays
                             tb.Margin = new Thickness(10, 0, 10, 0);
                             tb.Foreground = new SolidColorBrush(Color.FromArgb(127,255,255,255));
                             tb.Tapped += new TappedEventHandler(indicator_Clicked);
-                            MainPage.mainPage.FlipviewIndicator_Stackpanel.Children.Add(tb);
+                            FlipviewIndicator_Stackpanel.Children.Add(tb);
 
                             tbVal++;
 
@@ -189,16 +191,22 @@ namespace BC_Digital_Displays
         {
             int siVal = Trainer_Flipview.SelectedIndex;
 
-            foreach (TextBlock t in MainPage.mainPage.FlipviewIndicator_Stackpanel.Children)
+            foreach (TextBlock t in FlipviewIndicator_Stackpanel.Children)
             {
                 t.Text = WebUtility.HtmlDecode("&#xEA3A;");
                 t.Foreground = new SolidColorBrush(Color.FromArgb(127, 255, 255, 255));
             }
 
-            TextBlock tb = (TextBlock)MainPage.mainPage.FlipviewIndicator_Stackpanel.Children.ElementAt(siVal);
+            TextBlock tb = (TextBlock)FlipviewIndicator_Stackpanel.Children.ElementAt(siVal);
             tb.Text = WebUtility.HtmlDecode("&#xEA3B;");
             tb.Foreground = new SolidColorBrush(Color.FromArgb(191, 255, 255, 255));
         }
         #endregion
+
+        private void GoBack_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainMenu.mainMenu.menuFlipView.Visibility = Visibility.Visible;
+            MainMenu.mainMenu.mainFrame.Navigate(typeof(Page));
+        }
     }
 }

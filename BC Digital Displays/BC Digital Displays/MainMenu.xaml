@@ -31,10 +31,10 @@
                             <TextBlock Text="Youth Brochure" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
+                    <Button x:Name="Menu_Trainers_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Trainers_Button_Tapped">
                         <StackPanel>
                             <TextBlock Text="&#59219;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Weather" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="Meet the Trainers" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
                     <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
