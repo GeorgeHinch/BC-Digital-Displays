@@ -33,7 +33,7 @@
         <Color x:Key="UI_Asbestos">#FF7f8c8d</Color>
         <Color x:Key="UI_Cerise">#FFEA4C88</Color>
 
-        
+
         <!-- UI Elements -->
         <Color x:Key="UI_RB_Checked">#FF3498db</Color>
         <Color x:Key="UI_RB_Hover">#FF2980b9</Color>

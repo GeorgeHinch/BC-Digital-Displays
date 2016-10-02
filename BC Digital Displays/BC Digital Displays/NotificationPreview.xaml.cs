@@ -88,5 +88,11 @@ namespace BC_Digital_Displays
             }
         }
         #endregion
+
+        private void GoBack_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainMenu.mainMenu.menuFlipView.Visibility = Visibility.Visible;
+            MainMenu.mainMenu.mainFrame.Navigate(typeof(Page));
+        }
     }
 }

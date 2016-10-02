@@ -93,7 +93,7 @@ namespace BC_Digital_Displays
                 // configuring the new page by passing required information as a navigation
                 // parameter
                 //rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                rootFrame.Navigate(typeof(YouthBrochure), e.Arguments);
+                rootFrame.Navigate(typeof(MainMenu), e.Arguments);
             }
 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;

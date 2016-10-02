@@ -76,5 +76,11 @@ namespace BC_Digital_Displays
                 bID = items[0].id;
             }
         }
+
+        private void GoBack_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainMenu.mainMenu.menuFlipView.Visibility = Visibility.Visible;
+            MainMenu.mainMenu.mainFrame.Navigate(typeof(Page));
+        }
     }
 }

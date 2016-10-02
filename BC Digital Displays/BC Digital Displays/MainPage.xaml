@@ -41,7 +41,7 @@
                 <TextBlock x:Name="Message_MultiLine" TextAlignment="Center" FontSize="16" MaxLines="2" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" FontWeight="Light" Foreground="{StaticResource Foreground_Solid}"/>
             </StackPanel>
 
-            <TextBlock x:Name="DateBlock" Text="" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" FontWeight="Light" Margin="0,0,0,5" >
+            <TextBlock x:Name="DateBlock" Text="Thime" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" FontWeight="Light" Margin="0,0,0,5" >
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="White" Opacity="0.5"/>
                 </TextBlock.Foreground>

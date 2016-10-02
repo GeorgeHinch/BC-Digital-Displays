@@ -8,6 +8,16 @@
     x:Class="BC_Digital_Displays.YouthBrochure"
     mc:Ignorable="d">
 
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,19 +29,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="Gradient_Background">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
-                <GradientStop Color="#FF9BDAB4" Offset="0"/>
-                <GradientStop Color="#FF2AA7C2" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0">
-            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,5,15,0" />
-            <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" />
-        </StackPanel>
-
+    <Grid>
         <Grid CornerRadius="5">
             <Pivot VerticalAlignment="Center" Height="880" Width="1760">
                 <PivotItem Header="Recreation">
@@ -51,6 +49,11 @@
                 </PivotItem>
             </Pivot>
         </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Tapped="GoBack_Tapped">
+            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,0,15,0" Tapped="GoBack_Tapped" />
+            <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Tapped="GoBack_Tapped" />
+        </StackPanel>
 
         <Grid Grid.ColumnSpan="2">
             <Frame x:Name="classCard_Frame" x:FieldModifier="Public" />
