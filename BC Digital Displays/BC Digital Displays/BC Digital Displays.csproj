@@ -20,7 +20,7 @@
     <PackageCertificateKeyFile>BC Digital Displays_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AppxPackageDir>C:\Users\user\Desktop\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -99,6 +99,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="BC-Display-Menu.json" />
+    <Content Include="Assets\BC_Logo.png" />
     <Content Include="Assets\Precor_Logo.png" />
     <Content Include="Fonts\segmdl2-BC.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -156,9 +157,6 @@
     </Compile>
     <Compile Include="MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuSelect.xaml.cs">
       <DependentUpon>MenuSelect.xaml</DependentUpon>
@@ -252,10 +250,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MenuSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -314,18 +308,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Syncfusion.SfGauge.UWP">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Universal Windows\10.0\SDK\References\CommonConfiguration\neutral\Syncfusion.SfGauge.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfInput.UWP">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Universal Windows\10.0\SDK\References\CommonConfiguration\neutral\Syncfusion.SfInput.UWP.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.SfSchedule.UWP">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Syncfusion\Essential Studio\14.2.0.26\Universal Windows\10.0\SDK\References\CommonConfiguration\neutral\Syncfusion.SfSchedule.UWP.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=14.2.0.26">
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=14.3.0.49">
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
   </ItemGroup>

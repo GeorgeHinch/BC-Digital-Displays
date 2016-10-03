@@ -50,8 +50,8 @@ namespace BC_Digital_Displays
                 /* Store Selected Menu */
                 roamingSettings.Values["SelectedMenu"] = MenuSelect_Textbox.Text;
 
-                MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
-                MainPage.mainPage.refreshPage();
+                //MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
+                //MainPage.mainPage.refreshPage();
             }
             else
             {
@@ -61,7 +61,7 @@ namespace BC_Digital_Displays
 
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
+            //MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
         }
     }
 }

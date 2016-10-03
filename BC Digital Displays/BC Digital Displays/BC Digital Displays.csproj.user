@@ -4,7 +4,7 @@
     <ProjectView>ProjectFiles</ProjectView>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
-    <AppxBuildConfigurationSelection>x86</AppxBuildConfigurationSelection>
+    <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <AuthenticationMode>Windows</AuthenticationMode>

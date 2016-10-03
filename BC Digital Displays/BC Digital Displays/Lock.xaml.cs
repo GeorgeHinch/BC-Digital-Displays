@@ -69,7 +69,7 @@ namespace BC_Digital_Displays
                         if(Password_Box.Password == status.pass)
                         {
                             //Navigate to options
-                            MainPage.mainPage.Options_Frame.Navigate(typeof(OptionsMenu));
+                            //MainPage.mainPage.Options_Frame.Navigate(typeof(OptionsMenu));
                         }
                         else
                         {
@@ -83,7 +83,7 @@ namespace BC_Digital_Displays
 
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
+            //MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
         }
     }
 }

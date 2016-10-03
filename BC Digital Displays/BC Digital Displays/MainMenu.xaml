@@ -15,7 +15,9 @@
                 <GradientStop Color="#FF2AA7C2" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        
+
+        <Image Source="Assets/BC_Logo.png" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,30" Opacity="0.5" />
+
         <FlipView x:Name="menuFlipView" x:FieldModifier="Public" Background="{x:Null}">
             <StackPanel x:Name="HomeGroup1" HorizontalAlignment="Center" Height="600" VerticalAlignment="Center" Width="1200">
                 <StackPanel Orientation="Horizontal" Margin="0,37,0,0">

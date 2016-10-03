@@ -29,13 +29,13 @@ namespace BC_Digital_Displays
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.refreshPage();
-            MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
+            //MainPage.mainPage.refreshPage();
+            //MainPage.mainPage.Options_Frame.Navigate(typeof(Page));
         }
 
         private void menuSelect_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.mainPage.Options_Frame.Navigate(typeof(MenuSelect));
+            //MainPage.mainPage.Options_Frame.Navigate(typeof(MenuSelect));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BC_Digital_Displays.Classes;
 using BC_Digital_Displays.Controls;
 using Microsoft.WindowsAzure.MobileServices;
+using Syncfusion.UI.Xaml.Schedule;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +37,7 @@ namespace BC_Digital_Displays
             this.Loaded += UserControl_Loaded;
         }
 
+        #region Creates events on calendar from loaded SQL data
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -47,8 +49,6 @@ namespace BC_Digital_Displays
                 foreach (bcEvents eV in items)
                 {
                     Appointment newappointment = new Appointment();
-                    Debug.WriteLine("StartTime:" + eV.startTime + "|");
-                    Debug.WriteLine("EndTime:" + eV.endTime + "|");
                     DateTime start = DateTime.ParseExact(eV.startTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
                     DateTime end = DateTime.ParseExact(eV.endTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
                     newappointment.StartTime = start;
@@ -119,6 +119,7 @@ namespace BC_Digital_Displays
                 throw;
             }
         }
+        #endregion
 
         #region Load events from SQL
         private MobileServiceCollection<bcEvents, bcEvents> items;
@@ -141,6 +142,7 @@ namespace BC_Digital_Displays
         }
         #endregion
 
+        #region Button actions for calendar
         public void Close_Btn_Tapped(object sender, RoutedEventArgs e)
         {
             AppointmentPreview_Frame.Navigate(typeof(Page));
@@ -152,7 +154,7 @@ namespace BC_Digital_Displays
             MainMenu.mainMenu.mainFrame.Navigate(typeof(Page));
         }
 
-        private void SfCalendarView_ContextMenuOpening(object sender, Syncfusion.UI.Xaml.Schedule.ContextMenuOpeningEventArgs e)
+        private void SfCalendarView_ContextMenuOpening(object sender, ContextMenuOpeningEventArgs e)
         {
             e.Cancel = true;
             if (e.Appointment != null)
@@ -169,5 +171,38 @@ namespace BC_Digital_Displays
                 AppointmentPreview_Frame.Navigate(typeof(Page));
             }
         }
+        #endregion
     }
+
+    #region Appointment Class Extension
+    public class Appointment : ScheduleAppointment
+    {
+        #region Public Properties       
+
+        public string TimeStart { get; set; }
+
+        public string TimeEnd { get; set; }
+
+        public string DaySpan { get; set; }
+
+        public string DayStart { get; set; }
+
+        public string DayEnd { get; set; }
+
+        public string Instructor { get; set; }
+
+        public string Department { get; set; }
+
+        public string Price { get; set; }
+
+        public string Info { get; set; }
+
+        public string FlierJPG { get; set; }
+
+        public BitmapImage Flier { get; set; }
+
+
+        #endregion
+    }
+    #endregion
 }

@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page xmlns:my="using:Syncfusion.UI.Xaml.Schedule" 
     x:Class="BC_Digital_Displays.TrainerFlipview"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
