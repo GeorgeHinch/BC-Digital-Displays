@@ -194,7 +194,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
                 cmd.CommandType = CommandType.Text;
                 if (isUpdate == true)
                 {
-                    cmd.CommandText = "UPDATE [bcEvents] SET id = @id, name = @name, allDay = @allDay, orderTime = @orderTime, startTime = @startTime, endTime = @endTime, location = @location, department = @department, instructor = @instructor, price = @price, description = @description, flier = @flier WHERE [id]='" + finalGuid.ToString() + "'";
+                    cmd.CommandText = "UPDATE [bcEvents] SET id = @id, name = @name, allDay = @allDay, orderTime = @order, startTime = @start, endTime = @end, location = @location, department = @department, instructor = @instructor, price = @price, description = @description, flier = @flier WHERE [id]='" + finalGuid.ToString() + "'";
                     cmd.Parameters.AddWithValue("@id", finalGuid.ToString());
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@allDay", allDay);
