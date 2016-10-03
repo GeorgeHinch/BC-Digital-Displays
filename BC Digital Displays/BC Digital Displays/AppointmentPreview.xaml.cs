@@ -46,7 +46,7 @@ namespace BC_Digital_Displays
 
         private void Close_Btn_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            MainPage.mainPage.AppointmentPreview_Frame.Navigate(typeof(Page));
+            CalendarPreview.calendarPreview.AppointmentPreview_Frame.Navigate(typeof(Page));
         }
     }
 }

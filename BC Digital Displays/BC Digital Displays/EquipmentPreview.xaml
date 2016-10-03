@@ -11,104 +11,111 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#7FFFFFFF" Padding="25" CornerRadius="10">
-            <Image Source="Assets/Precor_Logo.png" Width="200" Margin="0,0,10,5" />
-            <TextBlock Text="Equipment Availibility" FontSize="37.333" FontWeight="Thin" Foreground="#FF414141" />
-        </StackPanel>
-        <Grid Grid.Row="1">
+        <Grid Height="880" Width="1650">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
-                <TextBlock Text="Studio 1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
-                <Gauge:SfCircularGauge x:Name="Studio1_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
-                    <Gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock x:Name="Studio1Header" Text="25%" 
-                              FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
-                    </Gauge:SfCircularGauge.GaugeHeader>
-                    <Gauge:SfCircularGauge.Scales>
-                        <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
-                            <Gauge:CircularScale.Ranges>
-                                <Gauge:CircularRange StartValue="0" 
-                                             EndValue="25" Stroke="#FF3498DB" />
-                                <Gauge:CircularRange StartValue="25" 
-                                             EndValue="100" Stroke="#FFE8E8E8" />
-                            </Gauge:CircularScale.Ranges>
-                        </Gauge:CircularScale>
-                    </Gauge:SfCircularGauge.Scales>
-                </Gauge:SfCircularGauge>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#7FFFFFFF" Padding="25" CornerRadius="10">
+                <Image Source="Assets/Precor_Logo.png" Width="200" Margin="0,0,10,5" />
+                <TextBlock Text="Equipment Availibility" FontSize="37.333" FontWeight="Thin" Foreground="#FF414141" />
             </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="1" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
-                <TextBlock Text="Studio 3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
-                <Gauge:SfCircularGauge x:Name="Studio3_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
-                    <Gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock x:Name="Studio3Header" Text="75%" 
-                              FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
-                    </Gauge:SfCircularGauge.GaugeHeader>
-                    <Gauge:SfCircularGauge.Scales>
-                        <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
-                            <Gauge:CircularScale.Ranges>
-                                <Gauge:CircularRange StartValue="0" 
-                                             EndValue="75" Stroke="#FFF1C40F" />
-                                <Gauge:CircularRange StartValue="75" 
-                                             EndValue="100" Stroke="#FFE8E8E8" />
-                            </Gauge:CircularScale.Ranges>
-                        </Gauge:CircularScale>
-                    </Gauge:SfCircularGauge.Scales>
-                </Gauge:SfCircularGauge>
-            </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
+                    <TextBlock Text="Studio 1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
+                    <Gauge:SfCircularGauge x:Name="Studio1_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
+                        <Gauge:SfCircularGauge.GaugeHeader>
+                            <TextBlock x:Name="Studio1Header" Text="25%" 
+                                  FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
+                        </Gauge:SfCircularGauge.GaugeHeader>
+                        <Gauge:SfCircularGauge.Scales>
+                            <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
+                                <Gauge:CircularScale.Ranges>
+                                    <Gauge:CircularRange StartValue="0" 
+                                                 EndValue="25" Stroke="#FF3498DB" />
+                                    <Gauge:CircularRange StartValue="25" 
+                                                 EndValue="100" Stroke="#FFE8E8E8" />
+                                </Gauge:CircularScale.Ranges>
+                            </Gauge:CircularScale>
+                        </Gauge:SfCircularGauge.Scales>
+                    </Gauge:SfCircularGauge>
+                </StackPanel>
 
-            <StackPanel Grid.Row="0" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
-                <TextBlock Text="Studio 2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
-                <Gauge:SfCircularGauge x:Name="Studio2_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
-                    <Gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock x:Name="Studio2Header" Text="55%" 
-                              FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
-                    </Gauge:SfCircularGauge.GaugeHeader>
-                    <Gauge:SfCircularGauge.Scales>
-                        <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
-                            <Gauge:CircularScale.Ranges>
-                                <Gauge:CircularRange StartValue="0" 
-                                             EndValue="55" Stroke="#FF3498DB" />
-                                <Gauge:CircularRange StartValue="55" 
-                                             EndValue="100" Stroke="#FFE8E8E8" />
-                            </Gauge:CircularScale.Ranges>
-                        </Gauge:CircularScale>
-                    </Gauge:SfCircularGauge.Scales>
-                </Gauge:SfCircularGauge>
-            </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
+                    <TextBlock Text="Studio 3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
+                    <Gauge:SfCircularGauge x:Name="Studio3_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
+                        <Gauge:SfCircularGauge.GaugeHeader>
+                            <TextBlock x:Name="Studio3Header" Text="75%" 
+                                  FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
+                        </Gauge:SfCircularGauge.GaugeHeader>
+                        <Gauge:SfCircularGauge.Scales>
+                            <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
+                                <Gauge:CircularScale.Ranges>
+                                    <Gauge:CircularRange StartValue="0" 
+                                                 EndValue="75" Stroke="#FFF1C40F" />
+                                    <Gauge:CircularRange StartValue="75" 
+                                                 EndValue="100" Stroke="#FFE8E8E8" />
+                                </Gauge:CircularScale.Ranges>
+                            </Gauge:CircularScale>
+                        </Gauge:SfCircularGauge.Scales>
+                    </Gauge:SfCircularGauge>
+                </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
-                <TextBlock Text="Studio 4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
-                <Gauge:SfCircularGauge x:Name="Studio4_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
-                    <Gauge:SfCircularGauge.GaugeHeader>
-                        <TextBlock x:Name="Studio4Header" Text="95%" 
-                              FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
-                    </Gauge:SfCircularGauge.GaugeHeader>
-                    <Gauge:SfCircularGauge.Scales>
-                        <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
-                            <Gauge:CircularScale.Ranges>
-                                <Gauge:CircularRange StartValue="0" 
-                                             EndValue="95" Stroke="#FFE74C3C" />
-                                <Gauge:CircularRange StartValue="95" 
-                                             EndValue="100" Stroke="#FFE8E8E8" />
-                            </Gauge:CircularScale.Ranges>
-                        </Gauge:CircularScale>
-                    </Gauge:SfCircularGauge.Scales>
-                </Gauge:SfCircularGauge>
-            </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
+                    <TextBlock Text="Studio 2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
+                    <Gauge:SfCircularGauge x:Name="Studio2_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
+                        <Gauge:SfCircularGauge.GaugeHeader>
+                            <TextBlock x:Name="Studio2Header" Text="55%" 
+                                  FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
+                        </Gauge:SfCircularGauge.GaugeHeader>
+                        <Gauge:SfCircularGauge.Scales>
+                            <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
+                                <Gauge:CircularScale.Ranges>
+                                    <Gauge:CircularRange StartValue="0" 
+                                                 EndValue="55" Stroke="#FF3498DB" />
+                                    <Gauge:CircularRange StartValue="55" 
+                                                 EndValue="100" Stroke="#FFE8E8E8" />
+                                </Gauge:CircularScale.Ranges>
+                            </Gauge:CircularScale>
+                        </Gauge:SfCircularGauge.Scales>
+                    </Gauge:SfCircularGauge>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Background="White" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="25" CornerRadius="10">
+                    <TextBlock Text="Studio 4" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Foreground="#FF95A5A6" FontWeight="Thin"/>
+                    <Gauge:SfCircularGauge x:Name="Studio4_Gauge" Grid.Row="1" HeaderAlignment="Center" GaugeType="North" Width="500" Height="250" VerticalAlignment="Top">
+                        <Gauge:SfCircularGauge.GaugeHeader>
+                            <TextBlock x:Name="Studio4Header" Text="95%" 
+                                  FontSize="64" TextAlignment="Center" FontWeight="ExtraLight" Foreground="#FFB0B0B0" Margin="0,50,0,0"/>
+                        </Gauge:SfCircularGauge.GaugeHeader>
+                        <Gauge:SfCircularGauge.Scales>
+                            <Gauge:CircularScale StartValue="0" EndValue="100" TickStrokeThickness="0" TickLength="0" SmallTickLength="0" SmallTickStrokeThickness="0" Interval="100" >
+                                <Gauge:CircularScale.Ranges>
+                                    <Gauge:CircularRange StartValue="0" 
+                                                 EndValue="95" Stroke="#FFE74C3C" />
+                                    <Gauge:CircularRange StartValue="95" 
+                                                 EndValue="100" Stroke="#FFE8E8E8" />
+                                </Gauge:CircularScale.Ranges>
+                            </Gauge:CircularScale>
+                        </Gauge:SfCircularGauge.Scales>
+                    </Gauge:SfCircularGauge>
+                </StackPanel>
+            </Grid>
         </Grid>
+
+        <StackPanel x:Name="GoBack_Button" x:FieldModifier="Public" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Tapped="GoBack_Tapped">
+            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,0,15,0" Tapped="GoBack_Tapped" />
+            <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Tapped="GoBack_Tapped" />
+        </StackPanel>
     </Grid>
 </Page>

@@ -46,5 +46,17 @@ namespace BC_Digital_Displays
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(TrainerFlipview), null);
         }
+
+        private void Menu_Equipment_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuFlipView.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(EquipmentPreview), null);
+        }
+
+        private void Menu_Calendar_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuFlipView.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(CalendarPreview), null);
+        }
     }
 }

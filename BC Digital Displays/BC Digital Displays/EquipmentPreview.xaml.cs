@@ -36,7 +36,7 @@ namespace BC_Digital_Displays
             this.InitializeComponent();
 
             // Remove sample gauge ranges from the xaml before enabling
-            checkMachineStudio();
+            //checkMachineStudio();
         }
 
         #region Set Color Brushes
@@ -345,5 +345,11 @@ namespace BC_Digital_Displays
             return active;
         }
         #endregion
+
+        private void GoBack_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainMenu.mainMenu.menuFlipView.Visibility = Visibility.Visible;
+            MainMenu.mainMenu.mainFrame.Navigate(typeof(Page));
+        }
     }
 }
