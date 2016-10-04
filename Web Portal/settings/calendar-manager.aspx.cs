@@ -82,7 +82,7 @@ public partial class settings_calendar_manager : System.Web.UI.Page
         {
             string trimTime = ev.startTime;
             Debug.WriteLine("Trime Time: " + trimTime + " |");
-            DateTime start = DateTime.ParseExact(trimTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+            DateTime start = DateTime.ParseExact(trimTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
 
             string TimeStart = String.Format("{0:t}", start);
             string DayStart = String.Format("{0:m}", start);

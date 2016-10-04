@@ -70,11 +70,11 @@ public partial class settings_add_add_event : System.Web.UI.Page
                     eventAllDay.Checked = true;
                 } else { eventAllDay.Checked = false; }
                 string eStartTime = (string)sdr["startTime"];
-                DateTime startParse = DateTime.ParseExact(eStartTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime startParse = DateTime.ParseExact(eStartTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
                 eventStartDate.Text = startParse.ToString("yyyy-MM-dd");
                 eventStartTime.Text = startParse.ToString("HH:mm");
                 string eEndTime = (string)sdr["endTime"];
-                DateTime endParse = DateTime.ParseExact(eEndTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                DateTime endParse = DateTime.ParseExact(eEndTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
                 eventEndDate.Text = endParse.ToString("yyyy-MM-dd");
                 eventEndTime.Text = endParse.ToString("HH:mm");
                 eventLocation.Text = (string)sdr["location"];
@@ -148,9 +148,9 @@ public partial class settings_add_add_event : System.Web.UI.Page
         string dtEndDay = dayEnd.Day.ToString();
         string dtEndHour = hourEnd.Hour.ToString();
         string dtEndMinute = hourEnd.Minute.ToString();
-        string dtFormatStart = dtStartYear + ",  " + dtStartMonth + ",  " + dtStartDay + ",  " + dtStartHour + ",  " + dtStartMinute + ",  0";
-        DateTime orderTime = DateTime.ParseExact(dtFormatStart, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
-        string dtFormatEnd = dtEndYear + ",  " + dtEndMonth + ",  " + dtEndDay + ",  " + dtEndHour + ",  " + dtEndMinute + ",  0";
+        string dtFormatStart = dtStartYear + ", " + dtStartMonth + ", " + dtStartDay + ", " + dtStartHour + ", " + dtStartMinute + ", 0";
+        DateTime orderTime = DateTime.ParseExact(dtFormatStart, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
+        string dtFormatEnd = dtEndYear + ", " + dtEndMonth + ", " + dtEndDay + ", " + dtEndHour + ", " + dtEndMinute + ", 0";
         string instructor = eventInstructor.Text;
         string description = eventDecription.Text;
         string price = eventPrice.Text;
