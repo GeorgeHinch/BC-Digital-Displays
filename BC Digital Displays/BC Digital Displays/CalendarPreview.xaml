@@ -7,9 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/EmailTBStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <Grid x:Name="ScheduleGrid" Width="1760" Height="880">
             <Schedule:SfSchedule x:Name="SfCalendarView" Background="White" ContextMenuOpening="SfCalendarView_ContextMenuOpening" AllowEditing="False" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
+
                 <Schedule:SfSchedule.AppointmentTemplate>
                     <DataTemplate>
                         <Grid>
@@ -32,5 +41,39 @@
             <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,0,15,0" Tapped="GoBack_Tapped" />
             <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Tapped="GoBack_Tapped" />
         </StackPanel>
+
+        <Grid x:Name="Email_Template" x:FieldModifier="Public" Visibility="Collapsed">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <NavigationThemeTransition>
+                        <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                            <ContinuumNavigationTransitionInfo/>
+                        </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    </NavigationThemeTransition>
+                </TransitionCollection>
+            </Grid.Transitions>
+
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.97">
+                    <GradientStop Color="#FF9BDAB4" Offset="0"/>
+                    <GradientStop Color="#FF2AA7C2" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Grid>
+                <TextBlock x:Name="CloseEmail_Icon" Text="&#xEA39;" Foreground="White" HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" FontSize="30" Margin="0,25,25,0" Tapped="CloseEmail_Tapped"/>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Send event info:" Foreground="White" Margin="0,0,0,10" />
+                    <TextBox x:Name="userEmailTB" Width="400" Height="50" PlaceholderText="Enter Email" Style="{StaticResource EmailTBStyles}" Margin="0,0,0,25" InputScope="EmailSmtpAddress" IsSpellCheckEnabled="False"/>
+                    <Button HorizontalAlignment="Center" Tapped="EmailSent_Tapped">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Send Email" Foreground="#BFFFFFFF" />
+                            <SymbolIcon x:Name="forward" Symbol="Forward" Margin="10,0,0,0" Foreground="#BFFFFFFF"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

@@ -63,7 +63,7 @@ namespace BC_Digital_Displays.Classes
                 emailMessage.Body = body;
                 int attachNum = 1;
 
-                string attatchName = attachmentName + "_" + attachNum.ToString() + ".ics";
+                string attatchName = Regex.Replace(attachmentName, "[^0-9a-zA-Z]+", "").Replace(" ", "").Truncate(10) + "_" + attachNum.ToString() + ".ics";
 
                 Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
                 Windows.Storage.StorageFile icsFile = await storageFolder.CreateFileAsync(attatchName,

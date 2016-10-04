@@ -78,6 +78,18 @@ namespace BC_Digital_Displays.Classes
             }
         }
 
+        public static string dayBuilder(DateTime start, DateTime end)
+        {
+            if (start.ToString("MM/dd/yyyy") == end.ToString("MM/dd/yyyy"))
+            {
+                return start.ToString("MMMMM, d, yyyy") + ", " + DataBuilder.timeBuilder(start, end);
+            }
+            else
+            {
+                return start.ToString("MMMM, d") + " - " + end.ToString("MMMM, d, yyyy") + ", " + DataBuilder.timeBuilder(start, end);
+            }
+        }
+
         public static int dayAdder(string d)
         {
             // Week start: M
@@ -120,7 +132,7 @@ namespace BC_Digital_Displays.Classes
         }
         #endregion
 
-        #region Builds email string for classes
+        #region Builds email string for classes & events
         public static string emailRecClassBuilder(bcRecClasses thisClass, bcRecBrochure thisBrochure, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
         {
             List<bcSessions> theseSessions = JsonConvert.DeserializeObject<List<bcSessions>>(thisBrochure.sessions);
@@ -196,6 +208,34 @@ namespace BC_Digital_Displays.Classes
             
             return returnString.ToString();
         }
+
+        public static string emailEventBuilder(Appointment thisEvent)
+        {
+            StringBuilder returnString = new StringBuilder();
+
+            #region Email template set up (DO NOT EDIT)
+            returnString.AppendLine("<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>Bellevue Club</title>");
+            returnString.AppendLine("<link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" />");
+            returnString.AppendLine("<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'>");
+            returnString.AppendLine("</head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td>");
+            returnString.AppendLine("<div style=\"text-align:center; margin:auto; \"><img src=\"http://www.bellevueclub.com/Forms/email/assets/bc_logo.png\" style=\"width:200px;text-align:center;align:center;margin:auto;\" align=\"middle\"/></div>");
+            #endregion
+
+            returnString.AppendLine("<h1>Details for " + thisEvent.Subject + "</h1>");
+            returnString.AppendLine("<h2>Event Description</h2>");
+            returnString.AppendLine("<p><em>" + DataBuilder.dayBuilder(thisEvent.StartDT, thisEvent.EndDT) + "</em></p>");
+            returnString.AppendLine("<p>" + thisEvent.Notes + "</p>");
+
+            returnString.AppendLine("<h2>Registering</h2>");
+            returnString.AppendLine("<p>From tennis, basketball and swim lessons to art classes and special holiday events, the Bellevue Club and our roster of excellent instructors have lots of plans for your family.</p>");
+            returnString.AppendLine("<p>Register for this event and many more at <a href=\"https://members.bellevueclub.com\">members.bellevueclub.com</a>.</p>");
+
+            #region Email template footer (DO NOT EDIT)
+            returnString.AppendLine("</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>");
+            #endregion
+
+            return returnString.ToString();
+        }
         #endregion
 
         #region Builds ics file from string
@@ -261,11 +301,8 @@ namespace BC_Digital_Displays.Classes
         }
 
         // Builds ics file for single events
-        public static string icsBuilder(bcEvents thisEvent)
+        public static string icsBuilder(Appointment thisEvent)
         {
-            DateTime eventStart = DateTime.ParseExact(thisEvent.startTime, "yyyy,  M,  d,  H,  m,  s", CultureInfo.InvariantCulture);
-            DateTime eventEnd = DateTime.ParseExact(thisEvent.endTime, "yyyy,  M,  d,  H,  m,  s", CultureInfo.InvariantCulture);
-
             StringBuilder returnString = new StringBuilder();
 
             returnString.AppendLine("BEGIN:VCALENDAR");
@@ -273,19 +310,19 @@ namespace BC_Digital_Displays.Classes
             returnString.AppendLine("VERSION:2.0");
 
             returnString.AppendLine("BEGIN:VEVENT");
-            returnString.AppendLine("SUMMARY;LANGUAGE=en-us:" + thisEvent.name);
+            returnString.AppendLine("SUMMARY;LANGUAGE=en-us:" + thisEvent.Subject);
             returnString.AppendLine("CLASS:PUBLIC");
             returnString.AppendLine(string.Format("CREATED:{0:yyyyMMddTHHmmssZ}", DateTime.UtcNow));
-            returnString.AppendLine("DESCRIPTION:" + thisEvent.description);
-            returnString.AppendLine("DTSTART;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", eventStart));
-            returnString.AppendLine("DTEND;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", eventEnd));
+            returnString.AppendLine("DESCRIPTION:" + thisEvent.Notes);
+            returnString.AppendLine("DTSTART;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", thisEvent.StartDT));
+            returnString.AppendLine("DTEND;TZID=America/Los_Angeles:" + string.Format("{0:yyyyMMddTHHmmss}", thisEvent.EndDT));
             returnString.AppendLine("UID:" + Guid.NewGuid());
-            returnString.AppendLine("LOCATION:Bellevue Club " + thisEvent.location);
+            returnString.AppendLine("LOCATION:Bellevue Club " + thisEvent.Location);
 
             returnString.AppendLine("BEGIN:VALARM");
             returnString.AppendLine("UID:" + Guid.NewGuid());
             returnString.AppendLine("TRIGGER:-PT1H");
-            returnString.AppendLine("DESCRIPTION:Bellevue Club " + thisEvent.name);
+            returnString.AppendLine("DESCRIPTION:Bellevue Club " + thisEvent.Subject);
             returnString.AppendLine("ACTION:DISPLAY");
             returnString.AppendLine("END:VALARM");
 
@@ -352,6 +389,18 @@ namespace BC_Digital_Displays.Classes
             else
             {
                 return t.cStartTime.ToString("h:mm tt") + " - " + t.cEndTime.ToString("h:mm tt");
+            }
+        }
+
+        public static string timeBuilder(DateTime start, DateTime end)
+        {
+            if (start.ToString("tt") == end.ToString("tt"))
+            {
+                return start.ToString("h:mm") + " - " + end.ToString("h:mm tt");
+            }
+            else
+            {
+                return start.ToString("h:mm tt") + " - " + end.ToString("h:mm tt");
             }
         }
         #endregion

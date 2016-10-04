@@ -22,9 +22,11 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class AppointmentPreview : Page
     {
+        public static Appointment eventInfo;
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Appointment App = (Appointment)e.Parameter;
+            eventInfo = App;
             loadContent(App);
         }
 
@@ -47,6 +49,14 @@ namespace BC_Digital_Displays
         private void Close_Btn_Tapped(object sender, TappedRoutedEventArgs e)
         {
             CalendarPreview.calendarPreview.AppointmentPreview_Frame.Navigate(typeof(Page));
+        }
+
+        private void Email_Btn_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            CalendarPreview.calendarPreview.AppointmentPreview_Frame.Navigate(typeof(Page));
+
+            CalendarPreview.calendarPreview.Email_Template.Tag = eventInfo;
+            CalendarPreview.calendarPreview.Email_Template.Visibility = Visibility.Visible;
         }
     }
 }

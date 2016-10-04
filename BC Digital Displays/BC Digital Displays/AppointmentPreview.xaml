@@ -98,9 +98,15 @@
                     <StackPanel Orientation="Vertical" Margin="15,0">
                         <Line Stroke="#FFCFCFCF" X1="0" Y1="0" X2="1000" Y2="0" Margin="0,10,0,15"/>
 
-                        <Button x:Name="Close_Btn" HorizontalAlignment="Stretch" 
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="Email_Btn" HorizontalAlignment="Right" 
                                                 Width="100" Background="#FF4F4F4F"
-                                                Height="40" Content="Close" Tapped="Close_Btn_Tapped" Foreground="#FFCECECE"/>
+                                                Height="40" Content="Email Info" Tapped="Email_Btn_Tapped" Foreground="#FFCECECE" Margin="0,0,10,0"/>
+
+                            <Button x:Name="Close_Btn" HorizontalAlignment="Right" 
+                                                Width="100" Background="#FF4F4F4F"
+                                                Height="40" Content="Close" Tapped="Close_Btn_Tapped" Foreground="#FFCECECE" Margin="10,0,0,0"/>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Grid>

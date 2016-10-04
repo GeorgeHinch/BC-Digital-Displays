@@ -49,13 +49,15 @@ namespace BC_Digital_Displays
                 foreach (bcEvents eV in items)
                 {
                     Appointment newappointment = new Appointment();
-                    DateTime start = DateTime.ParseExact(eV.startTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
-                    DateTime end = DateTime.ParseExact(eV.endTime, "yyyy,  M,  d,  H,  m,  s", System.Globalization.CultureInfo.CurrentCulture);
+                    DateTime start = DateTime.ParseExact(eV.startTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
+                    DateTime end = DateTime.ParseExact(eV.endTime, "yyyy, M, d, H, m, s", System.Globalization.CultureInfo.CurrentCulture);
                     newappointment.StartTime = start;
                     newappointment.EndTime = end;
                     newappointment.Subject = eV.name;
                     newappointment.Location = eV.location;
                     newappointment.Notes = eV.description;
+                    newappointment.StartDT = start;
+                    newappointment.EndDT = end;
                     newappointment.TimeStart = String.Format("{0:t}", newappointment.StartTime);
                     newappointment.TimeEnd = String.Format("{0:t}", newappointment.EndTime);
                     newappointment.DayStart = String.Format("{0:m}", newappointment.StartTime);
@@ -171,6 +173,26 @@ namespace BC_Digital_Displays
                 AppointmentPreview_Frame.Navigate(typeof(Page));
             }
         }
+
+        private void CloseEmail_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Email_Template.Visibility = Visibility.Collapsed;
+        }
+
+        private void EmailSent_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Appointment eventInfo = (Appointment)Email_Template.Tag;
+
+            // track a custom event
+            GoogleAnalytics.EasyTracker.GetTracker().SendEvent("ui_action", "emailSent_click", "Email: " + eventInfo.Subject + ", Date: " + eventInfo.DayStart, 0);
+            
+            string emailSubject = "Bellevue Club Details for " + eventInfo.Subject;
+            string emailBody = DataBuilder.emailEventBuilder(eventInfo);
+            string emailAttatchments = DataBuilder.icsBuilder(eventInfo);
+            EmailSender.emailSender(userEmailTB.Text, emailSubject, emailBody, eventInfo.Subject, emailAttatchments);
+
+            Email_Template.Visibility = Visibility.Collapsed;
+        }
         #endregion
     }
 
@@ -201,7 +223,9 @@ namespace BC_Digital_Displays
 
         public BitmapImage Flier { get; set; }
 
+        public DateTime StartDT { get; set; }
 
+        public DateTime EndDT { get; set; }
         #endregion
     }
     #endregion
