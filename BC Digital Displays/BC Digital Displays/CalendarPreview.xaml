@@ -17,8 +17,11 @@
 
     <Grid>
         <Grid x:Name="ScheduleGrid" Width="1760" Height="880">
-            <Schedule:SfSchedule x:Name="SfCalendarView" Background="White" ContextMenuOpening="SfCalendarView_ContextMenuOpening" AllowEditing="False" ScheduleType="Week" WorkStartHour="5" WorkEndHour="23" ShowNonWorkingHours="False" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
-
+            <Schedule:SfSchedule x:Name="SfCalendarView" Background="White" ContextMenuOpening="SfCalendarView_ContextMenuOpening" AllowEditing="False" ScheduleType="Week" ShowNonWorkingHours="True" CurrentTimeIndicatorVisibility="Visible" CurrentTimeIndicatorLocation="OnDay" IntervalHeight="55">
+                <Schedule:SfSchedule.CollapsedHours>
+                    <Schedule:ScheduleCollapsedHour StartHour="0" EndHour="5" Background="LightGray" />
+                </Schedule:SfSchedule.CollapsedHours>
+                
                 <Schedule:SfSchedule.AppointmentTemplate>
                     <DataTemplate>
                         <Grid>
