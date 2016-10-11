@@ -14,7 +14,7 @@
     <style type="text/css">
         	@font-face {
 	   	        font-family: 'SegoeMDL2';
-	  	        src: url("../../assets/fonts/segmdl2-webfont.woff2") format("woff2"), url("../../assets/fonts/segmdl2-webfont.woff") format("woff");
+	  	        src: url("../../assets/fonts/segmdl2-webfont.ttf");
 	  	        font-weight: normal;
 	  	        font-style: normal;
 	        }
@@ -58,16 +58,27 @@
                                     <label for="notificationGlyph">Glyph</label>
                                     <asp:DropDownList ID="notificationGlyph" CssClass="mi" runat="server">
                                         <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
                                         <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
                                         <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
                                         <asp:ListItem Text="" Value="" />
-                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
+                                        <asp:ListItem Text="" Value="" />
                                     </asp:DropDownList>
                                 </div>
                               
