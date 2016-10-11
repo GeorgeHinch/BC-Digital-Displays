@@ -1,8 +1,12 @@
-﻿using System;
+﻿using BC_Digital_Displays.Classes;
+using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,7 +31,31 @@ namespace BC_Digital_Displays
         {
             this.InitializeComponent();
             mainMenu = this;
+
+            var task = Task.Run(async () => { await loadMenu(); });
+            task.Wait();
         }
+
+        #region Load menu from SQL
+        private MobileServiceCollection<bcEvents, bcEvents> items;
+        private IMobileServiceTable<bcEvents> bcEventsTable = App.MobileService.GetTable<bcEvents>();
+        public async Task loadMenu()
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                items = await bcEventsTable
+                    .Where(aEvent => aEvent.deleted == false)
+                    .ToCollectionAsync();
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+                Debug.WriteLine("Exception: " + exception.Message + " | ");
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
+            }
+        }
+        #endregion
 
         private void Menu_ClubNews_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -57,6 +85,12 @@ namespace BC_Digital_Displays
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(CalendarPreview), null);
+        }
+
+        private void Menu_Fitness_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuFlipView.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(FitnessPage), null);
         }
     }
 }

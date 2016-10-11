@@ -152,6 +152,9 @@
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FitnessPage.xaml.cs">
+      <DependentUpon>FitnessPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lock.xaml.cs">
       <DependentUpon>Lock.xaml</DependentUpon>
     </Compile>
@@ -239,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EquipmentPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FitnessPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
