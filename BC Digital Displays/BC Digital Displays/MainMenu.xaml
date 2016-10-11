@@ -27,48 +27,48 @@
                             <TextBlock Text="Club News" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
+                    <Button x:Name="Menu_Fitness_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Fitness_Button_Tapped">
+                        <StackPanel>
+                            <TextBlock Text="&#xE8E1;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Fitness" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="Menu_RecBrochure_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Tapped="Menu_RecBrochure_Button_Tapped">
                         <StackPanel>
                             <TextBlock Text="&#xE11D;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
                             <TextBlock Text="Youth Activities" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_Trainers_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Trainers_Button_Tapped">
+                    <Button x:Name="Menu_Calendar_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Calendar_Button_Tapped">
                         <StackPanel>
-                            <TextBlock Text="&#xE125;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Meet the Trainers" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="Menu_Equipment_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Equipment_Button_Tapped">
-                        <StackPanel>
-                            <TextBlock Text="&#xE826;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Equipment Availability" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Upcoming Events" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,75,0,0">
-                    <Button x:Name="Menu_Calendar_Button" Width="300" Padding="15,0,15,0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Calendar_Button_Tapped">
+                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
                         <StackPanel>
-                            <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Calendar" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Menu_Fitness_Button" Width="300" Padding="15,0,15,0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Fitness_Button_Tapped">
+                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
                         <StackPanel>
-                            <TextBlock Text="&#xE8E1;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Fitness" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="300" Padding="15,0,15,0" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
                         <StackPanel>
-                            <TextBlock Text="&#59733;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Music" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
-                    <Button Width="300" Padding="15,0,15,0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
+                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
                         <StackPanel>
-                            <TextBlock Text="&#59733;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Music" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
+                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
+                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
