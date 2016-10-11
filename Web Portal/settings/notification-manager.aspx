@@ -33,7 +33,7 @@
 						<div class="inner">
 						  <h1 class="major">Notification Manager</h1>
 						  <span class="image fit"><img src="../images/trainer-1040.jpg" alt="" /></span>
-                          <h2>Notification Manager</h2>
+                          <h2>Notifications</h2>
                             <div class="table-wrapper">
                                 <asp:Literal ID="notificationTable" runat="server" />
                             </div>
