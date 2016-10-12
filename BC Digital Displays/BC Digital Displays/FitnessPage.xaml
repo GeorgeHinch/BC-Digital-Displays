@@ -26,7 +26,7 @@
 
             <Grid Grid.Column="0" BorderBrush="White" BorderThickness="1" CornerRadius="5" Width="500" Height="700" Tapped="Menu_Trainers_Button_Tapped" HorizontalAlignment="Right" Margin="0,0,100,0">
                 <TextBlock Text="&#xE125;" FontFamily="Segoe MDL2 Assets" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="200" Tapped="Menu_Trainers_Button_Tapped" />
-                <TextBlock Text="Meet the Presonal Trainers" Foreground="White" FontSize="36" FontWeight="Thin" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" Tapped="Menu_Trainers_Button_Tapped" />
+                <TextBlock Text="Meet the Personal Trainers" Foreground="White" FontSize="36" FontWeight="Thin" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" Tapped="Menu_Trainers_Button_Tapped" />
             </Grid>
 
             <Grid Grid.Column="1" BorderBrush="White" BorderThickness="1" CornerRadius="5" Width="500" Height="700" Tapped="Menu_Equipment_Button_Tapped" HorizontalAlignment="Left" Margin="100,0,0,0">
