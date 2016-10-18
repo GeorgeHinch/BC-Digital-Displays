@@ -27,30 +27,29 @@ namespace BC_Digital_Displays.Classes
 
         [DataMember]
         public double studio { get; set; }
-    }
-
-    //TODO: delete these when you've updated the needed files
-
-    [DataContract]		
-    public class Machines
-    {		
-        [DataMember]		
-        public Studios main { get; set; }		
     }		
 	
     [DataContract]		
-    public class Studios
+    public class bcStudios
     {		
-        [DataMember]		
-        public IList<string> Studio1 { get; set; }		
+        public bcStudios()
+        {
+            this.studio1 = new List<string>();
+            this.studio2 = new List<string>();
+            this.studio3 = new List<string>();
+            this.studio4 = new List<string>();
+        }
 
         [DataMember]		
-        public IList<string> Studio2 { get; set; }		
+        public IList<string> studio1 { get; set; }		
 
         [DataMember]		
-        public IList<string> Studio3 { get; set; }
+        public IList<string> studio2 { get; set; }		
 
         [DataMember]		
-        public IList<string> Studio4 { get; set; }		
+        public IList<string> studio3 { get; set; }
+
+        [DataMember]		
+        public IList<string> studio4 { get; set; }		
     }
 }
