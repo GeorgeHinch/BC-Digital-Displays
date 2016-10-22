@@ -19,8 +19,8 @@
 					<nav>
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
+                            <li><a href="#settings">Settings</a></li>
 							<li><a href="#wiki">Wiki</a></li>
-							<li><a href="#settings">Settings</a></li>
 							<li><a href="#contact">Get in touch</a></li>
 						</ul>
 					</nav>
@@ -34,15 +34,65 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 						  <h1>Digital Display Admin</h1>
-						  <p>The Bellevue Club Digital Display Admin site houses the management component to the servie as well as the <a href="">user guides</a>.</p>
+						  <p>The Bellevue Club Digital Display Admin site houses the management component to the servie as well as the <a href="wiki/wiki.aspx">user guides</a>.</p>
 						  <ul class="actions">
-							<li><a href="#one" class="button scrolly">Learn more</a></li>
+							<li><a href="wiki/wiki.aspx" class="button scrolly">Learn more</a></li>
 							</ul>
 						</div>
 					</section>
 
 				<!-- One -->
-					<section id="wiki" class="wrapper style2 spotlights">
+                    <section id="settings" class="wrapper style3 fade-up">
+						<div class="inner">
+						  <h2>Make Some Changes</h2>
+						  <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+							<div class="features">
+								<section><a href="settings/youth-manager.aspx">
+									<span class="icon major fa-child"></span>
+									<h3>Rec Youth Manager</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>
+								<section><a href="settings/trainer-manager.aspx">
+									<span class="icon major fa-user"></span>
+								  <h3>Trainer Manager</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>
+								<section><a href="settings/equipment-manager.aspx">
+									<span class="icon major fa-server"></span>
+									<h3>Equipment Manager</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>
+								<section><a href="settings/calendar-manager.aspx">
+									<span class="icon major fa-calendar"></span>
+									<h3>Calendar Manager</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>
+                                <section><a href="settings/notification-manager.aspx">
+									<span class="icon major fa-newspaper-o"></span>
+								  <h3>Notification Manager</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>
+								<!--<section><a href="settings/display-settings.aspx">
+									<span class="icon major fa-cog"></span>
+								  <h3>Display Settings</h3>
+									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+								</a></section>-->
+                                <section class="hide">
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Two -->
+                    <section id="wiki" class="wrapper style2 spotlights">
+                        <section>
+							<div class="content">
+								<div class="inner">
+								  <h2>Wiki</h2>
+								  <p>Instructions, examples and resources for using the BC Digital Displays admin can be found in the <a href="wiki/wiki.aspx">wiki</a>.</p>
+								</div>
+							</div>
+						</section>
 						<section>
 							<a href="#" class="image"><img src="images/cal-438.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
@@ -79,43 +129,6 @@
 								</div>
 							</div>
 						</section>
-					</section>
-
-				<!-- Two -->
-					<section id="settings" class="wrapper style3 fade-up">
-						<div class="inner">
-						  <h2>Make Some Changes</h2>
-						  <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="features">
-								<section><a href="settings/youth-manager.aspx">
-									<span class="icon major fa-child"></span>
-									<h3>Rec Youth Manager</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>
-								<section><a href="settings/trainer-manager.aspx">
-									<span class="icon major fa-user"></span>
-								  <h3>Trainer Manager</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>
-								<section><a href="settings/equipment-manager.aspx">
-									<span class="icon major fa-server"></span>
-									<h3>Equipment Manager</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>
-								<section><a href="settings/calendar-manager.aspx">
-									<span class="icon major fa-calendar"></span>
-									<h3>Calendar Manager</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>
-								<section><a href="settings/display-settings.aspx">
-									<span class="icon major fa-cog"></span>
-								  <h3>Display Settings</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>
-                                <section class="hide">
-								</section>
-							</div>
-						</div>
 					</section>
 
 				<!-- Three -->
