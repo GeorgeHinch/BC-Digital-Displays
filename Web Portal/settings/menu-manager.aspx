@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/css/ie8.css" /><![endif]-->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" />
+
 </head>
 <body>
     <!-- Header -->
@@ -33,13 +35,28 @@
 						<div class="inner">
 						  <h1 class="major">Menu Manager</h1>
 						  <span class="image fit"><img src="../images/menu-1040.jpg" alt="" /></span>
-						  <h2>Currents Menus</h2>
-						  <div class="table-wrapper">
-                              <asp:Literal ID="currentMenusTable" runat="server" />
-						  </div>
-						  <h2>Menu Options</h2>
-						    <a href="add/add-menu.aspx" class="button">New Menu</a>
-                            <a href="restore/menu-restore.aspx" class="button">Restore Menu</a>
+						  <h2>Menu Items</h2>
+                            <form id="menuForm" runat="server">
+                                <div id="currentMenu">
+                                    <asp:GridView id="menuOrder" AutoGenerateColumns="false" runat="server">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Order" ItemStyle-Width="5%">
+                                                <ItemTemplate>
+                                                    <%# Container.DataItemIndex + 1 %>
+                                                    <input type="hidden" name="orderID" value='<%# Eval("id") %>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="menuItem" HeaderText="Menu Item" />
+                                            <asp:HyperLinkField Text="hide" DataNavigateUrlFields="id" DataNavigateUrlFormatString="?remove={0}" ItemStyle-Width="10%" />
+                                        </Columns>
+                                    </asp:GridView>
+                                    <asp:Button Text="Save Order" OnClick="saveOrder" runat="server" />
+                                </div>
+                            </form>
+                            <h2>Hidden Menu Items</h2>
+                            <div class="table-wrapper">
+                                <asp:Literal ID="currentMenusTable" runat="server" />
+						    </div>
 						</div>
 					</section>
 
@@ -53,5 +70,34 @@
 					</ul>
 				</div>
 			</footer>
+
+        <!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/skel.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../../assets/js/main.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    $("[id*=menuOrder").sortable({
+                        items: 'tr:not(thead tr)',
+                        cursor: 'pointer',
+                        axis: 'y',
+                        dropOnEmpty: false,
+                        start: function (e, ui) {
+                            ui.item.addClass("selected");
+                        },
+                        stop: function (e, ui) {
+                            ui.item.removeClass("selected");
+                        },
+                        receive: function (e, ui) {
+                            $(this).find("tbody").append(ui.item);
+                        }
+                    });
+                });
+            </script>
 </body>
 </html>
