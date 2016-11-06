@@ -27,5 +27,8 @@ namespace BC_Digital_Displays.Classes
 
         [DataMember]
         public string menuItem { get; set; }
+
+        [DataMember]
+        public string glyph { get; set; }
     }
 }

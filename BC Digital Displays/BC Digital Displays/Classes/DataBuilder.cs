@@ -483,13 +483,14 @@ namespace BC_Digital_Displays.Classes
         #endregion
 
         #region Builds buttons for main menu
-        public static Button buttonBuilder (string s)
+        public static Button buttonBuilder (bcMenu m)
         {
             Button returnButton = new Button();
             StackPanel buttonStackpanel = new StackPanel();
 
             #region Styles returned button
             returnButton.Width = 300;
+            returnButton.Height = 220;
             returnButton.Background = null;
             returnButton.BorderBrush = null;
             returnButton.VerticalAlignment = VerticalAlignment.Top;
@@ -516,84 +517,85 @@ namespace BC_Digital_Displays.Classes
             #endregion
 
             #region Club News button creation
-            if (s == "Club News")
+            if (m.id == "AD177081-4E50-44B9-B391-5DD9A9E791AB")
             {
                 returnButton.Name = "Menu_ClubNews_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_ClubNews_Button_Tapped;
 
-                iconTextblock.Text = "&#xE12A;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Fitness button creation
-            if (s == "Fitness")
+            if (m.id == "5ACBD6C3-7BD6-4633-8CFA-1C2B7F212AB5")
             {
                 returnButton.Name = "Menu_Fitness_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_Fitness_Button_Tapped;
 
-                iconTextblock.Text = "&#xE8E1;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Trainers button creation
-            if (s == "Meet the Personal Trainers")
+            if (m.id == "681990F0-EF8C-4DE3-A77F-9680BD79C57A")
             {
                 returnButton.Name = "Menu_Trainers_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_Trainers_Button_Tapped;
 
-                iconTextblock.Text = "&#xE125;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Equipment button creation
-            if (s == "Equipment Availability")
+            if (m.id == "D3696D55-335B-4C79-A313-4D7A2976B2A0")
             {
                 returnButton.Name = "Menu_Equipment_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_Equipment_Button_Tapped;
 
-                iconTextblock.Text = "&#xE826;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Youth Activities button creation
-            if (s == "Youth Activities")
+            if (m.id == "CE20C3EE-570B-4AD7-9EA0-311E6F2864BD")
             {
                 returnButton.Name = "Menu_RecBrochure_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_RecBrochure_Button_Tapped;
 
-                iconTextblock.Text = "&#xE11D;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Calendar button creation
-            if (s == "Upcoming Events")
+            if (m.id == "2D232378-36B8-47F6-A091-92213B84769A")
             {
                 returnButton.Name = "Menu_Calendar_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_Calendar_Button_Tapped;
 
-                iconTextblock.Text = "&#xE787;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             #region Reciprocal Clubs button creation
-            if (s == "Reciprocal Clubs")
+            if (m.id == "B378209E-DCBD-46A6-9138-18E5C97E0A08")
             {
                 returnButton.Name = "Menu_ReciprocalClubs_Button";
                 returnButton.Tapped += MainMenu.mainMenu.Menu_Calendar_Button_Tapped;
 
-                iconTextblock.Text = "&#xE774;";
-                labelTextblock.Text = s;
+                iconTextblock.Text = m.glyph;
+                labelTextblock.Text = m.menuItem;
             }
             #endregion
 
             buttonStackpanel.Children.Add(iconTextblock);
             buttonStackpanel.Children.Add(labelTextblock);
+            returnButton.Content = buttonStackpanel;
 
             return returnButton;
         }
