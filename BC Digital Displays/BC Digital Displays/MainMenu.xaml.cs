@@ -37,15 +37,16 @@ namespace BC_Digital_Displays
         }
 
         #region Load menu from SQL
-        private MobileServiceCollection<bcEvents, bcEvents> items;
-        private IMobileServiceTable<bcEvents> bcEventsTable = App.MobileService.GetTable<bcEvents>();
+        private MobileServiceCollection<bcMenu, bcMenu> items;
+        private IMobileServiceTable<bcMenu> bcMenuTable = App.MobileService.GetTable<bcMenu>();
         public async Task loadMenu()
         {
             MobileServiceInvalidOperationException exception = null;
             try
             {
-                items = await bcEventsTable
-                    .Where(aEvent => aEvent.deleted == false)
+                items = await bcMenuTable
+                    .Where(aMenu => aMenu.deleted == false)
+                    .OrderBy(aMenu => aMenu.orderVal)
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
@@ -54,43 +55,60 @@ namespace BC_Digital_Displays
                 Debug.WriteLine("Exception: " + exception.Message + " | ");
                 GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
             }
+            finally
+            {
+                List<Button> buttonList = new List<Button>();
+
+                foreach (bcMenu menu in items)
+                {
+                    Debug.WriteLine("Menu Item: " + menu.menuItem + ", " + menu.orderVal + " |");
+                    Button returnButton = DataBuilder.buttonBuilder(menu.menuItem);
+                    buttonList.Add(returnButton);
+                }
+            }
         }
         #endregion
 
-        private void Menu_ClubNews_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_ClubNews_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(NotificationPreview), null);
         }
 
-        private void Menu_RecBrochure_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_RecBrochure_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(YouthBrochure), null);
         }
 
-        private void Menu_Trainers_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_Trainers_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(TrainerFlipview), null);
         }
 
-        private void Menu_Equipment_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_Equipment_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(EquipmentPreview), null);
         }
 
-        private void Menu_Calendar_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_Calendar_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(CalendarPreview), null);
         }
 
-        private void Menu_Fitness_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        public void Menu_Fitness_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(FitnessPage), null);
+        }
+
+        public void Menu_ReciprocalClubs_Button_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            menuFlipView.Visibility = Visibility.Collapsed;
+            mainFrame.Navigate(typeof(ReciprocalClubPage), null);
         }
     }
 }

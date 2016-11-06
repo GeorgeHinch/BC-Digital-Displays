@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Classes\bcEquipment.cs" />
     <Compile Include="Classes\bcEvents.cs" />
+    <Compile Include="Classes\bcMenu.cs" />
     <Compile Include="Classes\bcNotification.cs" />
     <Compile Include="Classes\bcRecBrochure.cs" />
     <Compile Include="Classes\bcRecClasses.cs" />
@@ -170,6 +171,9 @@
       <DependentUpon>OptionsMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReciprocalClubPage.xaml.cs">
+      <DependentUpon>ReciprocalClubPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screensaver.xaml.cs">
       <DependentUpon>Screensaver.xaml</DependentUpon>
     </Compile>
@@ -265,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OptionsMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReciprocalClubPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

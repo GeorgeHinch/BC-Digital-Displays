@@ -9,8 +9,12 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Text;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Media;
 
 namespace BC_Digital_Displays.Classes
 {
@@ -475,6 +479,123 @@ namespace BC_Digital_Displays.Classes
             returnParagraph.Inlines.Add(lastTextRun);
 
             return returnParagraph;
+        }
+        #endregion
+
+        #region Builds buttons for main menu
+        public static Button buttonBuilder (string s)
+        {
+            Button returnButton = new Button();
+            StackPanel buttonStackpanel = new StackPanel();
+
+            #region Styles returned button
+            returnButton.Width = 300;
+            returnButton.Background = null;
+            returnButton.BorderBrush = null;
+            returnButton.VerticalAlignment = VerticalAlignment.Top;
+            #endregion
+
+            #region Creates && styles button icon
+            TextBlock iconTextblock = new TextBlock();
+
+            iconTextblock.FontFamily = new FontFamily("Segoe MDL2 Assets");
+            iconTextblock.TextAlignment = TextAlignment.Center;
+            iconTextblock.FontSize = 150;
+            iconTextblock.Margin = new Thickness(0, 0, 0, 20);
+            iconTextblock.Foreground = new SolidColorBrush(Color.FromArgb(127, 255, 255, 255));
+            #endregion
+
+            #region Creates && styles button label
+            TextBlock labelTextblock = new TextBlock();
+
+            labelTextblock.FontWeight = FontWeights.Light;
+            labelTextblock.TextAlignment = TextAlignment.Center;
+            labelTextblock.FontSize = 24;
+            labelTextblock.Margin = new Thickness(0, 0, 0, 5);
+            labelTextblock.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            #endregion
+
+            #region Club News button creation
+            if (s == "Club News")
+            {
+                returnButton.Name = "Menu_ClubNews_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_ClubNews_Button_Tapped;
+
+                iconTextblock.Text = "&#xE12A;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Fitness button creation
+            if (s == "Fitness")
+            {
+                returnButton.Name = "Menu_Fitness_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_Fitness_Button_Tapped;
+
+                iconTextblock.Text = "&#xE8E1;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Trainers button creation
+            if (s == "Meet the Personal Trainers")
+            {
+                returnButton.Name = "Menu_Trainers_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_Trainers_Button_Tapped;
+
+                iconTextblock.Text = "&#xE125;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Equipment button creation
+            if (s == "Equipment Availability")
+            {
+                returnButton.Name = "Menu_Equipment_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_Equipment_Button_Tapped;
+
+                iconTextblock.Text = "&#xE826;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Youth Activities button creation
+            if (s == "Youth Activities")
+            {
+                returnButton.Name = "Menu_RecBrochure_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_RecBrochure_Button_Tapped;
+
+                iconTextblock.Text = "&#xE11D;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Calendar button creation
+            if (s == "Upcoming Events")
+            {
+                returnButton.Name = "Menu_Calendar_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_Calendar_Button_Tapped;
+
+                iconTextblock.Text = "&#xE787;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            #region Reciprocal Clubs button creation
+            if (s == "Reciprocal Clubs")
+            {
+                returnButton.Name = "Menu_ReciprocalClubs_Button";
+                returnButton.Tapped += MainMenu.mainMenu.Menu_Calendar_Button_Tapped;
+
+                iconTextblock.Text = "&#xE774;";
+                labelTextblock.Text = s;
+            }
+            #endregion
+
+            buttonStackpanel.Children.Add(iconTextblock);
+            buttonStackpanel.Children.Add(labelTextblock);
+
+            return returnButton;
         }
         #endregion
     }
