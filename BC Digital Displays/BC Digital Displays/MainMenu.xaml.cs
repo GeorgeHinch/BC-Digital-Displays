@@ -62,11 +62,6 @@ namespace BC_Digital_Displays
                     .Where(aMenu => aMenu.deleted == false)
                     .OrderBy(aMenu => aMenu.orderVal)
                     .ToCollectionAsync();
-
-                foreach (bcMenu menu in items)
-                {
-                    Debug.WriteLine("Try Menu Item: " + menu.menuItem + ", " + menu.orderVal + " |");
-                }
             }
             catch (MobileServiceInvalidOperationException e)
             {
@@ -89,12 +84,10 @@ namespace BC_Digital_Displays
 
             foreach (bcMenu menu in items)
             {
-                Debug.WriteLine("Finally Menu Item: " + menu.menuItem + ", " + menu.orderVal + " |");
                 Button returnButton = DataBuilder.buttonBuilder(menu);
                 buttonList.Add(returnButton);
             }
-
-            Debug.WriteLine("Button List: " + buttonList.Count + " |");
+            
             #region Creates stackpanel rows of 4 buttons
             foreach (Button btn in buttonList)
             {
@@ -118,8 +111,7 @@ namespace BC_Digital_Displays
                 deviceStackpanelList.Add(indexSP);
             }
             #endregion
-
-            Debug.WriteLine("dSP: " + deviceStackpanelList.Count + " |");
+            
             #region Creates stackpanels of two stackpanel rows
             foreach (StackPanel sp in deviceStackpanelList)
             {
@@ -143,12 +135,10 @@ namespace BC_Digital_Displays
                 mainStackpanelList.Add(mainIndexSP);
             }
             #endregion
-
-            Debug.WriteLine("mSP: " + mainStackpanelList.Count + " |");
+            
             #region Adds main stackpanels to flipview
             foreach (StackPanel sp in mainStackpanelList)
             {
-                Debug.WriteLine("Added to FV: "  + " |");
                 menuFlipView.Items.Add(sp);
             }
             #endregion

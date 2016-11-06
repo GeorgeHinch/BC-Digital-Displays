@@ -18,62 +18,7 @@
 
         <Image Source="Assets/BC_Logo.png" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="300" Margin="0,0,0,30" Opacity="0.5" />
 
-        <FlipView x:Name="menuFlipView" x:FieldModifier="Public" Background="{x:Null}">
-            <StackPanel x:Name="HomeGroup1" HorizontalAlignment="Center" Height="600" VerticalAlignment="Center" Width="1200">
-                <StackPanel Orientation="Horizontal" Margin="0,37,0,0">
-                    <Button x:Name="Menu_ClubNews_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_ClubNews_Button_Tapped">
-                        <StackPanel>
-                            <TextBlock Text="&#xE12A;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Club News" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="Menu_Fitness_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Fitness_Button_Tapped">
-                        <StackPanel>
-                            <TextBlock Text="&#xE8E1;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Fitness" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="Menu_RecBrochure_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Top" Tapped="Menu_RecBrochure_Button_Tapped">
-                        <StackPanel>
-                            <TextBlock Text="&#xE11D;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Youth Activities" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button x:Name="Menu_Calendar_Button" Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Tapped="Menu_Calendar_Button_Tapped">
-                        <StackPanel>
-                            <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Upcoming Events" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,75,0,0">
-                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
-                        <StackPanel>
-                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
-                        <StackPanel>
-                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
-                        <StackPanel>
-                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Width="300" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top">
-                        <StackPanel>
-                            <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" TextAlignment="Center" FontSize="150" Margin="0,0,0,20" Foreground="#7FFFFFFF"/>
-                            <TextBlock Text="Sample" TextAlignment="Center" Margin="0,0,0,5" Foreground="White" FontSize="24" FontWeight="Light"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-            </StackPanel>
-        </FlipView>
+        <FlipView x:Name="menuFlipView" x:FieldModifier="Public" Background="{x:Null}" />
 
         <Frame x:Name="mainFrame" x:FieldModifier="Public"/>
     </Grid>

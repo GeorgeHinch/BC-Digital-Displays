@@ -490,7 +490,6 @@ namespace BC_Digital_Displays.Classes
 
             #region Styles returned button
             returnButton.Width = 300;
-            returnButton.Height = 220;
             returnButton.Background = null;
             returnButton.BorderBrush = null;
             returnButton.VerticalAlignment = VerticalAlignment.Top;
