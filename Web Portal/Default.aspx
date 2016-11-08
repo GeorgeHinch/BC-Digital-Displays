@@ -72,13 +72,13 @@
 								  <h3>Notification Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 								</a></section>
-								<!--<section><a href="settings/display-settings.aspx">
+								<section><a href="settings/menu-manager.aspx">
 									<span class="icon major fa-cog"></span>
-								  <h3>Display Settings</h3>
+								  <h3>Menu Manager</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</a></section>-->
-                                <section class="hide">
-								</section>
+								</a></section>
+                                <!--<section class="hide">
+								</section>-->
 							</div>
 						</div>
 					</section>

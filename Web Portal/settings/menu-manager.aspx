@@ -36,10 +36,18 @@
 						  <h1 class="major">Menu Manager</h1>
 						  <span class="image fit"><img src="../images/menu-1040.jpg" alt="" /></span>
 						  <h2>Menu Items</h2>
+                            <p>Drag menu items to rearrange their order.</p>
                             <form id="menuForm" runat="server">
                                 <div id="currentMenu">
                                     <asp:GridView id="menuOrder" AutoGenerateColumns="false" runat="server">
                                         <Columns>
+                                            <asp:TemplateField ItemStyle-Width="5%" ItemStyle-ForeColor="White" ItemStyle-Font-Names="FontAwesome">
+                                                <ItemTemplate>
+                                                    <asp:literal runat="server">
+                                                        <p class="fa-bars" style="margin:0;color:rgba(255, 255, 255, 0.1)"></p>
+                                                        </asp:literal>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Order" ItemStyle-Width="5%">
                                                 <ItemTemplate>
                                                     <%# Container.DataItemIndex + 1 %>

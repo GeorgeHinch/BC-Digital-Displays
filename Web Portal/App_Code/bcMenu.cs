@@ -9,7 +9,7 @@ using System.Web;
 /// </summary>
 public class bcMenu
 {
-    public bcMenu(string id, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, string menuItem, double orderVal)
+    public bcMenu(string id, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, string menuItem, double orderVal, string glyph)
     {
         this.id = id;
         this.createdAt = createdAt;
@@ -17,6 +17,7 @@ public class bcMenu
         this.deleted = deleted;
         this.menuItem = menuItem;
         this.orderVal = orderVal;
+        this.glyph = glyph;
     }
 
     [DataMember]
@@ -36,4 +37,7 @@ public class bcMenu
 
     [DataMember]
     public string menuItem { get; set; }
+
+    [DataMember]
+    public string glyph { get; set; }
 }

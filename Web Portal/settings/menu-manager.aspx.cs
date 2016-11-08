@@ -151,7 +151,8 @@ public partial class settings_menu_manager : System.Web.UI.Page
                     (DateTimeOffset)sdr["updatedAt"],
                     (bool)sdr["deleted"],
                     (string)sdr["menuItem"],
-                    (double)sdr["orderVal"]);
+                    (double)sdr["orderVal"],
+                    (string)sdr["glyph"]);
                 data.Add(obj);
             }
 
@@ -203,7 +204,8 @@ public partial class settings_menu_manager : System.Web.UI.Page
                     (DateTimeOffset)sdr["updatedAt"],
                     (bool)sdr["deleted"],
                     (string)sdr["menuItem"],
-                    (double)sdr["orderVal"]);
+                    (double)sdr["orderVal"],
+                    (string)sdr["glyph"]);
                 data.Add(obj);
             }
 
