@@ -72,6 +72,7 @@ namespace BC_Digital_Displays
         }
         #endregion
 
+        #region Adds buttons to flipview
         public void addMenu()
         {
             List<Button> buttonList = new List<Button>();
@@ -143,7 +144,9 @@ namespace BC_Digital_Displays
             }
             #endregion
         }
+        #endregion
 
+        #region Actions for button taps
         public void Menu_ClubNews_Button_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menuFlipView.Visibility = Visibility.Collapsed;
@@ -185,5 +188,6 @@ namespace BC_Digital_Displays
             menuFlipView.Visibility = Visibility.Collapsed;
             mainFrame.Navigate(typeof(ReciprocalClubPage), null);
         }
+        #endregion
     }
 }

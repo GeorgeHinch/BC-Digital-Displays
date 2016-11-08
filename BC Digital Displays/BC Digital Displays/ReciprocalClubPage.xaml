@@ -5,9 +5,47 @@
     xmlns:local="using:BC_Digital_Displays"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
 
-    <Grid>
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MapRBStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid CornerRadius="5">
+            <Maps:MapControl 
+                x:Name="clubMap"          
+                Height="880" Width="1760"
+                ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl"   
+                MapServiceToken="EWwqxpgV75q8inlrF40b~Wzmlg0PRYy12V_bZy4LLyw~Ai0Eu2PGFYT2aB4Zb0am1GL9zhGhW9b6CvHRE9qEAgFyaFjKVzdtGFhgY9VFW2UZ" />
+        </Grid>
+
+        <Grid x:Name="clubList" CornerRadius="5" Height="880" Width="1760" Background="White">
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,55">
+            <RadioButton x:Name="mapRadioButton" Content="&#xE707;" Style="{StaticResource MapRBButtonStyle}" Checked="mapRadioButton_Checked" IsChecked="True" />
+            <RadioButton x:Name="listRadioButton" Content="&#xE8BC;" Style="{StaticResource MapRBButtonStyle}" Checked="listRadioButton_Checked" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0" Tapped="GoBack_Tapped">
+            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Foreground="White" Margin="0,0,15,0" Tapped="GoBack_Tapped" />
+            <TextBlock Text="return to menu" Foreground="White" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Tapped="GoBack_Tapped" />
+        </StackPanel>
     </Grid>
 </Page>

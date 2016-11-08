@@ -45,6 +45,13 @@
         <SolidColorBrush x:Key="UI_Return" Color="{StaticResource UI_SeattleGray}"/>
         <SolidColorBrush x:Key="UI_TgB_Fill" Color="#7fFFFFFF"/>
 
+        
+        <!-- Gradients -->
+        <LinearGradientBrush x:Key="BG_BlueGreen">
+            <GradientStop Offset="0" Color="#FF9BDAB4"/>
+            <GradientStop Offset="1" Color="#FF2AA7C2"/>
+        </LinearGradientBrush>
+
 
         <!-- Text -->
         <SolidColorBrush x:Key="Text_Title" Color="{StaticResource UI_MidnightBlue}"/>

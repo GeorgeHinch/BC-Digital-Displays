@@ -128,6 +128,7 @@
     <Compile Include="Classes\bcNotification.cs" />
     <Compile Include="Classes\bcRecBrochure.cs" />
     <Compile Include="Classes\bcRecClasses.cs" />
+    <Compile Include="Classes\bcReciprocalClubs.cs" />
     <Compile Include="Classes\bcSettings.cs" />
     <Compile Include="Classes\bcTrainers.cs" />
     <Compile Include="Classes\DataBuilder.cs" />
@@ -285,6 +286,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\EmailTBStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\MapRBStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

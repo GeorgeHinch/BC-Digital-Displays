@@ -585,7 +585,7 @@ namespace BC_Digital_Displays.Classes
             if (m.id == "B378209E-DCBD-46A6-9138-18E5C97E0A08")
             {
                 returnButton.Name = "Menu_ReciprocalClubs_Button";
-                returnButton.Tapped += MainMenu.mainMenu.Menu_Calendar_Button_Tapped;
+                returnButton.Tapped += MainMenu.mainMenu.Menu_ReciprocalClubs_Button_Tapped;
 
                 iconTextblock.Text = m.glyph;
                 labelTextblock.Text = m.menuItem;
