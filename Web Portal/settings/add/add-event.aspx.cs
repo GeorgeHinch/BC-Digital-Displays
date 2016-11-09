@@ -32,7 +32,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
         {
             finalGuid = Guid.Parse(v);
             isUpdate = true;
-            eventH1.AppendLine("<h1 class=\"major\">Update Trainer</h1>");
+            eventH1.AppendLine("<h1 class=\"major\">Update Event</h1>");
             pageH1.Text = eventH1.ToString();
             SaveForm.Text = "Update";
             SaveForm.PostBackUrl = "?edit=" + finalGuid + "&update=true";
@@ -43,7 +43,7 @@ public partial class settings_add_add_event : System.Web.UI.Page
         }
         else
         {
-            eventH1.AppendLine("<h1 class=\"major\">Add Trainer</h1>");
+            eventH1.AppendLine("<h1 class=\"major\">Add Event</h1>");
             pageH1.Text = eventH1.ToString();
             finalGuid = Guid.NewGuid();
         }
