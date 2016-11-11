@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page xmlns:my="using:BC_Digital_Displays.Controls" 
     x:Class="BC_Digital_Displays.ReciprocalClubPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -36,6 +36,7 @@
         </Grid>
 
         <Grid x:Name="clubList" CornerRadius="5" Height="880" Width="1760" Background="White">
+            <my:ReciprocalClubListView x:Name="clubListView" />
         </Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,55">

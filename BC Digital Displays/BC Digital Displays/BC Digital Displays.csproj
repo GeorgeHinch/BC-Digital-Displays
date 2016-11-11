@@ -150,6 +150,9 @@
     <Compile Include="Controls\NotificationView.xaml.cs">
       <DependentUpon>NotificationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ReciprocalClubListView.xaml.cs">
+      <DependentUpon>ReciprocalClubListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EquipmentPreview.xaml.cs">
       <DependentUpon>EquipmentPreview.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\NotificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ReciprocalClubListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

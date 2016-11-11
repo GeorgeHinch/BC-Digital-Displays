@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BC_Digital_Displays.Classes
 {
     [DataContract]
-    class bcReciprocalClubs
+    public class bcReciprocalClubs
     {
         [DataMember]
         public string id { get; set; }

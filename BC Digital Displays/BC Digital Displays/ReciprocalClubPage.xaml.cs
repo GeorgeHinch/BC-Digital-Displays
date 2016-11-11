@@ -60,6 +60,7 @@ namespace BC_Digital_Displays
                 task.Wait();
 
                 IEnumerable<bcReciprocalClubs> itemsControl = items;
+
                 foreach (bcReciprocalClubs i in items)
                 {
                     // Create map geoposition from lat and long
@@ -76,6 +77,9 @@ namespace BC_Digital_Displays
                     // Add the MapIcon to the map.
                     clubMap.MapElements.Add(mapIcon);
                 }
+                
+                clubListView.Tag = items;
+                clubListView.loadContent();
             }
             catch (Exception ex)
             {
@@ -93,9 +97,9 @@ namespace BC_Digital_Displays
             {
                 items = await bcReciprocalClubsTable
                     .Where(aClub => aClub.deleted == false)
-                    .OrderByDescending(aClub => aClub.sortCountry)
-                    .ThenByDescending(aClub => aClub.sortState)
-                    .ThenByDescending(aClub => aClub.sortCity)
+                    .OrderBy(aClub => aClub.sortCountry)
+                    .ThenBy(aClub => aClub.sortState)
+                    .ThenBy(aClub => aClub.sortCity)
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
