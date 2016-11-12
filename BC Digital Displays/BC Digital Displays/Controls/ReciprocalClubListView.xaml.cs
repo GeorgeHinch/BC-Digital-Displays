@@ -9,11 +9,13 @@ using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -113,6 +115,7 @@ namespace BC_Digital_Displays.Controls
                     clubName.Text = rc.clubName;
                     clubName.FontSize = 28;
                     clubName.FontWeight = FontWeights.Thin;
+                    clubName.Tapped += moreInfo_Tapped;
 
                     TextBlock clubAddress = new TextBlock();
                     clubAddress.Text = rc.address;
@@ -127,13 +130,23 @@ namespace BC_Digital_Displays.Controls
                     clubSP.Children.Add(clubName);
                     clubSP.Children.Add(clubAddress);
                     clubSP.Children.Add(clubPhoneFax);
+                    
+                    TextBlock moreInfo = new TextBlock();
+                    moreInfo.Text = "";
+                    moreInfo.FontFamily = new FontFamily("Segoe MDL2 Assets");
+                    moreInfo.FontSize = 36;
+                    moreInfo.HorizontalAlignment = HorizontalAlignment.Center;
+                    moreInfo.VerticalAlignment = VerticalAlignment.Center;
+                    moreInfo.Tag = rc;
+                    moreInfo.Foreground = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+                    moreInfo.Tapped += moreInfo_Tapped;
 
                     clubGrid.Children.Add(clubSP);
+                    clubGrid.Children.Add(moreInfo);
+                    Grid.SetColumn(moreInfo, 1);
 
                     adminClubsSP.Children.Add(clubGrid);
-
                     
-
                     country = rc.sortCountry;
                     state = rc.sortState;
                 }
@@ -153,6 +166,44 @@ namespace BC_Digital_Displays.Controls
                 Debug.WriteLine(ex.Data);
                 Debug.WriteLine(ex.InnerException);
             }
+        }
+
+        private void moreInfo_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            TextBlock s = sender as TextBlock;
+            bcReciprocalClubs club = s.Tag as bcReciprocalClubs;
+
+            moreInfoGrid.Visibility = Visibility.Visible;
+
+            // Create map geoposition from lat and long
+            BasicGeoposition clubPosition = new BasicGeoposition() { Latitude = Convert.ToDouble(club.addressLat), Longitude = Convert.ToDouble(club.addressLong) };
+            Geopoint clubPoint = new Geopoint(clubPosition);
+
+            // Create a MapIcon.
+            MapIcon mapIcon = new MapIcon();
+            mapIcon.Location = clubPoint;
+            mapIcon.NormalizedAnchorPoint = new Point(0.5, 1.0);
+            mapIcon.Title = club.clubName;
+            mapIcon.ZIndex = 0;
+
+            // Add the MapIcon to the map.
+            clubMap.MapElements.Add(mapIcon);
+
+            // Center and zoom map
+            clubMap.Center = clubPoint;
+            clubMap.ZoomLevel = 14;
+
+            clubName.Text = club.clubName;
+            clubAddress.Text = club.address;
+            if (club.fax == "")
+            {
+                clubPhoneFax.Text = club.phone;
+            } else { clubPhoneFax.Text = club.phone + ", Fax: " + club.fax; }
+            if (club.specialRequest == "" || club.specialRequest == null)
+            {
+                clubSpecialRequests.Visibility = Visibility.Collapsed;
+            } else { clubSpecialRequests.Text = club.specialRequest; }
+            clubDescription.Text = club.clubInfo;
         }
 
         #region Dependency Properties
