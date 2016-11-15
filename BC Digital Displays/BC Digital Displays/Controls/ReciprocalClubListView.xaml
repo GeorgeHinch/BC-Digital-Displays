@@ -20,19 +20,24 @@
             <StackPanel>
                 <Maps:MapControl x:Name="clubMap" Width="1760" Height="400" Margin="0,0,0,50" ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl"   
                     MapServiceToken="EWwqxpgV75q8inlrF40b~Wzmlg0PRYy12V_bZy4LLyw~Ai0Eu2PGFYT2aB4Zb0am1GL9zhGhW9b6CvHRE9qEAgFyaFjKVzdtGFhgY9VFW2UZ" />
-                <ScrollViewer>
-                    <StackPanel Width="1000" VerticalAlignment="Center">
-                        <TextBlock x:Name="clubName" Text="Sample Club Name" FontSize="28" FontWeight="Normal" />
-                        <TextBlock x:Name="clubAddress" Text="3301 C Street, Suite 120, Anchorage, Alaska 99503" FontSize="24" FontWeight="Thin" />
-                        <TextBlock x:Name="clubPhoneFax" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" Margin="0,0,0,15" />
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel Width="1000" VerticalAlignment="Center">
+                            <TextBlock x:Name="clubName" Text="Sample Club Name" FontSize="28" FontWeight="Normal" />
+                            <TextBlock x:Name="clubAddress" Text="3301 C Street, Suite 120, Anchorage, Alaska 99503" FontSize="24" FontWeight="Thin" />
+                            <TextBlock x:Name="clubPhoneFax" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" Margin="0,0,0,15" />
 
-                        <TextBlock x:Name="clubSpecialRequests" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="20" FontWeight="Thin" FontStyle="Italic" TextWrapping="WrapWholeWords" />
-                        <TextBlock x:Name="clubDescription" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" TextWrapping="WrapWholeWords" />
+                            <TextBlock x:Name="clubSpecialRequests" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="20" FontWeight="Thin" FontStyle="Italic" TextWrapping="WrapWholeWords" />
+                            <TextBlock x:Name="clubDescription" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0" Tapped="return_Tapped">
+                        <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Margin="0,0,15,0" Foreground="{StaticResource UI_Return}" Tapped="return_Tapped" />
+                        <TextBlock Text="return to list" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Foreground="{StaticResource UI_Return}" Tapped="return_Tapped" />
                     </StackPanel>
-                </ScrollViewer>
+                </Grid>
             </StackPanel>
         </Grid>
-        
-        
     </Grid>
 </UserControl>

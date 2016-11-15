@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Shapes;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -43,6 +44,8 @@ namespace BC_Digital_Displays.Controls
 
             string country = "";
             string state = "";
+            string city = "";
+            bool first = true;
 
             #region Creates grids and stackpanels for sorting
             Grid adminRegionGrid = new Grid();
@@ -58,6 +61,16 @@ namespace BC_Digital_Displays.Controls
                     #region Adds textblock to adminRegion level grid when new state
                     if (rc.sortState != state)
                     {
+                        if (!first)
+                        {
+                            Line divLine = new Line();
+                            divLine.X2 = 1610;
+                            divLine.Margin = new Thickness(0, 25, 50, 50);
+                            divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+
+                            //adminClubsSP.Children.Add(divLine);
+                        }
+
                         adminRegionGrid.Children.Add(adminClubsSP);
                         Grid.SetColumn(adminClubsSP, 1);
 
@@ -76,10 +89,23 @@ namespace BC_Digital_Displays.Controls
                         TextBlock tbState = new TextBlock();
 
                         tbState.Text = rc.sortState;
+                        tbState.TextTrimming = TextTrimming.CharacterEllipsis;
                         tbState.FontSize = 28;
                         adminRegionGrid.Children.Add(tbState);
 
+                        if (rc.sortCountry == country && rc.sortState != state)
+                        {
+                            Line divLine = new Line();
+                            divLine.X2 = 1610;
+                            divLine.Margin = new Thickness(-275, 25, 50, 50);
+                            divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+
+                            adminClubsSP.Children.Add(divLine);
+                        }
+
                         adminClubsSP = new StackPanel();
+
+                        first = false;
                     }
                     #endregion
 
@@ -96,6 +122,8 @@ namespace BC_Digital_Displays.Controls
                         clubsStackPanel.Children.Add(tbCountry);
                     }
                     #endregion
+
+                    // current city is the different from last loops AND the current state is the same from last loops
 
                     clubGrid = new Grid();
                     clubGrid.Name = "ClubGrid_" + rc.clubName;
@@ -146,9 +174,20 @@ namespace BC_Digital_Displays.Controls
                     Grid.SetColumn(moreInfo, 1);
 
                     adminClubsSP.Children.Add(clubGrid);
-                    
+
+                    /*if (rc.sortCountry == country && rc.sortState != state)
+                    {
+                        Line divLine = new Line();
+                        divLine.X2 = 1610;
+                        divLine.Margin = new Thickness(0, 25, 50, 50);
+                        divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+
+                        adminClubsSP.Children.Add(divLine);
+                    }*/
+
                     country = rc.sortCountry;
                     state = rc.sortState;
+                    city = rc.sortCity;
                 }
 
                 adminRegionGrid.Children.Add(adminClubsSP);
@@ -191,7 +230,7 @@ namespace BC_Digital_Displays.Controls
 
             // Center and zoom map
             clubMap.Center = clubPoint;
-            clubMap.ZoomLevel = 14;
+            clubMap.ZoomLevel = 16;
 
             clubName.Text = club.clubName;
             clubAddress.Text = club.address;
@@ -220,5 +259,10 @@ namespace BC_Digital_Displays.Controls
             set { SetValue(ClubListProperty, value); }
         }
         #endregion
+
+        private void return_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            moreInfoGrid.Visibility = Visibility.Collapsed;
+        }
     }
 }
