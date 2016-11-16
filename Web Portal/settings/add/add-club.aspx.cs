@@ -96,9 +96,6 @@ public partial class settings_add_add_club : System.Web.UI.Page
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
         var latLong = GetGeoCodedResults(clubAddress.Text);
-        
-        Debug.WriteLine("Lat: " + latLong.results[0].geometry.location.lat + "|");
-        Debug.WriteLine("Lng: " + latLong.results[0].geometry.location.lng + "|");
 
         string city = "";
         string state = "";
@@ -210,9 +207,11 @@ public partial class settings_add_add_club : System.Web.UI.Page
                 "http://maps.google.com/maps/api/geocode/json?address={0}&sensor=false",
                 HttpUtility.UrlEncode(address)
                 );
-        //Debug.WriteLine("URL: " + url);
-        string json = new WebClient().DownloadString(url);
-        //Debug.WriteLine("JSON: " + json);
+        WebClient webClient = new WebClient();
+        webClient.Encoding = Encoding.UTF8;
+        string json = webClient.DownloadString(url);
+
+        Debug.WriteLine("JSON: " + json + "|");
         GeoBuilder.geoResponse m = JsonConvert.DeserializeObject<GeoBuilder.geoResponse>(json);
         return m;
     }
