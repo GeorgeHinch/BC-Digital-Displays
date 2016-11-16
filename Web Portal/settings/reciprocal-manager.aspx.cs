@@ -109,7 +109,7 @@ public partial class settings_reciprocal_manager : System.Web.UI.Page
         {
             List<bcReciprocalClubs> data = new List<bcReciprocalClubs>();
             conn = new SqlConnection(connString);
-            SqlCommand command = new SqlCommand("SELECT * FROM [bcReciprocalClubs] WHERE [deleted]='0' ORDER BY sortCountry, sortState, sortCity", conn);
+            SqlCommand command = new SqlCommand("SELECT * FROM [bcReciprocalClubs] WHERE [deleted]='0' ORDER BY sortCountry, sortState, sortCity, clubName", conn);
             conn.Open();
             SqlDataReader sdr = command.ExecuteReader();
 
