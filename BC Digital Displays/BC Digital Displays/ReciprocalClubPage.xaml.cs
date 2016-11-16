@@ -100,6 +100,7 @@ namespace BC_Digital_Displays
                     .OrderBy(aClub => aClub.sortCountry)
                     .ThenBy(aClub => aClub.sortState)
                     .ThenBy(aClub => aClub.sortCity)
+                    .ThenBy(aClub => aClub.clubName)
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
@@ -121,6 +122,8 @@ namespace BC_Digital_Displays
         {
             clubMap.Visibility = Visibility.Visible;
             clubList.Visibility = Visibility.Collapsed;
+
+            clubListView.moreInfoGrid.Visibility = Visibility.Collapsed;
         }
 
         private void listRadioButton_Checked(object sender, RoutedEventArgs e)
