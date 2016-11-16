@@ -55,43 +55,86 @@ namespace BC_Digital_Displays.Controls
             {
                 foreach (bcReciprocalClubs rc in items)
                 {
-                    
                     #region Adds textblock to adminRegion level grid when new state
-                    if (rc.sortState != state)
+                    if (rc.sortCountry == "United States")
                     {
-                        adminRegionGrid.Children.Add(adminClubsSP);
-                        Grid.SetColumn(adminClubsSP, 1);
-
-                        clubsStackPanel.Children.Add(adminRegionGrid);
-
-                        adminRegionGrid = new Grid();
-                        adminRegionGrid.Name = "AdminRegion_" + rc.sortState;
-                        adminRegionGrid.Margin = new Thickness(50, 0, 0, 0);
-                        ColumnDefinition c0 = new ColumnDefinition();
-                        c0.Width = new GridLength(1, GridUnitType.Star);
-                        adminRegionGrid.ColumnDefinitions.Add(c0);
-                        ColumnDefinition c1 = new ColumnDefinition();
-                        c1.Width = new GridLength(5, GridUnitType.Star);
-                        adminRegionGrid.ColumnDefinitions.Add(c1);
-
-                        TextBlock tbState = new TextBlock();
-
-                        tbState.Text = rc.sortState;
-                        tbState.TextTrimming = TextTrimming.CharacterEllipsis;
-                        tbState.FontSize = 28;
-                        adminRegionGrid.Children.Add(tbState);
-
-                        if (rc.sortCountry == country && rc.sortState != state)
+                        if (rc.sortState != state)
                         {
-                            Line divLine = new Line();
-                            divLine.X2 = 1610;
-                            divLine.Margin = new Thickness(-275, 25, 50, 50);
-                            divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+                            adminRegionGrid.Children.Add(adminClubsSP);
+                            Grid.SetColumn(adminClubsSP, 1);
 
-                            adminClubsSP.Children.Add(divLine);
+                            clubsStackPanel.Children.Add(adminRegionGrid);
+
+                            adminRegionGrid = new Grid();
+                            adminRegionGrid.Name = "AdminRegion_" + rc.sortState;
+                            adminRegionGrid.Margin = new Thickness(50, 0, 0, 0);
+                            ColumnDefinition c0 = new ColumnDefinition();
+                            c0.Width = new GridLength(1, GridUnitType.Star);
+                            adminRegionGrid.ColumnDefinitions.Add(c0);
+                            ColumnDefinition c1 = new ColumnDefinition();
+                            c1.Width = new GridLength(5, GridUnitType.Star);
+                            adminRegionGrid.ColumnDefinitions.Add(c1);
+
+                            TextBlock tbState = new TextBlock();
+
+                            tbState.Text = rc.sortState;
+                            tbState.TextTrimming = TextTrimming.CharacterEllipsis;
+                            tbState.FontSize = 28;
+                            adminRegionGrid.Children.Add(tbState);
+                            
+                            if (rc.sortCountry == country && rc.sortState != state)
+                            {
+                                Line divLine = new Line();
+                                divLine.X2 = 1610;
+                                divLine.Margin = new Thickness(-275, 25, 50, 50);
+                                divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+
+                                adminClubsSP.Children.Add(divLine);
+                            }
+
+
+                            adminClubsSP = new StackPanel();
                         }
+                    }
+                    else
+                    {
+                        if (rc.sortCity != state)
+                        {
+                            adminRegionGrid.Children.Add(adminClubsSP);
+                            Grid.SetColumn(adminClubsSP, 1);
 
-                        adminClubsSP = new StackPanel();
+                            clubsStackPanel.Children.Add(adminRegionGrid);
+
+                            adminRegionGrid = new Grid();
+                            adminRegionGrid.Name = "AdminRegion_" + rc.sortState;
+                            adminRegionGrid.Margin = new Thickness(50, 0, 0, 0);
+                            ColumnDefinition c0 = new ColumnDefinition();
+                            c0.Width = new GridLength(1, GridUnitType.Star);
+                            adminRegionGrid.ColumnDefinitions.Add(c0);
+                            ColumnDefinition c1 = new ColumnDefinition();
+                            c1.Width = new GridLength(5, GridUnitType.Star);
+                            adminRegionGrid.ColumnDefinitions.Add(c1);
+
+                            TextBlock tbState = new TextBlock();
+
+                            tbState.Text = rc.sortCity;
+                            tbState.TextTrimming = TextTrimming.CharacterEllipsis;
+                            tbState.FontSize = 28;
+                            adminRegionGrid.Children.Add(tbState);
+
+                            if (rc.sortCountry == country && rc.sortCity != state)
+                            {
+                                Line divLine = new Line();
+                                divLine.X2 = 1610;
+                                divLine.Margin = new Thickness(-275, 25, 50, 50);
+                                divLine.Stroke = Application.Current.Resources["UI_Return"] as SolidColorBrush;
+
+                                adminClubsSP.Children.Add(divLine);
+                            }
+
+
+                            adminClubsSP = new StackPanel();
+                        }
                     }
                     #endregion
 
@@ -108,8 +151,6 @@ namespace BC_Digital_Displays.Controls
                         clubsStackPanel.Children.Add(tbCountry);
                     }
                     #endregion
-
-                    // current city is the different from last loops AND the current state is the same from last loops
 
                     clubGrid = new Grid();
                     clubGrid.Name = "ClubGrid_" + rc.clubName;
@@ -162,7 +203,10 @@ namespace BC_Digital_Displays.Controls
                     adminClubsSP.Children.Add(clubGrid);
 
                     country = rc.sortCountry;
-                    state = rc.sortState;
+                    if(rc.sortCountry == "United States")
+                    {
+                        state = rc.sortState;
+                    } else { state = rc.sortCity; }
                 }
 
                 adminRegionGrid.Children.Add(adminClubsSP);
