@@ -119,6 +119,17 @@ public partial class settings_add_add_club : System.Web.UI.Page
             }
         }
 
+        if (city == "")
+        {
+            foreach (GeoBuilder.AddressComponent aComp in latLong.results[0].address_components)
+            {
+                if (aComp.types[0] == "neighborhood")
+                {
+                    city = aComp.long_name;
+                }
+            }
+        }
+
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
         try
