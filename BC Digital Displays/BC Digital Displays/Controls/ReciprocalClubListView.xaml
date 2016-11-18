@@ -23,18 +23,18 @@
                 <Grid Height="430">
                     <ScrollViewer VerticalScrollBarVisibility="Hidden">
                         <StackPanel Width="1000" Margin="0,0,0,50">
-                            <TextBlock x:Name="clubName" Text="Sample Club Name" FontSize="28" FontWeight="Normal" />
+                            <TextBlock x:Name="clubName" Text="Sample Club Name" FontSize="28" FontWeight="Normal" Foreground="{StaticResource Text_Title}" />
                             <TextBlock x:Name="clubAddress" Text="3301 C Street, Suite 120, Anchorage, Alaska 99503" FontSize="24" FontWeight="Thin" />
                             <TextBlock x:Name="clubPhoneFax" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" Margin="0,0,0,15" />
 
-                            <TextBlock x:Name="clubSpecialRequests" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="20" FontWeight="Thin" FontStyle="Italic" TextWrapping="WrapWholeWords" />
-                            <TextBlock x:Name="clubDescription" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" TextWrapping="WrapWholeWords" />
+                            <TextBlock x:Name="clubSpecialRequests" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="20" FontWeight="Thin" FontStyle="Italic" TextWrapping="WrapWholeWords" Foreground="{StaticResource Text_Detail}" />
+                            <TextBlock x:Name="clubDescription" Text="(907) 536-5090x2, Fax: (907) 563-5090x2" FontSize="24" FontWeight="Thin" TextWrapping="WrapWholeWords" Foreground="{StaticResource Text_Body}" />
                         </StackPanel>
                     </ScrollViewer>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0" Tapped="return_Tapped">
                         <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="30" Margin="0,0,15,0" Foreground="{StaticResource UI_Return}" Tapped="return_Tapped" />
-                        <TextBlock Text="return to list" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Foreground="{StaticResource UI_Return}" Tapped="return_Tapped" />
+                        <TextBlock Text="return to list" VerticalAlignment="Center" FontSize="20" FontWeight="Thin" Foreground="{StaticResource Text_Detail}" Tapped="return_Tapped" />
                     </StackPanel>
                 </Grid>
             </StackPanel>

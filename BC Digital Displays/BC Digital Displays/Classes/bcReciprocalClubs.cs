@@ -41,7 +41,7 @@ namespace BC_Digital_Displays.Classes
         public string website { get; set; }
 
         [DataMember]
-        public string specialRequest { get; set; }
+        public string specialRequests { get; set; }
 
         [DataMember]
         public string clubInfo { get; set; }

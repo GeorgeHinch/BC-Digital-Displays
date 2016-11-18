@@ -63,6 +63,7 @@ namespace BC_Digital_Displays
 
                 foreach (bcReciprocalClubs i in items)
                 {
+                    Debug.WriteLine("SR: " + i.specialRequest + "|");
                     // Create map geoposition from lat and long
                     BasicGeoposition clubPosition = new BasicGeoposition() { Latitude = Convert.ToDouble(i.addressLat), Longitude = Convert.ToDouble(i.addressLong) };
                     Geopoint clubPoint = new Geopoint(clubPosition);

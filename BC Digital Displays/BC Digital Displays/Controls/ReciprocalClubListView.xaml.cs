@@ -178,7 +178,14 @@ namespace BC_Digital_Displays.Controls
                     clubAddress.FontWeight = FontWeights.Thin;
 
                     TextBlock clubPhoneFax = new TextBlock();
-                    clubPhoneFax.Text = rc.phone + ", Fax: " + rc.fax;
+                    if(rc.fax == "")
+                    {
+                        clubPhoneFax.Text = rc.phone;
+                    }
+                    else
+                    {
+                        clubPhoneFax.Text = rc.phone + ", Fax: " + rc.fax;
+                    }
                     clubPhoneFax.FontSize = 24;
                     clubPhoneFax.FontWeight = FontWeights.Thin;
 
@@ -210,6 +217,7 @@ namespace BC_Digital_Displays.Controls
                 }
 
                 adminRegionGrid.Children.Add(adminClubsSP);
+                adminRegionGrid.Margin = new Thickness(50, 0, 0, 50);
                 Grid.SetColumn(adminClubsSP, 1);
 
                 clubsStackPanel.Children.Add(adminRegionGrid);
@@ -257,10 +265,10 @@ namespace BC_Digital_Displays.Controls
             {
                 clubPhoneFax.Text = club.phone;
             } else { clubPhoneFax.Text = club.phone + ", Fax: " + club.fax; }
-            if (club.specialRequest == "" || club.specialRequest == null)
+            if (club.specialRequests == "" || club.specialRequests == null)
             {
                 clubSpecialRequests.Visibility = Visibility.Collapsed;
-            } else { clubSpecialRequests.Text = club.specialRequest; }
+            } else { clubSpecialRequests.Text = club.specialRequests; }
             clubDescription.Text = club.clubInfo;
         }
 
