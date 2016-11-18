@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Twilio.Lookups;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -95,8 +96,9 @@ public partial class settings_add_add_club : System.Web.UI.Page
 
     protected void FormSubmit_Click(object sender, EventArgs e)
     {
-        var latLong = GetGeoCodedResults(clubAddress.Text);
-
+        var latLong = GeoBuilder.GetGeoCodedResults(clubAddress.Text);
+        
+        string countryCode = "";
         string city = "";
         string state = "";
         string country = "";
@@ -116,6 +118,7 @@ public partial class settings_add_add_club : System.Web.UI.Page
             if (aComp.types[0] == "country")
             {
                 country = aComp.long_name;
+                countryCode = aComp.short_name;
             }
         }
 
@@ -129,6 +132,9 @@ public partial class settings_add_add_club : System.Web.UI.Page
                 }
             }
         }
+
+        string phone = PhoneBuilder.buildPhoneNumber(clubPhone.Text, countryCode);
+        string fax = PhoneBuilder.buildPhoneNumber(clubFax.Text, countryCode);
 
         string connString = ConfigurationManager.ConnectionStrings["BC_DisplaysConnectionString"].ConnectionString;
         SqlConnection conn = null;
@@ -150,8 +156,8 @@ public partial class settings_add_add_club : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@sortState", state);
                     cmd.Parameters.AddWithValue("@sortCountry", country);
                     cmd.Parameters.AddWithValue("@address", latLong.results[0].formatted_address);
-                    cmd.Parameters.AddWithValue("@phone", clubPhone.Text);
-                    cmd.Parameters.AddWithValue("@fax", clubFax.Text);
+                    cmd.Parameters.AddWithValue("@phone", phone);
+                    cmd.Parameters.AddWithValue("@fax", fax);
                     cmd.Parameters.AddWithValue("@email", clubEmail.Text);
                     cmd.Parameters.AddWithValue("@website", clubWebsite.Text);
                     cmd.Parameters.AddWithValue("@specialRequests", clubSpecialRequests.Text);
@@ -168,8 +174,8 @@ public partial class settings_add_add_club : System.Web.UI.Page
                     cmd.Parameters.AddWithValue("@sortState", state);
                     cmd.Parameters.AddWithValue("@sortCountry", country);
                     cmd.Parameters.AddWithValue("@address", latLong.results[0].formatted_address);
-                    cmd.Parameters.AddWithValue("@phone", clubPhone.Text);
-                    cmd.Parameters.AddWithValue("@fax", clubFax.Text);
+                    cmd.Parameters.AddWithValue("@phone", phone);
+                    cmd.Parameters.AddWithValue("@fax", fax);
                     cmd.Parameters.AddWithValue("@email", clubEmail.Text);
                     cmd.Parameters.AddWithValue("@website", clubWebsite.Text);
                     cmd.Parameters.AddWithValue("@specialRequests", clubSpecialRequests.Text);
@@ -210,21 +216,6 @@ public partial class settings_add_add_club : System.Web.UI.Page
                 }
             }
         } 
-    }
-
-    public static GeoBuilder.geoResponse GetGeoCodedResults(string address)
-    {
-        string url = string.Format(
-                "http://maps.google.com/maps/api/geocode/json?address={0}&sensor=false",
-                HttpUtility.UrlEncode(address)
-                );
-        WebClient webClient = new WebClient();
-        webClient.Encoding = Encoding.UTF8;
-        string json = webClient.DownloadString(url);
-
-        Debug.WriteLine("JSON: " + json + "|");
-        GeoBuilder.geoResponse m = JsonConvert.DeserializeObject<GeoBuilder.geoResponse>(json);
-        return m;
     }
 
     public void ClearForm(ControlCollection controls)

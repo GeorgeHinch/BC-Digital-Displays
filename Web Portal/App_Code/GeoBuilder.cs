@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -9,6 +12,20 @@ using System.Web;
 /// </summary>
 public class GeoBuilder
 {
+    public static geoResponse GetGeoCodedResults(string address)
+    {
+        string url = string.Format(
+                "http://maps.google.com/maps/api/geocode/json?address={0}&sensor=false",
+                HttpUtility.UrlEncode(address)
+                );
+        WebClient webClient = new WebClient();
+        webClient.Encoding = Encoding.UTF8;
+        string json = webClient.DownloadString(url);
+
+        geoResponse returnGeo = JsonConvert.DeserializeObject<geoResponse>(json);
+        return returnGeo;
+    }
+
     [DataContract]
     public class AddressComponent
     {
