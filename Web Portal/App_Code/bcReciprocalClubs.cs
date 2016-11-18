@@ -9,7 +9,7 @@ using System.Web;
 /// </summary>
 public class bcReciprocalClubs
 {
-    public bcReciprocalClubs(string id, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, string clubName, string address, string phone, string fax, string email, string website, string specialRequest, string clubInfo, string addressLat, string addressLong, string sortCountry, string sortState, string sortCity)
+    public bcReciprocalClubs(string id, DateTimeOffset createdAt, DateTimeOffset updatedAt, bool deleted, string clubName, string address, string phone, string fax, string email, string website, string specialRequests, string clubInfo, string addressLat, string addressLong, string sortCountry, string sortState, string sortCity)
     {
         this.id = id;
         this.createdAt = createdAt;
@@ -21,7 +21,7 @@ public class bcReciprocalClubs
         this.fax = fax;
         this.email = email;
         this.website = website;
-        this.specialRequest = specialRequest;
+        this.specialRequests = specialRequests;
         this.clubInfo = clubInfo;
         this.addressLat = addressLat;
         this.addressLong = addressLong;
@@ -61,7 +61,7 @@ public class bcReciprocalClubs
     public string website { get; set; }
 
     [DataMember]
-    public string specialRequest { get; set; }
+    public string specialRequests { get; set; }
 
     [DataMember]
     public string clubInfo { get; set; }
