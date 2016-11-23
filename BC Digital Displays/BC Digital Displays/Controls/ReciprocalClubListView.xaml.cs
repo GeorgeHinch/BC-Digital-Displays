@@ -40,7 +40,7 @@ namespace BC_Digital_Displays.Controls
 
         public void loadContent()
         {
-            MobileServiceCollection<bcReciprocalClubs, bcReciprocalClubs> items = this.Tag as MobileServiceCollection<bcReciprocalClubs, bcReciprocalClubs>;
+            List<bcReciprocalClubs> items = this.Tag as List<bcReciprocalClubs>;
 
             string country = "";
             string state = "";

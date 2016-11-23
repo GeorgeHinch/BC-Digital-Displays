@@ -63,7 +63,6 @@ namespace BC_Digital_Displays
 
                 foreach (bcReciprocalClubs i in items)
                 {
-                    Debug.WriteLine("SR: " + i.specialRequest + "|");
                     // Create map geoposition from lat and long
                     BasicGeoposition clubPosition = new BasicGeoposition() { Latitude = Convert.ToDouble(i.addressLat), Longitude = Convert.ToDouble(i.addressLong) };
                     Geopoint clubPoint = new Geopoint(clubPosition);
@@ -89,20 +88,36 @@ namespace BC_Digital_Displays
         }
 
         #region Load reciprocal clubs
-        private MobileServiceCollection<bcReciprocalClubs, bcReciprocalClubs> items;
+        private List<bcReciprocalClubs> items = new List<bcReciprocalClubs>();
         private IMobileServiceTable<bcReciprocalClubs> bcReciprocalClubsTable = App.MobileService.GetTable<bcReciprocalClubs>();
         public async Task loadReciprocalClubs()
         {
-            MobileServiceInvalidOperationException exception = null;
+        MobileServiceInvalidOperationException exception = null;
             try
             {
-                items = await bcReciprocalClubsTable
+                var rowsNum = await bcReciprocalClubsTable
                     .Where(aClub => aClub.deleted == false)
-                    .OrderBy(aClub => aClub.sortCountry)
-                    .ThenBy(aClub => aClub.sortState)
-                    .ThenBy(aClub => aClub.sortCity)
-                    .ThenBy(aClub => aClub.clubName)
-                    .ToCollectionAsync();
+                    .IncludeTotalCount().ToCollectionAsync();
+
+                int loopTimes = ((int)rowsNum.TotalCount - 1) / 50 + 1;
+                int skipNum = 0;
+
+                for (int i = 0; i < loopTimes; i++)
+                {
+                    IList<bcReciprocalClubs> tempItems = await bcReciprocalClubsTable
+                        .Where(aClub => aClub.deleted == false)
+                        .OrderBy(aClub => aClub.sortCountry)
+                        .ThenBy(aClub => aClub.sortState)
+                        .ThenBy(aClub => aClub.sortCity)
+                        .ThenBy(aClub => aClub.clubName)
+                        .Skip(skipNum)
+                        .Take(50)
+                        .ToCollectionAsync();
+                    
+                    items.AddRange(tempItems);
+
+                    skipNum = skipNum + 50;
+                }
             }
             catch (MobileServiceInvalidOperationException e)
             {
