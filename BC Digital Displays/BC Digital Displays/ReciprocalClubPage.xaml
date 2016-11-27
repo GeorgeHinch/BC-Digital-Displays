@@ -29,14 +29,15 @@
     <Grid>
         <Grid CornerRadius="5">
             <Maps:MapControl 
-                x:Name="clubMap"          
+                x:Name="clubMap"   
+                x:FieldModifier="Public"
                 Height="880" Width="1760"
                 ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl"   
                 MapServiceToken="EWwqxpgV75q8inlrF40b~Wzmlg0PRYy12V_bZy4LLyw~Ai0Eu2PGFYT2aB4Zb0am1GL9zhGhW9b6CvHRE9qEAgFyaFjKVzdtGFhgY9VFW2UZ" />
         </Grid>
 
-        <Grid x:Name="clubList" CornerRadius="5" Height="880" Width="1760" Background="White">
-            <my:ReciprocalClubListView x:Name="clubListView" />
+        <Grid x:Name="clubList" x:FieldModifier="Public" CornerRadius="5" Height="880" Width="1760" Background="White" Visibility="Collapsed">
+            <my:ReciprocalClubListView x:Name="clubListView" x:FieldModifier="Public" />
         </Grid>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,80,55">

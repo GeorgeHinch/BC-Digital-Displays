@@ -234,7 +234,7 @@ namespace BC_Digital_Displays.Controls
             }
         }
 
-        private void moreInfo_Tapped(object sender, TappedRoutedEventArgs e)
+        public void moreInfo_Tapped(object sender, TappedRoutedEventArgs e)
         {
             TextBlock s = sender as TextBlock;
             bcReciprocalClubs club = s.Tag as bcReciprocalClubs;
@@ -287,9 +287,22 @@ namespace BC_Digital_Displays.Controls
         }
         #endregion
 
-        private void return_Tapped(object sender, TappedRoutedEventArgs e)
+        private void returnList_Tapped(object sender, TappedRoutedEventArgs e)
         {
             moreInfoGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void returnMap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ReciprocalClubPage.reciprocalClubPage.clubMap.Visibility = Visibility.Visible;
+            ReciprocalClubPage.reciprocalClubPage.clubList.Visibility = Visibility.Collapsed;
+
+            returnList.Visibility = Visibility.Visible;
+            returnMap.Visibility = Visibility.Collapsed;
+
+            moreInfoGrid.Visibility = Visibility.Collapsed;
+            
+            ReciprocalClubPage.iconClicked = false;
         }
     }
 }

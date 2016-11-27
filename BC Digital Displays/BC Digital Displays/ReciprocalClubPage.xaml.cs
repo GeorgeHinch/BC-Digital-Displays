@@ -28,9 +28,11 @@ namespace BC_Digital_Displays
     /// </summary>
     public sealed partial class ReciprocalClubPage : Page
     {
+        public static ReciprocalClubPage reciprocalClubPage;
         public ReciprocalClubPage()
         {
             this.InitializeComponent();
+            reciprocalClubPage = this;
 
             this.Loaded += UserControl_Loaded;
 
@@ -69,11 +71,13 @@ namespace BC_Digital_Displays
 
                     // Create a MapIcon.
                     MapIcon mapIcon = new MapIcon();
+                    mapIcon.CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible;
                     mapIcon.Location = clubPoint;
                     mapIcon.NormalizedAnchorPoint = new Point(0.5, 1.0);
                     mapIcon.Title = i.clubName;
                     mapIcon.ZIndex = 0;
 
+                    clubMap.MapElementClick += ClubMap_MapElementClick;
                     // Add the MapIcon to the map.
                     clubMap.MapElements.Add(mapIcon);
                 }
@@ -84,6 +88,36 @@ namespace BC_Digital_Displays
             catch (Exception ex)
             {
                 Debug.WriteLine("Exception: " + ex.Message + " | ");
+            }
+        }
+
+        public static bool iconClicked = false;
+        private void ClubMap_MapElementClick(MapControl sender, MapElementClickEventArgs args)
+        {
+            Debug.WriteLine("Sender is: " + sender.GetType().ToString() + "|");
+            
+            if (!iconClicked)
+            {
+                iconClicked = true;
+
+                MapIcon mapIcon = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
+
+                foreach (bcReciprocalClubs club in items)
+                {
+                    if (mapIcon.Title == club.clubName)
+                    {
+                        clubMap.Visibility = Visibility.Collapsed;
+                        clubList.Visibility = Visibility.Visible;
+
+                        clubListView.returnList.Visibility = Visibility.Collapsed;
+                        clubListView.returnMap.Visibility = Visibility.Visible;
+
+                        TextBlock tb = new TextBlock();
+                        tb.Tag = club;
+
+                        clubListView.moreInfo_Tapped(tb, null);
+                    }
+                }
             }
         }
 
