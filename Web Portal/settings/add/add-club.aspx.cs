@@ -132,6 +132,15 @@ public partial class settings_add_add_club : System.Web.UI.Page
             }
         }
 
+        if (city == "")
+        {
+            if (state != "")
+            {
+                city = state;
+            }
+            else { city = country; }
+        }
+
         string phone = PhoneBuilder.buildPhoneNumber(clubPhone.Text, countryCode);
         string fax = PhoneBuilder.buildPhoneNumber(clubFax.Text, countryCode);
 
