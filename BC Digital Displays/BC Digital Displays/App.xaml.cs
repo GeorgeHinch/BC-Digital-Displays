@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
+using BC_Digital_Displays.Classes;
 
 namespace BC_Digital_Displays
 {
@@ -42,6 +43,9 @@ namespace BC_Digital_Displays
             this.UnhandledException += (sender, e) =>
             {
                 //e.Handled = true;
+                
+                SlackSender.slackExceptionSender(e.Exception);
+
                 GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, true);
                 Debug.WriteLine("Unhandeled: " + e.Exception);
             };
