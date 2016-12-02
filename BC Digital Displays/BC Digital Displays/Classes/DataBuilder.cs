@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
@@ -597,6 +598,21 @@ namespace BC_Digital_Displays.Classes
             returnButton.Content = buttonStackpanel;
 
             return returnButton;
+        }
+        #endregion
+
+        #region Builds local system name
+        public static string systemName()
+        {
+            string returnName = "";
+
+            var hostNames = NetworkInformation.GetHostNames();
+            var localName = hostNames.FirstOrDefault(name => name.DisplayName.Contains(".local"));
+            var computerName = localName.DisplayName.Replace(".local", "");
+
+            returnName = computerName.ToString();
+
+            return returnName;
         }
         #endregion
     }

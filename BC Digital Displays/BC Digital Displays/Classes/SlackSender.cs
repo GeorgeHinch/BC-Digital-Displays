@@ -14,30 +14,26 @@ namespace BC_Digital_Displays.Classes
 {
     class SlackSender
     {
-        //Post a message using simple strings
-        public static async void slackMessageSender(string text)
+        private static readonly Uri _uri = new Uri("https://hooks.slack.com/services/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");
+
+        #region Sends message via Slack
+        public static async void slackMessageSender(string username, string text)
         {
-            Uri requestUri = new Uri("https://hooks.slack.com/services/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");
+            SlackPayload payload = new SlackPayload();
+            payload.Channel = "bcdigitaldisplays";
+            payload.Username = username;
+            payload.Text = text;
 
-            dynamic dynamicJson = new ExpandoObject();
-            dynamicJson.channel = "bcdigitaldisplays";
-            dynamicJson.username = "Display Exception";
-            dynamicJson.text = text;
-
-            string json = "";
-            json = JsonConvert.SerializeObject(dynamicJson);
+            string json = JsonConvert.SerializeObject(payload);
 
             HttpClient client = new HttpClient();
-            HttpResponseMessage respon = await client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
-            
-            string responJsonText = await respon.Content.ReadAsStringAsync();
-            Debug.WriteLine("Response: " + responJsonText);
+            HttpResponseMessage respon = await client.PostAsync(_uri, new StringContent(json, Encoding.UTF8, "application/json"));
         }
+        #endregion
 
+        #region Sends exception message via Slack
         public static async void slackExceptionSender(Exception e)
         {
-            Uri requestUri = new Uri("https://hooks.slack.com/services/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");
-            
             SlackPayload payload = new SlackPayload();
             payload.Channel = "bcdigitaldisplays";
             payload.Username = "Display Exception";
@@ -47,7 +43,7 @@ namespace BC_Digital_Displays.Classes
             {
                 Title = "Stack Trace",
                 Value = e.StackTrace,
-                Short = "false"
+                Short = false
             };
 
             SlackAttachments[] attatchArray = new SlackAttachments[1];
@@ -55,23 +51,23 @@ namespace BC_Digital_Displays.Classes
             {
                 Fallback = "New Exception: <" + e.HelpLink + "|" + e.Message + ">",
                 Pretext = "New Exception: <" + e.HelpLink + "|" + e.Message + ">",
+                AuthorName = DataBuilder.systemName(),
                 Color = "#D00000",
                 AttachmentsFields = fieldsArray
             };
             
             payload.Attachments = attatchArray;
-
-            string json = "";
-            json = JsonConvert.SerializeObject(payload);
-
-            Debug.WriteLine("Attatchments: " + json);
+            
+            string json = JsonConvert.SerializeObject(payload);
 
             HttpClient client = new HttpClient();
-            HttpResponseMessage respon = await client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage respon = await client.PostAsync(_uri, new StringContent(json, Encoding.UTF8, "application/json"));
         }
+        #endregion
     }
 
-    //This class serializes into the Json payload required by Slack Incoming WebHooks
+
+    #region Classes to serializes Json payload required by Slack Incoming WebHooks
     public class SlackPayload
     {
         [JsonProperty("channel")]
@@ -80,12 +76,39 @@ namespace BC_Digital_Displays.Classes
         [JsonProperty("username")]
         public string Username { get; set; }
 
+        [JsonProperty("unfurl_links")]
+        public bool UnfurlLinks { get; set; }
+
+        [JsonProperty("unfurl_media")]
+        public bool UnfurlMedia { get; set; }
+
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
         [JsonProperty("attachments")]
         public SlackAttachments[] Attachments { get; set; }
     }
     
     public class SlackAttachments
     {
+        [JsonProperty("author_name")]
+        public string AuthorName { get; set; }
+
+        [JsonProperty("author_link")]
+        public string AuthorLink { get; set; }
+
+        [JsonProperty("author_icon")]
+        public string AuthorIcon { get; set; }
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("title_link")]
+        public string TitleLink { get; set; }
+
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
         [JsonProperty("fallback")]
         public string Fallback { get; set; }
 
@@ -97,10 +120,29 @@ namespace BC_Digital_Displays.Classes
 
         [JsonProperty("fields")]
         public SlackAttachmentsFields[] AttachmentsFields { get; set; }
+
+        [JsonProperty("actions")]
+        public SlackAttachmentsActions[] AttachmentsActions { get; set; }
+
+        [JsonProperty("image_url")]
+        public string ImageURL { get; set; }
+
+        [JsonProperty("thumb_url")]
+        public string ThumbURL { get; set; }
+
+        [JsonProperty("footer")]
+        public string Footer { get; set; }
+
+        [JsonProperty("footer_icon")]
+        public string FooterIcon { get; set; }
+
+        [JsonProperty("ts")]
+        public string TimeStamp { get; set; }
     }
 
     public class SlackAttachmentsFields
     {
+
         [JsonProperty("title")]
         public string Title { get; set; }
 
@@ -108,6 +150,45 @@ namespace BC_Digital_Displays.Classes
         public string Value { get; set; }
 
         [JsonProperty("short")]
-        public string Short { get; set; }
+        public bool Short { get; set; }
     }
+
+    public class SlackAttachmentsActions
+    {
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("text")]
+        public bool Text { get; set; }
+
+        [JsonProperty("value")]
+        public string Value { get; set; }
+
+        [JsonProperty("style")]
+        public string Style { get; set; }
+
+        [JsonProperty("confirm")]
+        public SlackAttachmentsActionsConfirm Confirm { get; set; }
+    }
+
+    public class SlackAttachmentsActionsConfirm
+    {
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("text")]
+        public bool Text { get; set; }
+
+        [JsonProperty("ok_text")]
+        public string OkText { get; set; }
+
+        [JsonProperty("dismiss_text")]
+        public string DismissText { get; set; }
+    }
+    #endregion
 }
