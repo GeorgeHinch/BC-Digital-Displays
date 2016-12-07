@@ -138,18 +138,18 @@ namespace BC_Digital_Displays.Classes
         #endregion
 
         #region Builds email string for classes & events
+
+        #region Builds email header and footer strings (DO NOT EDIT)
+        private static readonly string emailHeader = "<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>Bellevue Club</title><link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" /><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'></head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td><div style=\"text-align:center; margin:auto; \"><img src=\"http://www.bellevueclub.com/Forms/email/assets/bc_logo.png\" style=\"width:200px;text-align:center;align:center;margin:auto;\" align=\"middle\"/></div>";
+        private static readonly string emailFooter = "</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>";
+        #endregion
+
         public static string emailRecClassBuilder(bcRecClasses thisClass, bcRecBrochure thisBrochure, bool tb1, bool tb2, bool tb3, bool tb4, bool tb5)
         {
             List<bcSessions> theseSessions = JsonConvert.DeserializeObject<List<bcSessions>>(thisBrochure.sessions);
             StringBuilder returnString = new StringBuilder();
-
-            #region Email template set up (DO NOT EDIT)
-            returnString.AppendLine("<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>Bellevue Club</title>");
-            returnString.AppendLine("<link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" />");
-            returnString.AppendLine("<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'>");
-            returnString.AppendLine("</head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td>");
-            returnString.AppendLine("<div style=\"text-align:center; margin:auto; \"><img src=\"http://www.bellevueclub.com/Forms/email/assets/bc_logo.png\" style=\"width:200px;text-align:center;align:center;margin:auto;\" align=\"middle\"/></div>");
-            #endregion
+            
+            returnString.AppendLine(emailHeader);
 
             returnString.AppendLine("<h1>Details for " + thisClass.name + "</h1>");
             returnString.AppendLine("<h2>Class Description</h2>");
@@ -206,10 +206,8 @@ namespace BC_Digital_Displays.Classes
             {
                 returnString.AppendLine(theseSessions[4].name + ": " + Convert.ToDateTime(theseSessions[4].start).ToString("MMMM d, yyyy") + " - " + Convert.ToDateTime(theseSessions[4].end).ToString("MMMM d, yyyy") + "<br />");
             }
-
-            #region Email template footer (DO NOT EDIT)
-            returnString.AppendLine("</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>");
-            #endregion
+            
+            returnString.AppendLine(emailFooter);
             
             return returnString.ToString();
         }
@@ -218,13 +216,7 @@ namespace BC_Digital_Displays.Classes
         {
             StringBuilder returnString = new StringBuilder();
 
-            #region Email template set up (DO NOT EDIT)
-            returnString.AppendLine("<html><head><meta name=\"viewport\" content=\"width=device-width\"><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><title>Bellevue Club</title>");
-            returnString.AppendLine("<link rel=\"stylesheet\" href=\"http://www.bellevueclub.com/Forms/email/assets/email.css\" />");
-            returnString.AppendLine("<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic,300,300italic,200italic,200' rel='stylesheet' type='text/css'>");
-            returnString.AppendLine("</head><body bgcolor=\"#f6f6f6\"><!-- body --><table class=\"body-wrap\" bgcolor=\"#f6f6f6\"><tr><td></td><td class=\"container\" bgcolor=\"#FFFFFF\"><!-- content --><div class=\"content\"><table><tr><td>");
-            returnString.AppendLine("<div style=\"text-align:center; margin:auto; \"><img src=\"http://www.bellevueclub.com/Forms/email/assets/bc_logo.png\" style=\"width:200px;text-align:center;align:center;margin:auto;\" align=\"middle\"/></div>");
-            #endregion
+            returnString.AppendLine(emailHeader);
 
             returnString.AppendLine("<h1>Details for " + thisEvent.Subject + "</h1>");
             returnString.AppendLine("<h2>Event Description</h2>");
@@ -235,9 +227,52 @@ namespace BC_Digital_Displays.Classes
             returnString.AppendLine("<p>From tennis, basketball and swim lessons to art classes and special holiday events, the Bellevue Club and our roster of excellent instructors have lots of plans for your family.</p>");
             returnString.AppendLine("<p>Register for this event and many more at <a href=\"https://members.bellevueclub.com\">members.bellevueclub.com</a>.</p>");
 
-            #region Email template footer (DO NOT EDIT)
-            returnString.AppendLine("</p></td></tr></table> </div></td><td></td></tr></table> <table class=\"footer-wrap\"> <tr> <td></td><td class=\"container\"> <div class=\"content\"> <table> <tr> <td align=\"center\"> <p> For additional information or questions, contact the Bellevue Club at 425-455-1616. </p></td></tr></table> </div></td><td></td></tr></table> </body></html>");
-            #endregion
+            returnString.AppendLine(emailFooter);
+
+            return returnString.ToString();
+        }
+
+        public static string emailClubBuilder(bcReciprocalClubs thisClub)
+        {
+            StringBuilder returnString = new StringBuilder();
+
+            returnString.AppendLine(emailHeader);
+
+            returnString.AppendLine("<p style=\"margin-top:25px;\"><a href=\"https://www.google.com/maps/place/" + thisClub.addressLat + "," + thisClub.addressLong + "/\"><img src=\"htts://maps.googleapis.com/maps/api/staticmap?center=" + thisClub.addressLat + "," + thisClub.addressLong + "&zoom=15&scale=2&size=600x300&maptype=roadmap&format=png&visual_refresh=true&makers=size:mid%7Ccolor:0xff0000%7Clabel:" + thisClub.addressLat + "," + thisClub.addressLong +"\" style=\"width:100%;\" alt=\"Google Map of" + thisClub.clubName + "\"></a></p>");
+            returnString.AppendLine("<h1>" + thisClub.clubName +"</h1>");
+            returnString.AppendLine("<p>" + thisClub.address + "</p>");
+
+            if (thisClub.fax == "" || thisClub.fax == String.Empty)
+            {
+                returnString.AppendLine("<p><em>" + thisClub.phone +  "</p></em>");
+            }
+            else
+            {
+                returnString.AppendLine("<p><em>" + thisClub.phone + ", Fax: " + thisClub.fax + "</p></em>");
+            }
+
+            if (thisClub.website != "" || thisClub.website != String.Empty)
+            {
+                returnString.AppendLine("<p><a href=\"" + thisClub.website + "\">" + thisClub.website + "</a></p>");
+            }
+
+            if (thisClub.specialRequests != "" || thisClub.website != String.Empty)
+            {
+                returnString.AppendLine("<h2>Special Requests</h2>");
+                returnString.AppendLine("<p>" + thisClub.specialRequests + "</p>");
+            }
+
+            if (thisClub.clubInfo != "" || thisClub.clubInfo != String.Empty)
+            {
+                returnString.AppendLine("<h2>About the Club</h2>");
+                returnString.AppendLine("<p>" + thisClub.clubInfo + "</p>");
+            }
+
+            returnString.AppendLine("<h2>More Information</h2>");
+            returnString.AppendLine("<p>From Paris to New York City, your Bellevue Club membership will get you into the <a href=\"http://bellevueclub.com/reciprocal/\">finest athletic and social clubs</a> throughout the world. Reserve a tennis court in Beijing, dine poolside in Hawaii or work up a sweat in London—the Bellevue Club reciprocal program is just one perk of membership to the Pacific Northwest's premier athletic club.</p>");
+            returnString.AppendLine("<p>As a Bellevue Club member, you are entitled to guest privileges of the clubs listed upon presentation of a letter of introduction from the Bellevue Club, together with your current membership card. Letters of introduction may be obtained from the Hotel Bellevue Concierge Desk at 425.455.1616 or <a href=\"mailto:concierge@thehotelbellevue.com\">concierge@thehotelbellevue.com</a>.</p>");
+
+            returnString.AppendLine(emailFooter);
 
             return returnString.ToString();
         }

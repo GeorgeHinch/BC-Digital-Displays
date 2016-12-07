@@ -15,26 +15,22 @@ namespace BC_Digital_Displays.Classes
     class SlackSender
     {
         private static readonly Uri _uri = new Uri("https://hooks.slack.com/services/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");
+        private static SlackPayload payload = new SlackPayload();
 
-        #region Sends message via Slack
-        public static async void slackMessageSender(string username, string text)
+        #region Builds generic Slack Message
+        public static void slackMessageSender(string username, string text)
         {
-            SlackPayload payload = new SlackPayload();
             payload.Channel = "bcdigitaldisplays";
             payload.Username = username;
             payload.Text = text;
 
-            string json = JsonConvert.SerializeObject(payload);
-
-            HttpClient client = new HttpClient();
-            HttpResponseMessage respon = await client.PostAsync(_uri, new StringContent(json, Encoding.UTF8, "application/json"));
+            slackSender(payload);
         }
         #endregion
 
-        #region Sends exception message via Slack
-        public static async void slackExceptionSender(Exception e)
+        #region Builds Slack exception message
+        public static void slackExceptionSender(Exception e)
         {
-            SlackPayload payload = new SlackPayload();
             payload.Channel = "bcdigitaldisplays";
             payload.Username = "Display Exception";
 
@@ -49,7 +45,7 @@ namespace BC_Digital_Displays.Classes
             SlackAttachments[] attatchArray = new SlackAttachments[1];
             attatchArray[0] = new SlackAttachments
             {
-                Fallback = "New Exception: <" + e.HelpLink + "|" + e.Message + ">",
+                Fallback = "New Exception: " + e.Message,
                 Pretext = "New Exception: <" + e.HelpLink + "|" + e.Message + ">",
                 AuthorName = DataBuilder.systemName(),
                 Color = "#D00000",
@@ -57,7 +53,14 @@ namespace BC_Digital_Displays.Classes
             };
             
             payload.Attachments = attatchArray;
-            
+
+            slackSender(payload);
+        }
+        #endregion
+
+        #region Sends Slack payload
+        private static async void slackSender(SlackPayload payload)
+        {
             string json = JsonConvert.SerializeObject(payload);
 
             HttpClient client = new HttpClient();
