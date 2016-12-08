@@ -238,7 +238,7 @@ namespace BC_Digital_Displays.Classes
 
             returnString.AppendLine(emailHeader);
 
-            returnString.AppendLine("<p style=\"margin-top:25px;\"><a href=\"https://www.google.com/maps/place/" + thisClub.addressLat + "," + thisClub.addressLong + "/\"><img src=\"htts://maps.googleapis.com/maps/api/staticmap?center=" + thisClub.addressLat + "," + thisClub.addressLong + "&zoom=15&scale=2&size=600x300&maptype=roadmap&format=png&visual_refresh=true&makers=size:mid%7Ccolor:0xff0000%7Clabel:" + thisClub.addressLat + "," + thisClub.addressLong +"\" style=\"width:100%;\" alt=\"Google Map of" + thisClub.clubName + "\"></a></p>");
+            returnString.AppendLine("<p style=\"margin-top:25px;\"><a href=\"https://www.google.com/maps/place/" + thisClub.addressLat + "," + thisClub.addressLong + "/\"><img src=\"https://maps.googleapis.com/maps/api/staticmap?center=" + thisClub.addressLat + "," + thisClub.addressLong + "&zoom=15&scale=2&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C" + thisClub.addressLat + "," + thisClub.addressLong +"\" style=\"width:100%;\" alt=\"Google Map of" + thisClub.clubName + "\"></a></p>");
             returnString.AppendLine("<h1>" + thisClub.clubName +"</h1>");
             returnString.AppendLine("<p>" + thisClub.address + "</p>");
 
@@ -251,18 +251,18 @@ namespace BC_Digital_Displays.Classes
                 returnString.AppendLine("<p><em>" + thisClub.phone + ", Fax: " + thisClub.fax + "</p></em>");
             }
 
-            if (thisClub.website != "" || thisClub.website != String.Empty)
+            if (thisClub.website != "")
             {
                 returnString.AppendLine("<p><a href=\"" + thisClub.website + "\">" + thisClub.website + "</a></p>");
             }
 
-            if (thisClub.specialRequests != "" || thisClub.website != String.Empty)
+            if (thisClub.specialRequests != "")
             {
                 returnString.AppendLine("<h2>Special Requests</h2>");
                 returnString.AppendLine("<p>" + thisClub.specialRequests + "</p>");
             }
 
-            if (thisClub.clubInfo != "" || thisClub.clubInfo != String.Empty)
+            if (thisClub.clubInfo != "")
             {
                 returnString.AppendLine("<h2>About the Club</h2>");
                 returnString.AppendLine("<p>" + thisClub.clubInfo + "</p>");

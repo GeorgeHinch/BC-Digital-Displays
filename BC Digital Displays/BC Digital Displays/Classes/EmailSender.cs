@@ -16,8 +16,33 @@ namespace BC_Digital_Displays.Classes
 {
     public class EmailSender
     {
-        //public SmtpClient client = new SmtpClient("nemesis.bellevueclub.com", 25, false, "georgeh@bellevueclub.com", "Communications1");
-        public static SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 25, false, "ghtestacc@outlook.com", "!testacc!");
+        public static SmtpClient client = new SmtpClient("nemesis.bellevueclub.com", 25, false, "georgeh@bellevueclub.com", "Communications1");
+        //public static SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 25, false, "ghtestacc@outlook.com", "!testacc!");
+
+        #region Send email message
+        public static async Task emailSender(string recipient, string subject, string body)
+        {
+            try
+            {
+                EmailMessage emailMessage = new EmailMessage();
+
+                emailMessage.To.Add(new EmailRecipient(recipient));
+                emailMessage.Subject = subject;
+                emailMessage.Body = body;
+
+                await client.SendMail(emailMessage);
+                EmailSender.popToast();
+            }
+            catch (Exception e)
+            {
+                SlackSender.slackExceptionSender(e);
+                GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
+                Debug.WriteLine("Exception: " + e.Message + " | ");
+            }
+        }
+        #endregion
+
+        #region Send email message with multiple ics attachments
         public static async Task emailSender(string recipient, string subject, string body, string attachmentName, List<string> attatchments)
         {
             try
@@ -42,16 +67,19 @@ namespace BC_Digital_Displays.Classes
                     attachNum++;
                 }
 
-                //await client.SendMail(emailMessage);
+                await client.SendMail(emailMessage);
                 EmailSender.popToast();
             }
             catch(Exception e)
             {
+                SlackSender.slackExceptionSender(e);
                 GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
                 Debug.WriteLine("Exception: " + e.Message + " | ");
             }
         }
+        #endregion
 
+        #region Send email message with an ics attachment
         public static async Task emailSender(string recipient, string subject, string body, string attachmentName, string attatchments)
         {
             try
@@ -80,10 +108,12 @@ namespace BC_Digital_Displays.Classes
 
             catch (Exception e)
             {
+                SlackSender.slackExceptionSender(e);
                 GoogleAnalytics.EasyTracker.GetTracker().SendException(e.Message, false);
                 Debug.WriteLine("Exception: " + e.Message + " | ");
             }
         }
+        #endregion
 
         public static void popToast()
         {
